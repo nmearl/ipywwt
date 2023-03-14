@@ -25657,14 +25657,23 @@ function v4$1(n, d, g) {
 async function render(n) {
   let d = `${v4$1()}`, g = document.createElement("div");
   g.setAttribute("id", d), g.setAttribute("style", "width: 750px; height: 750px"), n.el.appendChild(g), n.displayed.then((v) => {
-    onReaderWWT(d);
+    onRenderWWT(n, d);
+  }), n.model.on("msg:custom", async (v) => {
+    switch (v.type) {
+      case "meth_call":
+        n.wwt_instance[v.meth_name](...v.meth_args);
+        break;
+      default:
+        console.log(`Received uncaught custom message of type ${v.type}.`);
+    }
   });
 }
-async function onReaderWWT(n) {
-  await new WWTInstance({
-    elId: n,
+async function onRenderWWT(n, d) {
+  const g = new WWTInstance({
+    elId: d,
     startInternalRenderLoop: !0
-  }).waitForReady();
+  });
+  await g.waitForReady(), n.wwt_instance = g;
 }
 var common = {};
 (function(n) {
