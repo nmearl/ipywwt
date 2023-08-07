@@ -58,3 +58,12 @@ In your Jupyter Lab or Jupyter Notebook environment, import the `WWTWidget` and 
 
    wwt = WWTWidget()
    wwt
+
+Building
+========
+
+To regenerate the built javascript and CSS files during development, use Vite to build the source:
+
+.. code-block:: bash
+
+   npx vite build
