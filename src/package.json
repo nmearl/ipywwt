@@ -1,0 +1,13 @@
+{
+  "type": "module",
+  "devDependencies": {
+    "@anywidget/vite": "^0.1.1",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "^4.4.8"
+  },
+  "dependencies": {
+    "@wwtelescope/astro": "^0.2.3",
+    "@wwtelescope/engine-pinia": "^0.7.0",
+    "vue": "^3.3.4"
+  }
+}
