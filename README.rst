@@ -36,9 +36,10 @@ IPyWidget wrapper around the WWTelescope Vue-based front-end application.
 Installation
 ============
 
-Install `ipywwt` from the repository using
+Install ``ipywwt`` from the repository using
 
 .. code-block:: bash
+
    pip install git+https://github.com/nmearl/ipywwt
 
 For development, clone the repository and install with
@@ -52,6 +53,7 @@ Usage
 In your Jupyter Lab or Jupyter Notebook environment, import the `WWTWidget` and instantiate:
 
 .. code-block:: python
+
    from ipywwt import WWTWidget
 
    wwt = WWTWidget()
