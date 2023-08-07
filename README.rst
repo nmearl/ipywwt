@@ -23,11 +23,9 @@
         :alt: Twitter
         :target: https://twitter.com/ipywwt
 
-.. image:: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
-    :alt: Project generated with PyScaffold
-    :target: https://pyscaffold.org/
-
-|
+   .. image:: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
+       :alt: Project generated with PyScaffold
+       :target: https://pyscaffold.org/
 
 ======
 ipywwt
@@ -38,20 +36,23 @@ IPyWidget wrapper around the WWTelescope Vue-based front-end application.
 Installation
 ============
 
-Clone the repository and install with
+Install `ipywwt` from the repository using
 
-```bash
-pip install .
-```
+.. code-block:: bash
+   pip install git+https://github.com/nmearl/ipywwt
+
+For development, clone the repository and install with
+
+.. code-block:: bash
+   pip install -e .
 
 Usage
 =====
 
-In your Jupyter Lab or Juptyer Notebook environment, import the wwt widget and instantiate.
+In your Jupyter Lab or Jupyter Notebook environment, import the `WWTWidget` and instantiate:
 
-```python
-from ipywwt import WWTWidget
+.. code-block:: python
+   from ipywwt import WWTWidget
 
-wwt = WWTWidget()
-wwt
-```
+   wwt = WWTWidget()
+   wwt
