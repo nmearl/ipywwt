@@ -33,17 +33,25 @@
 ipywwt
 ======
 
+IPyWidget wrapper around the WWTelescope Vue-based front-end application.
 
-    Add a short description here!
+Installation
+============
 
+Clone the repository and install with
 
-A longer description of your project goes here...
+```bash
+pip install .
+```
 
+Usage
+=====
 
-.. _pyscaffold-notes:
+In your Jupyter Lab or Juptyer Notebook environment, import the wwt widget and instantiate.
 
-Note
-====
+```python
+from ipywwt import WWTWidget
 
-This project has been set up using PyScaffold 4.5. For details and usage
-information on PyScaffold see https://pyscaffold.org/.
+wwt = WWTWidget()
+wwt
+```
