@@ -1394,17 +1394,17 @@ function createSuspenseBoundary(r, u, d, v, w, C, L, E, V, N, z = !1) {
         pendingId: ie,
         effects: Yt,
         parentComponent: ae,
-        container: Re
+        container: $e
       } = ft;
       if (ft.isHydrating)
         ft.isHydrating = !1;
       else if (!wt) {
         const ei = bt && Xt.transition && Xt.transition.mode === "out-in";
         ei && (bt.transition.afterLeave = () => {
-          ie === ft.pendingId && et(Xt, Re, si, 0);
+          ie === ft.pendingId && et(Xt, $e, si, 0);
         });
         let { anchor: si } = ft;
-        bt && (si = Ct(bt), ct(bt, ae, ft, !0)), ei || et(Xt, Re, si, 0);
+        bt && (si = Ct(bt), ct(bt, ae, ft, !0)), ei || et(Xt, $e, si, 0);
       }
       setActiveBranch(ft, Xt), ft.pendingBranch = null, ft.isInFallback = !1;
       let me = ft.parent, Fi = !1;
@@ -1435,15 +1435,15 @@ function createSuspenseBoundary(r, u, d, v, w, C, L, E, V, N, z = !1) {
           E,
           V
         ), setActiveBranch(ft, wt));
-      }, Re = wt.transition && wt.transition.mode === "out-in";
-      Re && (Ot.transition.afterLeave = ae), ft.isInFallback = !0, ct(
+      }, $e = wt.transition && wt.transition.mode === "out-in";
+      $e && (Ot.transition.afterLeave = ae), ft.isInFallback = !0, ct(
         Ot,
         bt,
         null,
         // no suspense so unmount hooks fire now
         !0
         // shouldRemove
-      ), Re || ae();
+      ), $e || ae();
     },
     move(wt, Zt, Ot) {
       ft.activeBranch && et(ft.activeBranch, wt, Zt, Ot), ft.container = wt;
@@ -1856,10 +1856,10 @@ function resolveTransitionHooks(r, u, d, v) {
         else
           return;
       let ae = !1;
-      const Re = bt._enterCb = (me) => {
+      const $e = bt._enterCb = (me) => {
         ae || (ae = !0, me ? wt(Yt, [bt]) : wt(ie, [bt]), Ot.delayedLeave && Ot.delayedLeave(), bt._enterCb = void 0);
       };
-      Xt ? Zt(Xt, [bt, Re]) : Re();
+      Xt ? Zt(Xt, [bt, $e]) : $e();
     },
     leave(bt, Xt) {
       const ie = String(r.key);
@@ -1870,8 +1870,8 @@ function resolveTransitionHooks(r, u, d, v) {
         return Xt();
       wt(st, [bt]);
       let Yt = !1;
-      const ae = bt._leaveCb = (Re) => {
-        Yt || (Yt = !0, Xt(), Re ? wt(Ct, [bt]) : wt(ct, [bt]), bt._leaveCb = void 0, ft[ie] === r && delete ft[ie]);
+      const ae = bt._leaveCb = ($e) => {
+        Yt || (Yt = !0, Xt(), $e ? wt(Ct, [bt]) : wt(ct, [bt]), bt._leaveCb = void 0, ft[ie] === r && delete ft[ie]);
       };
       ft[ie] = r, et ? Zt(et, [bt, ae]) : ae();
     },
@@ -2482,13 +2482,13 @@ function applyOptions(r) {
     inheritAttrs: Yt,
     // assets
     components: ae,
-    directives: Re,
+    directives: $e,
     filters: me
   } = u;
   if (N && resolveInjections(N, v, null), L)
     for (const si in L) {
-      const $e = L[si];
-      isFunction($e) && (v[si] = $e.bind(d));
+      const Re = L[si];
+      isFunction(Re) && (v[si] = Re.bind(d));
     }
   if (w) {
     const si = w.call(d, d);
@@ -2496,7 +2496,7 @@ function applyOptions(r) {
   }
   if (shouldCacheAccess = !0, C)
     for (const si in C) {
-      const $e = C[si], Ai = isFunction($e) ? $e.bind(d, d) : isFunction($e.get) ? $e.get.bind(d, d) : NOOP, ki = !isFunction($e) && isFunction($e.set) ? $e.set.bind(d) : NOOP, Hr = computed({
+      const Re = C[si], Ai = isFunction(Re) ? Re.bind(d, d) : isFunction(Re.get) ? Re.get.bind(d, d) : NOOP, ki = !isFunction(Re) && isFunction(Re.set) ? Re.set.bind(d) : NOOP, Hr = computed({
         get: Ai,
         set: ki
       });
@@ -2512,26 +2512,26 @@ function applyOptions(r) {
       createWatcher(E[si], v, d, si);
   if (V) {
     const si = isFunction(V) ? V.call(d) : V;
-    Reflect.ownKeys(si).forEach(($e) => {
-      provide($e, si[$e]);
+    Reflect.ownKeys(si).forEach((Re) => {
+      provide(Re, si[Re]);
     });
   }
   z && callHook$1(z, r, "c");
-  function ei(si, $e) {
-    isArray($e) ? $e.forEach((Ai) => si(Ai.bind(d))) : $e && si($e.bind(d));
+  function ei(si, Re) {
+    isArray(Re) ? Re.forEach((Ai) => si(Ai.bind(d))) : Re && si(Re.bind(d));
   }
   if (ei(onBeforeMount, st), ei(onMounted, et), ei(onBeforeUpdate, ct), ei(onUpdated, Ct), ei(onActivated, At), ei(onDeactivated, qt), ei(onErrorCaptured, bt), ei(onRenderTracked, Zt), ei(onRenderTriggered, Ot), ei(onBeforeUnmount, _t), ei(onUnmounted, ft), ei(onServerPrefetch, Xt), isArray(ie))
     if (ie.length) {
       const si = r.exposed || (r.exposed = {});
-      ie.forEach(($e) => {
-        Object.defineProperty(si, $e, {
-          get: () => d[$e],
-          set: (Ai) => d[$e] = Ai
+      ie.forEach((Re) => {
+        Object.defineProperty(si, Re, {
+          get: () => d[Re],
+          set: (Ai) => d[Re] = Ai
         });
       });
     } else
       r.exposed || (r.exposed = {});
-  wt && r.render === NOOP && (r.render = wt), Yt != null && (r.inheritAttrs = Yt), ae && (r.components = ae), Re && (r.directives = Re);
+  wt && r.render === NOOP && (r.render = wt), Yt != null && (r.inheritAttrs = Yt), ae && (r.components = ae), $e && (r.directives = $e);
 }
 function resolveInjections(r, u, d = NOOP) {
   isArray(r) && (r = normalizeInject(r));
@@ -3051,18 +3051,18 @@ function createHydrationFunctions(r) {
       wt,
       Ot
     ), { type: Xt, ref: ie, shapeFlag: Yt, patchFlag: ae } = _t;
-    let Re = vt.nodeType;
+    let $e = vt.nodeType;
     _t.el = vt, ae === -2 && (Zt = !1, _t.dynamicChildren = null);
     let me = null;
     switch (Xt) {
       case Text:
-        Re !== 3 ? _t.children === "" ? (V(_t.el = w(""), L(vt), vt), me = vt) : me = bt() : (vt.data !== _t.children && (hasMismatch = !0, vt.data = _t.children), me = C(vt));
+        $e !== 3 ? _t.children === "" ? (V(_t.el = w(""), L(vt), vt), me = vt) : me = bt() : (vt.data !== _t.children && (hasMismatch = !0, vt.data = _t.children), me = C(vt));
         break;
       case Comment:
-        Re !== 8 || Ot ? me = bt() : me = C(vt);
+        $e !== 8 || Ot ? me = bt() : me = C(vt);
         break;
       case Static:
-        if (Ot && (vt = C(vt), Re = vt.nodeType), Re === 1 || Re === 3) {
+        if (Ot && (vt = C(vt), $e = vt.nodeType), $e === 1 || $e === 3) {
           me = vt;
           const Fi = !_t.children.length;
           for (let ei = 0; ei < _t.staticCount; ei++)
@@ -3083,7 +3083,7 @@ function createHydrationFunctions(r) {
         break;
       default:
         if (Yt & 1)
-          Re !== 1 || _t.type.toLowerCase() !== vt.tagName.toLowerCase() ? me = bt() : me = et(
+          $e !== 1 || _t.type.toLowerCase() !== vt.tagName.toLowerCase() ? me = bt() : me = et(
             vt,
             _t,
             Et,
@@ -3107,7 +3107,7 @@ function createHydrationFunctions(r) {
             Ot ? (ei = createVNode(Fragment), ei.anchor = me ? me.previousSibling : Fi.lastChild) : ei = vt.nodeType === 3 ? createTextVNode("") : createVNode("div"), ei.el = vt, _t.component.subTree = ei;
           }
         } else
-          Yt & 64 ? Re !== 8 ? me = bt() : me = _t.type.hydrate(
+          Yt & 64 ? $e !== 8 ? me = bt() : me = _t.type.hydrate(
             vt,
             _t,
             Et,
@@ -3155,9 +3155,9 @@ function createHydrationFunctions(r) {
             void 0,
             Et
           );
-      let Re;
-      if ((Re = bt && bt.onVnodeBeforeMount) && invokeVNodeHook(Re, Et, _t), Yt && invokeDirectiveHook(_t, null, Et, "beforeMount"), ((Re = bt && bt.onVnodeMounted) || Yt) && queueEffectWithSuspense(() => {
-        Re && invokeVNodeHook(Re, Et, _t), Yt && invokeDirectiveHook(_t, null, Et, "mounted");
+      let $e;
+      if (($e = bt && bt.onVnodeBeforeMount) && invokeVNodeHook($e, Et, _t), Yt && invokeDirectiveHook(_t, null, Et, "beforeMount"), (($e = bt && bt.onVnodeMounted) || Yt) && queueEffectWithSuspense(() => {
+        $e && invokeVNodeHook($e, Et, _t), Yt && invokeDirectiveHook(_t, null, Et, "mounted");
       }, ft), ie & 16 && // skip if element has innerHTML / textContent
       !(bt && (bt.innerHTML || bt.textContent))) {
         let me = ct(
@@ -3317,7 +3317,7 @@ function baseCreateRenderer(r, u) {
           le,
           S,
           te
-        ) : be & 6 ? Re(
+        ) : be & 6 ? $e(
           rt,
           ht,
           It,
@@ -3424,7 +3424,7 @@ function baseCreateRenderer(r, u) {
           rt.children,
           Bt,
           Nt,
-          Rr
+          $r
         );
       "value" in be && C(te, "value", null, be.value), (Vt = be.onVnodeBeforeMount) && invokeVNodeHook(Vt, Bt, rt);
     }
@@ -3481,7 +3481,7 @@ function baseCreateRenderer(r, u) {
       Bt,
       Le,
       Jt
-    ) : le || $e(
+    ) : le || Re(
       rt,
       ht,
       S,
@@ -3505,17 +3505,17 @@ function baseCreateRenderer(r, u) {
       else if (te & 2 && be.class !== Te.class && C(S, "class", null, Te.class, Nt), te & 4 && C(S, "style", be.style, Te.style, Nt), te & 8) {
         const Ci = ht.dynamicProps;
         for (let pe = 0; pe < Ci.length; pe++) {
-          const Ri = Ci[pe], x = be[Ri], Vr = Te[Ri];
-          (Vr !== x || Ri === "value") && C(
+          const $i = Ci[pe], x = be[$i], Vr = Te[$i];
+          (Vr !== x || $i === "value") && C(
             S,
-            Ri,
+            $i,
             x,
             Vr,
             Nt,
             rt.children,
             It,
             Bt,
-            Rr
+            $r
           );
         }
       }
@@ -3574,7 +3574,7 @@ function baseCreateRenderer(r, u) {
             ht.children,
             Nt,
             Jt,
-            Rr
+            $r
           );
       for (const S in Bt) {
         if (isReservedProp(S))
@@ -3589,7 +3589,7 @@ function baseCreateRenderer(r, u) {
           ht.children,
           Nt,
           Jt,
-          Rr
+          $r
         );
       }
       "value" in Bt && C(rt, "value", It.value, Bt.value);
@@ -3625,7 +3625,7 @@ function baseCreateRenderer(r, u) {
       ht,
       !0
       /* shallow */
-    )) : $e(
+    )) : Re(
       rt,
       ht,
       It,
@@ -3636,7 +3636,7 @@ function baseCreateRenderer(r, u) {
       S,
       te
     );
-  }, Re = (rt, ht, It, Bt, Nt, Jt, le, S, te) => {
+  }, $e = (rt, ht, It, Bt, Nt, Jt, le, S, te) => {
     ht.slotScopeIds = S, rt == null ? ht.shapeFlag & 512 ? Nt.ctx.activate(
       ht,
       It,
@@ -3689,10 +3689,10 @@ function baseCreateRenderer(r, u) {
       if (rt.isMounted) {
         let { next: Kt, bu: be, u: Te, parent: Ue, vnode: Le } = rt, Ci = Kt, pe;
         toggleRecurse(rt, !1), Kt ? (Kt.el = Le.el, si(rt, Kt, le)) : Kt = Le, be && invokeArrayFns(be), (pe = Kt.props && Kt.props.onVnodeBeforeUpdate) && invokeVNodeHook(pe, Ue, Kt, Le), toggleRecurse(rt, !0);
-        const Ri = renderComponentRoot(rt), x = rt.subTree;
-        rt.subTree = Ri, At(
+        const $i = renderComponentRoot(rt), x = rt.subTree;
+        rt.subTree = $i, At(
           x,
-          Ri,
+          $i,
           // parent may have changed if it's in a teleport
           st(x.el),
           // anchor may have changed if it's in a fragment
@@ -3700,16 +3700,16 @@ function baseCreateRenderer(r, u) {
           rt,
           Nt,
           Jt
-        ), Kt.el = Ri.el, Ci === null && updateHOCHostEl(rt, Ri.el), Te && queuePostRenderEffect(Te, Nt), (pe = Kt.props && Kt.props.onVnodeUpdated) && queuePostRenderEffect(
+        ), Kt.el = $i.el, Ci === null && updateHOCHostEl(rt, $i.el), Te && queuePostRenderEffect(Te, Nt), (pe = Kt.props && Kt.props.onVnodeUpdated) && queuePostRenderEffect(
           () => invokeVNodeHook(pe, Ue, Kt, Le),
           Nt
         );
       } else {
         let Kt;
         const { el: be, props: Te } = ht, { bm: Ue, m: Le, parent: Ci } = rt, pe = isAsyncWrapper(ht);
-        if (toggleRecurse(rt, !1), Ue && invokeArrayFns(Ue), !pe && (Kt = Te && Te.onVnodeBeforeMount) && invokeVNodeHook(Kt, Ci, ht), toggleRecurse(rt, !0), be && $r) {
-          const Ri = () => {
-            rt.subTree = renderComponentRoot(rt), $r(
+        if (toggleRecurse(rt, !1), Ue && invokeArrayFns(Ue), !pe && (Kt = Te && Te.onVnodeBeforeMount) && invokeVNodeHook(Kt, Ci, ht), toggleRecurse(rt, !0), be && Rr) {
+          const $i = () => {
+            rt.subTree = renderComponentRoot(rt), Rr(
               be,
               rt.subTree,
               rt,
@@ -3722,24 +3722,24 @@ function baseCreateRenderer(r, u) {
             // which means it won't track dependencies - but it's ok because
             // a server-rendered async wrapper is already in resolved state
             // and it will never need to change.
-            () => !rt.isUnmounted && Ri()
-          ) : Ri();
+            () => !rt.isUnmounted && $i()
+          ) : $i();
         } else {
-          const Ri = rt.subTree = renderComponentRoot(rt);
+          const $i = rt.subTree = renderComponentRoot(rt);
           At(
             null,
-            Ri,
+            $i,
             It,
             Bt,
             rt,
             Nt,
             Jt
-          ), ht.el = Ri.el;
+          ), ht.el = $i.el;
         }
         if (Le && queuePostRenderEffect(Le, Nt), !pe && (Kt = Te && Te.onVnodeMounted)) {
-          const Ri = ht;
+          const $i = ht;
           queuePostRenderEffect(
-            () => invokeVNodeHook(Kt, Ci, Ri),
+            () => invokeVNodeHook(Kt, Ci, $i),
             Nt
           );
         }
@@ -3756,7 +3756,7 @@ function baseCreateRenderer(r, u) {
     ht.component = rt;
     const Bt = rt.vnode.props;
     rt.vnode = ht, rt.next = null, updateProps(rt, ht.props, Bt, It), updateSlots(rt, ht.children, It), pauseTracking(), flushPreFlushCbs(), resetTracking();
-  }, $e = (rt, ht, It, Bt, Nt, Jt, le, S, te = !1) => {
+  }, Re = (rt, ht, It, Bt, Nt, Jt, le, S, te = !1) => {
     const Vt = rt && rt.children, Kt = rt ? rt.shapeFlag : 0, be = ht.children, { patchFlag: Te, shapeFlag: Ue } = ht;
     if (Te > 0) {
       if (Te & 128) {
@@ -3787,7 +3787,7 @@ function baseCreateRenderer(r, u) {
         return;
       }
     }
-    Ue & 8 ? (Kt & 16 && Rr(Vt, Nt, Jt), be !== Vt && z(It, be)) : Kt & 16 ? Ue & 16 ? ki(
+    Ue & 8 ? (Kt & 16 && $r(Vt, Nt, Jt), be !== Vt && z(It, be)) : Kt & 16 ? Ue & 16 ? ki(
       Vt,
       be,
       It,
@@ -3797,7 +3797,7 @@ function baseCreateRenderer(r, u) {
       le,
       S,
       te
-    ) : Rr(Vt, Nt, Jt, !0) : (Kt & 8 && z(It, ""), Ue & 16 && bt(
+    ) : $r(Vt, Nt, Jt, !0) : (Kt & 8 && z(It, ""), Ue & 16 && bt(
       be,
       It,
       Bt,
@@ -3825,7 +3825,7 @@ function baseCreateRenderer(r, u) {
         te
       );
     }
-    Vt > Kt ? Rr(
+    Vt > Kt ? $r(
       rt,
       Nt,
       Jt,
@@ -3908,7 +3908,7 @@ function baseCreateRenderer(r, u) {
         const mr = ht[Vt] = te ? cloneIfMounted(ht[Vt]) : normalizeVNode(ht[Vt]);
         mr.key != null && Ci.set(mr.key, Vt);
       }
-      let pe, Ri = 0;
+      let pe, $i = 0;
       const x = Te - Le + 1;
       let Vr = !1, dn = 0;
       const Jr = new Array(x);
@@ -3916,7 +3916,7 @@ function baseCreateRenderer(r, u) {
         Jr[Vt] = 0;
       for (Vt = Ue; Vt <= be; Vt++) {
         const mr = rt[Vt];
-        if (Ri >= x) {
+        if ($i >= x) {
           gr(mr, Nt, Jt, !0);
           continue;
         }
@@ -3939,7 +3939,7 @@ function baseCreateRenderer(r, u) {
           le,
           S,
           te
-        ), Ri++);
+        ), $i++);
       }
       const ui = Vr ? getSequence(Jr) : EMPTY_ARR;
       for (pe = ui.length - 1, Vt = x - 1; Vt >= 0; Vt--) {
@@ -4027,13 +4027,13 @@ function baseCreateRenderer(r, u) {
         Or,
         Bt
       ) : Vt && // #1153: fast path should not be taken for non-stable (v-for) fragments
-      (Jt !== Fragment || be > 0 && be & 64) ? Rr(
+      (Jt !== Fragment || be > 0 && be & 64) ? $r(
         Vt,
         ht,
         It,
         !1,
         !0
-      ) : (Jt === Fragment && be & 384 || !Nt && Kt & 16) && Rr(te, ht, It), Bt && Fn(rt);
+      ) : (Jt === Fragment && be & 384 || !Nt && Kt & 16) && $r(te, ht, It), Bt && Fn(rt);
     }
     (Le && (Ci = le && le.onVnodeUnmounted) || Ue) && queuePostRenderEffect(() => {
       Ci && invokeVNodeHook(Ci, ht, rt), Ue && invokeDirectiveHook(rt, null, ht, "unmounted");
@@ -4066,7 +4066,7 @@ function baseCreateRenderer(r, u) {
     Bt && invokeArrayFns(Bt), Nt.stop(), Jt && (Jt.active = !1, gr(le, rt, ht, It)), S && queuePostRenderEffect(S, ht), queuePostRenderEffect(() => {
       rt.isUnmounted = !0;
     }, ht), ht && ht.pendingBranch && !ht.isUnmounted && rt.asyncDep && !rt.asyncResolved && rt.suspenseId === ht.pendingId && (ht.deps--, ht.deps === 0 && ht.resolve());
-  }, Rr = (rt, ht, It, Bt = !1, Nt = !1, Jt = 0) => {
+  }, $r = (rt, ht, It, Bt = !1, Nt = !1, Jt = 0) => {
     for (let le = Jt; le < rt.length; le++)
       gr(rt[le], ht, It, Bt, Nt);
   }, Mn = (rt) => rt.shapeFlag & 6 ? Mn(rt.component.subTree) : rt.shapeFlag & 128 ? rt.suspense.next() : et(rt.anchor || rt.el), Bn = (rt, ht, It) => {
@@ -4078,13 +4078,13 @@ function baseCreateRenderer(r, u) {
     r: Fn,
     mt: me,
     mc: bt,
-    pc: $e,
+    pc: Re,
     pbc: ie,
     n: Mn,
     o: r
   };
-  let xn, $r;
-  return u && ([xn, $r] = u(
+  let xn, Rr;
+  return u && ([xn, Rr] = u(
     Or
   )), {
     render: Bn,
@@ -5183,14 +5183,14 @@ function resolveTransitionProps(r) {
     onBeforeAppear: Zt = vt,
     onAppear: Ot = _t,
     onAppearCancelled: bt = Et
-  } = u, Xt = (ae, Re, me) => {
-    removeTransitionClass(ae, Re ? z : E), removeTransitionClass(ae, Re ? N : L), me && me();
-  }, ie = (ae, Re) => {
-    ae._isLeaving = !1, removeTransitionClass(ae, st), removeTransitionClass(ae, ct), removeTransitionClass(ae, et), Re && Re();
-  }, Yt = (ae) => (Re, me) => {
-    const Fi = ae ? Ot : _t, ei = () => Xt(Re, ae, me);
-    callHook(Fi, [Re, ei]), nextFrame(() => {
-      removeTransitionClass(Re, ae ? V : C), addTransitionClass(Re, ae ? z : E), hasExplicitCallback(Fi) || whenTransitionEnds(Re, v, At, ei);
+  } = u, Xt = (ae, $e, me) => {
+    removeTransitionClass(ae, $e ? z : E), removeTransitionClass(ae, $e ? N : L), me && me();
+  }, ie = (ae, $e) => {
+    ae._isLeaving = !1, removeTransitionClass(ae, st), removeTransitionClass(ae, ct), removeTransitionClass(ae, et), $e && $e();
+  }, Yt = (ae) => ($e, me) => {
+    const Fi = ae ? Ot : _t, ei = () => Xt($e, ae, me);
+    callHook(Fi, [$e, ei]), nextFrame(() => {
+      removeTransitionClass($e, ae ? V : C), addTransitionClass($e, ae ? z : E), hasExplicitCallback(Fi) || whenTransitionEnds($e, v, At, ei);
     });
   };
   return extend(u, {
@@ -5202,9 +5202,9 @@ function resolveTransitionProps(r) {
     },
     onEnter: Yt(!1),
     onAppear: Yt(!0),
-    onLeave(ae, Re) {
+    onLeave(ae, $e) {
       ae._isLeaving = !0;
-      const me = () => ie(ae, Re);
+      const me = () => ie(ae, $e);
       addTransitionClass(ae, st), forceReflow(), addTransitionClass(ae, et), nextFrame(() => {
         ae._isLeaving && (removeTransitionClass(ae, st), addTransitionClass(ae, ct), hasExplicitCallback(ft) || whenTransitionEnds(ae, v, qt, me));
       }), callHook(ft, [ae, me]);
@@ -7152,7 +7152,7 @@ function requireSrc() {
           square: 3,
           pushPin: 4,
           custom: 5
-        }, Re = {
+        }, $e = {
           screen: 0,
           world: 1
         }, me = {
@@ -7227,7 +7227,7 @@ function requireSrc() {
           mpcZone6: 48,
           mpcZone7: 49,
           orbitFilters: 50
-        }, $e = {
+        }, Re = {
           sky: 0,
           screen: 1
         }, Ai = {
@@ -7281,7 +7281,7 @@ function requireSrc() {
           fadeOutIn: 3,
           fadeIn: 4,
           fadeOut: 5
-        }, Rr = {
+        }, $r = {
           modifiers: -65536,
           none: 0,
           lButton: 1,
@@ -7487,7 +7487,7 @@ function requireSrc() {
         };
         function xn() {
         }
-        function $r() {
+        function Rr() {
         }
         function rt() {
         }
@@ -7508,11 +7508,11 @@ function requireSrc() {
         function te() {
         }
         te.earthVelocity = function(t) {
-          for (var e = (t - 2451545) / 36525, n = 3.1761467 + 1021.3285546 * e, a = 1.7534703 + 628.3075849 * e, s = 6.2034809 + 334.0612431 * e, l = 0.5995465 + 52.9690965 * e, g = 0.8740168 + 21.3299095 * e, _ = 5.4812939 + 7.4781599 * e, m = 5.3118863 + 3.8133036 * e, b = 3.8103444 + 8399.6847337 * e, y = 5.1984667 + 7771.3771486 * e, M = 2.3555559 + 8328.6914289 * e, A = 1.6279052 + 8433.4661601 * e, R = new pe(), F = S.g_ACft.length, O = 0; O < F; O++) {
+          for (var e = (t - 2451545) / 36525, n = 3.1761467 + 1021.3285546 * e, a = 1.7534703 + 628.3075849 * e, s = 6.2034809 + 334.0612431 * e, l = 0.5995465 + 52.9690965 * e, g = 0.8740168 + 21.3299095 * e, _ = 5.4812939 + 7.4781599 * e, m = 5.3118863 + 3.8133036 * e, b = 3.8103444 + 8399.6847337 * e, y = 5.1984667 + 7771.3771486 * e, M = 2.3555559 + 8328.6914289 * e, A = 1.6279052 + 8433.4661601 * e, $ = new pe(), F = S.g_ACft.length, O = 0; O < F; O++) {
             var B = S.g_ACft[O].l2 * n + S.g_ACft[O].l3 * a + S.g_ACft[O].l4 * s + S.g_ACft[O].l5 * l + S.g_ACft[O].l6 * g + S.g_ACft[O].l7 * _ + S.g_ACft[O].l8 * m + S.g_ACft[O].ldash * b + S.g_ACft[O].d * y + S.g_ACft[O].mdash * M + S.g_ACft[O].f * A;
-            R.x += (S.g_ACft[O].xsin + S.g_ACft[O].xsint * e) * Math.sin(B), R.x += (S.g_ACft[O].xcos + S.g_ACft[O].xcost * e) * Math.cos(B), R.y += (S.g_ACft[O].ysin + S.g_ACft[O].ysint * e) * Math.sin(B), R.y += (S.g_ACft[O].ycos + S.g_ACft[O].ycost * e) * Math.cos(B), R.z += (S.g_ACft[O].zsin + S.g_ACft[O].zsint * e) * Math.sin(B), R.z += (S.g_ACft[O].zcos + S.g_ACft[O].zcost * e) * Math.cos(B);
+            $.x += (S.g_ACft[O].xsin + S.g_ACft[O].xsint * e) * Math.sin(B), $.x += (S.g_ACft[O].xcos + S.g_ACft[O].xcost * e) * Math.cos(B), $.y += (S.g_ACft[O].ysin + S.g_ACft[O].ysint * e) * Math.sin(B), $.y += (S.g_ACft[O].ycos + S.g_ACft[O].ycost * e) * Math.cos(B), $.z += (S.g_ACft[O].zsin + S.g_ACft[O].zsint * e) * Math.sin(B), $.z += (S.g_ACft[O].zcos + S.g_ACft[O].zcost * e) * Math.cos(B);
           }
-          return R;
+          return $;
         }, te.eclipticAberration = function(t, e, n) {
           var a = new Le(), s = (n - 2451545) / 36525, l = s * s, g = 0.016708634 - 42037e-9 * s - 1267e-10 * l, _ = 102.93735 + 1.71946 * s + 46e-5 * l, m = 20.49552, b = fi.geometricEclipticLongitude(n);
           return _ = x.d2R(_), t = x.d2R(t), e = x.d2R(e), b = x.d2R(b), a.x = (-m * Math.cos(b - t) + g * m * Math.cos(_ - t)) / Math.cos(e) / 3600, a.y = -m * Math.sin(e) * (Math.sin(b - t) - g * Math.sin(_ - t)) / 3600, a;
@@ -7522,8 +7522,8 @@ function requireSrc() {
           return m.x = x.r2H((_.y * a - _.x * s) / (17314463350 * l)), m.y = x.r2D(-(((_.x * a + _.y * s) * g - _.z * l) / 17314463350)), m;
         };
         var Vt = {};
-        function Kt(t, e, n, a, s, l, g, _, m, b, y, M, A, R, F, O, B, H, K, J, it, ot, lt) {
-          this.l2 = 0, this.l3 = 0, this.l4 = 0, this.l5 = 0, this.l6 = 0, this.l7 = 0, this.l8 = 0, this.ldash = 0, this.d = 0, this.mdash = 0, this.f = 0, this.xsin = 0, this.xsint = 0, this.xcos = 0, this.xcost = 0, this.ysin = 0, this.ysint = 0, this.ycos = 0, this.ycost = 0, this.zsin = 0, this.zsint = 0, this.zcos = 0, this.zcost = 0, this.l2 = t, this.l3 = e, this.l4 = n, this.l5 = a, this.l6 = s, this.l7 = l, this.l8 = g, this.ldash = _, this.d = m, this.mdash = b, this.f = y, this.xsin = M, this.xsint = A, this.xcos = R, this.xcost = F, this.ysin = O, this.ysint = B, this.ycos = H, this.ycost = K, this.zsin = J, this.zsint = it, this.zcos = ot, this.zcost = lt;
+        function Kt(t, e, n, a, s, l, g, _, m, b, y, M, A, $, F, O, B, H, K, J, it, ot, lt) {
+          this.l2 = 0, this.l3 = 0, this.l4 = 0, this.l5 = 0, this.l6 = 0, this.l7 = 0, this.l8 = 0, this.ldash = 0, this.d = 0, this.mdash = 0, this.f = 0, this.xsin = 0, this.xsint = 0, this.xcos = 0, this.xcost = 0, this.ysin = 0, this.ysint = 0, this.ycos = 0, this.ycost = 0, this.zsin = 0, this.zsint = 0, this.zcos = 0, this.zcost = 0, this.l2 = t, this.l3 = e, this.l4 = n, this.l5 = a, this.l6 = s, this.l7 = l, this.l8 = g, this.ldash = _, this.d = m, this.mdash = b, this.f = y, this.xsin = M, this.xsint = A, this.xcos = $, this.xcost = F, this.ysin = O, this.ysint = B, this.ycos = H, this.ycost = K, this.zsin = J, this.zsint = it, this.zcos = ot, this.zcost = lt;
         }
         var be = {};
         function Te() {
@@ -7539,7 +7539,7 @@ function requireSrc() {
           return M = x.r2D(M), M;
         }, Te.distanceFromGreatArc = function(t, e, n, a, s, l) {
           e = x.d2R(e), a = x.d2R(a), l = x.d2R(l), t = x.h2R(t), n = x.h2R(n), s = x.h2R(s);
-          var g = Math.cos(e) * Math.cos(t), _ = Math.cos(a) * Math.cos(n), m = Math.cos(e) * Math.sin(t), b = Math.cos(a) * Math.sin(n), y = Math.sin(e), M = Math.sin(a), A = m * M - y * b, R = y * _ - g * M, F = g * b - m * _, O = Math.tan(s), B = Math.tan(l) / Math.cos(s), H = Math.asin((A + R * O + F * B) / (Math.sqrt(A * A + R * R + F * F) * Math.sqrt(1 + O * O + B * B)));
+          var g = Math.cos(e) * Math.cos(t), _ = Math.cos(a) * Math.cos(n), m = Math.cos(e) * Math.sin(t), b = Math.cos(a) * Math.sin(n), y = Math.sin(e), M = Math.sin(a), A = m * M - y * b, $ = y * _ - g * M, F = g * b - m * _, O = Math.tan(s), B = Math.tan(l) / Math.cos(s), H = Math.asin((A + $ * O + F * B) / (Math.sqrt(A * A + $ * $ + F * F) * Math.sqrt(1 + O * O + B * B)));
           return H = x.r2D(H), H < 0 && (H = Math.abs(H)), H;
         };
         var Ue = {};
@@ -7558,7 +7558,7 @@ function requireSrc() {
           var a = new pe();
           return a.x = t, a.y = e, a.z = n, a;
         };
-        var Ri = {};
+        var $i = {};
         function x() {
         }
         x.eq2Ec = function(t, e, n) {
@@ -7695,8 +7695,8 @@ function requireSrc() {
               y = b + 1 + M - r.truncate(M / 4);
             } else
               y = b;
-            var A = y + 1524, R = r.truncate((A - 122.1) / 365.25), F = r.truncate(365.25 * R), O = r.truncate((A - F) / 30.6001), B = A - F - r.truncate(30.6001 * O) + m;
-            return n = r.truncate(B), O < 14 ? e = O - 1 : e = O - 13, e > 2 ? t = R - 4716 : t = R - 4715, _ = Math.floor(B), m = B - _, a = r.truncate(m * 24), s = r.truncate((m - a / 24) * 1440), l = (m - a / 24 - s / 1440) * 86400, [t, e, n, a, s, l];
+            var A = y + 1524, $ = r.truncate((A - 122.1) / 365.25), F = r.truncate(365.25 * $), O = r.truncate((A - F) / 30.6001), B = A - F - r.truncate(30.6001 * O) + m;
+            return n = r.truncate(B), O < 14 ? e = O - 1 : e = O - 13, e > 2 ? t = $ - 4716 : t = $ - 4715, _ = Math.floor(B), m = B - _, a = r.truncate(m * 24), s = r.truncate((m - a / 24) * 1440), l = (m - a / 24 - s / 1440) * 86400, [t, e, n, a, s, l];
           },
           dayOfWeek: function() {
             return r.truncate(this.m_dblJulian + 1.5) % 7;
@@ -7757,8 +7757,8 @@ function requireSrc() {
           var M = S.g_L2EarthCoefficients.length, A = 0;
           for (m = 0; m < M; m++)
             A += S.g_L2EarthCoefficients[m].a * Math.cos(S.g_L2EarthCoefficients[m].b + S.g_L2EarthCoefficients[m].c * e);
-          var R = S.g_L3EarthCoefficients.length, F = 0;
-          for (m = 0; m < R; m++)
+          var $ = S.g_L3EarthCoefficients.length, F = 0;
+          for (m = 0; m < $; m++)
             F += S.g_L3EarthCoefficients[m].a * Math.cos(S.g_L3EarthCoefficients[m].b + S.g_L3EarthCoefficients[m].c * e);
           var O = S.g_L4EarthCoefficients.length, B = 0;
           for (m = 0; m < O; m++)
@@ -7778,13 +7778,13 @@ function requireSrc() {
           var y = S.g_B2EarthCoefficients.length, M = 0;
           for (_ = 0; _ < y; _++)
             M += S.g_B2EarthCoefficients[_].a * Math.cos(S.g_B2EarthCoefficients[_].b + S.g_B2EarthCoefficients[_].c * e);
-          var A = S.g_B3EarthCoefficients.length, R = 0;
+          var A = S.g_B3EarthCoefficients.length, $ = 0;
           for (_ = 0; _ < A; _++)
-            R += S.g_B3EarthCoefficients[_].a * Math.cos(S.g_B3EarthCoefficients[_].b + S.g_B3EarthCoefficients[_].c * e);
+            $ += S.g_B3EarthCoefficients[_].a * Math.cos(S.g_B3EarthCoefficients[_].b + S.g_B3EarthCoefficients[_].c * e);
           var F = S.g_B4EarthCoefficients.length, O = 0;
           for (_ = 0; _ < F; _++)
             O += S.g_B4EarthCoefficients[_].a * Math.cos(S.g_B4EarthCoefficients[_].b + S.g_B4EarthCoefficients[_].c * e);
-          var B = (g + b * e + M * n + R * a + O * s) / 1e8;
+          var B = (g + b * e + M * n + $ * a + O * s) / 1e8;
           return B = x.r2D(B), B;
         }, ii.radiusVector = function(t) {
           var e = (t - 2451545) / 365250, n = e * e, a = n * e, s = a * e, l = S.g_R0EarthCoefficients.length, g = 0, _;
@@ -7796,13 +7796,13 @@ function requireSrc() {
           var y = S.g_R2EarthCoefficients.length, M = 0;
           for (_ = 0; _ < y; _++)
             M += S.g_R2EarthCoefficients[_].a * Math.cos(S.g_R2EarthCoefficients[_].b + S.g_R2EarthCoefficients[_].c * e);
-          var A = S.g_R3EarthCoefficients.length, R = 0;
+          var A = S.g_R3EarthCoefficients.length, $ = 0;
           for (_ = 0; _ < A; _++)
-            R += S.g_R3EarthCoefficients[_].a * Math.cos(S.g_R3EarthCoefficients[_].b + S.g_R3EarthCoefficients[_].c * e);
+            $ += S.g_R3EarthCoefficients[_].a * Math.cos(S.g_R3EarthCoefficients[_].b + S.g_R3EarthCoefficients[_].c * e);
           var F = S.g_R4EarthCoefficients.length, O = 0;
           for (_ = 0; _ < F; _++)
             O += S.g_R4EarthCoefficients[_].a * Math.cos(S.g_R4EarthCoefficients[_].b + S.g_R4EarthCoefficients[_].c * e);
-          return (g + b * e + M * n + R * a + O * s) / 1e8;
+          return (g + b * e + M * n + $ * a + O * s) / 1e8;
         }, ii.sunMeanAnomaly = function(t) {
           var e = (t - 2451545) / 36525, n = e * e, a = n * e;
           return x.m360(357.5291092 + 35999.0502909 * e - 1536e-7 * n + a / 2449e4);
@@ -7819,13 +7819,13 @@ function requireSrc() {
           var y = S.g_L2EarthCoefficientsJ2000.length, M = 0;
           for (_ = 0; _ < y; _++)
             M += S.g_L2EarthCoefficientsJ2000[_].a * Math.cos(S.g_L2EarthCoefficientsJ2000[_].b + S.g_L2EarthCoefficientsJ2000[_].c * e);
-          var A = S.g_L3EarthCoefficientsJ2000.length, R = 0;
+          var A = S.g_L3EarthCoefficientsJ2000.length, $ = 0;
           for (_ = 0; _ < A; _++)
-            R += S.g_L3EarthCoefficientsJ2000[_].a * Math.cos(S.g_L3EarthCoefficientsJ2000[_].b + S.g_L3EarthCoefficientsJ2000[_].c * e);
+            $ += S.g_L3EarthCoefficientsJ2000[_].a * Math.cos(S.g_L3EarthCoefficientsJ2000[_].b + S.g_L3EarthCoefficientsJ2000[_].c * e);
           var F = S.g_L4EarthCoefficientsJ2000.length, O = 0;
           for (_ = 0; _ < F; _++)
             O += S.g_L4EarthCoefficientsJ2000[_].a * Math.cos(S.g_L4EarthCoefficientsJ2000[_].b + S.g_L4EarthCoefficientsJ2000[_].c * e);
-          var B = (g + b * e + M * n + R * a + O * s) / 1e8;
+          var B = (g + b * e + M * n + $ * a + O * s) / 1e8;
           return B = x.m360(x.r2D(B)), B;
         }, ii.eclipticLatitudeJ2000 = function(t) {
           var e = (t - 2451545) / 365250, n = e * e, a = n * e, s = a * e, l = S.g_B0EarthCoefficients.length, g = 0, _;
@@ -7837,13 +7837,13 @@ function requireSrc() {
           var y = S.g_B2EarthCoefficientsJ2000.length, M = 0;
           for (_ = 0; _ < y; _++)
             M += S.g_B2EarthCoefficientsJ2000[_].a * Math.cos(S.g_B2EarthCoefficientsJ2000[_].b + S.g_B2EarthCoefficientsJ2000[_].c * e);
-          var A = S.g_B3EarthCoefficientsJ2000.length, R = 0;
+          var A = S.g_B3EarthCoefficientsJ2000.length, $ = 0;
           for (_ = 0; _ < A; _++)
-            R += S.g_B3EarthCoefficientsJ2000[_].a * Math.cos(S.g_B3EarthCoefficientsJ2000[_].b + S.g_B3EarthCoefficientsJ2000[_].c * e);
+            $ += S.g_B3EarthCoefficientsJ2000[_].a * Math.cos(S.g_B3EarthCoefficientsJ2000[_].b + S.g_B3EarthCoefficientsJ2000[_].c * e);
           var F = S.g_B4EarthCoefficientsJ2000.length, O = 0;
           for (_ = 0; _ < F; _++)
             O += S.g_B4EarthCoefficientsJ2000[_].a * Math.cos(S.g_B4EarthCoefficientsJ2000[_].b + S.g_B4EarthCoefficientsJ2000[_].c * e);
-          var B = (g + b * e + M * n + R * a + O * s) / 1e8;
+          var B = (g + b * e + M * n + $ * a + O * s) / 1e8;
           return B = x.r2D(B), B;
         };
         var Ga = {};
@@ -7860,23 +7860,23 @@ function requireSrc() {
         Ta.calculate = function(t, e, n, a, s) {
           var l = (a - 2451545) / 36525, g = l * l, _ = (s - a) / 36525, m = _ * _, b = m * _, y = x.d2R(t), M = x.d2R(n), A = (47.0029 - 0.06603 * l + 598e-6 * g) * _ + (-0.03302 + 598e-6 * l) * m + 6e-5 * b;
           A = x.d2R(x.dmS2D(0, 0, A));
-          var R = 174.876384 * 3600 + 3289.4789 * l + 0.60622 * g - (869.8089 + 0.50491 * l) * _ + 0.03536 * m;
-          R = x.d2R(x.dmS2D(0, 0, R));
+          var $ = 174.876384 * 3600 + 3289.4789 * l + 0.60622 * g - (869.8089 + 0.50491 * l) * _ + 0.03536 * m;
+          $ = x.d2R(x.dmS2D(0, 0, $));
           var F = (5029.0966 + 2.22226 * l - 42e-6 * g) * _ + (1.11113 - 42e-6 * l) * m - 6e-6 * b;
           F = x.d2R(x.dmS2D(0, 0, F));
-          var O = Math.sin(y), B = Math.cos(y), H = Math.sin(M - R), K = Math.cos(M - R), J = Math.sin(A), it = Math.cos(A), ot = O * H, lt = -J * B + it * O * K, gt = Math.asin(Math.sqrt(ot * ot + lt * lt)), ut = new On();
+          var O = Math.sin(y), B = Math.cos(y), H = Math.sin(M - $), K = Math.cos(M - $), J = Math.sin(A), it = Math.cos(A), ot = O * H, lt = -J * B + it * O * K, gt = Math.asin(Math.sqrt(ot * ot + lt * lt)), ut = new On();
           ut.i = x.r2D(gt);
           var St = B * it + O * J * K;
           St < 0 && (ut.i = 180 - ut.i);
-          var mt = R + F;
+          var mt = $ + F;
           ut.omega = x.m360(x.r2D(Math.atan2(ot, lt) + mt)), ot = -J * H, lt = O * it - B * J * K;
           var Dt = x.r2D(Math.atan2(ot, lt));
           return ut.w = x.m360(e + Dt), ut;
         }, Ta.fK4B1950ToFK5J2000 = function(t, e, n) {
-          var a = x.d2R(5.19856209), s = x.d2R(651966e-8), l = x.d2R(t), g = x.d2R(n), _ = Math.sin(l), m = Math.cos(l), b = Math.cos(s), y = Math.sin(s), M = a + g, A = Math.cos(M), R = Math.sin(M), F = y * R, O = _ * b + m * y * A, B = new On();
+          var a = x.d2R(5.19856209), s = x.d2R(651966e-8), l = x.d2R(t), g = x.d2R(n), _ = Math.sin(l), m = Math.cos(l), b = Math.cos(s), y = Math.sin(s), M = a + g, A = Math.cos(M), $ = Math.sin(M), F = y * $, O = _ * b + m * y * A, B = new On();
           B.i = x.r2D(Math.asin(Math.sqrt(F * F + O * O)));
           var H = m * b - _ * y * A;
-          return H < 0 && (B.i = 180 - B.i), B.w = x.m360(e + x.r2D(Math.atan2(F, O))), B.omega = x.m360(x.r2D(Math.atan2(_ * R, m * y + _ * b * A)) - 4.50001688), B;
+          return H < 0 && (B.i = 180 - B.i), B.w = x.m360(e + x.r2D(Math.atan2(F, O))), B.omega = x.m360(x.r2D(Math.atan2(_ * $, m * y + _ * b * A)) - 4.50001688), B;
         };
         var Xa = {};
         function re() {
@@ -8138,7 +8138,7 @@ function requireSrc() {
         }, hi.calculate = function(t, e) {
           var n = new Ma(), a = t, s = 0, l = 0, g = 0, _ = 0;
           e && (s = ii.eclipticLongitude(a), l = ii.eclipticLatitude(a), g = ii.radiusVector(a), s = x.d2R(s), l = x.d2R(l), _ = Math.cos(l));
-          for (var m = 0, b = 0, y = 0, M, A, R, F, O, B, H, K = !0, J = !0, it = 0, ot = 0, lt = 0; K; ) {
+          for (var m = 0, b = 0, y = 0, M, A, $, F, O, B, H, K = !0, J = !0, it = 0, ot = 0, lt = 0; K; ) {
             switch (e) {
               case 0:
                 m = fi.geometricEclipticLongitude(a), b = fi.geometricEclipticLatitude(a), y = ii.radiusVector(a);
@@ -8150,7 +8150,7 @@ function requireSrc() {
                 m = en.eclipticLongitude(a), b = en.eclipticLatitude(a), y = en.radiusVector(a);
                 break;
               case 3:
-                m = Rt.eclipticLongitude(a), b = Rt.eclipticLatitude(a), y = Rt.radiusVector(a);
+                m = $t.eclipticLongitude(a), b = $t.eclipticLatitude(a), y = $t.radiusVector(a);
                 break;
               case 4:
                 m = Y.eclipticLongitude(a), b = Y.eclipticLatitude(a), y = Y.radiusVector(a);
@@ -8173,10 +8173,10 @@ function requireSrc() {
             }
             if (J ? J = !1 : (K = Math.abs(m - it) > 1e-5 || Math.abs(b - ot) > 1e-5 || Math.abs(y - lt) > 1e-6, it = m, ot = b, lt = y), K) {
               var gt = 0;
-              e ? (M = x.d2R(m), A = x.d2R(b), R = Math.cos(A), F = Math.cos(M), O = y * R * F - g * _ * Math.cos(s), B = y * R * Math.sin(M) - g * _ * Math.sin(s), H = y * Math.sin(A) - g * Math.sin(l), gt = Math.sqrt(O * O + B * B + H * H)) : gt = y, a = t - hi.distanceToLightTime(gt);
+              e ? (M = x.d2R(m), A = x.d2R(b), $ = Math.cos(A), F = Math.cos(M), O = y * $ * F - g * _ * Math.cos(s), B = y * $ * Math.sin(M) - g * _ * Math.sin(s), H = y * Math.sin(A) - g * Math.sin(l), gt = Math.sqrt(O * O + B * B + H * H)) : gt = y, a = t - hi.distanceToLightTime(gt);
             }
           }
-          M = x.d2R(m), A = x.d2R(b), R = Math.cos(A), F = Math.cos(M), O = y * R * F - g * _ * Math.cos(s), B = y * R * Math.sin(M) - g * _ * Math.sin(s), H = y * Math.sin(A) - g * Math.sin(l);
+          M = x.d2R(m), A = x.d2R(b), $ = Math.cos(A), F = Math.cos(M), O = y * $ * F - g * _ * Math.cos(s), B = y * $ * Math.sin(M) - g * _ * Math.sin(s), H = y * Math.sin(A) - g * Math.sin(l);
           var ut = O * O, St = B * B;
           n.apparentGeocentricLatitude = x.r2D(Math.atan2(H, Math.sqrt(ut + St))), n.apparentGeocentricDistance = Math.sqrt(ut + St + H * H), n.apparentGeocentricLongitude = x.m360(x.r2D(Math.atan2(B, O))), n.apparentLightTime = hi.distanceToLightTime(n.apparentGeocentricDistance);
           var mt = te.eclipticAberration(n.apparentGeocentricLongitude, n.apparentGeocentricLatitude, t);
@@ -8192,30 +8192,30 @@ function requireSrc() {
         }, hi.meanMotionFromSemiMajorAxis = function(t) {
           return 0.9856076686 / (t * Math.sqrt(t));
         }, hi.calculateRectangularJD = function(t, e) {
-          var n = t, a = x.d2R(e.omega), s = x.d2R(e.w), l = x.d2R(e.i), g = 0, _ = 1, m = Math.sin(a), b = Math.cos(a), y = Math.cos(l), M = Math.sin(l), A = b, R = m * _, F = m * g, O = -m * y, B = b * y * _ - M * g, H = b * y * g + M * _, K = Math.sqrt(A * A + O * O), J = Math.sqrt(R * R + B * B), it = Math.sqrt(F * F + H * H), ot = Math.atan2(A, O), lt = Math.atan2(R, B), gt = Math.atan2(F, H), ut = e.n * (n - e.t);
+          var n = t, a = x.d2R(e.omega), s = x.d2R(e.w), l = x.d2R(e.i), g = 0, _ = 1, m = Math.sin(a), b = Math.cos(a), y = Math.cos(l), M = Math.sin(l), A = b, $ = m * _, F = m * g, O = -m * y, B = b * y * _ - M * g, H = b * y * g + M * _, K = Math.sqrt(A * A + O * O), J = Math.sqrt($ * $ + B * B), it = Math.sqrt(F * F + H * H), ot = Math.atan2(A, O), lt = Math.atan2($, B), gt = Math.atan2(F, H), ut = e.n * (n - e.t);
           e.meanAnnomolyOut = ut;
           var St = nt.calculate(ut, e.e);
           St = x.d2R(St);
           var mt = 2 * Math.atan(Math.sqrt((1 + e.e) / (1 - e.e)) * Math.tan(St / 2)), Dt = e.a * (1 - e.e * Math.cos(St)), yt = Dt * K * Math.sin(ot + s + mt), ue = Dt * J * Math.sin(lt + s + mt), _e = Dt * it * Math.sin(gt + s + mt);
-          return $.create(yt, _e, ue);
+          return R.create(yt, _e, ue);
         }, hi.calculateRectangular = function(t, e) {
-          var n = x.d2R(t.omega), a = x.d2R(t.w), s = x.d2R(t.i), l = 0, g = 1, _ = Math.sin(n), m = Math.cos(n), b = Math.cos(s), y = Math.sin(s), M = m, A = _ * g, R = _ * l, F = -_ * b, O = m * b * g - y * l, B = m * b * l + y * g, H = Math.sqrt(M * M + F * F), K = Math.sqrt(A * A + O * O), J = Math.sqrt(R * R + B * B), it = Math.atan2(M, F), ot = Math.atan2(A, O), lt = Math.atan2(R, B);
+          var n = x.d2R(t.omega), a = x.d2R(t.w), s = x.d2R(t.i), l = 0, g = 1, _ = Math.sin(n), m = Math.cos(n), b = Math.cos(s), y = Math.sin(s), M = m, A = _ * g, $ = _ * l, F = -_ * b, O = m * b * g - y * l, B = m * b * l + y * g, H = Math.sqrt(M * M + F * F), K = Math.sqrt(A * A + O * O), J = Math.sqrt($ * $ + B * B), it = Math.atan2(M, F), ot = Math.atan2(A, O), lt = Math.atan2($, B);
           t.n;
           var gt = e, ut = nt.calculate(gt, t.e);
           ut = x.d2R(ut);
           var St = 2 * Math.atan(Math.sqrt((1 + t.e) / (1 - t.e)) * Math.tan(ut / 2)), mt = t.a * (1 - t.e * Math.cos(ut)), Dt = mt * H * Math.sin(it + a + St), yt = mt * K * Math.sin(ot + a + St), ue = mt * J * Math.sin(lt + a + St);
-          return $.create(Dt, ue, yt);
+          return R.create(Dt, ue, yt);
         }, hi.calculateElements = function(t, e) {
           var n = ci.meanObliquityOfEcliptic(e.jdEquinox), a = t, s = new Za();
           n = x.d2R(n);
-          for (var l = x.d2R(e.omega), g = x.d2R(e.w), _ = x.d2R(e.i), m = Math.sin(n), b = Math.cos(n), y = Math.sin(l), M = Math.cos(l), A = Math.cos(_), R = Math.sin(_), F = M, O = y * b, B = y * m, H = -y * A, K = M * A * b - R * m, J = M * A * m + R * b, it = Math.sqrt(F * F + H * H), ot = Math.sqrt(O * O + K * K), lt = Math.sqrt(B * B + J * J), gt = Math.atan2(F, H), ut = Math.atan2(O, K), St = Math.atan2(B, J), mt = hi.meanMotionFromSemiMajorAxis(e.a), Dt = fi.equatorialRectangularCoordinatesAnyEquinox(t, e.jdEquinox), yt = 0; yt < 2; yt++) {
+          for (var l = x.d2R(e.omega), g = x.d2R(e.w), _ = x.d2R(e.i), m = Math.sin(n), b = Math.cos(n), y = Math.sin(l), M = Math.cos(l), A = Math.cos(_), $ = Math.sin(_), F = M, O = y * b, B = y * m, H = -y * A, K = M * A * b - $ * m, J = M * A * m + $ * b, it = Math.sqrt(F * F + H * H), ot = Math.sqrt(O * O + K * K), lt = Math.sqrt(B * B + J * J), gt = Math.atan2(F, H), ut = Math.atan2(O, K), St = Math.atan2(B, J), mt = hi.meanMotionFromSemiMajorAxis(e.a), Dt = fi.equatorialRectangularCoordinatesAnyEquinox(t, e.jdEquinox), yt = 0; yt < 2; yt++) {
             var ue = mt * (a - e.t), _e = nt.calculate(ue, e.e);
             _e = x.d2R(_e);
             var Qt = 2 * Math.atan(Math.sqrt((1 + e.e) / (1 - e.e)) * Math.tan(_e / 2)), Ft = e.a * (1 - e.e * Math.cos(_e)), vi = Ft * it * Math.sin(gt + g + Qt), Ei = Ft * ot * Math.sin(ut + g + Qt), Li = Ft * lt * Math.sin(St + g + Qt);
             if (!yt) {
               s.heliocentricRectangularEquatorial.x = vi, s.heliocentricRectangularEquatorial.y = Ei, s.heliocentricRectangularEquatorial.z = Li;
               var ri = l + Qt, Si = Math.cos(ri), Je = Math.sin(ri);
-              s.heliocentricRectangularEcliptical.x = Ft * (M * Si - y * Je * A), s.heliocentricRectangularEcliptical.y = Ft * (y * Si + M * Je * A), s.heliocentricRectangularEcliptical.z = Ft * R * Je, s.heliocentricEclipticLongitude = Math.atan2(Ei, vi), s.heliocentricEclipticLongitude = x.m24(x.r2D(s.heliocentricEclipticLongitude) / 15), s.heliocentricEclipticLatitude = Math.asin(Li / Ft), s.heliocentricEclipticLatitude = x.r2D(s.heliocentricEclipticLatitude);
+              s.heliocentricRectangularEcliptical.x = Ft * (M * Si - y * Je * A), s.heliocentricRectangularEcliptical.y = Ft * (y * Si + M * Je * A), s.heliocentricRectangularEcliptical.z = Ft * $ * Je, s.heliocentricEclipticLongitude = Math.atan2(Ei, vi), s.heliocentricEclipticLongitude = x.m24(x.r2D(s.heliocentricEclipticLongitude) / 15), s.heliocentricEclipticLatitude = Math.asin(Li / Ft), s.heliocentricEclipticLatitude = x.r2D(s.heliocentricEclipticLatitude);
             }
             var Xi = Dt.x + vi, Ee = Dt.y + Ei, Yi = Dt.z + Li, Ni = Math.atan2(Ee, Xi);
             Ni = x.r2D(Ni);
@@ -8283,7 +8283,7 @@ function requireSrc() {
           g = x.d2R(x.dmS2D(0, 0, g));
           var _ = 2004.3109 * n - 0.42665 * a - 0.041833 * s;
           _ = x.d2R(x.dmS2D(0, 0, _));
-          var m = Math.cos(l), b = Math.cos(g), y = Math.cos(_), M = Math.sin(l), A = Math.sin(g), R = Math.sin(_), F = m * b * y - M * A, O = M * b + m * A * y, B = m * R, H = -m * A - M * b * y, K = m * b - M * A * y, J = -M * R, it = -b * R, ot = -A * R, lt = y, gt = new pe();
+          var m = Math.cos(l), b = Math.cos(g), y = Math.cos(_), M = Math.sin(l), A = Math.sin(g), $ = Math.sin(_), F = m * b * y - M * A, O = M * b + m * A * y, B = m * $, H = -m * A - M * b * y, K = m * b - M * A * y, J = -M * $, it = -b * $, ot = -A * $, lt = y, gt = new pe();
           return gt.x = F * t.x + H * t.y + it * t.z, gt.y = O * t.x + K * t.y + ot * t.z, gt.z = B * t.x + J * t.y + lt * t.z, gt;
         };
         var Hn = {};
@@ -8295,18 +8295,18 @@ function requireSrc() {
           this.satellite1 = new Gn(), this.satellite2 = new Gn(), this.satellite3 = new Gn(), this.satellite4 = new Gn();
         }
         var Ka = {};
-        function $i() {
+        function Ri() {
         }
-        $i.calculate = function(t) {
-          for (var e = fi.geometricEclipticLongitude(t), n = x.d2R(e), a = fi.geometricEclipticLatitude(t), s = x.d2R(a), l = ii.radiusVector(t), g = 5, _ = 0, m = hi.distanceToLightTime(g), b = t - m, y = !0, M = 0, A = 0, R = 0, F = 0, O = 0, B = 0, H = 0, K = 0; y; )
-            F = Y.eclipticLongitude(b), O = x.d2R(F), B = Y.eclipticLatitude(b), H = x.d2R(B), K = Y.radiusVector(b), M = K * Math.cos(H) * Math.cos(O) + l * Math.cos(n), A = K * Math.cos(H) * Math.sin(O) + l * Math.sin(n), R = K * Math.sin(H) + l * Math.sin(s), g = Math.sqrt(M * M + A * A + R * R), m = hi.distanceToLightTime(g), y = Math.abs(m - _) > 2e-6, y && (b = t - m, _ = m);
-          var J = $i.calculateHelper(t, n, s, l);
-          $i.fillInPhenomenaDetails(J.satellite1), $i.fillInPhenomenaDetails(J.satellite2), $i.fillInPhenomenaDetails(J.satellite3), $i.fillInPhenomenaDetails(J.satellite4), b = t - m, F = Y.eclipticLongitude(b), O = x.d2R(F), B = Y.eclipticLatitude(b), H = x.d2R(B), K = Y.radiusVector(b), M = K * Math.cos(H) * Math.cos(O), A = K * Math.cos(H) * Math.sin(O), R = K * Math.sin(H), g = Math.sqrt(M * M + A * A + R * R);
-          var it = hi.distanceToLightTime(g), ot = $i.calculateHelper(t + it - m, n, s, 0);
-          return $i.fillInPhenomenaDetails(ot.satellite1), $i.fillInPhenomenaDetails(ot.satellite2), $i.fillInPhenomenaDetails(ot.satellite3), $i.fillInPhenomenaDetails(ot.satellite4), J.satellite1.bInEclipse = ot.satellite1.bInOccultation, J.satellite2.bInEclipse = ot.satellite2.bInOccultation, J.satellite3.bInEclipse = ot.satellite3.bInOccultation, J.satellite4.bInEclipse = ot.satellite4.bInOccultation, J.satellite1.bInShadowTransit = ot.satellite1.bInTransit, J.satellite2.bInShadowTransit = ot.satellite2.bInTransit, J.satellite3.bInShadowTransit = ot.satellite3.bInTransit, J.satellite4.bInShadowTransit = ot.satellite4.bInTransit, J.satellite1.apparentShadowRectangularCoordinates = ot.satellite1.apparentRectangularCoordinates, J.satellite2.apparentShadowRectangularCoordinates = ot.satellite2.apparentRectangularCoordinates, J.satellite3.apparentShadowRectangularCoordinates = ot.satellite3.apparentRectangularCoordinates, J.satellite4.apparentShadowRectangularCoordinates = ot.satellite4.apparentRectangularCoordinates, J;
-        }, $i.calculateHelper = function(t, e, n, a) {
-          for (var s = new La(), l = 5, g = 0, _ = hi.distanceToLightTime(l), m = 0, b = 0, y = 0, M = 0, A = 0, R = 0, F = 0, O = 0, B = t - _, H = !0; H; )
-            M = Y.eclipticLongitude(B), A = x.d2R(M), R = Y.eclipticLatitude(B), F = x.d2R(R), O = Y.radiusVector(B), m = O * Math.cos(F) * Math.cos(A) + a * Math.cos(e), b = O * Math.cos(F) * Math.sin(A) + a * Math.sin(e), y = O * Math.sin(F) + a * Math.sin(n), l = Math.sqrt(m * m + b * b + y * y), _ = hi.distanceToLightTime(l), H = Math.abs(_ - g) > 2e-6, H && (B = t - _, g = _);
+        Ri.calculate = function(t) {
+          for (var e = fi.geometricEclipticLongitude(t), n = x.d2R(e), a = fi.geometricEclipticLatitude(t), s = x.d2R(a), l = ii.radiusVector(t), g = 5, _ = 0, m = hi.distanceToLightTime(g), b = t - m, y = !0, M = 0, A = 0, $ = 0, F = 0, O = 0, B = 0, H = 0, K = 0; y; )
+            F = Y.eclipticLongitude(b), O = x.d2R(F), B = Y.eclipticLatitude(b), H = x.d2R(B), K = Y.radiusVector(b), M = K * Math.cos(H) * Math.cos(O) + l * Math.cos(n), A = K * Math.cos(H) * Math.sin(O) + l * Math.sin(n), $ = K * Math.sin(H) + l * Math.sin(s), g = Math.sqrt(M * M + A * A + $ * $), m = hi.distanceToLightTime(g), y = Math.abs(m - _) > 2e-6, y && (b = t - m, _ = m);
+          var J = Ri.calculateHelper(t, n, s, l);
+          Ri.fillInPhenomenaDetails(J.satellite1), Ri.fillInPhenomenaDetails(J.satellite2), Ri.fillInPhenomenaDetails(J.satellite3), Ri.fillInPhenomenaDetails(J.satellite4), b = t - m, F = Y.eclipticLongitude(b), O = x.d2R(F), B = Y.eclipticLatitude(b), H = x.d2R(B), K = Y.radiusVector(b), M = K * Math.cos(H) * Math.cos(O), A = K * Math.cos(H) * Math.sin(O), $ = K * Math.sin(H), g = Math.sqrt(M * M + A * A + $ * $);
+          var it = hi.distanceToLightTime(g), ot = Ri.calculateHelper(t + it - m, n, s, 0);
+          return Ri.fillInPhenomenaDetails(ot.satellite1), Ri.fillInPhenomenaDetails(ot.satellite2), Ri.fillInPhenomenaDetails(ot.satellite3), Ri.fillInPhenomenaDetails(ot.satellite4), J.satellite1.bInEclipse = ot.satellite1.bInOccultation, J.satellite2.bInEclipse = ot.satellite2.bInOccultation, J.satellite3.bInEclipse = ot.satellite3.bInOccultation, J.satellite4.bInEclipse = ot.satellite4.bInOccultation, J.satellite1.bInShadowTransit = ot.satellite1.bInTransit, J.satellite2.bInShadowTransit = ot.satellite2.bInTransit, J.satellite3.bInShadowTransit = ot.satellite3.bInTransit, J.satellite4.bInShadowTransit = ot.satellite4.bInTransit, J.satellite1.apparentShadowRectangularCoordinates = ot.satellite1.apparentRectangularCoordinates, J.satellite2.apparentShadowRectangularCoordinates = ot.satellite2.apparentRectangularCoordinates, J.satellite3.apparentShadowRectangularCoordinates = ot.satellite3.apparentRectangularCoordinates, J.satellite4.apparentShadowRectangularCoordinates = ot.satellite4.apparentRectangularCoordinates, J;
+        }, Ri.calculateHelper = function(t, e, n, a) {
+          for (var s = new La(), l = 5, g = 0, _ = hi.distanceToLightTime(l), m = 0, b = 0, y = 0, M = 0, A = 0, $ = 0, F = 0, O = 0, B = t - _, H = !0; H; )
+            M = Y.eclipticLongitude(B), A = x.d2R(M), $ = Y.eclipticLatitude(B), F = x.d2R($), O = Y.radiusVector(B), m = O * Math.cos(F) * Math.cos(A) + a * Math.cos(e), b = O * Math.cos(F) * Math.sin(A) + a * Math.sin(e), y = O * Math.sin(F) + a * Math.sin(n), l = Math.sqrt(m * m + b * b + y * y), _ = hi.distanceToLightTime(l), H = Math.abs(_ - g) > 2e-6, H && (B = t - _, g = _);
           var K = Math.atan2(b, m), J = Math.atan(y / Math.sqrt(m * m + b * b)), it = t - 24430005e-1 - _, ot = 106.07719 + 203.48895579 * it, lt = x.d2R(ot), gt = 175.73161 + 101.374724735 * it, ut = x.d2R(gt), St = 120.55883 + 50.317609207 * it, mt = x.d2R(St), Dt = 84.44459 + 21.571071177 * it, yt = x.d2R(Dt), ue = x.d2R(x.m360(97.0881 + 0.16138586 * it)), _e = x.d2R(x.m360(154.8663 + 0.04726307 * it)), Qt = x.d2R(x.m360(188.184 + 712734e-8 * it)), Ft = x.d2R(x.m360(335.2868 + 184e-5 * it)), vi = 312.3346 - 0.13279386 * it, Ei = x.d2R(vi), Li = 100.4411 - 0.03263064 * it, ri = x.d2R(Li), Si = 119.1942 - 717703e-8 * it, Je = x.d2R(Si), Xi = 322.6186 - 175934e-8 * it, Ee = x.d2R(Xi), Yi = 0.33033 * Math.sin(x.d2R(163.679 + 10512e-7 * it)) + 0.03439 * Math.sin(x.d2R(34.486 - 0.0161731 * it)), Ni = x.d2R(199.6766 + 0.1737919 * it), he = x.d2R(316.5182 - 208e-8 * it), ee = x.d2R(30.23756 + 0.0830925701 * it + Yi), Xe = x.d2R(31.97853 + 0.0334597339 * it), xe = x.d2R(13.469942), Ir = 0.47259 * Math.sin(2 * (lt - ut)) + -0.03478 * Math.sin(Qt - Ft) + 0.01081 * Math.sin(ut - 2 * mt + Qt) + 738e-5 * Math.sin(Ni) + 713e-5 * Math.sin(ut - 2 * mt + _e) + -674e-5 * Math.sin(ue + Qt - 2 * xe - 2 * ee) + 666e-5 * Math.sin(ut - 2 * mt + Ft) + 445e-5 * Math.sin(lt - Qt) + -354e-5 * Math.sin(lt - ut) + -317e-5 * Math.sin(2 * he - 2 * xe) + 265e-5 * Math.sin(lt - Ft) + -186e-5 * Math.sin(ee) + 162e-5 * Math.sin(_e - Qt) + 158e-5 * Math.sin(4 * (lt - ut)) + -155e-5 * Math.sin(lt - mt) + -138e-5 * Math.sin(he + Je - 2 * xe - 2 * ee) + -115e-5 * Math.sin(2 * (lt - 2 * ut + ri)) + 89e-5 * Math.sin(_e - Ft) + 85e-5 * Math.sin(lt + Qt - 2 * xe - 2 * ee) + 83e-5 * Math.sin(ri - Je) + 53e-5 * Math.sin(he - ri), or = 1.06476 * Math.sin(2 * (ut - mt)) + 0.04256 * Math.sin(lt - 2 * ut + Qt) + 0.03581 * Math.sin(ut - Qt) + 0.02395 * Math.sin(lt - 2 * ut + Ft) + 0.01984 * Math.sin(ut - Ft) + -0.01778 * Math.sin(Ni) + 0.01654 * Math.sin(ut - _e) + 0.01334 * Math.sin(ut - 2 * mt + _e) + 0.01294 * Math.sin(Qt - Ft) + -0.01142 * Math.sin(ut - mt) + -0.01057 * Math.sin(ee) + -775e-5 * Math.sin(2 * (he - xe)) + 524e-5 * Math.sin(2 * (lt - ut)) + -46e-4 * Math.sin(lt - mt) + 316e-5 * Math.sin(he - 2 * ee + Je - 2 * xe) + -203e-5 * Math.sin(ue + Qt - 2 * xe - 2 * ee) + 146e-5 * Math.sin(he - Je) + -145e-5 * Math.sin(2 * ee) + 125e-5 * Math.sin(he - Ee) + -115e-5 * Math.sin(lt - 2 * mt + Qt) + -94e-5 * Math.sin(2 * (ut - ri)) + 86e-5 * Math.sin(2 * (lt - 2 * ut + ri)) + -86e-5 * Math.sin(5 * Xe - 2 * ee + x.d2R(52.225)) + -78e-5 * Math.sin(ut - yt) + -64e-5 * Math.sin(3 * mt - 7 * yt + 4 * Ft) + 64e-5 * Math.sin(ue - Ft) + -63e-5 * Math.sin(lt - 2 * mt + Ft) + 58e-5 * Math.sin(Je - Ee) + 56e-5 * Math.sin(2 * (he - xe - ee)) + 56e-5 * Math.sin(2 * (ut - yt)) + 55e-5 * Math.sin(2 * (lt - mt)) + 52e-5 * Math.sin(3 * mt - 7 * yt + Qt + 3 * Ft) + -43e-5 * Math.sin(lt - Qt) + 41e-5 * Math.sin(5 * (ut - mt)) + 41e-5 * Math.sin(Ft - xe) + 32e-5 * Math.sin(ri - Je) + 32e-5 * Math.sin(2 * (mt - ee - xe)), Hi = 0.1649 * Math.sin(mt - Qt) + 0.09081 * Math.sin(mt - Ft) + -0.06907 * Math.sin(ut - mt) + 0.03784 * Math.sin(Qt - Ft) + 0.01846 * Math.sin(2 * (mt - yt)) + -0.0134 * Math.sin(ee) + -0.01014 * Math.sin(2 * (he - xe)) + 704e-5 * Math.sin(ut - 2 * mt + Qt) + -62e-4 * Math.sin(ut - 2 * mt + _e) + -541e-5 * Math.sin(mt - yt) + 381e-5 * Math.sin(ut - 2 * mt + Ft) + 235e-5 * Math.sin(he - Je) + 198e-5 * Math.sin(he - Ee) + 176e-5 * Math.sin(Ni) + 13e-4 * Math.sin(3 * (mt - yt)) + 125e-5 * Math.sin(lt - mt) + -119e-5 * Math.sin(5 * Xe - 2 * ee + x.d2R(52.225)) + 109e-5 * Math.sin(lt - ut) + -1e-3 * Math.sin(3 * mt - 7 * yt + 4 * Ft) + 91e-5 * Math.sin(Je - Ee) + 8e-4 * Math.sin(3 * mt - 7 * yt + Qt + 3 * Ft) + -75e-5 * Math.sin(2 * ut - 3 * mt + Qt) + 72e-5 * Math.sin(ue + Qt - 2 * xe - 2 * ee) + 69e-5 * Math.sin(Ft - xe) + -58e-5 * Math.sin(2 * mt - 3 * yt + Ft) + -57e-5 * Math.sin(mt - 2 * yt + Ft) + 56e-5 * Math.sin(mt + Qt - 2 * xe - 2 * ee) + -52e-5 * Math.sin(ut - 2 * mt + ue) + -5e-4 * Math.sin(_e - Qt) + 48e-5 * Math.sin(mt - 2 * yt + Qt) + -45e-5 * Math.sin(2 * ut - 3 * mt + Ft) + -41e-5 * Math.sin(_e - Ft) + -38e-5 * Math.sin(2 * ee) + -37e-5 * Math.sin(Qt - Ft + Je - Ee) + -32e-5 * Math.sin(3 * mt - 7 * yt + 2 * Qt + 2 * Ft) + 3e-4 * Math.sin(4 * (mt - yt)) + 29e-5 * Math.sin(mt + Ft - 2 * xe - 2 * ee) + -28e-5 * Math.sin(Je + he - 2 * xe - 2 * ee) + 26e-5 * Math.sin(mt - xe - ee) + 24e-5 * Math.sin(ut - 3 * mt + 2 * yt) + 21e-5 * Math.sin(mt - xe - ee) + -21e-5 * Math.sin(mt - _e) + 17e-5 * Math.sin(2 * (mt - Qt)), yn = 0.84287 * Math.sin(yt - Ft) + 0.03431 * Math.sin(Ft - Qt) + -0.03305 * Math.sin(2 * (he - xe)) + -0.03211 * Math.sin(ee) + -0.01862 * Math.sin(yt - Qt) + 0.01186 * Math.sin(he - Ee) + 623e-5 * Math.sin(yt + Ft - 2 * ee - 2 * xe) + 387e-5 * Math.sin(2 * (yt - Ft)) + -284e-5 * Math.sin(5 * Xe - 2 * ee + x.d2R(52.225)) + -234e-5 * Math.sin(2 * (he - Ft)) + -223e-5 * Math.sin(mt - yt) + -208e-5 * Math.sin(yt - xe) + 178e-5 * Math.sin(he + Ee - 2 * Ft) + 134e-5 * Math.sin(Ft - xe) + 125e-5 * Math.sin(2 * (yt - ee - xe)) + -117e-5 * Math.sin(2 * ee) + -112e-5 * Math.sin(2 * (mt - yt)) + 107e-5 * Math.sin(3 * mt - 7 * yt + 4 * Ft) + 102e-5 * Math.sin(yt - ee - xe) + 96e-5 * Math.sin(2 * yt - he - Ee) + 87e-5 * Math.sin(2 * (he - Ee)) + -85e-5 * Math.sin(3 * mt - 7 * yt + Qt + 3 * Ft) + 85e-5 * Math.sin(mt - 2 * yt + Ft) + -81e-5 * Math.sin(2 * (yt - he)) + 71e-5 * Math.sin(yt + Ft - 2 * xe - 3 * ee) + 61e-5 * Math.sin(lt - yt) + -56e-5 * Math.sin(he - Je) + -54e-5 * Math.sin(mt - 2 * yt + Qt) + 51e-5 * Math.sin(ut - yt) + 42e-5 * Math.sin(2 * (he - ee - xe)) + 39e-5 * Math.sin(2 * (Ft - Ee)) + 36e-5 * Math.sin(he + xe - Ft - Ee) + 35e-5 * Math.sin(2 * Xe - ee + x.d2R(188.37)) + -35e-5 * Math.sin(yt - Ft + 2 * xe - 2 * he) + -32e-5 * Math.sin(yt + Ft - 2 * xe - ee) + 3e-4 * Math.sin(2 * Xe - 2 * ee + x.d2R(149.15)) + 29e-5 * Math.sin(3 * mt - 7 * yt + 2 * Qt + 2 * Ft) + 28e-5 * Math.sin(yt - Ft + 2 * he - 2 * xe) + -28e-5 * Math.sin(2 * (yt - Ee)) + -27e-5 * Math.sin(Qt - Ft + Je - Ee) + -26e-5 * Math.sin(5 * Xe - 3 * ee + x.d2R(188.37)) + 25e-5 * Math.sin(Ee - Je) + -25e-5 * Math.sin(ut - 3 * mt + 2 * yt) + -23e-5 * Math.sin(3 * (mt - yt)) + 21e-5 * Math.sin(2 * yt - 2 * xe - 3 * ee) + -21e-5 * Math.sin(2 * mt - 3 * yt + Ft) + 19e-5 * Math.sin(yt - Ft - ee) + -19e-5 * Math.sin(2 * yt - Qt - Ft) + -18e-5 * Math.sin(yt - Ft + ee) + -16e-5 * Math.sin(yt + Qt - 2 * xe - 2 * ee);
           s.satellite1.meanLongitude = x.m360(ot), s.satellite1.trueLongitude = x.m360(ot + Ir);
           var yr = x.d2R(s.satellite1.trueLongitude);
@@ -8325,18 +8325,18 @@ function requireSrc() {
           s.satellite4.equatorialLatitude = x.r2D(Lr), s.satellite1.r = 5.90569 * (1 + (-41339e-7 * Math.cos(2 * (lt - ut)) + -387e-7 * Math.cos(lt - Qt) + -214e-7 * Math.cos(lt - Ft) + 17e-6 * Math.cos(lt - ut) + -131e-7 * Math.cos(4 * (lt - ut)) + 106e-7 * Math.cos(lt - mt) + -66e-7 * Math.cos(lt + Qt - 2 * xe - 2 * ee))), s.satellite2.r = 9.39657 * (1 + (93848e-7 * Math.cos(lt - ut) + -3116e-7 * Math.cos(ut - Qt) + -1744e-7 * Math.cos(ut - Ft) + -1442e-7 * Math.cos(ut - _e) + 553e-7 * Math.cos(ut - mt) + 523e-7 * Math.cos(lt - mt) + -29e-6 * Math.cos(2 * (lt - ut)) + 164e-7 * Math.cos(2 * (ut - ri)) + 107e-7 * Math.cos(lt - 2 * mt + Qt) + -102e-7 * Math.cos(ut - ue) + -91e-7 * Math.cos(2 * (lt - mt)))), s.satellite3.r = 14.98832 * (1 + (-14388e-7 * Math.cos(mt - Qt) + -7919e-7 * Math.cos(mt - Ft) + 6342e-7 * Math.cos(ut - mt) + -1761e-7 * Math.cos(2 * (mt - yt)) + 294e-7 * Math.cos(mt - yt) + -156e-7 * Math.cos(3 * (mt - yt)) + 156e-7 * Math.cos(lt - mt) + -153e-7 * Math.cos(lt - ut) + 7e-6 * Math.cos(2 * ut - 3 * mt + Qt) + -51e-7 * Math.cos(mt + Qt - 2 * xe - 2 * ee))), s.satellite4.r = 26.36273 * (1 + (-73546e-7 * Math.cos(yt - Ft) + 1621e-7 * Math.cos(yt - Qt) + 974e-7 * Math.cos(mt - yt) + -543e-7 * Math.cos(yt + Ft - 2 * xe - 2 * ee) + -271e-7 * Math.cos(2 * (yt - Ft)) + 182e-7 * Math.cos(yt - xe) + 177e-7 * Math.cos(2 * (mt - yt)) + -167e-7 * Math.cos(2 * yt - he - Ee) + 167e-7 * Math.cos(he - Ee) + -155e-7 * Math.cos(2 * (yt - xe - ee)) + 142e-7 * Math.cos(2 * (yt - he)) + 105e-7 * Math.cos(lt - yt) + 92e-7 * Math.cos(ut - yt) + -89e-7 * Math.cos(yt - xe - ee) + -62e-7 * Math.cos(yt + Ft - 2 * xe - 3 * ee) + 48e-7 * Math.cos(2 * (yt - Ee))));
           var cn = (t - 2433282423e-3) / 36525, Dn = x.d2R(1.3966626 * cn + 3088e-7 * cn * cn);
           yr += Dn, s.satellite1.tropicalLongitude = x.m360(x.r2D(yr)), dr += Dn, s.satellite2.tropicalLongitude = x.m360(x.r2D(dr)), ji += Dn, s.satellite3.tropicalLongitude = x.m360(x.r2D(ji)), wr += Dn, s.satellite4.tropicalLongitude = x.m360(x.r2D(wr)), he += Dn;
-          var hn = (t - 24150205e-1) / 36525, ds = 3.120262 + 6e-4 * hn, sa = x.d2R(ds), eo = s.satellite1.r * Math.cos(yr - he) * Math.cos(zr), gs = s.satellite2.r * Math.cos(dr - he) * Math.cos(Sn), Va = s.satellite3.r * Math.cos(ji - he) * Math.cos(xr), ya = s.satellite4.r * Math.cos(wr - he) * Math.cos(Lr), fn = 0, Ua = s.satellite1.r * Math.sin(yr - he) * Math.cos(zr), _n = s.satellite2.r * Math.sin(dr - he) * Math.cos(Sn), Sa = s.satellite3.r * Math.sin(ji - he) * Math.cos(xr), Cn = s.satellite4.r * Math.sin(wr - he) * Math.cos(Lr), ms = 0, ps = s.satellite1.r * Math.sin(zr), Ha = s.satellite2.r * Math.sin(Sn), io = s.satellite3.r * Math.sin(xr), vs = s.satellite4.r * Math.sin(Lr), ws = 1, oa = x.d2R(re.jupiterLongitudeAscendingNode(t)), Nn = x.d2R(re.jupiterInclination(t)), Pr = 0, Tn = 0, Er = 0, e_ = new pe(), lr = $i.rotations(fn, ms, ws, sa, he, Nn, oa, K, J, e_);
+          var hn = (t - 24150205e-1) / 36525, ds = 3.120262 + 6e-4 * hn, sa = x.d2R(ds), eo = s.satellite1.r * Math.cos(yr - he) * Math.cos(zr), gs = s.satellite2.r * Math.cos(dr - he) * Math.cos(Sn), Va = s.satellite3.r * Math.cos(ji - he) * Math.cos(xr), ya = s.satellite4.r * Math.cos(wr - he) * Math.cos(Lr), fn = 0, Ua = s.satellite1.r * Math.sin(yr - he) * Math.cos(zr), _n = s.satellite2.r * Math.sin(dr - he) * Math.cos(Sn), Sa = s.satellite3.r * Math.sin(ji - he) * Math.cos(xr), Cn = s.satellite4.r * Math.sin(wr - he) * Math.cos(Lr), ms = 0, ps = s.satellite1.r * Math.sin(zr), Ha = s.satellite2.r * Math.sin(Sn), io = s.satellite3.r * Math.sin(xr), vs = s.satellite4.r * Math.sin(Lr), ws = 1, oa = x.d2R(re.jupiterLongitudeAscendingNode(t)), Nn = x.d2R(re.jupiterInclination(t)), Pr = 0, Tn = 0, Er = 0, e_ = new pe(), lr = Ri.rotations(fn, ms, ws, sa, he, Nn, oa, K, J, e_);
           Pr = lr[0], Tn = lr[1], Er = lr[2];
           var Sr = Math.atan2(Pr, Er);
-          lr = $i.rotations(eo, Ua, ps, sa, he, Nn, oa, K, J, s.satellite1.eclipticRectangularCoordinates), Pr = lr[0], Tn = lr[1], Er = lr[2], s.satellite1.trueRectangularCoordinates.x = Pr * Math.cos(Sr) - Er * Math.sin(Sr), s.satellite1.trueRectangularCoordinates.y = Pr * Math.sin(Sr) + Er * Math.cos(Sr), s.satellite1.trueRectangularCoordinates.z = Tn, lr = $i.rotations(gs, _n, Ha, sa, he, Nn, oa, K, J, s.satellite2.eclipticRectangularCoordinates), Pr = lr[0], Tn = lr[1], Er = lr[2], s.satellite2.trueRectangularCoordinates.x = Pr * Math.cos(Sr) - Er * Math.sin(Sr), s.satellite2.trueRectangularCoordinates.y = Pr * Math.sin(Sr) + Er * Math.cos(Sr), s.satellite2.trueRectangularCoordinates.z = Tn, lr = $i.rotations(Va, Sa, io, sa, he, Nn, oa, K, J, s.satellite3.eclipticRectangularCoordinates), Pr = lr[0], Tn = lr[1], Er = lr[2], s.satellite3.trueRectangularCoordinates.x = Pr * Math.cos(Sr) - Er * Math.sin(Sr), s.satellite3.trueRectangularCoordinates.y = Pr * Math.sin(Sr) + Er * Math.cos(Sr), s.satellite3.trueRectangularCoordinates.z = Tn, lr = $i.rotations(ya, Cn, vs, sa, he, Nn, oa, K, J, s.satellite4.eclipticRectangularCoordinates), Pr = lr[0], Tn = lr[1], Er = lr[2], s.satellite4.trueRectangularCoordinates.x = Pr * Math.cos(Sr) - Er * Math.sin(Sr), s.satellite4.trueRectangularCoordinates.y = Pr * Math.sin(Sr) + Er * Math.cos(Sr), s.satellite4.trueRectangularCoordinates.z = Tn, s.satellite1.apparentRectangularCoordinates.x = s.satellite1.trueRectangularCoordinates.x + Math.abs(s.satellite1.trueRectangularCoordinates.z) / 17295 * Math.sqrt(1 - s.satellite1.trueRectangularCoordinates.x / s.satellite1.r * (s.satellite1.trueRectangularCoordinates.x / s.satellite1.r)), s.satellite1.apparentRectangularCoordinates.y = s.satellite1.trueRectangularCoordinates.y, s.satellite1.apparentRectangularCoordinates.z = s.satellite1.trueRectangularCoordinates.z, s.satellite2.apparentRectangularCoordinates.x = s.satellite2.trueRectangularCoordinates.x + Math.abs(s.satellite2.trueRectangularCoordinates.z) / 21819 * Math.sqrt(1 - s.satellite2.trueRectangularCoordinates.x / s.satellite2.r * (s.satellite2.trueRectangularCoordinates.x / s.satellite2.r)), s.satellite2.apparentRectangularCoordinates.y = s.satellite2.trueRectangularCoordinates.y, s.satellite2.apparentRectangularCoordinates.z = s.satellite2.trueRectangularCoordinates.z, s.satellite3.apparentRectangularCoordinates.x = s.satellite3.trueRectangularCoordinates.x + Math.abs(s.satellite3.trueRectangularCoordinates.z) / 27558 * Math.sqrt(1 - s.satellite3.trueRectangularCoordinates.x / s.satellite3.r * (s.satellite3.trueRectangularCoordinates.x / s.satellite3.r)), s.satellite3.apparentRectangularCoordinates.y = s.satellite3.trueRectangularCoordinates.y, s.satellite3.apparentRectangularCoordinates.z = s.satellite3.trueRectangularCoordinates.z, s.satellite4.apparentRectangularCoordinates.x = s.satellite4.trueRectangularCoordinates.x + Math.abs(s.satellite4.trueRectangularCoordinates.z) / 36548 * Math.sqrt(1 - s.satellite4.trueRectangularCoordinates.x / s.satellite4.r * (s.satellite4.trueRectangularCoordinates.x / s.satellite4.r)), s.satellite4.apparentRectangularCoordinates.y = s.satellite4.trueRectangularCoordinates.y, s.satellite4.apparentRectangularCoordinates.z = s.satellite4.trueRectangularCoordinates.z;
+          lr = Ri.rotations(eo, Ua, ps, sa, he, Nn, oa, K, J, s.satellite1.eclipticRectangularCoordinates), Pr = lr[0], Tn = lr[1], Er = lr[2], s.satellite1.trueRectangularCoordinates.x = Pr * Math.cos(Sr) - Er * Math.sin(Sr), s.satellite1.trueRectangularCoordinates.y = Pr * Math.sin(Sr) + Er * Math.cos(Sr), s.satellite1.trueRectangularCoordinates.z = Tn, lr = Ri.rotations(gs, _n, Ha, sa, he, Nn, oa, K, J, s.satellite2.eclipticRectangularCoordinates), Pr = lr[0], Tn = lr[1], Er = lr[2], s.satellite2.trueRectangularCoordinates.x = Pr * Math.cos(Sr) - Er * Math.sin(Sr), s.satellite2.trueRectangularCoordinates.y = Pr * Math.sin(Sr) + Er * Math.cos(Sr), s.satellite2.trueRectangularCoordinates.z = Tn, lr = Ri.rotations(Va, Sa, io, sa, he, Nn, oa, K, J, s.satellite3.eclipticRectangularCoordinates), Pr = lr[0], Tn = lr[1], Er = lr[2], s.satellite3.trueRectangularCoordinates.x = Pr * Math.cos(Sr) - Er * Math.sin(Sr), s.satellite3.trueRectangularCoordinates.y = Pr * Math.sin(Sr) + Er * Math.cos(Sr), s.satellite3.trueRectangularCoordinates.z = Tn, lr = Ri.rotations(ya, Cn, vs, sa, he, Nn, oa, K, J, s.satellite4.eclipticRectangularCoordinates), Pr = lr[0], Tn = lr[1], Er = lr[2], s.satellite4.trueRectangularCoordinates.x = Pr * Math.cos(Sr) - Er * Math.sin(Sr), s.satellite4.trueRectangularCoordinates.y = Pr * Math.sin(Sr) + Er * Math.cos(Sr), s.satellite4.trueRectangularCoordinates.z = Tn, s.satellite1.apparentRectangularCoordinates.x = s.satellite1.trueRectangularCoordinates.x + Math.abs(s.satellite1.trueRectangularCoordinates.z) / 17295 * Math.sqrt(1 - s.satellite1.trueRectangularCoordinates.x / s.satellite1.r * (s.satellite1.trueRectangularCoordinates.x / s.satellite1.r)), s.satellite1.apparentRectangularCoordinates.y = s.satellite1.trueRectangularCoordinates.y, s.satellite1.apparentRectangularCoordinates.z = s.satellite1.trueRectangularCoordinates.z, s.satellite2.apparentRectangularCoordinates.x = s.satellite2.trueRectangularCoordinates.x + Math.abs(s.satellite2.trueRectangularCoordinates.z) / 21819 * Math.sqrt(1 - s.satellite2.trueRectangularCoordinates.x / s.satellite2.r * (s.satellite2.trueRectangularCoordinates.x / s.satellite2.r)), s.satellite2.apparentRectangularCoordinates.y = s.satellite2.trueRectangularCoordinates.y, s.satellite2.apparentRectangularCoordinates.z = s.satellite2.trueRectangularCoordinates.z, s.satellite3.apparentRectangularCoordinates.x = s.satellite3.trueRectangularCoordinates.x + Math.abs(s.satellite3.trueRectangularCoordinates.z) / 27558 * Math.sqrt(1 - s.satellite3.trueRectangularCoordinates.x / s.satellite3.r * (s.satellite3.trueRectangularCoordinates.x / s.satellite3.r)), s.satellite3.apparentRectangularCoordinates.y = s.satellite3.trueRectangularCoordinates.y, s.satellite3.apparentRectangularCoordinates.z = s.satellite3.trueRectangularCoordinates.z, s.satellite4.apparentRectangularCoordinates.x = s.satellite4.trueRectangularCoordinates.x + Math.abs(s.satellite4.trueRectangularCoordinates.z) / 36548 * Math.sqrt(1 - s.satellite4.trueRectangularCoordinates.x / s.satellite4.r * (s.satellite4.trueRectangularCoordinates.x / s.satellite4.r)), s.satellite4.apparentRectangularCoordinates.y = s.satellite4.trueRectangularCoordinates.y, s.satellite4.apparentRectangularCoordinates.z = s.satellite4.trueRectangularCoordinates.z;
           var Wr = l / (l + s.satellite1.trueRectangularCoordinates.z / 2095);
           return s.satellite1.apparentRectangularCoordinates.x *= Wr, s.satellite1.apparentRectangularCoordinates.y *= Wr, Wr = l / (l + s.satellite2.trueRectangularCoordinates.z / 2095), s.satellite2.apparentRectangularCoordinates.x *= Wr, s.satellite2.apparentRectangularCoordinates.y *= Wr, Wr = l / (l + s.satellite3.trueRectangularCoordinates.z / 2095), s.satellite3.apparentRectangularCoordinates.x *= Wr, s.satellite3.apparentRectangularCoordinates.y *= Wr, Wr = l / (l + s.satellite4.trueRectangularCoordinates.z / 2095), s.satellite4.apparentRectangularCoordinates.x *= Wr, s.satellite4.apparentRectangularCoordinates.y *= Wr, s;
-        }, $i.rotations = function(t, e, n, a, s, l, g, _, m, b) {
-          var y, M, A, R = s - g, F = t, O = e * Math.cos(a) - n * Math.sin(a), B = e * Math.sin(a) + n * Math.cos(a), H = F * Math.cos(R) - O * Math.sin(R), K = F * Math.sin(R) + O * Math.cos(R), J = B, it = H, ot = K * Math.cos(l) - J * Math.sin(l), lt = K * Math.sin(l) + J * Math.cos(l), gt = it * Math.cos(g) - ot * Math.sin(g), ut = it * Math.sin(g) + ot * Math.cos(g), St = lt, mt = 1 / 2095;
+        }, Ri.rotations = function(t, e, n, a, s, l, g, _, m, b) {
+          var y, M, A, $ = s - g, F = t, O = e * Math.cos(a) - n * Math.sin(a), B = e * Math.sin(a) + n * Math.cos(a), H = F * Math.cos($) - O * Math.sin($), K = F * Math.sin($) + O * Math.cos($), J = B, it = H, ot = K * Math.cos(l) - J * Math.sin(l), lt = K * Math.sin(l) + J * Math.cos(l), gt = it * Math.cos(g) - ot * Math.sin(g), ut = it * Math.sin(g) + ot * Math.cos(g), St = lt, mt = 1 / 2095;
           b.x = gt * mt, b.y = ut * mt, b.z = St * mt;
           var Dt = gt * Math.sin(_) - ut * Math.cos(_), yt = gt * Math.cos(_) + ut * Math.sin(_), ue = St;
           return y = Dt, M = ue * Math.sin(m) + yt * Math.cos(m), A = ue * Math.cos(m) - yt * Math.sin(m), [y, M, A];
-        }, $i.fillInPhenomenaDetails = function(t) {
+        }, Ri.fillInPhenomenaDetails = function(t) {
           var e = 1.071374 * t.apparentRectangularCoordinates.y, n = e * e + t.apparentRectangularCoordinates.x * t.apparentRectangularCoordinates.x;
           n < 1 ? t.apparentRectangularCoordinates.z < 0 ? (t.bInTransit = !0, t.bInOccultation = !1) : (t.bInTransit = !1, t.bInOccultation = !0) : (t.bInTransit = !1, t.bInOccultation = !1);
         };
@@ -8361,7 +8361,7 @@ function requireSrc() {
           return 6378.14 * (1 - 0.0066943847614084) / Math.pow(1 - 0.0066943847614084 * e * e, 1.5);
         }, Dr.distanceBetweenPoints = function(t, e, n, a) {
           t = x.d2R(t), n = x.d2R(n), e = x.d2R(e), a = x.d2R(a);
-          var s = (t + n) / 2, l = (t - n) / 2, g = (e - a) / 2, _ = Math.sin(l), m = Math.cos(l), b = Math.cos(s), y = Math.sin(s), M = Math.sin(g), A = Math.cos(g), R = _ * _ * A * A + b * b * M * M, F = m * m * A * A + y * y * M * M, O = Math.atan(Math.sqrt(R / F)), B = Math.sqrt(R * F) / O, H = 2 * O * 6378.14, K = (3 * B - 1) / (2 * F), J = (3 * B + 1) / (2 * R), it = 0.00335281317789691;
+          var s = (t + n) / 2, l = (t - n) / 2, g = (e - a) / 2, _ = Math.sin(l), m = Math.cos(l), b = Math.cos(s), y = Math.sin(s), M = Math.sin(g), A = Math.cos(g), $ = _ * _ * A * A + b * b * M * M, F = m * m * A * A + y * y * M * M, O = Math.atan(Math.sqrt($ / F)), B = Math.sqrt($ * F) / O, H = 2 * O * 6378.14, K = (3 * B - 1) / (2 * F), J = (3 * B + 1) / (2 * $), it = 0.00335281317789691;
           return H * (1 + it * K * y * y * m * m - it * J * b * b * _ * _);
         };
         var Ts = {};
@@ -8424,8 +8424,8 @@ function requireSrc() {
           var s = n - e, l = a - n, g = e + a - 2 * n;
           return n + t / 2 * (s + l + t * g);
         }, k.interpolate2 = function(t, e, n, a, s, l) {
-          var g = n - e, _ = a - n, m = s - a, b = l - s, y = _ - g, M = m - _, A = b - m, R = M - y, F = A - M, O = F - R, B = t * t, H = B * t, K = H * t;
-          return a + t * ((_ + m) / 2 - (R + F) / 12) + B * (M / 2 - O / 24) + H * ((R + F) / 12) + K * (O / 24);
+          var g = n - e, _ = a - n, m = s - a, b = l - s, y = _ - g, M = m - _, A = b - m, $ = M - y, F = A - M, O = F - $, B = t * t, H = B * t, K = H * t;
+          return a + t * ((_ + m) / 2 - ($ + F) / 12) + B * (M / 2 - O / 24) + H * (($ + F) / 12) + K * (O / 24);
         }, k.interpolateToHalves = function(t, e, n, a) {
           return (9 * (e + n) - t - a) / 16;
         }, k.lagrangeInterpolate = function(t, e, n, a) {
@@ -8440,9 +8440,9 @@ function requireSrc() {
             m = -2 * e / (a + s + l * _), g = Math.abs(m - _) > 1e-12, g && (_ = m);
           return m;
         }, k.zeroB = function(t, e, n, a, s) {
-          for (var l = e - t, g = n - e, _ = a - n, m = s - a, b = g - l, y = _ - g, M = m - _, A = y - b, R = M - y, F = R - A, O = !0, B = 0, H = B; O; ) {
+          for (var l = e - t, g = n - e, _ = a - n, m = s - a, b = g - l, y = _ - g, M = m - _, A = y - b, $ = M - y, F = $ - A, O = !0, B = 0, H = B; O; ) {
             var K = B * B, J = K * B, it = J * B;
-            H = (-24 * n + K * (F - 12 * y) - 2 * J * (A + R) - it * F) / (2 * (6 * g + 6 * _ - A - R)), O = Math.abs(H - B) > 1e-12, O && (B = H);
+            H = (-24 * n + K * (F - 12 * y) - 2 * J * (A + $) - it * F) / (2 * (6 * g + 6 * _ - A - $)), O = Math.abs(H - B) > 1e-12, O && (B = H);
           }
           return H;
         }, k.zero2 = function(t, e, n) {
@@ -8452,7 +8452,7 @@ function requireSrc() {
           }
           return m;
         }, k.zero2B = function(t, e, n, a, s) {
-          for (var l = e - t, g = n - e, _ = a - n, m = s - a, b = g - l, y = _ - g, M = m - _, A = y - b, R = M - y, F = R - A, O = F / 24, B = (A + R) / 12, H = y / 2 - O, K = (g + _) / 2 - B, J = !0, it = 0, ot = it; J; ) {
+          for (var l = e - t, g = n - e, _ = a - n, m = s - a, b = g - l, y = _ - g, M = m - _, A = y - b, $ = M - y, F = $ - A, O = F / 24, B = (A + $) / 12, H = y / 2 - O, K = (g + _) / 2 - B, J = !0, it = 0, ot = it; J; ) {
             var lt = it * it, gt = lt * it, ut = gt * it, St = -(O * ut + B * gt + H * lt + K * it + n) / (4 * O * gt + 3 * B * lt + 2 * H * it + K);
             ot = it + St, J = Math.abs(St) > 1e-12, J && (it = ot);
           }
@@ -8471,8 +8471,8 @@ function requireSrc() {
           var M = S.g_L2JupiterCoefficients.length, A = 0;
           for (m = 0; m < M; m++)
             A += S.g_L2JupiterCoefficients[m].a * Math.cos(S.g_L2JupiterCoefficients[m].b + S.g_L2JupiterCoefficients[m].c * e);
-          var R = S.g_L3JupiterCoefficients.length, F = 0;
-          for (m = 0; m < R; m++)
+          var $ = S.g_L3JupiterCoefficients.length, F = 0;
+          for (m = 0; m < $; m++)
             F += S.g_L3JupiterCoefficients[m].a * Math.cos(S.g_L3JupiterCoefficients[m].b + S.g_L3JupiterCoefficients[m].c * e);
           var O = S.g_L4JupiterCoefficients.length, B = 0;
           for (m = 0; m < O; m++)
@@ -8492,8 +8492,8 @@ function requireSrc() {
           var M = S.g_B2JupiterCoefficients.length, A = 0;
           for (m = 0; m < M; m++)
             A += S.g_B2JupiterCoefficients[m].a * Math.cos(S.g_B2JupiterCoefficients[m].b + S.g_B2JupiterCoefficients[m].c * e);
-          var R = S.g_B3JupiterCoefficients.length, F = 0;
-          for (m = 0; m < R; m++)
+          var $ = S.g_B3JupiterCoefficients.length, F = 0;
+          for (m = 0; m < $; m++)
             F += S.g_B3JupiterCoefficients[m].a * Math.cos(S.g_B3JupiterCoefficients[m].b + S.g_B3JupiterCoefficients[m].c * e);
           var O = S.g_B4JupiterCoefficients.length, B = 0;
           for (m = 0; m < O; m++)
@@ -8513,8 +8513,8 @@ function requireSrc() {
           var M = S.g_R2JupiterCoefficients.length, A = 0;
           for (m = 0; m < M; m++)
             A += S.g_R2JupiterCoefficients[m].a * Math.cos(S.g_R2JupiterCoefficients[m].b + S.g_R2JupiterCoefficients[m].c * e);
-          var R = S.g_R3JupiterCoefficients.length, F = 0;
-          for (m = 0; m < R; m++)
+          var $ = S.g_R3JupiterCoefficients.length, F = 0;
+          for (m = 0; m < $; m++)
             F += S.g_R3JupiterCoefficients[m].a * Math.cos(S.g_R3JupiterCoefficients[m].b + S.g_R3JupiterCoefficients[m].c * e);
           var O = S.g_R4JupiterCoefficients.length, B = 0;
           for (m = 0; m < O; m++)
@@ -8540,9 +8540,9 @@ function requireSrc() {
           return x.r2D(l) * s;
         };
         var Tt = {};
-        function Rt() {
+        function $t() {
         }
-        Rt.eclipticLongitude = function(t) {
+        $t.eclipticLongitude = function(t) {
           var e = (t - 2451545) / 365250, n = e * e, a = n * e, s = a * e, l = s * e, g = S.g_L0MarsCoefficients.length, _ = 0, m;
           for (m = 0; m < g; m++)
             _ += S.g_L0MarsCoefficients[m].a * Math.cos(S.g_L0MarsCoefficients[m].b + S.g_L0MarsCoefficients[m].c * e);
@@ -8552,8 +8552,8 @@ function requireSrc() {
           var M = S.g_L2MarsCoefficients.length, A = 0;
           for (m = 0; m < M; m++)
             A += S.g_L2MarsCoefficients[m].a * Math.cos(S.g_L2MarsCoefficients[m].b + S.g_L2MarsCoefficients[m].c * e);
-          var R = S.g_L3MarsCoefficients.length, F = 0;
-          for (m = 0; m < R; m++)
+          var $ = S.g_L3MarsCoefficients.length, F = 0;
+          for (m = 0; m < $; m++)
             F += S.g_L3MarsCoefficients[m].a * Math.cos(S.g_L3MarsCoefficients[m].b + S.g_L3MarsCoefficients[m].c * e);
           var O = S.g_L4MarsCoefficients.length, B = 0;
           for (m = 0; m < O; m++)
@@ -8563,7 +8563,7 @@ function requireSrc() {
             K += S.g_L5MarsCoefficients[m].a * Math.cos(S.g_L5MarsCoefficients[m].b + S.g_L5MarsCoefficients[m].c * e);
           var J = (_ + y * e + A * n + F * a + B * s + K * l) / 1e8;
           return J = x.m360(x.r2D(J)), J;
-        }, Rt.eclipticLatitude = function(t) {
+        }, $t.eclipticLatitude = function(t) {
           var e = (t - 2451545) / 365250, n = e * e, a = n * e, s = a * e, l = S.g_B0MarsCoefficients.length, g = 0, _;
           for (_ = 0; _ < l; _++)
             g += S.g_B0MarsCoefficients[_].a * Math.cos(S.g_B0MarsCoefficients[_].b + S.g_B0MarsCoefficients[_].c * e);
@@ -8573,15 +8573,15 @@ function requireSrc() {
           var y = S.g_B2MarsCoefficients.length, M = 0;
           for (_ = 0; _ < y; _++)
             M += S.g_B2MarsCoefficients[_].a * Math.cos(S.g_B2MarsCoefficients[_].b + S.g_B2MarsCoefficients[_].c * e);
-          var A = S.g_B3MarsCoefficients.length, R = 0;
+          var A = S.g_B3MarsCoefficients.length, $ = 0;
           for (_ = 0; _ < A; _++)
-            R += S.g_B3MarsCoefficients[_].a * Math.cos(S.g_B3MarsCoefficients[_].b + S.g_B3MarsCoefficients[_].c * e);
+            $ += S.g_B3MarsCoefficients[_].a * Math.cos(S.g_B3MarsCoefficients[_].b + S.g_B3MarsCoefficients[_].c * e);
           var F = S.g_B4MarsCoefficients.length, O = 0;
           for (_ = 0; _ < F; _++)
             O += S.g_B4MarsCoefficients[_].a * Math.cos(S.g_B4MarsCoefficients[_].b + S.g_B4MarsCoefficients[_].c * e);
-          var B = (g + b * e + M * n + R * a + O * s) / 1e8;
+          var B = (g + b * e + M * n + $ * a + O * s) / 1e8;
           return B = x.r2D(B), B;
-        }, Rt.radiusVector = function(t) {
+        }, $t.radiusVector = function(t) {
           var e = (t - 2451545) / 365250, n = e * e, a = n * e, s = a * e, l = S.g_R0MarsCoefficients.length, g = 0, _;
           for (_ = 0; _ < l; _++)
             g += S.g_R0MarsCoefficients[_].a * Math.cos(S.g_R0MarsCoefficients[_].b + S.g_R0MarsCoefficients[_].c * e);
@@ -8591,13 +8591,13 @@ function requireSrc() {
           var y = S.g_R2MarsCoefficients.length, M = 0;
           for (_ = 0; _ < y; _++)
             M += S.g_R2MarsCoefficients[_].a * Math.cos(S.g_R2MarsCoefficients[_].b + S.g_R2MarsCoefficients[_].c * e);
-          var A = S.g_R3MarsCoefficients.length, R = 0;
+          var A = S.g_R3MarsCoefficients.length, $ = 0;
           for (_ = 0; _ < A; _++)
-            R += S.g_R3MarsCoefficients[_].a * Math.cos(S.g_R3MarsCoefficients[_].b + S.g_R3MarsCoefficients[_].c * e);
+            $ += S.g_R3MarsCoefficients[_].a * Math.cos(S.g_R3MarsCoefficients[_].b + S.g_R3MarsCoefficients[_].c * e);
           var F = S.g_R4MarsCoefficients.length, O = 0;
           for (_ = 0; _ < F; _++)
             O += S.g_R4MarsCoefficients[_].a * Math.cos(S.g_R4MarsCoefficients[_].b + S.g_R4MarsCoefficients[_].c * e);
-          return (g + b * e + M * n + R * a + O * s) / 1e8;
+          return (g + b * e + M * n + $ * a + O * s) / 1e8;
         };
         var Ae = {};
         function Wt() {
@@ -8612,8 +8612,8 @@ function requireSrc() {
           var M = S.g_L2MercuryCoefficients.length, A = 0;
           for (m = 0; m < M; m++)
             A += S.g_L2MercuryCoefficients[m].a * Math.cos(S.g_L2MercuryCoefficients[m].b + S.g_L2MercuryCoefficients[m].c * e);
-          var R = S.g_L3MercuryCoefficients.length, F = 0;
-          for (m = 0; m < R; m++)
+          var $ = S.g_L3MercuryCoefficients.length, F = 0;
+          for (m = 0; m < $; m++)
             F += S.g_L3MercuryCoefficients[m].a * Math.cos(S.g_L3MercuryCoefficients[m].b + S.g_L3MercuryCoefficients[m].c * e);
           var O = S.g_L4MercuryCoefficients.length, B = 0;
           for (m = 0; m < O; m++)
@@ -8633,13 +8633,13 @@ function requireSrc() {
           var y = S.g_B2MercuryCoefficients.length, M = 0;
           for (_ = 0; _ < y; _++)
             M += S.g_B2MercuryCoefficients[_].a * Math.cos(S.g_B2MercuryCoefficients[_].b + S.g_B2MercuryCoefficients[_].c * e);
-          var A = S.g_B3MercuryCoefficients.length, R = 0;
+          var A = S.g_B3MercuryCoefficients.length, $ = 0;
           for (_ = 0; _ < A; _++)
-            R += S.g_B3MercuryCoefficients[_].a * Math.cos(S.g_B3MercuryCoefficients[_].b + S.g_B3MercuryCoefficients[_].c * e);
+            $ += S.g_B3MercuryCoefficients[_].a * Math.cos(S.g_B3MercuryCoefficients[_].b + S.g_B3MercuryCoefficients[_].c * e);
           var F = S.g_B4MercuryCoefficients.length, O = 0;
           for (_ = 0; _ < F; _++)
             O += S.g_B4MercuryCoefficients[_].a * Math.cos(S.g_B4MercuryCoefficients[_].b + S.g_B4MercuryCoefficients[_].c * e);
-          var B = (g + b * e + M * n + R * a + O * s) / 1e8;
+          var B = (g + b * e + M * n + $ * a + O * s) / 1e8;
           return B = x.r2D(B), B;
         }, Wt.radiusVector = function(t) {
           var e = (t - 2451545) / 365250, n = e * e, a = n * e, s = S.g_R0MercuryCoefficients.length, l = 0, g;
@@ -8705,13 +8705,13 @@ function requireSrc() {
           M = x.d2R(M);
           var A = S.g_MoonCoefficients1.length;
           console.assert(S.g_MoonCoefficients2.length === A);
-          for (var R = 0, F = 0; F < A; F++) {
+          for (var $ = 0, F = 0; F < A; F++) {
             var O = S.g_MoonCoefficients2[F].a * Math.sin(S.g_MoonCoefficients1[F].d * a + S.g_MoonCoefficients1[F].m * s + S.g_MoonCoefficients1[F].mdash * l + S.g_MoonCoefficients1[F].f * g);
-            S.g_MoonCoefficients1[F].m && (O *= _), R += O;
+            S.g_MoonCoefficients1[F].m && (O *= _), $ += O;
           }
-          R += 3958 * Math.sin(b), R += 1962 * Math.sin(e - g), R += 318 * Math.sin(y);
+          $ += 3958 * Math.sin(b), $ += 1962 * Math.sin(e - g), $ += 318 * Math.sin(y);
           var B = ci.nutationInLongitude(t);
-          return x.m360(n + R / 1e6 + B / 3600);
+          return x.m360(n + $ / 1e6 + B / 3600);
         }, Se.eclipticLatitude = function(t) {
           var e = Se.meanLongitude(t);
           e = x.d2R(e);
@@ -8731,9 +8731,9 @@ function requireSrc() {
           y = x.d2R(y);
           var M = S.g_MoonCoefficients3.length;
           console.assert(S.g_MoonCoefficients4.length === M);
-          for (var A = 0, R = 0; R < M; R++) {
-            var F = S.g_MoonCoefficients4[R] * Math.sin(S.g_MoonCoefficients3[R].d * n + S.g_MoonCoefficients3[R].m * a + S.g_MoonCoefficients3[R].mdash * s + S.g_MoonCoefficients3[R].f * l);
-            S.g_MoonCoefficients3[R].m && (F *= g), A += F;
+          for (var A = 0, $ = 0; $ < M; $++) {
+            var F = S.g_MoonCoefficients4[$] * Math.sin(S.g_MoonCoefficients3[$].d * n + S.g_MoonCoefficients3[$].m * a + S.g_MoonCoefficients3[$].mdash * s + S.g_MoonCoefficients3[$].f * l);
+            S.g_MoonCoefficients3[$].m && (F *= g), A += F;
           }
           return A -= 2235 * Math.sin(e), A += 382 * Math.sin(y), A += 175 * Math.sin(m - l), A += 175 * Math.sin(m + l), A += 127 * Math.sin(e - s), A -= 115 * Math.sin(e + s), A / 1e6;
         }, Se.radiusVector = function(t) {
@@ -8755,9 +8755,9 @@ function requireSrc() {
           y = x.d2R(y);
           var M = S.g_MoonCoefficients1.length;
           console.assert(S.g_MoonCoefficients2.length === M);
-          for (var A = 0, R = 0; R < M; R++) {
-            var F = S.g_MoonCoefficients2[R].b * Math.cos(S.g_MoonCoefficients1[R].d * n + S.g_MoonCoefficients1[R].m * a + S.g_MoonCoefficients1[R].mdash * s + S.g_MoonCoefficients1[R].f * l);
-            S.g_MoonCoefficients1[R].m && (F *= g), A += F;
+          for (var A = 0, $ = 0; $ < M; $++) {
+            var F = S.g_MoonCoefficients2[$].b * Math.cos(S.g_MoonCoefficients1[$].d * n + S.g_MoonCoefficients1[$].m * a + S.g_MoonCoefficients1[$].mdash * s + S.g_MoonCoefficients1[$].f * l);
+            S.g_MoonCoefficients1[$].m && (F *= g), A += F;
           }
           return 385000.56 + A / 1e3;
         }, Se.radiusVectorToHorizontalParallax = function(t) {
@@ -8793,11 +8793,11 @@ function requireSrc() {
         }, Aa.passageThroNode = function(t) {
           var e = t / 1342.23, n = e * e, a = n * e, s = a * e, l = x.m360(183.638 + 331.73735682 * t + 14852e-7 * n + 209e-8 * a - 1e-8 * s), g = x.m360(17.4006 + 26.8203725 * t + 1186e-7 * n + 6e-8 * a), _ = x.m360(38.3776 + 355.52747313 * t + 0.0123499 * n + 14627e-9 * a - 69e-9 * s), m = x.m360(123.9767 - 1.44098956 * t + 20608e-7 * n + 214e-8 * a - 16e-9 * s), b = x.m360(299.75 + 132.85 * e - 9173e-6 * n), y = x.m360(m + 272.75 - 2.3 * e), M = 1 - 2516e-6 * e - 74e-7 * n;
           l = x.d2R(l);
-          var A = 2 * l, R = A * A;
+          var A = 2 * l, $ = A * A;
           g = x.d2R(g), _ = x.d2R(_);
           var F = 2 * _;
           m = x.d2R(m), b = x.d2R(b), y = x.d2R(y);
-          var O = 24515651619e-4 + 27.212220817 * t + 2762e-7 * n + 21e-9 * a - 88e-12 * s - 0.4721 * Math.sin(_) - 0.1649 * Math.sin(A) - 0.0868 * Math.sin(A - _) + 84e-4 * Math.sin(A + _) - M * 83e-4 * Math.sin(A - g) - M * 39e-4 * Math.sin(A - g - _) + 34e-4 * Math.sin(F) - 31e-4 * Math.sin(A - F) + M * 3e-3 * Math.sin(A + g) + M * 28e-4 * Math.sin(g - _) + M * 26e-4 * Math.sin(g) + 25e-4 * Math.sin(R) + 24e-4 * Math.sin(l) + M * 22e-4 * Math.sin(g + _) + 17e-4 * Math.sin(m) + 14e-4 * Math.sin(R - _) + M * 5e-4 * Math.sin(A + g - _) + M * 4e-4 * Math.sin(A - g + _) - M * 3e-4 * Math.sin(A - g * g) + M * 3e-4 * Math.sin(R - g) + 3e-4 * Math.sin(b) + 3e-4 * Math.sin(y);
+          var O = 24515651619e-4 + 27.212220817 * t + 2762e-7 * n + 21e-9 * a - 88e-12 * s - 0.4721 * Math.sin(_) - 0.1649 * Math.sin(A) - 0.0868 * Math.sin(A - _) + 84e-4 * Math.sin(A + _) - M * 83e-4 * Math.sin(A - g) - M * 39e-4 * Math.sin(A - g - _) + 34e-4 * Math.sin(F) - 31e-4 * Math.sin(A - F) + M * 3e-3 * Math.sin(A + g) + M * 28e-4 * Math.sin(g - _) + M * 26e-4 * Math.sin(g) + 25e-4 * Math.sin($) + 24e-4 * Math.sin(l) + M * 22e-4 * Math.sin(g + _) + 17e-4 * Math.sin(m) + 14e-4 * Math.sin($ - _) + M * 5e-4 * Math.sin(A + g - _) + M * 4e-4 * Math.sin(A - g + _) - M * 3e-4 * Math.sin(A - g * g) + M * 3e-4 * Math.sin($ - g) + 3e-4 * Math.sin(b) + 3e-4 * Math.sin(y);
           return O;
         };
         var xs = {};
@@ -8874,8 +8874,8 @@ function requireSrc() {
           M = x.d2R(M);
           var A = x.m360(299.77 + 0.107408 * t - 9173e-6 * a);
           A = x.d2R(A);
-          var R = x.m360(251.88 + 0.016321 * t);
-          R = x.d2R(R);
+          var $ = x.m360(251.88 + 0.016321 * t);
+          $ = x.d2R($);
           var F = x.m360(251.83 + 26.651886 * t);
           F = x.d2R(F);
           var O = x.m360(349.42 + 36.412478 * t);
@@ -8916,7 +8916,7 @@ function requireSrc() {
             var yt = -0.4072 * Math.sin(b) + 0.17241 * g * Math.sin(m) + 0.01608 * Math.sin(2 * b) + 0.01039 * Math.sin(2 * y) + 739e-5 * g * Math.sin(b - m) + -514e-5 * g * Math.sin(b + m) + 208e-5 * _ * Math.sin(2 * m) + -111e-5 * Math.sin(b - 2 * y) + -57e-5 * Math.sin(b + 2 * y) + 56e-5 * g * Math.sin(2 * b + m) + -42e-5 * Math.sin(3 * b) + 42e-5 * g * Math.sin(m + 2 * y) + 38e-5 * g * Math.sin(m - 2 * y) + -24e-5 * g * Math.sin(2 * b - m) + -17e-5 * Math.sin(M) + -7e-5 * Math.sin(b + 2 * m) + 4e-5 * Math.sin(2 * b - 2 * y) + 4e-5 * Math.sin(3 * m) + 3e-5 * Math.sin(b + m - 2 * y) + 3e-5 * Math.sin(2 * b + 2 * y) + -3e-5 * Math.sin(b + m + 2 * y) + 3e-5 * Math.sin(b - m + 2 * y) + -2e-5 * Math.sin(b - m - 2 * y) + -2e-5 * Math.sin(3 * b + m) + 2e-5 * Math.sin(4 * b);
             e += yt;
           }
-          var _e = 325e-6 * Math.sin(A) + 165e-6 * Math.sin(R) + 164e-6 * Math.sin(F) + 126e-6 * Math.sin(O) + 11e-5 * Math.sin(B) + 62e-6 * Math.sin(H) + 6e-5 * Math.sin(K) + 56e-6 * Math.sin(J) + 47e-6 * Math.sin(it) + 42e-6 * Math.sin(ot) + 4e-5 * Math.sin(lt) + 37e-6 * Math.sin(gt) + 35e-6 * Math.sin(ut) + 23e-6 * Math.sin(St);
+          var _e = 325e-6 * Math.sin(A) + 165e-6 * Math.sin($) + 164e-6 * Math.sin(F) + 126e-6 * Math.sin(O) + 11e-5 * Math.sin(B) + 62e-6 * Math.sin(H) + 6e-5 * Math.sin(K) + 56e-6 * Math.sin(J) + 47e-6 * Math.sin(it) + 42e-6 * Math.sin(ot) + 4e-5 * Math.sin(lt) + 37e-6 * Math.sin(gt) + 35e-6 * Math.sin(ut) + 23e-6 * Math.sin(St);
           return e += _e, e;
         };
         var Xn = {};
@@ -8932,13 +8932,13 @@ function requireSrc() {
           var y = S.g_L2NC.length, M = 0;
           for (_ = 0; _ < y; _++)
             M += S.g_L2NC[_].a * Math.cos(S.g_L2NC[_].b + S.g_L2NC[_].c * e);
-          var A = S.g_L3NC.length, R = 0;
+          var A = S.g_L3NC.length, $ = 0;
           for (_ = 0; _ < A; _++)
-            R += S.g_L3NC[_].a * Math.cos(S.g_L3NC[_].b + S.g_L3NC[_].c * e);
+            $ += S.g_L3NC[_].a * Math.cos(S.g_L3NC[_].b + S.g_L3NC[_].c * e);
           var F = S.g_L4NC.length, O = 0;
           for (_ = 0; _ < F; _++)
             O += S.g_L4NC[_].a * Math.cos(S.g_L4NC[_].b + S.g_L4NC[_].c * e);
-          var B = (g + b * e + M * n + R * a + O * s) / 1e8;
+          var B = (g + b * e + M * n + $ * a + O * s) / 1e8;
           return B = x.m360(x.r2D(B)), B;
         }, br.eclipticLatitude = function(t) {
           var e = (t - 2451545) / 365250, n = e * e, a = n * e, s = a * e, l = S.g_B0NC.length, g = 0, _;
@@ -8950,13 +8950,13 @@ function requireSrc() {
           var y = S.g_B2NC.length, M = 0;
           for (_ = 0; _ < y; _++)
             M += S.g_B2NC[_].a * Math.cos(S.g_B2NC[_].b + S.g_B2NC[_].c * e);
-          var A = S.g_B3NC.length, R = 0;
+          var A = S.g_B3NC.length, $ = 0;
           for (_ = 0; _ < A; _++)
-            R += S.g_B3NC[_].a * Math.cos(S.g_B3NC[_].b + S.g_B3NC[_].c * e);
+            $ += S.g_B3NC[_].a * Math.cos(S.g_B3NC[_].b + S.g_B3NC[_].c * e);
           var F = S.g_B4NC.length, O = 0;
           for (_ = 0; _ < F; _++)
             O += S.g_B4NC[_].a * Math.cos(S.g_B4NC[_].b + S.g_B4NC[_].c * e);
-          var B = (g + b * e + M * n + R * a + O * s) / 1e8;
+          var B = (g + b * e + M * n + $ * a + O * s) / 1e8;
           return B = x.r2D(B), B;
         }, br.radiusVector = function(t) {
           var e = (t - 2451545) / 365250, n = e * e, a = n * e, s = S.g_R0NC.length, l = 0, g;
@@ -8988,8 +8988,8 @@ function requireSrc() {
           var m = 125.04452 - 1934.136261 * e + 20708e-7 * n + a / 45e4;
           m = x.m360(m);
           for (var b = S.g_NuC.length, y = 0, M = 0; M < b; M++) {
-            var A = S.g_NuC[M].d * s + S.g_NuC[M].m * l + S.g_NuC[M].mprime * g + S.g_NuC[M].f * _ + S.g_NuC[M].omega * m, R = x.d2R(A);
-            y += (S.g_NuC[M].sincoeff1 + S.g_NuC[M].sincoeff2 * e) * Math.sin(R) * 1e-4;
+            var A = S.g_NuC[M].d * s + S.g_NuC[M].m * l + S.g_NuC[M].mprime * g + S.g_NuC[M].f * _ + S.g_NuC[M].omega * m, $ = x.d2R(A);
+            y += (S.g_NuC[M].sincoeff1 + S.g_NuC[M].sincoeff2 * e) * Math.sin($) * 1e-4;
           }
           return y;
         }, ci.nutationInObliquity = function(t) {
@@ -9004,8 +9004,8 @@ function requireSrc() {
           var m = 125.04452 - 1934.136261 * e + 20708e-7 * n + a / 45e4;
           m = x.m360(m);
           for (var b = S.g_NuC.length, y = 0, M = 0; M < b; M++) {
-            var A = S.g_NuC[M].d * s + S.g_NuC[M].m * l + S.g_NuC[M].mprime * g + S.g_NuC[M].f * _ + S.g_NuC[M].omega * m, R = x.d2R(A);
-            y += (S.g_NuC[M].coscoeff1 + S.g_NuC[M].coscoeff2 * e) * Math.cos(R) * 1e-4;
+            var A = S.g_NuC[M].d * s + S.g_NuC[M].m * l + S.g_NuC[M].mprime * g + S.g_NuC[M].f * _ + S.g_NuC[M].omega * m, $ = x.d2R(A);
+            y += (S.g_NuC[M].coscoeff1 + S.g_NuC[M].coscoeff2 * e) * Math.cos($) * 1e-4;
           }
           return y;
         }, ci.nutationInRightAscension = function(t, e, n, a, s) {
@@ -9032,20 +9032,20 @@ function requireSrc() {
         gn.equatorial2TopocentricDelta = function(t, e, n, a, s, l, g) {
           var _ = Dr.rhoSinThetaPrime(s, l), m = Dr.rhoCosThetaPrime(s, l), b = An.apparentGreenwichSiderealTime(g);
           e = x.d2R(e);
-          var y = Math.cos(e), M = Math.asin(S.g_AAParallax_C1 / n), A = x.h2R(b - a / 15 - t), R = Math.cos(A), F = Math.sin(A), O = new Le();
-          return O.x = x.r2H(-M * m * F / y), O.y = x.r2D(-M * (_ * y - m * R * Math.sin(e))), O;
+          var y = Math.cos(e), M = Math.asin(S.g_AAParallax_C1 / n), A = x.h2R(b - a / 15 - t), $ = Math.cos(A), F = Math.sin(A), O = new Le();
+          return O.x = x.r2H(-M * m * F / y), O.y = x.r2D(-M * (_ * y - m * $ * Math.sin(e))), O;
         }, gn.equatorial2Topocentric = function(t, e, n, a, s, l, g) {
           var _ = Dr.rhoSinThetaPrime(s, l), m = Dr.rhoCosThetaPrime(s, l), b = An.apparentGreenwichSiderealTime(g);
           e = x.d2R(e);
-          var y = Math.cos(e), M = Math.asin(S.g_AAParallax_C1 / n), A = Math.sin(M), R = x.h2R(b - a / 15 - t), F = Math.cos(R), O = Math.sin(R), B = Math.atan2(-m * A * O, y - m * A * F), H = new Le();
+          var y = Math.cos(e), M = Math.asin(S.g_AAParallax_C1 / n), A = Math.sin(M), $ = x.h2R(b - a / 15 - t), F = Math.cos($), O = Math.sin($), B = Math.atan2(-m * A * O, y - m * A * F), H = new Le();
           return H.x = x.m24(t + x.r2H(B)), H.y = x.r2D(Math.atan2((Math.sin(e) - _ * A) * Math.cos(B), y - m * A * F)), H;
         }, gn.ecliptic2Topocentric = function(t, e, n, a, s, l, g, _, m) {
           var b = Dr.rhoSinThetaPrime(g, _), y = Dr.rhoCosThetaPrime(g, _);
           t = x.d2R(t), e = x.d2R(e), s = x.d2R(s), l = x.d2R(l), g = x.d2R(g), n = x.d2R(n);
-          var M = Math.sin(s), A = Math.cos(s), R = Math.cos(e), F = Math.sin(e), O = An.apparentGreenwichSiderealTime(m);
+          var M = Math.sin(s), A = Math.cos(s), $ = Math.cos(e), F = Math.sin(e), O = An.apparentGreenwichSiderealTime(m);
           O = x.h2R(O);
-          var B = Math.sin(O), H = Math.asin(S.g_AAParallax_C1 / a), K = Math.sin(H), J = Math.cos(t) * R - y * K * Math.cos(O), it = new ro();
-          it.lambda = Math.atan2(Math.sin(t) * R - K * (b * M + y * A * B), J);
+          var B = Math.sin(O), H = Math.asin(S.g_AAParallax_C1 / a), K = Math.sin(H), J = Math.cos(t) * $ - y * K * Math.cos(O), it = new ro();
+          it.lambda = Math.atan2(Math.sin(t) * $ - K * (b * M + y * A * B), J);
           var ot = Math.cos(it.lambda);
           return it.beta = Math.atan(ot * (F - K * (b * A - y * M * B)) / J), it.semidiameter = Math.asin(ot * Math.cos(it.beta) * Math.sin(n) / J), it.semidiameter = x.r2D(it.semidiameter), it.lambda = x.m360(x.r2D(it.lambda)), it.beta = x.r2D(it.beta), it;
         }, gn.parallaxToDistance = function(t) {
@@ -9062,8 +9062,8 @@ function requireSrc() {
         function ks() {
         }
         ks.calculate = function(t) {
-          var e = new As(), n = t - 24332825e-1, a = n / 36525, s = 268 + 0.1061 * a, l = x.d2R(s), g = 64.5 - 0.0164 * a, _ = x.d2R(g), m = x.m360(17.71 + 877.90003539 * n), b = x.m360(16.838 + 870.27003539 * n), y = ii.eclipticLongitude(t), M = x.d2R(y), A = ii.eclipticLatitude(t), R = x.d2R(A), F = ii.radiusVector(t), O = Y.eclipticLongitude(t), B = x.d2R(O), H = Y.eclipticLatitude(t), K = x.d2R(H), J = Y.radiusVector(t), it = J * Math.cos(K) * Math.cos(B) - F * Math.cos(M), ot = J * Math.cos(K) * Math.sin(B) - F * Math.sin(M), lt = J * Math.sin(K) - F * Math.sin(R), gt = Math.sqrt(it * it + ot * ot + lt * lt);
-          O -= 0.01299 * gt / (J * J), B = x.d2R(O), it = J * Math.cos(K) * Math.cos(B) - F * Math.cos(M), ot = J * Math.cos(K) * Math.sin(B) - F * Math.sin(M), lt = J * Math.sin(K) - F * Math.sin(R), gt = Math.sqrt(it * it + ot * ot + lt * lt);
+          var e = new As(), n = t - 24332825e-1, a = n / 36525, s = 268 + 0.1061 * a, l = x.d2R(s), g = 64.5 - 0.0164 * a, _ = x.d2R(g), m = x.m360(17.71 + 877.90003539 * n), b = x.m360(16.838 + 870.27003539 * n), y = ii.eclipticLongitude(t), M = x.d2R(y), A = ii.eclipticLatitude(t), $ = x.d2R(A), F = ii.radiusVector(t), O = Y.eclipticLongitude(t), B = x.d2R(O), H = Y.eclipticLatitude(t), K = x.d2R(H), J = Y.radiusVector(t), it = J * Math.cos(K) * Math.cos(B) - F * Math.cos(M), ot = J * Math.cos(K) * Math.sin(B) - F * Math.sin(M), lt = J * Math.sin(K) - F * Math.sin($), gt = Math.sqrt(it * it + ot * ot + lt * lt);
+          O -= 0.01299 * gt / (J * J), B = x.d2R(O), it = J * Math.cos(K) * Math.cos(B) - F * Math.cos(M), ot = J * Math.cos(K) * Math.sin(B) - F * Math.sin(M), lt = J * Math.sin(K) - F * Math.sin($), gt = Math.sqrt(it * it + ot * ot + lt * lt);
           var ut = ci.meanObliquityOfEcliptic(t), St = x.d2R(ut), mt = Math.atan2(Math.cos(St) * Math.sin(B) - Math.sin(St) * Math.tan(K), Math.cos(B)), Dt = Math.asin(Math.cos(St) * Math.sin(K) + Math.sin(St) * Math.cos(K) * Math.sin(B));
           e.DS = x.r2D(Math.asin(-Math.sin(_) * Math.sin(Dt) - Math.cos(_) * Math.cos(Dt) * Math.cos(l - mt)));
           var yt = ot * Math.cos(St) - lt * Math.sin(St), ue = ot * Math.sin(St) + lt * Math.cos(St), _e = Math.atan2(yt, it), Qt = x.r2D(_e), Ft = Math.atan2(ue, Math.sqrt(it * it + yt * yt)), vi = x.r2D(Ft), Ei = Math.atan2(Math.sin(_) * Math.cos(Ft) * Math.cos(l - _e) - Math.sin(Ft) * Math.cos(_), Math.cos(Ft) * Math.sin(l - _e));
@@ -9087,15 +9087,15 @@ function requireSrc() {
         function ao() {
         }
         ao.calculate = function(t) {
-          for (var e = new no(), n = (t - 2451545) / 36525, a = 352.9065 + 1.1733 * n, s = x.d2R(a), l = 63.2818 - 394e-5 * n, g = x.d2R(l), _ = ii.eclipticLongitude(t), m = x.d2R(_), b = ii.eclipticLatitude(t), y = x.d2R(b), M = ii.radiusVector(t), A = 0, R = 0, F = 0, O = 0, B = 0, H = !0, K = 0, J = 0, it = 0, ot = 0, lt = 0, gt = 0; H; ) {
-            var ut = t - R;
-            J = Rt.eclipticLongitude(ut), it = x.d2R(J), ot = Rt.eclipticLatitude(ut), lt = x.d2R(ot), gt = Rt.radiusVector(ut), F = gt * Math.cos(lt) * Math.cos(it) - M * Math.cos(m), O = gt * Math.cos(lt) * Math.sin(it) - M * Math.sin(m), B = gt * Math.sin(lt) - M * Math.sin(y), K = Math.sqrt(F * F + O * O + B * B), R = hi.distanceToLightTime(K), H = Math.abs(R - A) > 2e-6, H && (A = R);
+          for (var e = new no(), n = (t - 2451545) / 36525, a = 352.9065 + 1.1733 * n, s = x.d2R(a), l = 63.2818 - 394e-5 * n, g = x.d2R(l), _ = ii.eclipticLongitude(t), m = x.d2R(_), b = ii.eclipticLatitude(t), y = x.d2R(b), M = ii.radiusVector(t), A = 0, $ = 0, F = 0, O = 0, B = 0, H = !0, K = 0, J = 0, it = 0, ot = 0, lt = 0, gt = 0; H; ) {
+            var ut = t - $;
+            J = $t.eclipticLongitude(ut), it = x.d2R(J), ot = $t.eclipticLatitude(ut), lt = x.d2R(ot), gt = $t.radiusVector(ut), F = gt * Math.cos(lt) * Math.cos(it) - M * Math.cos(m), O = gt * Math.cos(lt) * Math.sin(it) - M * Math.sin(m), B = gt * Math.sin(lt) - M * Math.sin(y), K = Math.sqrt(F * F + O * O + B * B), $ = hi.distanceToLightTime(K), H = Math.abs($ - A) > 2e-6, H && (A = $);
           }
           var St = Math.atan2(O, F), mt = x.r2D(St), Dt = Math.atan2(B, Math.sqrt(F * F + O * O)), yt = x.r2D(Dt);
           e.DE = x.r2D(Math.asin(-Math.sin(g) * Math.sin(Dt) - Math.cos(g) * Math.cos(Dt) * Math.cos(s - St)));
           var ue = 49.5581 + 0.7721 * n, _e = x.d2R(ue), Qt = J - 697e-5 / gt, Ft = x.d2R(Qt), vi = ot - 225e-6 * (Math.cos(it - _e) / gt), Ei = x.d2R(vi);
           e.DS = x.r2D(Math.asin(-Math.sin(g) * Math.sin(Ei) - Math.cos(g) * Math.cos(Ei) * Math.cos(s - Ft)));
-          var Li = x.m360(11.504 + 350.89200025 * (t - R - 24332825e-1)), ri = ci.meanObliquityOfEcliptic(t), Si = x.d2R(ri), Je = x.ec2Eq(a, l, ri), Xi = x.h2R(Je.x), Ee = x.d2R(Je.y), Yi = O * Math.cos(Si) - B * Math.sin(Si), Ni = O * Math.sin(Si) + B * Math.cos(Si), he = Math.atan2(Yi, F), ee = x.r2H(he), Xe = Math.atan2(Ni, Math.sqrt(F * F + Yi * Yi)), xe = x.r2D(Xe), Ir = Math.atan2(Math.sin(Ee) * Math.cos(Xe) * Math.cos(Xi - he) - Math.sin(Xe) * Math.cos(Ee), Math.cos(Xe) * Math.sin(Xi - he));
+          var Li = x.m360(11.504 + 350.89200025 * (t - $ - 24332825e-1)), ri = ci.meanObliquityOfEcliptic(t), Si = x.d2R(ri), Je = x.ec2Eq(a, l, ri), Xi = x.h2R(Je.x), Ee = x.d2R(Je.y), Yi = O * Math.cos(Si) - B * Math.sin(Si), Ni = O * Math.sin(Si) + B * Math.cos(Si), he = Math.atan2(Yi, F), ee = x.r2H(he), Xe = Math.atan2(Ni, Math.sqrt(F * F + Yi * Yi)), xe = x.r2D(Xe), Ir = Math.atan2(Math.sin(Ee) * Math.cos(Xe) * Math.cos(Xi - he) - Math.sin(Xe) * Math.cos(Ee), Math.cos(Xe) * Math.sin(Xi - he));
           e.w = x.m360(Li - x.r2D(Ir));
           var or = ci.nutationInLongitude(t), Hi = ci.nutationInObliquity(t);
           mt += 5693e-6 * Math.cos(m - St) / Math.cos(Dt), yt += 5693e-6 * Math.sin(m - St) * Math.sin(Dt), a += or / 3600, s = x.d2R(a), mt += or / 3600, St = x.d2R(mt), ri += Hi / 3600, Si = x.d2R(Si);
@@ -9164,8 +9164,8 @@ function requireSrc() {
           y = x.d2R(x.dmS2D(0, 0, y));
           var M = (2004.3109 - 0.8533 * s - 217e-6 * l) * g - (0.42665 + 217e-6 * s) * _ - 0.041833 * m;
           M = x.d2R(x.dmS2D(0, 0, M));
-          var A = Math.cos(e) * Math.sin(t + b), R = Math.cos(M) * Math.cos(e) * Math.cos(t + b) - Math.sin(M) * Math.sin(e), F = Math.sin(M) * Math.cos(e) * Math.cos(t + b) + Math.cos(M) * Math.sin(e), O = new Le();
-          return O.x = x.r2H(Math.atan2(A, R) + y), O.x < 0 && (O.x += 24), O.y = x.r2D(Math.asin(F)), O;
+          var A = Math.cos(e) * Math.sin(t + b), $ = Math.cos(M) * Math.cos(e) * Math.cos(t + b) - Math.sin(M) * Math.sin(e), F = Math.sin(M) * Math.cos(e) * Math.cos(t + b) + Math.cos(M) * Math.sin(e), O = new Le();
+          return O.x = x.r2H(Math.atan2(A, $) + y), O.x < 0 && (O.x += 24), O.y = x.r2D(Math.asin(F)), O;
         }, jn.precessEquatorialFK4 = function(t, e, n, a) {
           var s = (n - 24150203135e-4) / 36524.2199, l = (a - n) / 36524.2199, g = l * l, _ = g * l;
           t = x.h2R(t), e = x.d2R(e);
@@ -9175,8 +9175,8 @@ function requireSrc() {
           b = x.d2R(x.dmS2D(0, 0, b)), b += m;
           var y = (2004.682 - 0.853 * s) * l - 0.426 * g - 0.042 * _;
           y = x.d2R(x.dmS2D(0, 0, y));
-          var M = Math.cos(e) * Math.sin(t + m), A = Math.cos(y) * Math.cos(e) * Math.cos(t + m) - Math.sin(y) * Math.sin(e), R = Math.sin(y) * Math.cos(e) * Math.cos(t + m) + Math.cos(y) * Math.sin(e), F = new Le();
-          return F.x = x.r2H(Math.atan2(M, A) + b), F.x < 0 && (F.x += 24), F.y = x.r2D(Math.asin(R)), F;
+          var M = Math.cos(e) * Math.sin(t + m), A = Math.cos(y) * Math.cos(e) * Math.cos(t + m) - Math.sin(y) * Math.sin(e), $ = Math.sin(y) * Math.cos(e) * Math.cos(t + m) + Math.cos(y) * Math.sin(e), F = new Le();
+          return F.x = x.r2H(Math.atan2(M, A) + b), F.x < 0 && (F.x += 24), F.y = x.r2D(Math.asin($)), F;
         }, jn.precessEcliptic = function(t, e, n, a) {
           var s = (n - 2451545) / 36525, l = s * s, g = (a - n) / 36525, _ = g * g, m = _ * g;
           t = x.d2R(t), e = x.d2R(e);
@@ -9186,8 +9186,8 @@ function requireSrc() {
           y = x.d2R(x.dmS2D(0, 0, y));
           var M = (5029.0966 + 2.22226 * s - 42e-6 * l) * g + (1.11113 - 42e-6 * s) * _ - 6e-6 * m;
           M = x.d2R(x.dmS2D(0, 0, M));
-          var A = Math.cos(b) * Math.cos(e) * Math.sin(y - t) - Math.sin(b) * Math.sin(e), R = Math.cos(e) * Math.cos(y - t), F = Math.cos(b) * Math.sin(e) + Math.sin(b) * Math.cos(e) * Math.sin(y - t), O = new Le();
-          return O.x = x.r2D(M + y - Math.atan2(A, R)), O.x < 0 && (O.x += 360), O.y = x.r2D(Math.asin(F)), O;
+          var A = Math.cos(b) * Math.cos(e) * Math.sin(y - t) - Math.sin(b) * Math.sin(e), $ = Math.cos(e) * Math.cos(y - t), F = Math.cos(b) * Math.sin(e) + Math.sin(b) * Math.cos(e) * Math.sin(y - t), O = new Le();
+          return O.x = x.r2D(M + y - Math.atan2(A, $)), O.x < 0 && (O.x += 360), O.y = x.r2D(Math.asin(F)), O;
         }, jn.equatorialPMToEcliptic = function(t, e, n, a, s, l) {
           l = x.d2R(l), t = x.h2R(t), e = x.d2R(e), n = x.d2R(n);
           var g = Math.cos(n), _ = Math.sin(l), m = new Le();
@@ -9199,8 +9199,8 @@ function requireSrc() {
           e /= 977792, l /= 13751, g /= 206265, a = x.h2R(a), s = x.d2R(s);
           var _ = t * Math.cos(s) * Math.cos(a), m = t * Math.cos(s) * Math.sin(a), b = t * Math.sin(s), y = _ / t * e - b * g * Math.cos(a) - m * l, M = m / t * e - b * g * Math.sin(a) + _ * l, A = b / t * e + t * g * Math.cos(s);
           _ += n * y, m += n * M, b += n * A;
-          var R = new Le();
-          return R.x = x.r2H(Math.atan2(m, _)), R.x < 0 && (R.x += 24), R.y = x.r2D(Math.atan2(b, Math.sqrt(_ * _ + m * m))), R;
+          var $ = new Le();
+          return $.x = x.r2H(Math.atan2(m, _)), $.x < 0 && ($.x += 24), $.y = x.r2D(Math.atan2(b, Math.sqrt(_ * _ + m * m))), $;
         };
         var hl = {};
         function oo() {
@@ -9214,7 +9214,7 @@ function requireSrc() {
           y.bValid = !1;
           var M = An.apparentGreenwichSiderealTime(t);
           M *= 15;
-          var A = pr.deltaT(t), R = x.d2R(s), F = x.d2R(m), O = x.d2R(b), B = (Math.sin(O) - Math.sin(F) * Math.sin(R)) / (Math.cos(F) * Math.cos(R));
+          var A = pr.deltaT(t), $ = x.d2R(s), F = x.d2R(m), O = x.d2R(b), B = (Math.sin(O) - Math.sin(F) * Math.sin($)) / (Math.cos(F) * Math.cos($));
           if (B > 1 || B < -1)
             return y;
           var H = Math.acos(B);
@@ -9242,8 +9242,8 @@ function requireSrc() {
           var M = S.g_L2SaturnCoefficients.length, A = 0;
           for (m = 0; m < M; m++)
             A += S.g_L2SaturnCoefficients[m].a * Math.cos(S.g_L2SaturnCoefficients[m].b + S.g_L2SaturnCoefficients[m].c * e);
-          var R = S.g_L3SaturnCoefficients.length, F = 0;
-          for (m = 0; m < R; m++)
+          var $ = S.g_L3SaturnCoefficients.length, F = 0;
+          for (m = 0; m < $; m++)
             F += S.g_L3SaturnCoefficients[m].a * Math.cos(S.g_L3SaturnCoefficients[m].b + S.g_L3SaturnCoefficients[m].c * e);
           var O = S.g_L4SaturnCoefficients.length, B = 0;
           for (m = 0; m < O; m++)
@@ -9263,8 +9263,8 @@ function requireSrc() {
           var M = S.g_B2SaturnCoefficients.length, A = 0;
           for (m = 0; m < M; m++)
             A += S.g_B2SaturnCoefficients[m].a * Math.cos(S.g_B2SaturnCoefficients[m].b + S.g_B2SaturnCoefficients[m].c * e);
-          var R = S.g_B3SaturnCoefficients.length, F = 0;
-          for (m = 0; m < R; m++)
+          var $ = S.g_B3SaturnCoefficients.length, F = 0;
+          for (m = 0; m < $; m++)
             F += S.g_B3SaturnCoefficients[m].a * Math.cos(S.g_B3SaturnCoefficients[m].b + S.g_B3SaturnCoefficients[m].c * e);
           var O = S.g_B4SaturnCoefficients.length, B = 0;
           for (m = 0; m < O; m++)
@@ -9284,8 +9284,8 @@ function requireSrc() {
           var M = S.g_R2SaturnCoefficients.length, A = 0;
           for (m = 0; m < M; m++)
             A += S.g_R2SaturnCoefficients[m].a * Math.cos(S.g_R2SaturnCoefficients[m].b + S.g_R2SaturnCoefficients[m].c * e);
-          var R = S.g_R3SaturnCoefficients.length, F = 0;
-          for (m = 0; m < R; m++)
+          var $ = S.g_R3SaturnCoefficients.length, F = 0;
+          for (m = 0; m < $; m++)
             F += S.g_R3SaturnCoefficients[m].a * Math.cos(S.g_R3SaturnCoefficients[m].b + S.g_R3SaturnCoefficients[m].c * e);
           var O = S.g_R4SaturnCoefficients.length, B = 0;
           for (m = 0; m < O; m++)
@@ -9307,13 +9307,13 @@ function requireSrc() {
           m += tr.correctionInLongitude(m, b, t);
           var y = x.d2R(m);
           b += tr.correctionInLatitude(m, t);
-          for (var M = x.d2R(b), A = ii.radiusVector(t), R = 9, F = 0, O = hi.distanceToLightTime(R), B = t - O, H = !0, K = 0, J = 0, it = 0, ot = 0, lt = 0, gt = 0; H; ) {
+          for (var M = x.d2R(b), A = ii.radiusVector(t), $ = 9, F = 0, O = hi.distanceToLightTime($), B = t - O, H = !0, K = 0, J = 0, it = 0, ot = 0, lt = 0, gt = 0; H; ) {
             ot = Nr.eclipticLongitude(B), lt = Nr.eclipticLatitude(B), ot += tr.correctionInLongitude(ot, lt, B), lt += tr.correctionInLatitude(ot, B);
             var ut = x.d2R(ot), St = x.d2R(lt);
-            gt = Nr.radiusVector(B), K = gt * Math.cos(St) * Math.cos(ut) - A * Math.cos(y), J = gt * Math.cos(St) * Math.sin(ut) - A * Math.sin(y), it = gt * Math.sin(St) - A * Math.sin(M), R = Math.sqrt(K * K + J * J + it * it), O = hi.distanceToLightTime(R), H = Math.abs(O - F) > 2e-6, H && (B = t - O, F = O);
+            gt = Nr.radiusVector(B), K = gt * Math.cos(St) * Math.cos(ut) - A * Math.cos(y), J = gt * Math.cos(St) * Math.sin(ut) - A * Math.sin(y), it = gt * Math.sin(St) - A * Math.sin(M), $ = Math.sqrt(K * K + J * J + it * it), O = hi.distanceToLightTime($), H = Math.abs(O - F) > 2e-6, H && (B = t - O, F = O);
           }
           var mt = Math.atan2(J, K), Dt = Math.atan2(it, Math.sqrt(K * K + J * J));
-          e.b = Math.asin(Math.sin(l) * Math.cos(Dt) * Math.sin(mt - _) - Math.cos(l) * Math.sin(Dt)), e.a = 375.35 / R, e.b = e.a * Math.sin(Math.abs(e.b)), e.b = x.r2D(e.b);
+          e.b = Math.asin(Math.sin(l) * Math.cos(Dt) * Math.sin(mt - _) - Math.cos(l) * Math.sin(Dt)), e.a = 375.35 / $, e.b = e.a * Math.sin(Math.abs(e.b)), e.b = x.r2D(e.b);
           var yt = 113.6655 + 0.8771 * n, ue = x.d2R(yt), _e = ot - 0.01759 / gt, Qt = x.d2R(_e), Ft = lt - 764e-6 * Math.cos(Qt - ue) / gt, vi = x.d2R(Ft);
           e.bdash = x.r2D(Math.asin(Math.sin(l) * Math.cos(vi) * Math.sin(Qt - _) - Math.cos(l) * Math.sin(vi)));
           var Ei = Math.atan2(Math.sin(l) * Math.sin(vi) + Math.cos(l) * Math.cos(vi) * Math.sin(Qt - _), Math.cos(vi) * Math.cos(Qt - _)), Li = Math.atan2(Math.sin(l) * Math.sin(Dt) + Math.cos(l) * Math.cos(Dt) * Math.sin(mt - _), Math.cos(Dt) * Math.cos(mt - _));
@@ -9331,8 +9331,8 @@ function requireSrc() {
           e.setJD(t, ui.afterPapalReformJD(t));
           var n = e.get(), a = r.truncate(n[0]), s = r.truncate(n[1]), l = r.truncate(n[2]), g = r.truncate(n[3]), _ = r.truncate(n[4]), m = n[5];
           e.set(a, s, l, 0, 0, 0, e.inGregorianCalendar());
-          var b = e.julian(), y = (b - 2451545) / 36525, M = y * y, A = M * y, R = 100.46061837 + 36000.770053608 * y + 387933e-9 * M - A / 3871e4;
-          return R += (g * 15 + _ * 0.25 + m * 0.00416666666666667) * 1.00273790935, R = x.d2H(R), x.m24(R);
+          var b = e.julian(), y = (b - 2451545) / 36525, M = y * y, A = M * y, $ = 100.46061837 + 36000.770053608 * y + 387933e-9 * M - A / 3871e4;
+          return $ += (g * 15 + _ * 0.25 + m * 0.00416666666666667) * 1.00273790935, $ = x.d2H($), x.m24($);
         }, An.apparentGreenwichSiderealTime = function(t) {
           var e = ci.meanObliquityOfEcliptic(t), n = e + ci.nutationInObliquity(t) / 3600, a = ci.nutationInLongitude(t), s = An.meanGreenwichSiderealTime(t) + a * Math.cos(x.d2R(n)) / 54e3;
           return x.m24(s);
@@ -9410,13 +9410,13 @@ function requireSrc() {
           var y = S.g_L2UranusCoefficients.length, M = 0;
           for (_ = 0; _ < y; _++)
             M += S.g_L2UranusCoefficients[_].a * Math.cos(S.g_L2UranusCoefficients[_].b + S.g_L2UranusCoefficients[_].c * e);
-          var A = S.g_L3UranusCoefficients.length, R = 0;
+          var A = S.g_L3UranusCoefficients.length, $ = 0;
           for (_ = 0; _ < A; _++)
-            R += S.g_L3UranusCoefficients[_].a * Math.cos(S.g_L3UranusCoefficients[_].b + S.g_L3UranusCoefficients[_].c * e);
+            $ += S.g_L3UranusCoefficients[_].a * Math.cos(S.g_L3UranusCoefficients[_].b + S.g_L3UranusCoefficients[_].c * e);
           var F = S.g_L4UranusCoefficients.length, O = 0;
           for (_ = 0; _ < F; _++)
             O += S.g_L4UranusCoefficients[_].a * Math.cos(S.g_L4UranusCoefficients[_].b + S.g_L4UranusCoefficients[_].c * e);
-          var B = (g + b * e + M * n + R * a + O * s) / 1e8;
+          var B = (g + b * e + M * n + $ * a + O * s) / 1e8;
           return B = x.m360(x.r2D(B)), B;
         }, tn.eclipticLatitude = function(t) {
           var e = (t - 2451545) / 365250, n = e * e, a = n * e, s = a * e, l = S.g_B0UranusCoefficients.length, g = 0, _;
@@ -9428,13 +9428,13 @@ function requireSrc() {
           var y = S.g_B2UranusCoefficients.length, M = 0;
           for (_ = 0; _ < y; _++)
             M += S.g_B2UranusCoefficients[_].a * Math.cos(S.g_B2UranusCoefficients[_].b + S.g_B2UranusCoefficients[_].c * e);
-          var A = S.g_B3UranusCoefficients.length, R = 0;
+          var A = S.g_B3UranusCoefficients.length, $ = 0;
           for (_ = 0; _ < A; _++)
-            R += S.g_B3UranusCoefficients[_].a * Math.cos(S.g_B3UranusCoefficients[_].b + S.g_B3UranusCoefficients[_].c * e);
+            $ += S.g_B3UranusCoefficients[_].a * Math.cos(S.g_B3UranusCoefficients[_].b + S.g_B3UranusCoefficients[_].c * e);
           var F = S.g_B4UranusCoefficients.length, O = 0;
           for (_ = 0; _ < F; _++)
             O += S.g_B4UranusCoefficients[_].a * Math.cos(S.g_B4UranusCoefficients[_].b + S.g_B4UranusCoefficients[_].c * e);
-          var B = (g + b * e + M * n + R * a + O * s) / 1e8;
+          var B = (g + b * e + M * n + $ * a + O * s) / 1e8;
           return B = x.r2D(B), B;
         }, tn.radiusVector = function(t) {
           var e = (t - 2451545) / 365250, n = e * e, a = n * e, s = a * e, l = S.g_R0UranusCoefficients.length, g = 0, _;
@@ -9446,13 +9446,13 @@ function requireSrc() {
           var y = S.g_R2UranusCoefficients.length, M = 0;
           for (_ = 0; _ < y; _++)
             M += S.g_R2UranusCoefficients[_].a * Math.cos(S.g_R2UranusCoefficients[_].b + S.g_R2UranusCoefficients[_].c * e);
-          var A = S.g_R3UranusCoefficients.length, R = 0;
+          var A = S.g_R3UranusCoefficients.length, $ = 0;
           for (_ = 0; _ < A; _++)
-            R += S.g_R3UranusCoefficients[_].a * Math.cos(S.g_R3UranusCoefficients[_].b + S.g_R3UranusCoefficients[_].c * e);
+            $ += S.g_R3UranusCoefficients[_].a * Math.cos(S.g_R3UranusCoefficients[_].b + S.g_R3UranusCoefficients[_].c * e);
           var F = S.g_R4UranusCoefficients.length, O = 0;
           for (_ = 0; _ < F; _++)
             O += S.g_R4UranusCoefficients[_].a * Math.cos(S.g_R4UranusCoefficients[_].b + S.g_R4UranusCoefficients[_].c * e);
-          return (g + b * e + M * n + R * a + O * s) / 1e8;
+          return (g + b * e + M * n + $ * a + O * s) / 1e8;
         };
         var bl = {};
         function en() {
@@ -9467,8 +9467,8 @@ function requireSrc() {
           var M = S.g_L2VenusCoefficients.length, A = 0;
           for (m = 0; m < M; m++)
             A += S.g_L2VenusCoefficients[m].a * Math.cos(S.g_L2VenusCoefficients[m].b + S.g_L2VenusCoefficients[m].c * e);
-          var R = S.g_L3VenusCoefficients.length, F = 0;
-          for (m = 0; m < R; m++)
+          var $ = S.g_L3VenusCoefficients.length, F = 0;
+          for (m = 0; m < $; m++)
             F += S.g_L3VenusCoefficients[m].a * Math.cos(S.g_L3VenusCoefficients[m].b + S.g_L3VenusCoefficients[m].c * e);
           var O = S.g_L4VenusCoefficients.length, B = 0;
           for (m = 0; m < O; m++)
@@ -9488,13 +9488,13 @@ function requireSrc() {
           var y = S.g_B2VenusCoefficients.length, M = 0;
           for (_ = 0; _ < y; _++)
             M += S.g_B2VenusCoefficients[_].a * Math.cos(S.g_B2VenusCoefficients[_].b + S.g_B2VenusCoefficients[_].c * e);
-          var A = S.g_B3VenusCoefficients.length, R = 0;
+          var A = S.g_B3VenusCoefficients.length, $ = 0;
           for (_ = 0; _ < A; _++)
-            R += S.g_B3VenusCoefficients[_].a * Math.cos(S.g_B3VenusCoefficients[_].b + S.g_B3VenusCoefficients[_].c * e);
+            $ += S.g_B3VenusCoefficients[_].a * Math.cos(S.g_B3VenusCoefficients[_].b + S.g_B3VenusCoefficients[_].c * e);
           var F = S.g_B4VenusCoefficients.length, O = 0;
           for (_ = 0; _ < F; _++)
             O += S.g_B4VenusCoefficients[_].a * Math.cos(S.g_B4VenusCoefficients[_].b + S.g_B4VenusCoefficients[_].c * e);
-          var B = (g + b * e + M * n + R * a + O * s) / 1e8;
+          var B = (g + b * e + M * n + $ * a + O * s) / 1e8;
           return B = x.r2D(B), B;
         }, en.radiusVector = function(t) {
           var e = (t - 2451545) / 365250, n = e * e, a = n * e, s = a * e, l = S.g_R0VenusCoefficients.length, g = 0, _;
@@ -9506,13 +9506,13 @@ function requireSrc() {
           var y = S.g_R2VenusCoefficients.length, M = 0;
           for (_ = 0; _ < y; _++)
             M += S.g_R2VenusCoefficients[_].a * Math.cos(S.g_R2VenusCoefficients[_].b + S.g_R2VenusCoefficients[_].c * e);
-          var A = S.g_R3VenusCoefficients.length, R = 0;
+          var A = S.g_R3VenusCoefficients.length, $ = 0;
           for (_ = 0; _ < A; _++)
-            R += S.g_R3VenusCoefficients[_].a * Math.cos(S.g_R3VenusCoefficients[_].b + S.g_R3VenusCoefficients[_].c * e);
+            $ += S.g_R3VenusCoefficients[_].a * Math.cos(S.g_R3VenusCoefficients[_].b + S.g_R3VenusCoefficients[_].c * e);
           var F = S.g_R4VenusCoefficients.length, O = 0;
           for (_ = 0; _ < F; _++)
             O += S.g_R4VenusCoefficients[_].a * Math.cos(S.g_R4VenusCoefficients[_].b + S.g_R4VenusCoefficients[_].c * e);
-          return (g + b * e + M * n + R * a + O * s) / 1e8;
+          return (g + b * e + M * n + $ * a + O * s) / 1e8;
         };
         var yl = {};
         function co(t, e, n, a, s) {
@@ -9671,7 +9671,7 @@ function requireSrc() {
             var t;
             this.have_sth ? t = this.sth : t = Math.sqrt((1 - this.z) * (1 + this.z));
             var e = t * Be.cos(this.phi), n = t * Be.sin(this.phi);
-            return $.create(e, this.z, n);
+            return R.create(e, this.z, n);
           }
         };
         function Es() {
@@ -9837,11 +9837,11 @@ function requireSrc() {
         function Zn(t, e, n, a, s) {
           this.RA = 0, this.dec = 0, this.distance = 0, this.shadow = !1, this.eclipsed = !1, this.RA = t, this.dec = e, this.distance = n, this.shadow = a, this.eclipsed = s;
         }
-        var Rl = {};
+        var $l = {};
         function fo(t, e, n, a, s) {
           this.bValid = !1, this.rise = 0, this.transit = 0, this.set = 0, this.bNeverRises = !1, this.bValid = t, this.rise = e, this.transit = n, this.set = a, this.bNeverRises = s;
         }
-        var $l = {};
+        var Rl = {};
         function ge() {
         }
         ge.getPlanet = function(t, e, n, a, s) {
@@ -9856,9 +9856,9 @@ function requireSrc() {
             if (t !== ge._jDateLast) {
               ge._jupDetails = hi.calculate(t, 4), ge._jupPhisical = ks.calculate(t);
               var _ = gn.equatorial2Topocentric(ge._jupDetails.apparentGeocentricRA, ge._jupDetails.apparentGeocentricDeclination, ge._jupDetails.apparentGeocentricDistance, a, n, s, t);
-              ge._jupDetails.apparentGeocentricRA = _.x, ge._jupDetails.apparentGeocentricDeclination = _.y, ge._galDetails = $i.calculate(t), ge._jDateLast = t;
+              ge._jupDetails.apparentGeocentricRA = _.x, ge._jupDetails.apparentGeocentricDeclination = _.y, ge._galDetails = Ri.calculate(t), ge._jDateLast = t;
             }
-            var R = 954501e-9, F = Math.atan(0.5 * (R / ge._jupDetails.apparentGeocentricDistance)) / 3.1415927 * 180, O = F / Math.cos(ge._jupDetails.apparentGeocentricDeclination / 180 * 3.1415927) / 15, B = 0, H = 0, K = 0, J = !1, it = !1;
+            var $ = 954501e-9, F = Math.atan(0.5 * ($ / ge._jupDetails.apparentGeocentricDistance)) / 3.1415927 * 180, O = F / Math.cos(ge._jupDetails.apparentGeocentricDeclination / 180 * 3.1415927) / 15, B = 0, H = 0, K = 0, J = !1, it = !1;
             switch (l) {
               case 10:
                 B = ge._galDetails.satellite1.apparentRectangularCoordinates.x, H = ge._galDetails.satellite1.apparentRectangularCoordinates.y, K = ge._galDetails.satellite1.apparentRectangularCoordinates.z, it = ge._galDetails.satellite1.bInEclipse, J = ge._galDetails.satellite1.bInShadowTransit;
@@ -9886,7 +9886,7 @@ function requireSrc() {
                 break;
             }
             var ot, lt, gt = ge._jupPhisical.p / 180 * 3.1415927;
-            return ot = B * Math.cos(gt) - H * Math.sin(gt), lt = B * Math.sin(gt) + H * Math.cos(gt), B = ot, H = lt, new Zn(ge._jupDetails.apparentGeocentricRA - B * O, ge._jupDetails.apparentGeocentricDeclination + H * F, ge._jupDetails.apparentGeocentricDistance + K * R / 2, J, it);
+            return ot = B * Math.cos(gt) - H * Math.sin(gt), lt = B * Math.sin(gt) + H * Math.cos(gt), B = ot, H = lt, new Zn(ge._jupDetails.apparentGeocentricRA - B * O, ge._jupDetails.apparentGeocentricDeclination + H * F, ge._jupDetails.apparentGeocentricDistance + K * $ / 2, J, it);
           }
         }, ge.getJulianDay = function(t, e, n) {
           return ui.dateToJD(r.truncate(t), r.truncate(e), n, !0);
@@ -9960,23 +9960,23 @@ function requireSrc() {
           }
         };
         function _i() {
-          this.lat = 0, this.lng = 0, this.zoom = 0, this.rotation = 0, this.angle = 0, this.raDec = !1, this.opacity = 0, this.target = 0, this.zoom = 360, this.viewTarget = new $();
+          this.lat = 0, this.lng = 0, this.zoom = 0, this.rotation = 0, this.angle = 0, this.raDec = !1, this.opacity = 0, this.target = 0, this.zoom = 360, this.viewTarget = new R();
         }
         _i.create = function(t, e, n, a, s, l) {
           var g = new _i();
-          return g.lat = t, g.lng = e, g.zoom = n, g.rotation = a, g.angle = s, g.raDec = !1, g.opacity = l, g.viewTarget = $.create(0, 0, 0), g.target = 20, g.targetReferenceFrame = "", g;
+          return g.lat = t, g.lng = e, g.zoom = n, g.rotation = a, g.angle = s, g.raDec = !1, g.opacity = l, g.viewTarget = R.create(0, 0, 0), g.target = 20, g.targetReferenceFrame = "", g;
         }, _i.logN = function(t, e) {
           return Math.log(t) / Math.log(e);
         }, _i.sinh = function(t) {
           return (Math.exp(t) - Math.exp(-t)) / 2;
         }, _i.interpolate = function(t, e, n, a, s) {
           var l = new _i(), g = _i.easeCurve(n, a), _ = Math.min(1, n * 2), m = _i.easeCurve(_, a);
-          return l.angle = e.angle * g + t.angle * (1 - g), l.rotation = e.rotation * g + t.rotation * (1 - g), s ? (l.lat = e.lat * m + t.lat * (1 - m), l.lng = e.lng * m + t.lng * (1 - m)) : (l.lat = e.lat * g + t.lat * (1 - g), l.lng = e.lng * g + t.lng * (1 - g)), l.zoom = Math.pow(2, _i.logN(e.zoom, 2) * g + _i.logN(t.zoom, 2) * (1 - g)), l.opacity = e.opacity * g + t.opacity * (1 - g), l.viewTarget = $.lerp(t.viewTarget, e.viewTarget, g), l.targetReferenceFrame = e.targetReferenceFrame, e.target === t.target ? l.target = e.target : l.target = 20, l;
+          return l.angle = e.angle * g + t.angle * (1 - g), l.rotation = e.rotation * g + t.rotation * (1 - g), s ? (l.lat = e.lat * m + t.lat * (1 - m), l.lng = e.lng * m + t.lng * (1 - m)) : (l.lat = e.lat * g + t.lat * (1 - g), l.lng = e.lng * g + t.lng * (1 - g)), l.zoom = Math.pow(2, _i.logN(e.zoom, 2) * g + _i.logN(t.zoom, 2) * (1 - g)), l.opacity = e.opacity * g + t.opacity * (1 - g), l.viewTarget = R.lerp(t.viewTarget, e.viewTarget, g), l.targetReferenceFrame = e.targetReferenceFrame, e.target === t.target ? l.target = e.target : l.target = 20, l;
         }, _i.interpolateGreatCircle = function(t, e, n, a, s) {
           var l = new _i(), g = _i.easeCurve(n, a), _ = Math.min(1, n * 2);
           _i.easeCurve(_, a), l.angle = e.angle * g + t.angle * (1 - g), l.rotation = e.rotation * g + t.rotation * (1 - g);
-          var m = U.geoTo3dDouble(t.lat, t.lng), b = U.geoTo3dDouble(e.lat, e.lng), y = $.slerp(m, b, g), M = U.cartesianToLatLng(y);
-          return l.lat = M.y, l.lng = M.x, l.zoom = Math.pow(2, _i.logN(e.zoom, 2) * g + _i.logN(t.zoom, 2) * (1 - g)), l.opacity = e.opacity * g + t.opacity * (1 - g), l.viewTarget = $.lerp(t.viewTarget, e.viewTarget, g), l.targetReferenceFrame = e.targetReferenceFrame, e.target === t.target ? l.target = e.target : l.target = 20, l;
+          var m = U.geoTo3dDouble(t.lat, t.lng), b = U.geoTo3dDouble(e.lat, e.lng), y = R.slerp(m, b, g), M = U.cartesianToLatLng(y);
+          return l.lat = M.y, l.lng = M.x, l.zoom = Math.pow(2, _i.logN(e.zoom, 2) * g + _i.logN(t.zoom, 2) * (1 - g)), l.opacity = e.opacity * g + t.opacity * (1 - g), l.viewTarget = R.lerp(t.viewTarget, e.viewTarget, g), l.targetReferenceFrame = e.targetReferenceFrame, e.target === t.target ? l.target = e.target : l.target = 20, l;
         }, _i.easeCurve = function(t, e) {
           switch (e) {
             case 0:
@@ -10466,7 +10466,7 @@ function requireSrc() {
           e._name = t, e._url = null, e.lines = [];
           for (var n = r.enumerate(r.keys(jt.fullNames)); n.moveNext(); ) {
             var a = n.current;
-            e.lines.push(new Rs(a));
+            e.lines.push(new $s(a));
           }
           return e;
         }, jt.create = function(t, e, n, a, s) {
@@ -10478,7 +10478,7 @@ function requireSrc() {
           if (jt.constellationCentroids != null) {
             jt._namesBatch = new vn(X.get_active().get_constellationLabelsHeight());
             for (var t = r.enumerate(r.keys(jt.constellationCentroids)); t.moveNext(); ) {
-              var e = t.current, n = jt.constellationCentroids[e], a = U.raDecTo3dAu(n.get_RA(), n.get_dec(), 1), s = $.create(0, 1, 0), l = n.get_name();
+              var e = t.current, n = jt.constellationCentroids[e], a = U.raDecTo3dAu(n.get_RA(), n.get_dec(), 1), s = R.create(0, 1, 0), l = n.get_name();
               n.get_name() === "Triangulum Australe" && (l = r.replaceString(l, " ", `
    `)), jt._namesBatch.add(new nr(a, s, l, X.get_active().get_constellationLabelsHeight(), 125e-6));
             }
@@ -10495,7 +10495,7 @@ function requireSrc() {
               var s = !1, l = jt.constellationCentroids[n.get_constellation()];
               if (l != null) {
                 var g = U.raDecTo3d(s ? -l.get_RA() - 6 : l.get_RA(), l.get_dec());
-                $.dot(t.get_viewPoint(), g) > jt._maxSeperation && t.drawImageSet(n.get_studyImageset(), 100);
+                R.dot(t.get_viewPoint(), g) > jt._maxSeperation && t.drawImageSet(n.get_studyImageset(), 100);
               }
             }
           }
@@ -10549,7 +10549,7 @@ function requireSrc() {
                   r.trim(M.substr(28, 1)) && (m = parseInt(M.substr(28, 1)));
                 else if (this._noInterpollation && M.substr(28, 1) !== "O")
                   continue;
-                a !== s && (m = 3, e = new Rs(a), this.lines.push(e), this._boundry && !this._noInterpollation && (jt.boundries[a] = e), s = a, _ = 0), this._noInterpollation && (Math.abs(l - _) > 12 && (l = l - 24 * (l - _ < 0 ? -1 : 1)), _ = l);
+                a !== s && (m = 3, e = new $s(a), this.lines.push(e), this._boundry && !this._noInterpollation && (jt.boundries[a] = e), s = a, _ = 0), this._noInterpollation && (Math.abs(l - _) > 12 && (l = l - 24 * (l - _ < 0 ? -1 : 1)), _ = l);
                 var A = null;
                 M.length > 30 && (A = r.trim(M.substr(30))), (A == null || A !== "Empty") && e.add(l, g, m, A), this._pointCount++, m = 1;
               }
@@ -10573,13 +10573,13 @@ function requireSrc() {
             var a = jt.constellationCentroids[e.get_name()];
             if (a != null) {
               var s = U.raDecTo3d(a.get_RA(), a.get_dec());
-              if ($.dot(t.get_viewPoint(), s) < jt._maxSeperation)
+              if (R.dot(t.get_viewPoint(), s) < jt._maxSeperation)
                 return;
             }
             if (!r.keyExists(this._constellationVertexBuffers, e.get_name())) {
               var l = e.points.length, g = new an();
               g.set_depthBuffered(!1), this._constellationVertexBuffers[e.get_name()] = g;
-              for (var _ = new $(), m, b = 0; b < l; b++)
+              for (var _ = new R(), m, b = 0; b < l; b++)
                 !e.points[b].pointType || !b ? _ = U.raDecTo3d(e.points[b].RA, e.points[b].dec) : (m = U.raDecTo3d(e.points[b].RA, e.points[b].dec), g.addLine(_, m), _ = m);
               this._boundry && (m = U.raDecTo3d(e.points[0].RA, e.points[0].dec), g.addLine(_, m));
             }
@@ -10590,13 +10590,13 @@ function requireSrc() {
             var n = jt.constellationCentroids[e.get_name()];
             if (n != null) {
               var a = U.raDecTo3d(n.get_RA(), n.get_dec());
-              if ($.dot(t.get_viewPoint(), a) < jt._maxSeperation)
+              if (R.dot(t.get_viewPoint(), a) < jt._maxSeperation)
                 return;
             }
             this._drawCount++;
             var s;
             if (this._boundry ? jt._constToDraw !== e.get_name() ? s = X.get_globalSettings().get_constellationBoundryColor() : s = X.get_globalSettings().get_constellationSelectionColor() : s = X.get_globalSettings().get_constellationFigureColor(), t.gl == null) {
-              var l = t.device, g = e.points.length, _ = new $();
+              var l = t.device, g = e.points.length, _ = new R();
               l.save();
               var m = !1;
               l.beginPath(), l.strokeStyle = s, l.lineWidth = 2, l.globalAlpha = 0.25;
@@ -10623,7 +10623,7 @@ function requireSrc() {
             return t > 0 ? this.findConstellationForPoint(t - 24, e) : e > 65.5 ? "UMI" : e < -65.5 ? "OCT" : "Error";
           }
         };
-        function Rs(t) {
+        function $s(t) {
           this._name = t, this.points = [];
         }
         var Vl = {
@@ -10772,7 +10772,7 @@ function requireSrc() {
           }
         };
         function Ht() {
-          this.tu = 0, this.tv = 0, this.position = new $();
+          this.tu = 0, this.tv = 0, this.position = new R();
         }
         Ht.createPos = function(t, e, n) {
           var a = new Ht();
@@ -10785,19 +10785,19 @@ function requireSrc() {
           return l.tu = e * a, l.tv = n * s, l.position = t, l;
         }, Ht.create = function(t, e, n, a, s) {
           var l = new Ht();
-          return l.position = $.create(t, e, n), l.tu = a * G.uvMultiple, l.tv = s * G.uvMultiple, l;
+          return l.position = R.create(t, e, n), l.tu = a * G.uvMultiple, l.tv = s * G.uvMultiple, l;
         };
         var Gl = {
           copy: function() {
             var t = new Ht();
-            return t.position = $.makeCopy(this.position), t.tu = this.tu, t.tv = this.tv, t;
+            return t.position = R.makeCopy(this.position), t.tu = this.tu, t.tv = this.tv, t;
           },
           toString: function() {
             return r.format("{0}, {1}, {2}, {3}, {4}", this.position.x, this.position.y, this.position.z, this.tu, this.tv);
           }
         };
         function Ye() {
-          this.tu = 0, this.tv = 0, this.color = new j(), this.position = new $();
+          this.tu = 0, this.tv = 0, this.color = new j(), this.position = new R();
         }
         Ye.createPos = function(t, e, n) {
           var a = new Ye();
@@ -10810,12 +10810,12 @@ function requireSrc() {
           return l.tu = e * a, l.tv = n * s, l.position = t, l;
         }, Ye.create = function(t, e, n, a, s) {
           var l = new Ht();
-          return l.position = $.create(t, e, n), l.tu = a * G.uvMultiple, l.tv = s * G.uvMultiple, l;
+          return l.position = R.create(t, e, n), l.tu = a * G.uvMultiple, l.tv = s * G.uvMultiple, l;
         };
         var ql = {
           copy: function() {
             var t = new Ht();
-            return t.position = $.makeCopy(this.position), t.tu = this.tu, t.tv = this.tv, t;
+            return t.position = R.makeCopy(this.position), t.tu = this.tu, t.tv = this.tv, t;
           },
           toString: function() {
             return r.format("{0}, {1}, {2}, {3}, {4}", this.position.x, this.position.y, this.position.z, this.tu, this.tv);
@@ -10838,13 +10838,13 @@ function requireSrc() {
         }
         var Yl = {
           get_normal: function() {
-            return $.create(this.nx, this.ny, this.nz);
+            return R.create(this.nx, this.ny, this.nz);
           },
           set_normal: function(t) {
             return this.nx = t.x, this.ny = t.y, this.nz = t.z, t;
           },
           get_position: function() {
-            return $.create(this.x, this.y, this.z);
+            return R.create(this.x, this.y, this.z);
           },
           set_position: function(t) {
             return this.x = t.x, this.y = t.y, this.z = t.z, t;
@@ -10856,7 +10856,7 @@ function requireSrc() {
             return this.tu = t.x, this.tv = t.y, t;
           },
           get_tangent: function() {
-            return $.create(this.tanx, this.tany, this.tanz);
+            return R.create(this.tanx, this.tany, this.tanz);
           },
           set_tangent: function(t) {
             return this.tanx = t.x, this.tany = t.y, this.tanz = t.z, t;
@@ -10865,60 +10865,60 @@ function requireSrc() {
             return r.format("X={0}, Y={1}, Z={2}, Nx={3}, Ny={4}, Nz={5}, U={6}, V={7}, TanX={8}, TanY={9}, TanZ={10}", this.x, this.y, this.z, this.nx, this.ny, this.nz, this.tu, this.tv, this.tanx, this.tany, this.tanz);
           }
         };
-        function $() {
+        function R() {
           this.x = 0, this.y = 0, this.z = 0;
         }
-        $.create = function(t, e, n) {
-          var a = new $();
+        R.create = function(t, e, n) {
+          var a = new R();
           return a.x = t, a.y = e, a.z = n, a;
-        }, $.makeCopy = function(t) {
-          var e = new $();
+        }, R.makeCopy = function(t) {
+          var e = new R();
           return e.x = t.x, e.y = t.y, e.z = t.z, e;
-        }, $.negate = function(t) {
-          return $.create(-t.x, -t.y, -t.z);
-        }, $.midPoint = function(t, e) {
-          var n = $.create((t.x + e.x) / 2, (t.y + e.y) / 2, (t.z + e.z) / 2);
+        }, R.negate = function(t) {
+          return R.create(-t.x, -t.y, -t.z);
+        }, R.midPoint = function(t, e) {
+          var n = R.create((t.x + e.x) / 2, (t.y + e.y) / 2, (t.z + e.z) / 2);
           return n;
-        }, $.midPointByLength = function(t, e) {
-          var n = $.create((t.x + e.x) / 2, (t.y + e.y) / 2, (t.z + e.z) / 2);
+        }, R.midPointByLength = function(t, e) {
+          var n = R.create((t.x + e.x) / 2, (t.y + e.y) / 2, (t.z + e.z) / 2);
           return n.normalize(), n.multiply(t.length()), n;
-        }, $.get_empty = function() {
-          return $.create(0, 0, 0);
-        }, $.addVectors = function(t, e) {
-          return $.create(t.x + e.x, t.y + e.y, t.z + e.z);
-        }, $.cross = function(t, e) {
-          return $.create(t.y * e.z - t.z * e.y, t.z * e.x - t.x * e.z, t.x * e.y - t.y * e.x);
-        }, $.dot = function(t, e) {
+        }, R.get_empty = function() {
+          return R.create(0, 0, 0);
+        }, R.addVectors = function(t, e) {
+          return R.create(t.x + e.x, t.y + e.y, t.z + e.z);
+        }, R.cross = function(t, e) {
+          return R.create(t.y * e.z - t.z * e.y, t.z * e.x - t.x * e.z, t.x * e.y - t.y * e.x);
+        }, R.dot = function(t, e) {
           return t.x * e.x + t.y * e.y + t.z * e.z;
-        }, $.getLength = function(t) {
+        }, R.getLength = function(t) {
           return Math.sqrt(t.x * t.x + t.y * t.y + t.z * t.z);
-        }, $.getLengthSq = function(t) {
+        }, R.getLengthSq = function(t) {
           return t.x * t.x + t.y * t.y + t.z * t.z;
-        }, $.lerp = function(t, e, n) {
-          return $.create(t.x * (1 - n) + e.x * n, t.y * (1 - n) + e.y * n, t.z * (1 - n) + e.z * n);
-        }, $.midpoint = function(t, e) {
-          var n = $.create(t.x * 0.5 + e.x * 0.5, t.y * 0.5 + e.y * 0.5, t.z * 0.5 + e.z * 0.5);
+        }, R.lerp = function(t, e, n) {
+          return R.create(t.x * (1 - n) + e.x * n, t.y * (1 - n) + e.y * n, t.z * (1 - n) + e.z * n);
+        }, R.midpoint = function(t, e) {
+          var n = R.create(t.x * 0.5 + e.x * 0.5, t.y * 0.5 + e.y * 0.5, t.z * 0.5 + e.z * 0.5);
           return n.normalize(), n;
-        }, $.slerp = function(t, e, n) {
-          for (var a = $.dot(t, e); a < 0.98; ) {
-            var s = $.midpoint(t, e);
-            n > 0.5 ? (t = s, n -= 0.5, n *= 2) : (e = s, n *= 2), a = $.dot(t, e);
+        }, R.slerp = function(t, e, n) {
+          for (var a = R.dot(t, e); a < 0.98; ) {
+            var s = R.midpoint(t, e);
+            n > 0.5 ? (t = s, n -= 0.5, n *= 2) : (e = s, n *= 2), a = R.dot(t, e);
           }
-          var l = $.lerp(t, e, n);
+          var l = R.lerp(t, e, n);
           return l.normalize(), l;
-        }, $.multiplyScalar = function(t, e) {
+        }, R.multiplyScalar = function(t, e) {
           var n = t.copy();
           return n.multiply(e), n;
-        }, $.scale = function(t, e) {
+        }, R.scale = function(t, e) {
           var n = t;
           return n.multiply(e), n;
-        }, $.subtractVectors = function(t, e) {
+        }, R.subtractVectors = function(t, e) {
           var n = t.copy();
           return n.subtract(e), n;
-        }, $.parse = function(t) {
-          var e = new $(), n = t.split(",");
+        }, R.parse = function(t) {
+          var e = new R(), n = t.split(",");
           return n.length === 3 && (e.x = parseFloat(n[0]), e.y = parseFloat(n[1]), e.z = parseFloat(n[2])), e;
-        }, $._transformCoordinate = function(t, e) {
+        }, R._transformCoordinate = function(t, e) {
           return e.transform(t);
         };
         var jl = {
@@ -10926,7 +10926,7 @@ function requireSrc() {
             this.x = t, this.y = e, this.z = n;
           },
           copy: function() {
-            var t = new $();
+            var t = new R();
             return t.x = this.x, t.y = this.y, t.z = this.z, t;
           },
           round: function() {
@@ -10975,7 +10975,7 @@ function requireSrc() {
             return t.x = t.x / Math.PI * 12, t.y = t.y / Math.PI * 180 - 90, t;
           },
           distanceToLine: function(t, e) {
-            var n = $.subtractVectors(e, t), a = $.subtractVectors(t, this), s = $.cross(n, a), l = s.length(), g = $.subtractVectors(e, t), _ = g.length();
+            var n = R.subtractVectors(e, t), a = R.subtractVectors(t, this), s = R.cross(n, a), l = s.length(), g = R.subtractVectors(e, t), _ = g.length();
             return l / _;
           },
           _transformByMatrics: function(t) {
@@ -10992,7 +10992,7 @@ function requireSrc() {
           var e = Math.sqrt(t.x * t.x + t.y * t.y + t.z * t.z), n = Math.atan2(t.z, t.x), a = Math.asin(t.y / e);
           return Mt.create(n / Math.PI * 180, a / Math.PI * 180);
         }, Mt.average3d = function(t, e) {
-          var n = U.geoTo3dDouble(t.y, t.x), a = U.geoTo3dDouble(e.y, e.x), s = $.addVectors(n, a);
+          var n = U.geoTo3dDouble(t.y, t.x), a = U.geoTo3dDouble(e.y, e.x), s = R.addVectors(n, a);
           return s.multiply(0.5), s.normalize(), Mt.cartesianToSpherical2(s);
         }, Mt.create = function(t, e) {
           var n = new Mt();
@@ -11002,7 +11002,7 @@ function requireSrc() {
         };
         var Zl = {
           distance3d: function(t) {
-            var e = U.geoTo3dDouble(t.y, t.x), n = U.geoTo3dDouble(this.y, this.x), a = $.subtractVectors(e, n);
+            var e = U.geoTo3dDouble(t.y, t.x), n = U.geoTo3dDouble(this.y, this.x), a = R.subtractVectors(e, n);
             return a.length() / Math.PI * 180;
           },
           get_length: function() {
@@ -11019,20 +11019,20 @@ function requireSrc() {
         function tt() {
           this._m11 = 0, this._m12 = 0, this._m13 = 0, this._m14 = 0, this._m21 = 0, this._m22 = 0, this._m23 = 0, this._m24 = 0, this._m31 = 0, this._m32 = 0, this._m33 = 0, this._m34 = 0, this._offsetX = 0, this._offsetY = 0, this._offsetZ = 0, this._m44 = 0, this._isNotKnownToBeIdentity = !1;
         }
-        tt.create = function(t, e, n, a, s, l, g, _, m, b, y, M, A, R, F, O) {
+        tt.create = function(t, e, n, a, s, l, g, _, m, b, y, M, A, $, F, O) {
           var B = new tt();
-          return B._m11 = t, B._m12 = e, B._m13 = n, B._m14 = a, B._m21 = s, B._m22 = l, B._m23 = g, B._m24 = _, B._m31 = m, B._m32 = b, B._m33 = y, B._m34 = M, B._offsetX = A, B._offsetY = R, B._offsetZ = F, B._m44 = O, B._isNotKnownToBeIdentity = !0, B;
+          return B._m11 = t, B._m12 = e, B._m13 = n, B._m14 = a, B._m21 = s, B._m22 = l, B._m23 = g, B._m24 = _, B._m31 = m, B._m32 = b, B._m33 = y, B._m34 = M, B._offsetX = A, B._offsetY = $, B._offsetZ = F, B._m44 = O, B._isNotKnownToBeIdentity = !0, B;
         }, tt.get_identity = function() {
           var t = new tt();
           return t.set(tt._s_identity), t;
         }, tt.multiplyMatrix = function(t, e) {
           return t.get__isDistinguishedIdentity() ? e : e.get__isDistinguishedIdentity() ? t : tt.create(t._m11 * e._m11 + t._m12 * e._m21 + t._m13 * e._m31 + t._m14 * e._offsetX, t._m11 * e._m12 + t._m12 * e._m22 + t._m13 * e._m32 + t._m14 * e._offsetY, t._m11 * e._m13 + t._m12 * e._m23 + t._m13 * e._m33 + t._m14 * e._offsetZ, t._m11 * e._m14 + t._m12 * e._m24 + t._m13 * e._m34 + t._m14 * e._m44, t._m21 * e._m11 + t._m22 * e._m21 + t._m23 * e._m31 + t._m24 * e._offsetX, t._m21 * e._m12 + t._m22 * e._m22 + t._m23 * e._m32 + t._m24 * e._offsetY, t._m21 * e._m13 + t._m22 * e._m23 + t._m23 * e._m33 + t._m24 * e._offsetZ, t._m21 * e._m14 + t._m22 * e._m24 + t._m23 * e._m34 + t._m24 * e._m44, t._m31 * e._m11 + t._m32 * e._m21 + t._m33 * e._m31 + t._m34 * e._offsetX, t._m31 * e._m12 + t._m32 * e._m22 + t._m33 * e._m32 + t._m34 * e._offsetY, t._m31 * e._m13 + t._m32 * e._m23 + t._m33 * e._m33 + t._m34 * e._offsetZ, t._m31 * e._m14 + t._m32 * e._m24 + t._m33 * e._m34 + t._m34 * e._m44, t._offsetX * e._m11 + t._offsetY * e._m21 + t._offsetZ * e._m31 + t._m44 * e._offsetX, t._offsetX * e._m12 + t._offsetY * e._m22 + t._offsetZ * e._m32 + t._m44 * e._offsetY, t._offsetX * e._m13 + t._offsetY * e._m23 + t._offsetZ * e._m33 + t._m44 * e._offsetZ, t._offsetX * e._m14 + t._offsetY * e._m24 + t._offsetZ * e._m34 + t._m44 * e._m44);
         }, tt.lookAtLH = function(t, e, n) {
-          var a = $.subtractVectors(e, t);
+          var a = R.subtractVectors(e, t);
           a.normalize();
-          var s = $.cross(n, a);
+          var s = R.cross(n, a);
           s.normalize();
-          var l = $.cross(a, s), g = tt.create(s.x, l.x, a.x, 0, s.y, l.y, a.y, 0, s.z, l.z, a.z, 0, -$.dot(s, t), -$.dot(l, t), -$.dot(a, t), 1);
+          var l = R.cross(a, s), g = tt.create(s.x, l.x, a.x, 0, s.y, l.y, a.y, 0, s.z, l.z, a.z, 0, -R.dot(s, t), -R.dot(l, t), -R.dot(a, t), 1);
           return g;
         }, tt._createIdentity = function() {
           var t = tt.create(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
@@ -11129,7 +11129,7 @@ function requireSrc() {
             this.get__isDistinguishedIdentity() ? this._setTranslationMatrix(t) : (this._offsetX += this._m11 * t.x + this._m21 * t.y + this._m31 * t.z, this._offsetY += this._m12 * t.x + this._m22 * t.y + this._m32 * t.z, this._offsetZ += this._m13 * t.x + this._m23 * t.y + this._m33 * t.z, this._m44 += this._m14 * t.x + this._m24 * t.y + this._m34 * t.z);
           },
           transform: function(t) {
-            var e = new $();
+            var e = new R();
             if (!this.get__isDistinguishedIdentity()) {
               var n = t.x, a = t.y, s = t.z;
               if (e.x = n * this._m11 + a * this._m21 + s * this._m31 + this._offsetX, e.y = n * this._m12 + a * this._m22 + s * this._m32 + this._offsetY, e.z = n * this._m13 + a * this._m23 + s * this._m33 + this._offsetZ, !this.get_isAffine()) {
@@ -11162,7 +11162,7 @@ function requireSrc() {
               }
           },
           projectToScreen: function(t, e, n) {
-            var a = new $(), s = t.x, l = t.y, g = t.z;
+            var a = new R(), s = t.x, l = t.y, g = t.z;
             if (this.get_isAffine())
               a.x = (s * this._m11 + l * this._m21 + g * this._m31 + this._offsetX + 0.5) * e, a.y = (-(s * this._m12 + l * this._m22 + g * this._m32 + this._offsetY) + 0.5) * n, a.z = s * this._m13 + l * this._m23 + g * this._m33 + this._offsetZ;
             else {
@@ -11338,8 +11338,8 @@ function requireSrc() {
             var t = this._m12 * this._m23 - this._m22 * this._m13, e = this._m32 * this._m13 - this._m12 * this._m33, n = this._m22 * this._m33 - this._m32 * this._m23, a = this._m31 * t + this._m21 * e + this._m11 * n;
             if (Fr.isZero(a))
               return !1;
-            var s = this._m21 * this._m13 - this._m11 * this._m23, l = this._m11 * this._m33 - this._m31 * this._m13, g = this._m31 * this._m23 - this._m21 * this._m33, _ = this._m11 * this._m22 - this._m21 * this._m12, m = this._m11 * this._m32 - this._m31 * this._m12, b = this._m11 * this._offsetY - this._offsetX * this._m12, y = this._m21 * this._m32 - this._m31 * this._m22, M = this._m21 * this._offsetY - this._offsetX * this._m22, A = this._m31 * this._offsetY - this._offsetX * this._m32, R = this._m23 * b - this._offsetZ * _ - this._m13 * M, F = this._m13 * A - this._m33 * b + this._offsetZ * m, O = this._m33 * M - this._offsetZ * y - this._m23 * A, B = _, H = -m, K = y, J = 1 / a;
-            return this._m11 = n * J, this._m12 = e * J, this._m13 = t * J, this._m21 = g * J, this._m22 = l * J, this._m23 = s * J, this._m31 = K * J, this._m32 = H * J, this._m33 = B * J, this._offsetX = O * J, this._offsetY = F * J, this._offsetZ = R * J, !0;
+            var s = this._m21 * this._m13 - this._m11 * this._m23, l = this._m11 * this._m33 - this._m31 * this._m13, g = this._m31 * this._m23 - this._m21 * this._m33, _ = this._m11 * this._m22 - this._m21 * this._m12, m = this._m11 * this._m32 - this._m31 * this._m12, b = this._m11 * this._offsetY - this._offsetX * this._m12, y = this._m21 * this._m32 - this._m31 * this._m22, M = this._m21 * this._offsetY - this._offsetX * this._m22, A = this._m31 * this._offsetY - this._offsetX * this._m32, $ = this._m23 * b - this._offsetZ * _ - this._m13 * M, F = this._m13 * A - this._m33 * b + this._offsetZ * m, O = this._m33 * M - this._offsetZ * y - this._m23 * A, B = _, H = -m, K = y, J = 1 / a;
+            return this._m11 = n * J, this._m12 = e * J, this._m13 = t * J, this._m21 = g * J, this._m22 = l * J, this._m23 = s * J, this._m31 = K * J, this._m32 = H * J, this._m33 = B * J, this._offsetX = O * J, this._offsetY = F * J, this._offsetZ = $ * J, !0;
           },
           _invertCore: function() {
             if (!this.get__isDistinguishedIdentity()) {
@@ -11348,10 +11348,10 @@ function requireSrc() {
               var t = this._m13 * this._m24 - this._m23 * this._m14, e = this._m13 * this._m34 - this._m33 * this._m14, n = this._m13 * this._m44 - this._offsetZ * this._m14, a = this._m23 * this._m34 - this._m33 * this._m24, s = this._m23 * this._m44 - this._offsetZ * this._m24, l = this._m33 * this._m44 - this._offsetZ * this._m34, g = this._m22 * e - this._m32 * t - this._m12 * a, _ = this._m12 * s - this._m22 * n + this._offsetY * t, m = this._m32 * n - this._offsetY * e - this._m12 * l, b = this._m22 * l - this._m32 * s + this._offsetY * a, y = this._offsetX * g + this._m31 * _ + this._m21 * m + this._m11 * b;
               if (Fr.isZero(y))
                 return !1;
-              var M = this._m11 * a - this._m21 * e + this._m31 * t, A = this._m21 * n - this._offsetX * t - this._m11 * s, R = this._m11 * l - this._m31 * n + this._offsetX * e, F = this._m31 * s - this._offsetX * a - this._m21 * l;
+              var M = this._m11 * a - this._m21 * e + this._m31 * t, A = this._m21 * n - this._offsetX * t - this._m11 * s, $ = this._m11 * l - this._m31 * n + this._offsetX * e, F = this._m31 * s - this._offsetX * a - this._m21 * l;
               t = this._m11 * this._m22 - this._m21 * this._m12, e = this._m11 * this._m32 - this._m31 * this._m12, n = this._m11 * this._offsetY - this._offsetX * this._m12, a = this._m21 * this._m32 - this._m31 * this._m22, s = this._m21 * this._offsetY - this._offsetX * this._m22, l = this._m31 * this._offsetY - this._offsetX * this._m32;
               var O = this._m13 * a - this._m23 * e + this._m33 * t, B = this._m23 * n - this._offsetZ * t - this._m13 * s, H = this._m13 * l - this._m33 * n + this._offsetZ * e, K = this._m33 * s - this._offsetZ * a - this._m23 * l, J = this._m24 * e - this._m34 * t - this._m14 * a, it = this._m14 * s - this._m24 * n + this._m44 * t, ot = this._m34 * n - this._m44 * e - this._m14 * l, lt = this._m24 * l - this._m34 * s + this._m44 * a, gt = 1 / y;
-              this._m11 = b * gt, this._m12 = m * gt, this._m13 = _ * gt, this._m14 = g * gt, this._m21 = F * gt, this._m22 = R * gt, this._m23 = A * gt, this._m24 = M * gt, this._m31 = lt * gt, this._m32 = ot * gt, this._m33 = it * gt, this._m34 = J * gt, this._offsetX = K * gt, this._offsetY = H * gt, this._offsetZ = B * gt, this._m44 = O * gt;
+              this._m11 = b * gt, this._m12 = m * gt, this._m13 = _ * gt, this._m14 = g * gt, this._m21 = F * gt, this._m22 = $ * gt, this._m23 = A * gt, this._m24 = M * gt, this._m31 = lt * gt, this._m32 = ot * gt, this._m33 = it * gt, this._m34 = J * gt, this._offsetX = K * gt, this._offsetY = H * gt, this._offsetZ = B * gt, this._m44 = O * gt;
             }
             return !0;
           },
@@ -11460,17 +11460,17 @@ function requireSrc() {
           createLong: function(t, e, n, a, s, l, g, _) {
             var m = new nn();
             m.x = t, m.y = e, m.z = n, m.nx = a, m.ny = s, m.nz = l, m.tu = g, m.tv = _;
-            var b = U.cartesianToSpherical2($.create(this.nx, this.ny, this.nz));
+            var b = U.cartesianToSpherical2(R.create(this.nx, this.ny, this.nz));
             return m.tu1 = (b.get_lng() + 180) / 360, m.tv1 = 1 - (b.get_lat() + 90) / 180, m;
           },
           get_normal: function() {
-            return $.create(this.nx, this.ny, this.nz);
+            return R.create(this.nx, this.ny, this.nz);
           },
           set_normal: function(t) {
             return this.nx = t.x, this.ny = t.y, this.nz = t.z, t;
           },
           get_position: function() {
-            return $.create(this.x, this.y, this.y);
+            return R.create(this.x, this.y, this.y);
           },
           set_position: function(t) {
             return this.x = t.x, this.y = t.y, this.z = t.z, t;
@@ -11498,13 +11498,13 @@ function requireSrc() {
             return m.x = t, m.y = e, m.z = n, m.nx = a, m.ny = s, m.nz = l, m.tu = g, m.tv = _, m;
           },
           get_normal: function() {
-            return $.create(this.nx, this.ny, this.nz);
+            return R.create(this.nx, this.ny, this.nz);
           },
           set_normal: function(t) {
             return this.nx = t.x, this.ny = t.y, this.nz = t.z, t;
           },
           get_position: function() {
-            return $.create(this.x, this.y, this.z);
+            return R.create(this.x, this.y, this.z);
           },
           set_position: function(t) {
             return this.x = t.x, this.y = t.y, this.z = t.z, t;
@@ -11524,23 +11524,23 @@ function requireSrc() {
         function kn() {
         }
         kn.findEnclosingSphereFast = function(t) {
-          for (var e = new ha(), n = t.length, a = $.zero, s = 0; s < n; ++s)
+          for (var e = new ha(), n = t.length, a = R.zero, s = 0; s < n; ++s)
             a.add(t[s]);
           a.multiply(1 / n);
           for (var l = 0, s = 0; s < n; ++s) {
-            var g = $.getLengthSq($.subtractVectors(t[s], a));
+            var g = R.getLengthSq(R.subtractVectors(t[s], a));
             g > l && (l = g);
           }
           return l = Math.sqrt(l), e.center = a, e.radius = l, e;
         }, kn.findEnclosingSphere = function(t) {
-          var e = new $(), n = 0, a = t.length, s, l, g, _, m, b, y, M, A, R, F, O, B = new $(), H = new $(), K = new $(), J = new $(), it = new $(), ot = new $(), lt = new $(), gt = new $();
+          var e = new R(), n = 0, a = t.length, s, l, g, _, m, b, y, M, A, $, F, O, B = new R(), H = new R(), K = new R(), J = new R(), it = new R(), ot = new R(), lt = new R(), gt = new R();
           for (B.x = K.y = it.z = 1e8, H.x = J.y = ot.z = -1e9, s = 0; s < a; s++) {
             var ut = t[s];
             ut.x < B.x && (B = ut), ut.x > H.x && (H = ut), ut.y < K.y && (K = ut), ut.y > J.y && (J = ut), ut.z < it.z && (it = ut), ut.z > ot.z && (ot = ut);
           }
           for (l = H.x - B.x, g = H.y - B.y, _ = H.z - B.z, b = l * l + g * g + _ * _, l = J.x - K.x, g = J.y - K.y, _ = J.z - K.z, y = l * l + g * g + _ * _, l = ot.x - it.x, g = ot.y - it.y, _ = ot.z - it.z, M = l * l + g * g + _ * _, lt = B, gt = H, A = b, y > A && (A = y, lt = K, gt = J), M > A && (lt = it, gt = ot), e.x = (lt.x + gt.x) / 2, e.y = (lt.y + gt.y) / 2, e.z = (lt.z + gt.z) / 2, l = gt.x - e.x, g = gt.y - e.y, _ = gt.z - e.z, m = l * l + g * g + _ * _, n = Math.sqrt(m), s = 0; s < a; s++) {
             var ut = t[s];
-            l = ut.x - e.x, g = ut.y - e.y, _ = ut.z - e.z, F = l * l + g * g + _ * _, F > m && (R = Math.sqrt(F), n = (n + R) / 2, m = n * n, O = R - n, e.x = (n * e.x + O * ut.x) / R, e.y = (n * e.y + O * ut.y) / R, e.z = (n * e.z + O * ut.z) / R);
+            l = ut.x - e.x, g = ut.y - e.y, _ = ut.z - e.z, F = l * l + g * g + _ * _, F > m && ($ = Math.sqrt(F), n = (n + $) / 2, m = n * n, O = $ - n, e.x = (n * e.x + O * ut.x) / $, e.y = (n * e.y + O * ut.y) / $, e.z = (n * e.z + O * ut.z) / $);
           }
           return ha._create(e, n);
         };
@@ -11662,7 +11662,7 @@ function requireSrc() {
           get_children: function() {
             if (r.emptyString(this._urlField)) {
               if (this._childList.length = 0, this.parent != null) {
-                var t = new $s();
+                var t = new Rs();
                 t.parent = this.parent, this._childList.push(t);
               }
               if (this.get_folders() != null)
@@ -11871,7 +11871,7 @@ function requireSrc() {
                 });
                 return;
               }
-              if (r.canCast(this._items[t], $s)) {
+              if (r.canCast(this._items[t], Rs)) {
                 var g = this._items[t];
                 g.parent != null && (this._startIndex = 0, g.parent.childLoadCallback(function() {
                   e._items = g.parent.get_children(), e.refresh();
@@ -11998,7 +11998,7 @@ function requireSrc() {
             this._items = t;
           }
         };
-        function $s() {
+        function Rs() {
           this.parent = null, this._bounds = new Ji();
         }
         var su = {
@@ -12093,10 +12093,10 @@ function requireSrc() {
               this._initLineBuffer(t);
               var a = this._linePoints.length;
               if (t.gl == null) {
-                var s = $._transformCoordinate(t.get_viewPoint(), this.viewTransform), l = t.device;
+                var s = R._transformCoordinate(t.get_viewPoint(), this.viewTransform), l = t.device;
                 l.save(), l.strokeStyle = n.toString(), l.lineWidth = 2, l.globalAlpha = 0.25;
-                for (var g = new $(), _ = new $(), m = 0; m < a; m += 2)
-                  g = t.WVP.transform(this._linePoints[m]), _ = t.WVP.transform(this._linePoints[m + 1]), $.dot(this._linePoints[m], s) > 0.6 && (l.beginPath(), l.moveTo(g.x, g.y), l.lineTo(_.x, _.y), l.stroke());
+                for (var g = new R(), _ = new R(), m = 0; m < a; m += 2)
+                  g = t.WVP.transform(this._linePoints[m]), _ = t.WVP.transform(this._linePoints[m + 1]), R.dot(this._linePoints[m], s) > 0.6 && (l.beginPath(), l.moveTo(g.x, g.y), l.lineTo(_.x, _.y), l.stroke());
                 l.restore();
               } else
                 for (var b = r.enumerate(this._lineBuffers); b.moveNext(); ) {
@@ -12108,7 +12108,7 @@ function requireSrc() {
           _initLineBuffer: function(t) {
             if (t.gl != null && !this._lineBuffers.length) {
               var e = this._linePoints.length, n = null, a = null;
-              if (this._localCenter = new $(), this.get_depthBuffered()) {
+              if (this._localCenter = new R(), this.get_depthBuffered()) {
                 for (var s = r.enumerate(this._linePoints); s.moveNext(); ) {
                   var l = s.current;
                   this._localCenter.add(l);
@@ -12122,7 +12122,7 @@ function requireSrc() {
                   var y = Math.min(1e5, g);
                   g -= y, n = new as(y), a = n.lock(), this._lineBuffers.push(n), this._lineBufferCounts.push(y), _ = 0;
                 }
-                this.useLocalCenters ? (m = $.subtractVectors(l, this._localCenter), a[_] = m) : a[_] = l, _++;
+                this.useLocalCenters ? (m = R.subtractVectors(l, this._localCenter), a[_] = m) : a[_] = l, _++;
               }
               n != null && n.unlock();
             }
@@ -12158,7 +12158,7 @@ function requireSrc() {
           _initLineBuffer: function(t) {
             if (t.gl != null && !this._lineBuffers.length) {
               var e = this._linePoints.length, n = null, a = null;
-              if (this._localCenter = new $(), this.get_depthBuffered()) {
+              if (this._localCenter = new R(), this.get_depthBuffered()) {
                 for (var s = r.enumerate(this._linePoints); s.moveNext(); ) {
                   var l = s.current;
                   this._localCenter.add(l);
@@ -12172,7 +12172,7 @@ function requireSrc() {
                   var M = Math.min(1e5, g);
                   g -= M, n = new No(M), a = n.lock(), this._lineBuffers.push(n), this._lineBufferCounts.push(M), m = 0;
                 }
-                this.useLocalCenters ? (b = $.subtractVectors(l, this._localCenter), a[m] = new Ja(b, this._lineColors[_])) : a[m] = new Ja(l, this._lineColors[_]), _++, m++;
+                this.useLocalCenters ? (b = R.subtractVectors(l, this._localCenter), a[m] = new Ja(b, this._lineColors[_])) : a[m] = new Ja(l, this._lineColors[_]), _++, m++;
               }
               n != null && n.unlock();
             }
@@ -12243,7 +12243,7 @@ function requireSrc() {
               this.addTriangle(t, e, n, a, s);
             else {
               var g, _, m;
-              g = $.midPointByLength(t, e), _ = $.midPointByLength(e, n), m = $.midPointByLength(n, t), this.addSubdividedTriangles(t, g, m, a, s, l), this.addSubdividedTriangles(g, _, m, a, s, l), this.addSubdividedTriangles(g, e, _, a, s, l), this.addSubdividedTriangles(_, n, m, a, s, l);
+              g = R.midPointByLength(t, e), _ = R.midPointByLength(e, n), m = R.midPointByLength(n, t), this.addSubdividedTriangles(t, g, m, a, s, l), this.addSubdividedTriangles(g, _, m, a, s, l), this.addSubdividedTriangles(g, e, _, a, s, l), this.addSubdividedTriangles(_, n, m, a, s, l);
             }
           },
           addQuad: function(t, e, n, a, s, l) {
@@ -12343,7 +12343,7 @@ function requireSrc() {
                 }, !1), this._starProfile.src = ze.singleton.engineAssetUrl("StarProfileAlpha.png"), this._worldList = new Array(this._points.length), this._transformedList = new Array(this._points.length);
                 for (var n = 0, a = r.enumerate(this._points); a.moveNext(); ) {
                   var s = a.current, l = new Ys();
-                  l.location = s, l.tranformed = new $(), l.size = this._sizes[n], l.color = this._colors[n], this._worldList[n] = l.location, this._transformedList[n] = l.tranformed, this.items.push(l), n++;
+                  l.location = s, l.tranformed = new R(), l.size = this._sizes[n], l.color = this._colors[n], this._worldList[n] = l.location, this._transformedList[n] = l.tranformed, this.items.push(l), n++;
                 }
               } else if (!this._pointBuffers.length) {
                 Xr.starTexture == null && (Xr.starTexture = D.loadPlanetTexture(ze.singleton.engineAssetUrl("StarProfileAlpha.png")));
@@ -12351,8 +12351,8 @@ function requireSrc() {
                   var A = M.current;
                   if (y >= 1e5 || m == null) {
                     _ != null && _.unlock();
-                    var R = Math.min(1e5, b);
-                    b -= R, _ = new Do(R), m = _.lock(), this._pointBuffers.push(_), this._pointBufferCounts.push(R), y = 0;
+                    var $ = Math.min(1e5, b);
+                    b -= $, _ = new Do($), m = _.lock(), this._pointBuffers.push(_), this._pointBufferCounts.push($), y = 0;
                   }
                   m[y] = new Ea(), m[y].position = A, m[y].pointSize = this._sizes[n], m[y].tu = this._dates[n].startDate, m[y].tv = this._dates[n].endDate, m[y].set_color(this._colors[n]), n++, y++;
                 }
@@ -12369,7 +12369,7 @@ function requireSrc() {
               var a = t.device;
               a.globalAlpha = 0.4;
               var s = t.width, l = t.height;
-              $.makeCopy(t.get_viewPoint());
+              R.makeCopy(t.get_viewPoint());
               for (var g = t.get_fovScale() / 100, _ = r.enumerate(this.items); _.moveNext(); ) {
                 var m = _.current;
                 if (m.tranformed.z < 1) {
@@ -12379,9 +12379,9 @@ function requireSrc() {
               }
               t.device.restore();
             } else {
-              var R = new $(), F = tt.multiplyMatrix(t.get_world(), t.get_view());
+              var $ = new R(), F = tt.multiplyMatrix(t.get_world(), t.get_view());
               F.invert();
-              for (var O = $._transformCoordinate(R, F), B = r.enumerate(this._pointBuffers); B.moveNext(); ) {
+              for (var O = R._transformCoordinate($, F), B = r.enumerate(this._pointBuffers); B.moveNext(); ) {
                 var H = B.current;
                 se.use(t, H.vertexBuffer, Xr.starTexture.texture2d, j.fromArgb(255 * e, 255, 255, 255), this.depthBuffered, this.jNow, this.timeSeries ? this.decay : 0, O, this.scale * (t.height / 960), this.minSize, this.showFarSide, this.sky), t.gl.drawArrays(0, 0, H.count);
               }
@@ -12389,16 +12389,16 @@ function requireSrc() {
           },
           drawTextured: function(t, e, n) {
             this._initBuffer(t);
-            var a = new $(), s = tt.multiplyMatrix(t.get_world(), t.get_view());
+            var a = new R(), s = tt.multiplyMatrix(t.get_world(), t.get_view());
             s.invert();
-            for (var l = $._transformCoordinate(a, s), g = r.enumerate(this._pointBuffers); g.moveNext(); ) {
+            for (var l = R._transformCoordinate(a, s), g = r.enumerate(this._pointBuffers); g.moveNext(); ) {
               var _ = g.current;
               se.use(t, _.vertexBuffer, e, j.fromArgb(255 * n, 255, 255, 255), this.depthBuffered, this.jNow, this.decay, l, this.scale * (t.height / 960), this.minSize, this.showFarSide, this.sky), t.gl.drawArrays(0, 0, _.count);
             }
           }
         };
         function _a() {
-          this.position = new $(), this.normal = new $(), this.tu = 0, this.tv = 0;
+          this.position = new R(), this.normal = new R(), this.tu = 0, this.tv = 0;
         }
         _a.create = function(t, e, n, a) {
           var s = new _a();
@@ -12638,8 +12638,8 @@ function requireSrc() {
           var A = t.gl;
           if (A != null) {
             se.initialized || se.init(t), A.useProgram(se._prog);
-            var R = tt.multiplyMatrix(t.get_world(), t.get_view());
-            A.uniformMatrix4fv(se.mvMatLoc, !1, R.floatArray()), A.uniformMatrix4fv(se.projMatLoc, !1, t.get_projection().floatArray()), A.uniform1i(se.sampLoc, 0), A.uniform1f(se.jNowLoc, l), A.uniform1f(se.decayLoc, g), A.uniform4f(se.lineColorLoc, a.r / 255, a.g / 255, a.b / 255, a.a / 255), A.uniform3f(se.cameraPosLoc, _.x, _.y, _.z), A.uniform1f(se.scaleLoc, m), A.uniform1f(se.minSizeLoc, b), A.uniform1f(se.showFarSideLoc, y ? 1 : 0), A.uniform1f(se.skyLoc, M ? -1 : 1), s ? A.enable(2929) : A.disable(2929), A.disableVertexAttribArray(0), A.disableVertexAttribArray(1), A.disableVertexAttribArray(2), A.disableVertexAttribArray(3), A.bindBuffer(34962, e), A.bindBuffer(34963, null), A.enableVertexAttribArray(se.vertLoc), A.enableVertexAttribArray(se.colorLoc), A.enableVertexAttribArray(se.pointSizeLoc), A.enableVertexAttribArray(se.timeLoc), A.vertexAttribPointer(se.vertLoc, 3, 5126, !1, 40, 0), A.vertexAttribPointer(se.colorLoc, 4, 5126, !1, 40, 12), A.vertexAttribPointer(se.pointSizeLoc, 1, 5126, !1, 40, 36), A.vertexAttribPointer(se.timeLoc, 2, 5126, !1, 40, 28), A.activeTexture(33984), A.bindTexture(3553, n), A.lineWidth(1), A.enable(3042), A.blendFunc(770, 1);
+            var $ = tt.multiplyMatrix(t.get_world(), t.get_view());
+            A.uniformMatrix4fv(se.mvMatLoc, !1, $.floatArray()), A.uniformMatrix4fv(se.projMatLoc, !1, t.get_projection().floatArray()), A.uniform1i(se.sampLoc, 0), A.uniform1f(se.jNowLoc, l), A.uniform1f(se.decayLoc, g), A.uniform4f(se.lineColorLoc, a.r / 255, a.g / 255, a.b / 255, a.a / 255), A.uniform3f(se.cameraPosLoc, _.x, _.y, _.z), A.uniform1f(se.scaleLoc, m), A.uniform1f(se.minSizeLoc, b), A.uniform1f(se.showFarSideLoc, y ? 1 : 0), A.uniform1f(se.skyLoc, M ? -1 : 1), s ? A.enable(2929) : A.disable(2929), A.disableVertexAttribArray(0), A.disableVertexAttribArray(1), A.disableVertexAttribArray(2), A.disableVertexAttribArray(3), A.bindBuffer(34962, e), A.bindBuffer(34963, null), A.enableVertexAttribArray(se.vertLoc), A.enableVertexAttribArray(se.colorLoc), A.enableVertexAttribArray(se.pointSizeLoc), A.enableVertexAttribArray(se.timeLoc), A.vertexAttribPointer(se.vertLoc, 3, 5126, !1, 40, 0), A.vertexAttribPointer(se.colorLoc, 4, 5126, !1, 40, 12), A.vertexAttribPointer(se.pointSizeLoc, 1, 5126, !1, 40, 36), A.vertexAttribPointer(se.timeLoc, 2, 5126, !1, 40, 28), A.activeTexture(33984), A.bindTexture(3553, n), A.lineWidth(1), A.enable(3042), A.blendFunc(770, 1);
           }
         };
         var Tu = {};
@@ -12847,7 +12847,7 @@ function requireSrc() {
             _.uniform1f(ce.opacityLoc, s), _.uniform1f(ce.minBrightnessLoc, t.lighting ? ce.minLightingBrightness : 1), t.lighting ? _.uniform3f(ce.atmosphereColorLoc, ce.atmosphereColor.r / 255, ce.atmosphereColor.g / 255, ce.atmosphereColor.b / 255) : _.uniform3f(ce.atmosphereColorLoc, 0, 0, 0), _.uniformMatrix4fv(ce.mvMatLoc, !1, m.floatArray()), _.uniformMatrix4fv(ce.projMatLoc, !1, t.get_projection().floatArray()), ce.sunPosition.normalize();
             var b = t.get_view().clone();
             b.set_m41(0), b.set_m42(0), b.set_m43(0), b.set_m44(1);
-            var y = $._transformCoordinate(ce.sunPosition, b);
+            var y = R._transformCoordinate(ce.sunPosition, b);
             y.normalize(), _.uniform3f(ce.sunLoc, y.x, y.y, y.z), _.uniform1i(ce.sampLoc, 0), t.space || l ? _.disable(2929) : _.enable(2929), _.disableVertexAttribArray(0), _.disableVertexAttribArray(1), _.disableVertexAttribArray(2), _.disableVertexAttribArray(3), _.bindBuffer(34962, e), _.enableVertexAttribArray(ce.vertLoc), _.enableVertexAttribArray(ce.normalLoc), _.enableVertexAttribArray(ce.textureLoc), _.vertexAttribPointer(ce.vertLoc, 3, 5126, !1, g, 0), _.vertexAttribPointer(ce.normalLoc, 3, 5126, !1, g, 12), _.vertexAttribPointer(ce.textureLoc, 2, 5126, !1, g, g - 8), _.activeTexture(33984), _.bindTexture(3553, a), _.bindBuffer(34963, n), _.enable(3042), l ? _.blendFunc(770, 1) : _.blendFunc(770, 771);
           }
         };
@@ -12915,7 +12915,7 @@ function requireSrc() {
             _.uniform1f(de.opacityLoc, s), _.uniform1f(de.minBrightnessLoc, t.lighting ? de.minLightingBrightness : 1), t.lighting ? _.uniform3f(de.atmosphereColorLoc, de.atmosphereColor.r / 255, de.atmosphereColor.g / 255, de.atmosphereColor.b / 255) : _.uniform3f(de.atmosphereColorLoc, 0, 0, 0), _.uniformMatrix4fv(de.mvMatLoc, !1, m.floatArray()), _.uniformMatrix4fv(de.projMatLoc, !1, t.get_projection().floatArray()), de.sunPosition.normalize();
             var b = t.get_view().clone();
             b.set_m41(0), b.set_m42(0), b.set_m43(0), b.set_m44(1);
-            var y = $._transformCoordinate(de.sunPosition, b);
+            var y = R._transformCoordinate(de.sunPosition, b);
             y.normalize(), _.uniform3f(de.sunLoc, -y.x, -y.y, -y.z), _.uniform1i(de.sampLoc, 0), t.space || l ? _.disable(2929) : _.enable(2929), _.disableVertexAttribArray(0), _.disableVertexAttribArray(1), _.disableVertexAttribArray(2), _.disableVertexAttribArray(3), _.bindBuffer(34962, e), _.enableVertexAttribArray(de.vertLoc), _.enableVertexAttribArray(de.normalLoc), _.enableVertexAttribArray(de.textureLoc), _.vertexAttribPointer(de.vertLoc, 3, 5126, !1, g, 0), _.vertexAttribPointer(de.normalLoc, 3, 5126, !1, g, 12), _.vertexAttribPointer(de.textureLoc, 2, 5126, !1, g, g - 8), _.activeTexture(33984), _.bindTexture(3553, a), _.bindBuffer(34963, n), _.enable(3042), l ? _.blendFunc(770, 1) : _.blendFunc(770, 771);
           }
         };
@@ -12995,7 +12995,7 @@ function requireSrc() {
             _.uniformMatrix4fv(ne.mvMatLoc, !1, m.floatArray()), _.uniformMatrix4fv(ne.projMatLoc, !1, t.get_projection().floatArray()), ne.sunPosition.normalize();
             var M = t.get_view().clone();
             M.set_m41(0), M.set_m42(0), M.set_m43(0), M.set_m44(1);
-            var A = $._transformCoordinate(ne.sunPosition, M);
+            var A = R._transformCoordinate(ne.sunPosition, M);
             A.normalize(), _.uniform3f(ne.sunLoc, -A.x, -A.y, -A.z), _.uniform1i(ne.sampLoc, 0), t.space || l ? _.disable(2929) : _.enable(2929), _.disableVertexAttribArray(0), _.disableVertexAttribArray(1), _.disableVertexAttribArray(2), _.disableVertexAttribArray(3), _.bindBuffer(34962, e), _.enableVertexAttribArray(ne.vertLoc), _.enableVertexAttribArray(ne.textureLoc), _.vertexAttribPointer(ne.vertLoc, 3, 5126, !1, 20, 0), _.vertexAttribPointer(ne.textureLoc, 2, 5126, !1, 20, 12), _.activeTexture(33984), _.bindTexture(3553, a), _.bindBuffer(34963, n), _.enable(3042), l ? _.blendFunc(770, 1) : _.blendFunc(770, 771);
           }
         };
@@ -13237,7 +13237,7 @@ function requireSrc() {
             a.uniformMatrix4fv(Ve.mvMatLoc, !1, s.floatArray()), a.uniformMatrix4fv(Ve.projMatLoc, !1, t.get_projection().floatArray()), a.uniform1i(Ve.sampLoc, 0), a.disable(2929), a.disableVertexAttribArray(0), a.disableVertexAttribArray(1), a.disableVertexAttribArray(2), a.disableVertexAttribArray(3), a.bindBuffer(34962, e), a.enableVertexAttribArray(Ve.vertLoc), a.enableVertexAttribArray(Ve.textureLoc), a.enableVertexAttribArray(Ve.colorLoc), a.vertexAttribPointer(Ve.vertLoc, 3, 5126, !1, 36, 0), a.vertexAttribPointer(Ve.colorLoc, 4, 5126, !1, 36, 12), a.vertexAttribPointer(Ve.textureLoc, 2, 5126, !1, 36, 28), a.activeTexture(33984), a.bindTexture(3553, n), a.bindBuffer(34963, null), a.enable(3042), a.blendFunc(770, 771);
           }
         };
-        var Ru = {};
+        var $u = {};
         function Ze() {
         }
         Ze.init = function(t) {
@@ -13273,7 +13273,7 @@ function requireSrc() {
             n.uniformMatrix4fv(Ze.mvMatLoc, !1, a.floatArray()), n.uniformMatrix4fv(Ze.projMatLoc, !1, t.get_projection().floatArray()), n.uniform1i(Ze.sampLoc, 0), n.disable(2929), n.disableVertexAttribArray(0), n.disableVertexAttribArray(1), n.disableVertexAttribArray(2), n.disableVertexAttribArray(3), n.bindBuffer(34962, e), n.enableVertexAttribArray(Ze.vertLoc), n.enableVertexAttribArray(Ze.textureLoc), n.enableVertexAttribArray(Ze.colorLoc), n.vertexAttribPointer(Ze.vertLoc, 3, 5126, !1, 36, 0), n.vertexAttribPointer(Ze.colorLoc, 4, 5126, !1, 36, 12), n.bindBuffer(34963, null), n.enable(3042), n.blendFunc(770, 771);
           }
         };
-        var $u = {};
+        var Ru = {};
         function Ke() {
         }
         Ke.init = function(t) {
@@ -13349,19 +13349,19 @@ function requireSrc() {
         var Fu = {
           _isLeftOfHalfSpace: function(t, e, n) {
             t.normalize(), e.normalize();
-            var a = $.cross(t, e), s = $.dot(a, n);
+            var a = R.cross(t, e), s = R.dot(a, n);
             return s > 0;
           },
           _insideTriangle: function(t, e, n, a) {
             return !(!this._isLeftOfHalfSpace(t, e, a) || !this._isLeftOfHalfSpace(e, n, a) || !this._isLeftOfHalfSpace(n, t, a));
           },
           _canClipEar: function(t, e, n, a, s, l) {
-            var g, _ = t[l[e]].copy(), m = t[l[n]].copy(), b = t[l[a]].copy(), y, M = $.subtractVectors(m, _);
+            var g, _ = t[l[e]].copy(), m = t[l[n]].copy(), b = t[l[a]].copy(), y, M = R.subtractVectors(m, _);
             M.normalize();
-            var A = $.subtractVectors(m, b);
+            var A = R.subtractVectors(m, b);
             A.normalize();
-            var R = $.cross(M, A), F = m.copy();
-            if (F.normalize(), $.dot(R, F) > 0)
+            var $ = R.cross(M, A), F = m.copy();
+            if (F.normalize(), R.dot($, F) > 0)
               return !1;
             for (g = 0; g < s; g++)
               if (!(g === e || g === n || g === a) && (y = t[l[g]].copy(), this._insideTriangle(_, m, b, y)))
@@ -13456,10 +13456,10 @@ function requireSrc() {
           W._milkyWayImage == null && (W._milkyWayImage = D.loadPlanetTexture(ze.singleton.engineAssetUrl("milkywaybar.jpg")));
           var e = 50, n, a, s = 0, l = 64, g = -64, _ = -64, m = 64;
           W._galaxyImageVertexBuffer = new wa((e + 1) * (e + 1));
-          var b = W._galaxyImageVertexBuffer.lock(), y, M, A = g - l, R = m - _, F = 608e5, O = U.meanObliquityOfEcliptic(Q.get_jNow()) / 180 * Math.PI, B, H = 1 / e, K = 1 / e;
+          var b = W._galaxyImageVertexBuffer.lock(), y, M, A = g - l, $ = m - _, F = 608e5, O = U.meanObliquityOfEcliptic(Q.get_jNow()) / 180 * Math.PI, B, H = 1 / e, K = 1 / e;
           for (M = 0; M <= e; M++)
             for (M !== e ? n = g - K * A * M : n = l, y = 0; y <= e; y++)
-              y !== e ? a = _ + H * R * y : a = m, s = M * (e + 1) + y, B = $.create(a * F, 0, (n - 28) * F), B.rotateY(213 / 180 * Math.PI), B.rotateZ(-62.87175 / 180 * Math.PI), B.rotateY(-192.8595083 / 180 * Math.PI), B.rotateX(O), b[s] = Ht.createPosRaw(B, 1 - y * H, M * K);
+              y !== e ? a = _ + H * $ * y : a = m, s = M * (e + 1) + y, B = R.create(a * F, 0, (n - 28) * F), B.rotateY(213 / 180 * Math.PI), B.rotateZ(-62.87175 / 180 * Math.PI), B.rotateY(-192.8595083 / 180 * Math.PI), B.rotateX(O), b[s] = Ht.createPosRaw(B, 1 - y * H, M * K);
           W._galaxyImageVertexBuffer.unlock(), W._galaxyImageTriangleCount = e * e * 2;
           var J = new Uint16Array(e * e * 6), it = J;
           for (M = 0; M < e; M++)
@@ -13627,12 +13627,12 @@ function requireSrc() {
             W._eclipticOverviewLineList = new an(), W._eclipticOverviewLineList.set_depthBuffered(!1);
             for (var b = 0; b < 12; b++) {
               for (var y = r.truncate(W._monthDays[b]), M = 0; M < y; M++) {
-                var A = D.getPlanetLocationJD("Sun", _), R = x.eq2Ec(A.RA, A.dec, s);
-                m = R.x;
+                var A = D.getPlanetLocationJD("Sun", _), $ = x.eq2Ec(A.RA, A.dec, s);
+                m = $.x;
                 var F = 5e-3;
                 M || (F = 0.01);
                 var O = m;
-                W._eclipticOverviewLineList.addLine($._transformCoordinate($.create(Math.cos(O * Math.PI * 2 / 360), F, Math.sin(O * Math.PI * 2 / 360)), l), $._transformCoordinate($.create(Math.cos(O * Math.PI * 2 / 360), -F, Math.sin(O * Math.PI * 2 / 360)), l)), _ += 1;
+                W._eclipticOverviewLineList.addLine(R._transformCoordinate(R.create(Math.cos(O * Math.PI * 2 / 360), F, Math.sin(O * Math.PI * 2 / 360)), l), R._transformCoordinate(R.create(Math.cos(O * Math.PI * 2 / 360), -F, Math.sin(O * Math.PI * 2 / 360)), l)), _ += 1;
               }
               m += W._monthDays[b];
             }
@@ -13652,8 +13652,8 @@ function requireSrc() {
                 l = y.x;
                 var M = l;
                 if (m === Math.floor(_ / 2)) {
-                  var A = $._transformCoordinate($.create(Math.cos(M * Math.PI * 2 / 360), 0.025, Math.sin(M * Math.PI * 2 / 360)), n), R = $._transformCoordinate($.create(Math.cos(M * Math.PI * 2 / 360), 0.045, Math.sin(M * Math.PI * 2 / 360)), n);
-                  R.subtract(A), R.normalize(), W._eclipOvTextBatch.add(new nr(A, R, W._monthNames[g], 80, 159375e-9));
+                  var A = R._transformCoordinate(R.create(Math.cos(M * Math.PI * 2 / 360), 0.025, Math.sin(M * Math.PI * 2 / 360)), n), $ = R._transformCoordinate(R.create(Math.cos(M * Math.PI * 2 / 360), 0.045, Math.sin(M * Math.PI * 2 / 360)), n);
+                  $.subtract(A), $.normalize(), W._eclipOvTextBatch.add(new nr(A, $, W._monthNames[g], 80, 159375e-9));
                 }
                 s += 1;
               }
@@ -13668,18 +13668,18 @@ function requireSrc() {
             W._precLineList = new an(), W._precLineList.set_depthBuffered(!1);
             for (var n = 0; n < 360; n++) {
               var a = 90 - t;
-              W._precLineList.addLine($._transformCoordinate(U.raDecTo3dAu(n / 15, a, 1), e), $._transformCoordinate(U.raDecTo3dAu((n + 1) / 15, a, 1), e));
+              W._precLineList.addLine(R._transformCoordinate(U.raDecTo3dAu(n / 15, a, 1), e), R._transformCoordinate(U.raDecTo3dAu((n + 1) / 15, a, 1), e));
             }
             for (var n = -12e3; n < 13e3; n += 2e3) {
               var a = 90 - t, s = -((n - 2e3) / 25772 * 24) - 6;
-              W._precLineList.addLine($._transformCoordinate(U.raDecTo3dAu(s, a - 0.5, 1), e), $._transformCoordinate(U.raDecTo3dAu(s, a + 0.5, 1), e));
+              W._precLineList.addLine(R._transformCoordinate(U.raDecTo3dAu(s, a - 0.5, 1), e), R._transformCoordinate(U.raDecTo3dAu(s, a + 0.5, 1), e));
             }
           }
           if (W._precTextBatch == null) {
             W._precTextBatch = new vn(50);
             for (var n = -12e3; n < 13e3; n += 2e3) {
               var a = 90 - t + 3, s = -((n - 2e3) / 25772 * 24) - 6, l = n.toString();
-              n ? n < 0 ? l = "  " + Math.abs(n).toString() + " BCE" : l = Math.abs(n).toString() + " CE" : (a = 90 - t + 2, l = "1 CE"), l.length === 9 && (l = "   " + l), W._precTextBatch.add(new nr($._transformCoordinate(U.raDecTo3dAu(s, a, 1), e), $._transformCoordinate(U.raDecTo3dAu(s + 0.01, a, 1), e), l, 75, 15e-5));
+              n ? n < 0 ? l = "  " + Math.abs(n).toString() + " BCE" : l = Math.abs(n).toString() + " CE" : (a = 90 - t + 2, l = "1 CE"), l.length === 9 && (l = "   " + l), W._precTextBatch.add(new nr(R._transformCoordinate(U.raDecTo3dAu(s, a, 1), e), R._transformCoordinate(U.raDecTo3dAu(s + 0.01, a, 1), e), l, 75, 15e-5));
             }
           }
         }, W.drawAltAzGrid = function(t, e, n) {
@@ -13723,8 +13723,8 @@ function requireSrc() {
               }
             }
           }
-          var A = t.get_world().clone(), R = t.get_worldBase().clone();
-          return t.set_worldBase(tt.multiplyMatrix(_, t.get_world())), t.set_world(t.get_worldBase().clone()), t.makeFrustum(), W._altAzLineList.viewTransform = tt.invertMatrix(_), W._altAzLineList.drawLines(t, e, n), t.set_worldBase(R), t.set_world(A), t.makeFrustum(), !0;
+          var A = t.get_world().clone(), $ = t.get_worldBase().clone();
+          return t.set_worldBase(tt.multiplyMatrix(_, t.get_world())), t.set_world(t.get_worldBase().clone()), t.makeFrustum(), W._altAzLineList.viewTransform = tt.invertMatrix(_), W._altAzLineList.drawLines(t, e, n), t.set_worldBase($), t.set_world(A), t.makeFrustum(), !0;
         }, W.drawAltAzGridText = function(t, e, n) {
           var a = new U(0, 0), s = U.horizonToEquitorial(a, Q.get_location(), Q.get_now()), l = -((s.get_RA() - 6) / 24 * (Math.PI * 2)), g = -(s.get_dec() / 360 * (Math.PI * 2));
           U.formatDMS(s.get_RA());
@@ -13753,10 +13753,10 @@ function requireSrc() {
             W._eclipticLineList = new an(), W._eclipticLineList.set_depthBuffered(!1);
             for (var a = U.meanObliquityOfEcliptic(2451545), s = tt._rotationX(-a / 360 * (Math.PI * 2)), l = 0; l < 360; l += 10)
               for (var g = -80; g < 80; g += 2)
-                W._eclipticLineList.addLine($._transformCoordinate(U.raDecTo3dAu(l / 15, g, 1), s), $._transformCoordinate(U.raDecTo3dAu(l / 15, g + 2, 1), s));
+                W._eclipticLineList.addLine(R._transformCoordinate(U.raDecTo3dAu(l / 15, g, 1), s), R._transformCoordinate(U.raDecTo3dAu(l / 15, g + 2, 1), s));
             for (var g = -80; g <= 80; g += 10)
               for (var l = 0; l < 360; l += 5)
-                W._eclipticLineList.addLine($._transformCoordinate(U.raDecTo3dAu(l / 15, g, 1), s), $._transformCoordinate(U.raDecTo3dAu((l + 5) / 15, g, 1), s));
+                W._eclipticLineList.addLine(R._transformCoordinate(U.raDecTo3dAu(l / 15, g, 1), s), R._transformCoordinate(U.raDecTo3dAu((l + 5) / 15, g, 1), s));
             for (var _ = 0, l = 0; l < 360; l += 1) {
               var g = 0.25;
               switch (_ % 10) {
@@ -13767,7 +13767,7 @@ function requireSrc() {
                   g = 0.5;
                   break;
               }
-              _++, W._eclipticLineList.addLine($._transformCoordinate(U.raDecTo3dAu(l / 15, g, 1), s), $._transformCoordinate(U.raDecTo3dAu(l / 15, -g, 1), s));
+              _++, W._eclipticLineList.addLine(R._transformCoordinate(U.raDecTo3dAu(l / 15, g, 1), s), R._transformCoordinate(U.raDecTo3dAu(l / 15, -g, 1), s));
             }
             _ = 0;
             for (var l = 0; l < 360; l += 90) {
@@ -13782,7 +13782,7 @@ function requireSrc() {
                     m = 0.5;
                     break;
                 }
-                _++, W._eclipticLineList.addLine($._transformCoordinate(U.raDecTo3dAu((l + m) / 15, g, 1), s), $._transformCoordinate(U.raDecTo3dAu((l - m) / 15, g, 1), s));
+                _++, W._eclipticLineList.addLine(R._transformCoordinate(U.raDecTo3dAu((l + m) / 15, g, 1), s), R._transformCoordinate(U.raDecTo3dAu((l - m) / 15, g, 1), s));
               }
             }
           }
@@ -13796,13 +13796,13 @@ function requireSrc() {
             W._eclipticTextBatch = new vn(30);
             for (var n = 0; n < 360; n += 10) {
               var a = "       " + n.toString();
-              n < 10 ? a = "   " + n.toString() : n < 100 && (a = "     " + n.toString()), W._eclipticTextBatch.add(new nr($._transformCoordinate(U.raDecTo3dAu(n / 15, 0.4, 1), e), $._transformCoordinate(U.raDecTo3dAu(n / 15, 0.5, 1), e), a, 75, 18e-5));
+              n < 10 ? a = "   " + n.toString() : n < 100 && (a = "     " + n.toString()), W._eclipticTextBatch.add(new nr(R._transformCoordinate(U.raDecTo3dAu(n / 15, 0.4, 1), e), R._transformCoordinate(U.raDecTo3dAu(n / 15, 0.5, 1), e), a, 75, 18e-5));
             }
             for (var n = 0; n < 360; n += 90)
               for (var s = -80; s <= 80; s += 10)
                 if (s) {
                   var a = s.toString();
-                  s > 0 ? (a = "  +" + s.toString(), W._eclipticTextBatch.add(new nr($._transformCoordinate(U.raDecTo3dAu(n / 15, s - 0.4, 1), e), $._transformCoordinate(U.raDecTo3dAu(n / 15, s - 0.3, 1), e), a, 75, 18e-5))) : (a = "  - " + a.substr(1), W._eclipticTextBatch.add(new nr($._transformCoordinate(U.raDecTo3dAu(n / 15, s + 0.4, 1), e), $._transformCoordinate(U.raDecTo3dAu(n / 15, s + 0.5, 1), e), a, 75, 18e-5)));
+                  s > 0 ? (a = "  +" + s.toString(), W._eclipticTextBatch.add(new nr(R._transformCoordinate(U.raDecTo3dAu(n / 15, s - 0.4, 1), e), R._transformCoordinate(U.raDecTo3dAu(n / 15, s - 0.3, 1), e), a, 75, 18e-5))) : (a = "  - " + a.substr(1), W._eclipticTextBatch.add(new nr(R._transformCoordinate(U.raDecTo3dAu(n / 15, s + 0.4, 1), e), R._transformCoordinate(U.raDecTo3dAu(n / 15, s + 0.5, 1), e), a, 75, 18e-5)));
                 }
           }
         }, W.drawGalacticGrid = function(t, e, n) {
@@ -13970,8 +13970,8 @@ function requireSrc() {
               t.attributes.getNamedItem("DemUrl") != null && (M = t.attributes.getNamedItem("DemUrl").nodeValue);
               var A = "";
               t.attributes.getNamedItem("AltUrl") != null && (A = t.attributes.getNamedItem("AltUrl").nodeValue);
-              var R = 0;
-              t.attributes.getNamedItem("OffsetX") != null && (R = parseFloat(t.attributes.getNamedItem("OffsetX").nodeValue));
+              var $ = 0;
+              t.attributes.getNamedItem("OffsetX") != null && ($ = parseFloat(t.attributes.getNamedItem("OffsetX").nodeValue));
               var F = 0;
               t.attributes.getNamedItem("OffsetY") != null && (F = parseFloat(t.attributes.getNamedItem("OffsetY").nodeValue));
               var O = "", B = xt.selectSingleNode(t, "Credits");
@@ -14003,7 +14003,7 @@ function requireSrc() {
               var ue = 0;
               t.attributes.getNamedItem("Rotation") != null && (ue = parseFloat(t.attributes.getNamedItem("Rotation").nodeValue));
               var _e = !1;
-              return t.attributes.getNamedItem("Sparse") != null && (_e = r.boolean(t.attributes.getNamedItem("Sparse").nodeValue)), Mi.create(it, ot, e, a, n, Math.abs(xt.getHashCode(ot)), lt, gt, 256, ut, l, St, mt, Dt, yt, ue, _e, g, b, y, s, R, F, O, H, M, A, K, J);
+              return t.attributes.getNamedItem("Sparse") != null && (_e = r.boolean(t.attributes.getNamedItem("Sparse").nodeValue)), Mi.create(it, ot, e, a, n, Math.abs(xt.getHashCode(ot)), lt, gt, 256, ut, l, St, mt, Dt, yt, ue, _e, g, b, y, s, $, F, O, H, M, A, K, J);
             } else
               return Mi.createGeneric(e, a);
           } catch {
@@ -14014,9 +14014,9 @@ function requireSrc() {
         }, Mi.createGeneric = function(t, e) {
           var n = new Mi();
           return n._generic = !0, n._name = "Generic", n._sparse = !1, n._dataSetType = t, n._bandPass = e, n._quadTreeTileMap = "", n.url = "", n._levels = 0, n._baseTileDegrees = 0, n._imageSetID = 0, n._extension = "", n._projection = 1, n._bottomsUp = !1, n._baseLevel = 0, n._mercator = !n._projection, n._centerX = 0, n._centerY = 0, n._rotation = 0, n._thumbnailUrl = "", n._matrix = tt.get_identity(), n._matrix._multiply(tt._rotationX(n.get_rotation() / 180 * Math.PI)), n._matrix._multiply(tt._rotationZ(n.get_centerY() / 180 * Math.PI)), n._matrix._multiply(tt._rotationY((360 - n.get_centerX() + 180) / 180 * Math.PI)), n;
-        }, Mi.create = function(t, e, n, a, s, l, g, _, m, b, y, M, A, R, F, O, B, H, K, J, it, ot, lt, gt, ut, St, mt, Dt, yt) {
+        }, Mi.create = function(t, e, n, a, s, l, g, _, m, b, y, M, A, $, F, O, B, H, K, J, it, ot, lt, gt, ut, St, mt, Dt, yt) {
           var ue = new Mi();
-          return ue.setInitialParameters(t, e, n, a, s, l, g, _, b, y, M, A, R, F, O, B, H, K, J, it, ot, lt, gt, ut, St, mt, Dt, yt), ue;
+          return ue.setInitialParameters(t, e, n, a, s, l, g, _, b, y, M, A, $, F, O, B, H, K, J, it, ot, lt, gt, ut, St, mt, Dt, yt), ue;
         };
         var Ou = {
           get_wcsImage: function() {
@@ -14266,8 +14266,8 @@ function requireSrc() {
           get_viewCenterY: function() {
             return this.get_wcsImage() != null ? this.get_wcsImage().get_viewCenterY() : this._calcViewCenterCoordinate(!1);
           },
-          setInitialParameters: function(t, e, n, a, s, l, g, _, m, b, y, M, A, R, F, O, B, H, K, J, it, ot, lt, gt, ut, St, mt, Dt) {
-            this.set_referenceFrame(Dt), this.set_meanRadius(mt), this._altUrl = St, this.demUrl = ut, this._creditsText = lt, this._creditsUrl = gt, this._offsetY = ot, this._offsetX = it, this._widthFactor = J, this._elevationModel = K, this._defaultSet = H, this._name = t, this._sparse = O, this._dataSetType = n, this._bandPass = a, this._quadTreeTileMap = M, this.url = e, this._levels = _, this._baseTileDegrees = m, this._imageSetID = l, this._extension = b, this._projection = s, this._bottomsUp = y, this._baseLevel = g, this._mercator = !s, this._centerX = A, this._centerY = R, this._rotation = F, this._thumbnailUrl = B, this._computeMatrix();
+          setInitialParameters: function(t, e, n, a, s, l, g, _, m, b, y, M, A, $, F, O, B, H, K, J, it, ot, lt, gt, ut, St, mt, Dt) {
+            this.set_referenceFrame(Dt), this.set_meanRadius(mt), this._altUrl = St, this.demUrl = ut, this._creditsText = lt, this._creditsUrl = gt, this._offsetY = ot, this._offsetX = it, this._widthFactor = J, this._elevationModel = K, this._defaultSet = H, this._name = t, this._sparse = O, this._dataSetType = n, this._bandPass = a, this._quadTreeTileMap = M, this.url = e, this._levels = _, this._baseTileDegrees = m, this._imageSetID = l, this._extension = b, this._projection = s, this._bottomsUp = y, this._baseLevel = g, this._mercator = !s, this._centerX = A, this._centerY = $, this._rotation = F, this._thumbnailUrl = B, this._computeMatrix();
           },
           _guessZoomSetting: function(t) {
             var e = t, n = r.safeCast(this._wcsImage, ar);
@@ -14376,7 +14376,7 @@ function requireSrc() {
           }
         };
         function ur() {
-          this.ABC = new $(), this.abc1 = new $(), this.pointSize = 0, this.w = 0, this.e = 0, this.n = 0, this.t = 0, this.a = 0, this.z = 0, this.orbitPos = 0, this.orbits = 0;
+          this.ABC = new R(), this.abc1 = new R(), this.pointSize = 0, this.w = 0, this.e = 0, this.n = 0, this.t = 0, this.a = 0, this.z = 0, this.orbitPos = 0, this.orbits = 0;
         }
         var Hu = {
           fill: function(t) {
@@ -14867,19 +14867,19 @@ function requireSrc() {
           } else
             return !1;
         }, P._getFrameTarget = function(t, e) {
-          var n = new yo(), a = $.get_empty();
-          if (n.target = $.get_empty(), n.matrix = tt.get_identity(), !r.keyExists(P.get_allMaps(), e))
+          var n = new yo(), a = R.get_empty();
+          if (n.target = R.get_empty(), n.matrix = tt.get_identity(), !r.keyExists(P.get_allMaps(), e))
             return n;
           var s = [], l = P.get_allMaps()[e];
           for (s.push(l); l.frame.reference === 18; )
             l = l.parent, s.splice(0, 0, l);
           for (var g = t.get_world().clone(), _ = t.get_worldBaseNonRotating(), m = t.get_worldBase(), b = t.get_nominalRadius(), y = r.enumerate(s); y.moveNext(); ) {
             var M = y.current;
-            M.frame.reference !== 18 && M.frame.reference !== 20 ? D.setupPlanetMatrix(t, we.parse("SolarSystemObjects", M.frame.name), $.get_empty(), !1) : (M.computeFrame(t), M.frame.useRotatingParentFrame() ? t.set_world(tt.multiplyMatrix(M.frame.worldMatrix, t.get_world())) : t.set_world(tt.multiplyMatrix(M.frame.worldMatrix, t.get_worldBaseNonRotating())), M.frame.referenceFrameType === 3 && t.set_worldBaseNonRotating(t.get_world().clone()), t.set_nominalRadius(M.frame.meanRadius));
+            M.frame.reference !== 18 && M.frame.reference !== 20 ? D.setupPlanetMatrix(t, we.parse("SolarSystemObjects", M.frame.name), R.get_empty(), !1) : (M.computeFrame(t), M.frame.useRotatingParentFrame() ? t.set_world(tt.multiplyMatrix(M.frame.worldMatrix, t.get_world())) : t.set_world(tt.multiplyMatrix(M.frame.worldMatrix, t.get_worldBaseNonRotating())), M.frame.referenceFrameType === 3 && t.set_worldBaseNonRotating(t.get_world().clone()), t.set_nominalRadius(M.frame.meanRadius));
           }
           a = t.get_world().transform(a);
-          var A = t.get_world().transform($.create(0, 0, 1)), R = $.subtractVectors(t.get_world().transform($.create(0, 1, 0)), a);
-          return R.normalize(), n.matrix = tt.lookAtLH(new $(), $.subtractVectors(A, a), R), t.set_nominalRadius(b), t.set_world(g), t.set_worldBaseNonRotating(_), t.set_worldBase(m), n.target = a, n;
+          var A = t.get_world().transform(R.create(0, 0, 1)), $ = R.subtractVectors(t.get_world().transform(R.create(0, 1, 0)), a);
+          return $.normalize(), n.matrix = tt.lookAtLH(new R(), R.subtractVectors(A, a), $), t.set_nominalRadius(b), t.set_world(g), t.set_worldBaseNonRotating(_), t.set_worldBase(m), n.target = a, n;
         }, P._prepTourLayers = function() {
           if (qe.get_playing()) {
             var t = Z.singleton.uiController;
@@ -14911,7 +14911,7 @@ function requireSrc() {
                   }
                 }
               }
-              var A = t.get_world(), R = t.get_worldBaseNonRotating(), F = t.get_nominalRadius();
+              var A = t.get_world(), $ = t.get_worldBaseNonRotating(), F = t.get_nominalRadius();
               (g.frame.reference === 18 | g.frame.reference === 18) === 1 && (g.computeFrame(t), g.frame.referenceFrameType !== 1 && g.frame.referenceFrameType !== 2 ? t.set_world(tt.multiplyMatrix(g.frame.worldMatrix, t.get_world())) : t.set_world(tt.multiplyMatrix(g.frame.worldMatrix, t.get_worldBaseNonRotating())), t.set_nominalRadius(g.frame.meanRadius)), g.frame.showAsPoint;
               for (var O = 0; O < 2; O++)
                 for (var B = r.enumerate(P.get_allMaps()[a].layers); B.moveNext(); ) {
@@ -14939,13 +14939,13 @@ function requireSrc() {
                       if (mt.frame.referenceFrameType === 1) {
                         mt.frame.get_orbit() == null && mt.frame.set_orbit(new ga(mt.frame.get_elements(), 360, mt.frame.get_representativeColor(), 1, mt.parent.frame.meanRadius));
                         var Dt = t.get_world();
-                        t.set_world(tt.multiplyMatrix(g.frame.worldMatrix, t.get_worldBaseNonRotating())), mt.frame.get_orbit().draw3D(t, 1 * 0.5, $.create(0, 0, 0)), t.set_world(Dt);
+                        t.set_world(tt.multiplyMatrix(g.frame.worldMatrix, t.get_worldBaseNonRotating())), mt.frame.get_orbit().draw3D(t, 1 * 0.5, R.create(0, 0, 0)), t.set_world(Dt);
                       } else
                         mt.frame.referenceFrameType;
                     (mt.frame.reference === 18 || mt.frame.reference === 19) && P._draw(t, e, n, mt.get_name(), s, l);
                   }
                 }
-              t.set_nominalRadius(F), t.set_world(A), t.set_worldBaseNonRotating(R);
+              t.set_nominalRadius(F), t.set_world(A), t.set_worldBaseNonRotating($);
             }
           }
         }, P._getVisibleLayerList = function(t) {
@@ -14983,7 +14983,7 @@ function requireSrc() {
                   }
                 }
               }
-              var M = t.get_world(), A = t.get_worldBaseNonRotating(), R = t.get_nominalRadius();
+              var M = t.get_world(), A = t.get_worldBaseNonRotating(), $ = t.get_nominalRadius();
               l.frame.reference === 18 && (l.computeFrame(t), l.frame.referenceFrameType !== 1 ? t.set_world(tt.multiplyMatrix(l.frame.worldMatrix, t.get_world())) : t.set_world(tt.multiplyMatrix(l.frame.worldMatrix, t.get_worldBaseNonRotating())), t.set_nominalRadius(l.frame.meanRadius));
               for (var F = 0; F < 2; F++)
                 for (var O = r.enumerate(P.get_allMaps()[a].layers); O.moveNext(); ) {
@@ -15001,7 +15001,7 @@ function requireSrc() {
                   var b = lt.current, gt = P.get_allMaps()[a].childMaps[b];
                   (gt.frame.reference === 18 || gt.frame.reference === 19) && P._preDraw(t, e, n, gt.get_name(), s);
                 }
-              t.set_nominalRadius(R), t.set_world(M), t.set_worldBaseNonRotating(A);
+              t.set_nominalRadius($), t.set_world(M), t.set_worldBaseNonRotating(A);
             }
           }
         }, P.add = function(t, e) {
@@ -15024,13 +15024,13 @@ function requireSrc() {
           if (P._lastMenuClick = Mt.create(e, n), P._selectedLayer = t, r.canCast(t, xi) ? P.set_currentMap(t.get_name()) : r.canCast(t, ai) && P.set_currentMap(t.get_referenceFrame()), r.canCast(t, ai) && !r.canCast(t, bo)) {
             var a = t;
             P._contextMenu = new un();
-            var s = $t.create(pt.getLocalizedText(225, "Rename")), l = $t.create(pt.getLocalizedText(981, "Expand")), g = $t.create(pt.getLocalizedText(982, "Collapse")), _ = $t.create(pt.getLocalizedText(428, "Copy")), m = $t.create(pt.getLocalizedText(167, "Delete")), b = $t.create(pt.getLocalizedText(960, "Save...")), y = $t.create(pt.getLocalizedText(983, "Publish to Community...")), M = $t.create(pt.getLocalizedText(458, "Color/Opacity")), A = $t.create(pt.getLocalizedText(305, "Opacity")), R = $t.create(pt.getLocalizedText(20, "Properties")), F = $t.create(pt.getLocalizedText(1291, "Scale/Histogram")), O = $t.create(pt.getLocalizedText(683, "Lifetime")), B = new sr(), H = $t.create(pt.getLocalizedText(684, "Move to Top")), K = $t.create(pt.getLocalizedText(685, "Move Up")), J = $t.create(pt.getLocalizedText(686, "Move Down")), it = $t.create(pt.getLocalizedText(687, "Move to Bottom")), ot = $t.create(pt.getLocalizedText(957, "VO Table Viewer")), lt = new sr(), gt = $t.create(pt.getLocalizedText(1294, "Background Image Set"));
-            if (H.click = P._top_Click, K.click = P._up_Click, J.click = P._down_Click, it.click = P._bottom_Click, b.click = P._saveMenu_Click, y.click = P._publishMenu_Click, l.click = P._expand_Click, g.click = P._collapse_Click, _.click = P._copyMenu_Click, M.click = P._colorMenu_Click, m.click = P._deleteMenu_Click, s.click = P._renameMenu_Click, R.click = P._propertiesMenu_Click, F.click = P.scaleMenu_click, gt.click = P._defaultImageset_Click, A.click = P._opacityMenu_Click, O.click = P._lifeTimeMenu_Click, ot.click = P._showViewer_Click, P._contextMenu.items.push(s), !a.get_opened() && a.getPrimaryUI() != null && a.getPrimaryUI().get_hasTreeViewNodes() && P._contextMenu.items.push(l), a.get_opened() && P._contextMenu.items.push(g), a.canCopyToClipboard(), P._contextMenu.items.push(m), P._contextMenu.items.push(lt), P._contextMenu.items.push(M), r.canCast(t, qi)) {
+            var s = Rt.create(pt.getLocalizedText(225, "Rename")), l = Rt.create(pt.getLocalizedText(981, "Expand")), g = Rt.create(pt.getLocalizedText(982, "Collapse")), _ = Rt.create(pt.getLocalizedText(428, "Copy")), m = Rt.create(pt.getLocalizedText(167, "Delete")), b = Rt.create(pt.getLocalizedText(960, "Save...")), y = Rt.create(pt.getLocalizedText(983, "Publish to Community...")), M = Rt.create(pt.getLocalizedText(458, "Color/Opacity")), A = Rt.create(pt.getLocalizedText(305, "Opacity")), $ = Rt.create(pt.getLocalizedText(20, "Properties")), F = Rt.create(pt.getLocalizedText(1291, "Scale/Histogram")), O = Rt.create(pt.getLocalizedText(683, "Lifetime")), B = new sr(), H = Rt.create(pt.getLocalizedText(684, "Move to Top")), K = Rt.create(pt.getLocalizedText(685, "Move Up")), J = Rt.create(pt.getLocalizedText(686, "Move Down")), it = Rt.create(pt.getLocalizedText(687, "Move to Bottom")), ot = Rt.create(pt.getLocalizedText(957, "VO Table Viewer")), lt = new sr(), gt = Rt.create(pt.getLocalizedText(1294, "Background Image Set"));
+            if (H.click = P._top_Click, K.click = P._up_Click, J.click = P._down_Click, it.click = P._bottom_Click, b.click = P._saveMenu_Click, y.click = P._publishMenu_Click, l.click = P._expand_Click, g.click = P._collapse_Click, _.click = P._copyMenu_Click, M.click = P._colorMenu_Click, m.click = P._deleteMenu_Click, s.click = P._renameMenu_Click, $.click = P._propertiesMenu_Click, F.click = P.scaleMenu_click, gt.click = P._defaultImageset_Click, A.click = P._opacityMenu_Click, O.click = P._lifeTimeMenu_Click, ot.click = P._showViewer_Click, P._contextMenu.items.push(s), !a.get_opened() && a.getPrimaryUI() != null && a.getPrimaryUI().get_hasTreeViewNodes() && P._contextMenu.items.push(l), a.get_opened() && P._contextMenu.items.push(g), a.canCopyToClipboard(), P._contextMenu.items.push(m), P._contextMenu.items.push(lt), P._contextMenu.items.push(M), r.canCast(t, qi)) {
               P._contextMenu.items.push(gt);
               var ut = r.safeCast(t, qi);
               gt.checked = ut.get_overrideDefaultLayer();
             }
-            if ((r.canCast(t, Ui) || r.canCast(t, za)) && P._contextMenu.items.push(R), r.canCast(t, kr) && P._contextMenu.items.push(ot), r.canCast(t, qi)) {
+            if ((r.canCast(t, Ui) || r.canCast(t, za)) && P._contextMenu.items.push($), r.canCast(t, kr) && P._contextMenu.items.push(ot), r.canCast(t, qi)) {
               var ut = r.safeCast(t, qi);
               P._contextMenu.items.push(F);
             }
@@ -15040,16 +15040,16 @@ function requireSrc() {
             if (Dt)
               return;
             P._contextMenu = new un();
-            var ue = $t.create(pt.getLocalizedText(1298, "Track this frame")), _e = $t.create(pt.getLocalizedText(1299, "Fly Here")), Qt = $t.create("Show Orbit"), Ft = $t.create(pt.getLocalizedText(674, "New Reference Frame")), vi = $t.create(pt.getLocalizedText(675, "New Layer Group")), Ei = $t.create(pt.getLocalizedText(166, "Add")), Li = $t.create("Add Light");
-            $t.create(pt.getLocalizedText(956, "Add OData/table feed as Layer")), $t.create(pt.getLocalizedText(987, "New WMS Layer"));
-            var ri = $t.create(pt.getLocalizedText(1300, "New Lat/Lng Grid")), Si = $t.create(pt.getLocalizedText(988, "New Great Circle"));
-            $t.create(pt.getLocalizedText(989, "Import Orbital Elements"));
-            var Je = $t.create(pt.getLocalizedText(1301, "Add Minor Planet")), Xi = $t.create(pt.getLocalizedText(167, "Delete")), Ee = $t.create(pt.getLocalizedText(425, "Paste"));
-            $t.create(pt.getLocalizedText(1290, "Add to Timeline")), $t.create(pt.getLocalizedText(1280, "Add Keyframe"));
-            var Yi = $t.create(pt.getLocalizedText(20, "Properties")), b = $t.create(pt.getLocalizedText(990, "Save Layers"));
-            $t.create(pt.getLocalizedText(991, "Publish Layers to Community"));
-            var B = new sr(), Ni = new sr(), lt = new sr(), he = $t.create("As Reference Frame"), ee = $t.create("As Orbital Line");
-            if (ue.click = P._trackFrame_Click, _e.click = P._goTo_Click, he.click = P._addMpc_Click, ee.click = P._asOrbitalLines_Click, Je.dropDownItems.push(he), Je.dropDownItems.push(ee), Ei.click = P._addMenu_Click, vi.click = P._newLayerGroupMenu_Click, Ee.click = P._pasteLayer_Click, Ft.click = P._newMenu_Click, Xi.click = P._deleteFrameMenu_Click, Yi.click = P._framePropertiesMenu_Click, Si.click = P._addGreatCircle_Click, ri.click = P._addGirdLayer_Click, $t.create("Extract Orbit Layer"), St.frame.reference !== 19) {
+            var ue = Rt.create(pt.getLocalizedText(1298, "Track this frame")), _e = Rt.create(pt.getLocalizedText(1299, "Fly Here")), Qt = Rt.create("Show Orbit"), Ft = Rt.create(pt.getLocalizedText(674, "New Reference Frame")), vi = Rt.create(pt.getLocalizedText(675, "New Layer Group")), Ei = Rt.create(pt.getLocalizedText(166, "Add")), Li = Rt.create("Add Light");
+            Rt.create(pt.getLocalizedText(956, "Add OData/table feed as Layer")), Rt.create(pt.getLocalizedText(987, "New WMS Layer"));
+            var ri = Rt.create(pt.getLocalizedText(1300, "New Lat/Lng Grid")), Si = Rt.create(pt.getLocalizedText(988, "New Great Circle"));
+            Rt.create(pt.getLocalizedText(989, "Import Orbital Elements"));
+            var Je = Rt.create(pt.getLocalizedText(1301, "Add Minor Planet")), Xi = Rt.create(pt.getLocalizedText(167, "Delete")), Ee = Rt.create(pt.getLocalizedText(425, "Paste"));
+            Rt.create(pt.getLocalizedText(1290, "Add to Timeline")), Rt.create(pt.getLocalizedText(1280, "Add Keyframe"));
+            var Yi = Rt.create(pt.getLocalizedText(20, "Properties")), b = Rt.create(pt.getLocalizedText(990, "Save Layers"));
+            Rt.create(pt.getLocalizedText(991, "Publish Layers to Community"));
+            var B = new sr(), Ni = new sr(), lt = new sr(), he = Rt.create("As Reference Frame"), ee = Rt.create("As Orbital Line");
+            if (ue.click = P._trackFrame_Click, _e.click = P._goTo_Click, he.click = P._addMpc_Click, ee.click = P._asOrbitalLines_Click, Je.dropDownItems.push(he), Je.dropDownItems.push(ee), Ei.click = P._addMenu_Click, vi.click = P._newLayerGroupMenu_Click, Ee.click = P._pasteLayer_Click, Ft.click = P._newMenu_Click, Xi.click = P._deleteFrameMenu_Click, Yi.click = P._framePropertiesMenu_Click, Si.click = P._addGreatCircle_Click, ri.click = P._addGirdLayer_Click, Rt.create("Extract Orbit Layer"), St.frame.reference !== 19) {
               if ((Z.singleton.get_solarSystemMode() | Z.singleton.sandboxMode) === 1) {
                 var Xe = !1;
                 if (St.frame.reference !== 18 && !Z.singleton.sandboxMode)
@@ -15141,7 +15141,7 @@ function requireSrc() {
         }, P.scaleMenu_click = function(t, e) {
           var n = r.safeCast(P._selectedLayer, qi);
           if (n != null) {
-            var a = new $n();
+            var a = new Rn();
             a.image = n.getFitsImage(), a.layer = n, a.show(Mt.create(200, 200));
           }
         }, P._showViewer_Click = function(t, e) {
@@ -15479,7 +15479,7 @@ function requireSrc() {
             return this._nodes == null && (this._nodes = []), this._nodes;
           }
         };
-        function Ra() {
+        function $a() {
           this.startIndex = 0, this.indexCount = 0, this.materialIndex = 0;
         }
         var ac = {};
@@ -15583,26 +15583,26 @@ function requireSrc() {
               var l = M.current, A = _[l];
               b[A]++;
             }
-            for (var R = new Array(m), y = 0; y < m; ++y) {
+            for (var $ = new Array(m), y = 0; y < m; ++y) {
               var F = b[y];
               if (F > 0) {
-                R[y] = new Array(F);
+                $[y] = new Array(F);
                 for (var O = 0; O < F; O++)
-                  R[y][O] = 0;
+                  $[y][O] = 0;
               }
             }
             for (var y = 0; y < e.length; ++y) {
               var B = Math.floor(y / 3), A = _[e[y]];
-              R[A][--b[A]] = B;
+              $[A][--b[A]] = B;
             }
             for (var H = new Array(a), y = 0; y < a; ++y) {
-              var K = e[y * 3 + 0], J = e[y * 3 + 1], it = e[y * 3 + 2], ot = $.subtractVectors(t[J].get_position(), t[K].get_position()), lt = $.subtractVectors(t[it].get_position(), t[J].get_position());
-              H[y] = $.cross(ot, lt), H[y].normalize();
+              var K = e[y * 3 + 0], J = e[y * 3 + 1], it = e[y * 3 + 2], ot = R.subtractVectors(t[J].get_position(), t[K].get_position()), lt = R.subtractVectors(t[it].get_position(), t[J].get_position());
+              H[y] = R.cross(ot, lt), H[y].normalize();
             }
             for (var gt = a * 3, ut = new Array(gt), St = Math.min(0.9999, Math.cos(n)), y = 0; y < gt; ++y) {
-              for (var l = e[y], A = _[l], mt = H[Math.floor(y / 3)], Dt = new $(), yt = r.enumerate(R[A]); yt.moveNext(); ) {
+              for (var l = e[y], A = _[l], mt = H[Math.floor(y / 3)], Dt = new R(), yt = r.enumerate($[A]); yt.moveNext(); ) {
                 var B = yt.current, ue = H[B];
-                $.dot(mt, ue) > St && Dt.add(ue);
+                R.dot(mt, ue) > St && Dt.add(ue);
               }
               ut[y] = Dt, ut[y].normalize();
             }
@@ -15627,34 +15627,34 @@ function requireSrc() {
               var l = M.current, A = _[l];
               b[A]++;
             }
-            for (var R = new Array(m), y = 0; y < m; ++y) {
+            for (var $ = new Array(m), y = 0; y < m; ++y) {
               var F = b[y];
               if (F > 0) {
-                R[y] = new Array(F);
+                $[y] = new Array(F);
                 for (var O = 0; O < F; O++)
-                  R[y][O] = 0;
+                  $[y][O] = 0;
               }
             }
             for (var y = 0; y < e.length; ++y) {
               var B = Math.floor(y / 3), A = _[e[y]];
-              R[A][--b[A]] = B;
+              $[A][--b[A]] = B;
             }
             for (var H = new Array(a), y = 0; y < a; ++y) {
-              var K = t[e[y * 3 + 0]], J = t[e[y * 3 + 1]], it = t[e[y * 3 + 2]], ot = $.subtractVectors(J.get_position(), K.get_position()), lt = $.subtractVectors(it.get_position(), K.get_position()), gt = J.tu - K.tu, ut = J.tv - K.tv, St = it.tu - K.tu, mt = it.tv - K.tv, Dt = gt * mt - ut * St;
+              var K = t[e[y * 3 + 0]], J = t[e[y * 3 + 1]], it = t[e[y * 3 + 2]], ot = R.subtractVectors(J.get_position(), K.get_position()), lt = R.subtractVectors(it.get_position(), K.get_position()), gt = J.tu - K.tu, ut = J.tv - K.tv, St = it.tu - K.tu, mt = it.tv - K.tv, Dt = gt * mt - ut * St;
               if (Math.abs(Dt) < 1e-6)
-                ot.lengthSq() > 0 ? (H[y] = ot, H[y].normalize()) : H[y] = $.create(1, 0, 0);
+                ot.lengthSq() > 0 ? (H[y] = ot, H[y].normalize()) : H[y] = R.create(1, 0, 0);
               else {
                 var yt = 1 / Dt, ue = mt * yt, _e = -ut * yt;
-                H[y] = $.addVectors($.multiplyScalar(ot, ue), $.multiplyScalar(lt, _e)), H[y].normalize();
+                H[y] = R.addVectors(R.multiplyScalar(ot, ue), R.multiplyScalar(lt, _e)), H[y].normalize();
               }
             }
             for (var Qt = a * 3, Ft = new Array(Qt), vi = Math.min(0.9999, Math.cos(n)), y = 0; y < Qt; ++y) {
-              for (var l = e[y], A = _[l], Ei = H[Math.floor(y / 3)], Li = new $(), ri = r.enumerate(R[A]); ri.moveNext(); ) {
+              for (var l = e[y], A = _[l], Ei = H[Math.floor(y / 3)], Li = new R(), ri = r.enumerate($[A]); ri.moveNext(); ) {
                 var B = ri.current, Si = H[B];
-                $.dot(Ei, Si) > vi && Li.add(Si);
+                R.dot(Ei, Si) > vi && Li.add(Si);
               }
               var Je = t[l].get_normal();
-              Ft[y] = $.subtractVectors(Li, $.multiplyScalar(Je, $.dot(Je, Li))), Ft[y].normalize();
+              Ft[y] = R.subtractVectors(Li, R.multiplyScalar(Je, R.dot(Je, Li))), Ft[y].normalize();
             }
             return Ft;
           },
@@ -15672,13 +15672,13 @@ function requireSrc() {
               m[_][--l[_]] = M;
             }
             for (var A = new Array(s), b = 0; b < s; ++b) {
-              var R = e[b * 3 + 0], F = e[b * 3 + 1], O = e[b * 3 + 2], B = $.subtractVectors(t[F].get_position(), t[R].get_position()), H = $.subtractVectors(t[O].get_position(), t[F].get_position());
-              A[b] = $.cross(B, H), A[b].normalize();
+              var $ = e[b * 3 + 0], F = e[b * 3 + 1], O = e[b * 3 + 2], B = R.subtractVectors(t[F].get_position(), t[$].get_position()), H = R.subtractVectors(t[O].get_position(), t[F].get_position());
+              A[b] = R.cross(B, H), A[b].normalize();
             }
             for (var K = s * 3, J = new Array(K), it = Math.min(0.9999, Math.cos(n)), b = 0; b < K; ++b) {
-              for (var _ = e[b], ot = A[Math.floor(b / 3)], lt = new $(), gt = r.enumerate(m[_]); gt.moveNext(); ) {
+              for (var _ = e[b], ot = A[Math.floor(b / 3)], lt = new R(), gt = r.enumerate(m[_]); gt.moveNext(); ) {
                 var M = gt.current, ut = A[M];
-                $.dot(ot, ut) > it && lt.add(ut);
+                R.dot(ot, ut) > it && lt.add(ut);
               }
               J[b] = lt, J[b].normalize();
             }
@@ -15731,11 +15731,11 @@ function requireSrc() {
             var e = !1, n = [], a = new Wn();
             a.name = "Default";
             var s = [], l = [], g = [], _ = [];
-            l.push(new $()), g.push(new $()), _.push(new Mt());
-            var m = [], b = -1, y = new Qn(), M = new Ra(), A = 0;
+            l.push(new R()), g.push(new R()), _.push(new Mt());
+            var m = [], b = -1, y = new Qn(), M = new $a(), A = 0;
             y = new Qn(), y.diffuse = this.color, y.ambient = this.color, y.specular = Pt.get_white(), y.specularSharpness = 30, y.opacity = 1, y.isDefault = !0, M.startIndex = 0, M.indexCount = 0, M.materialIndex = 0;
-            for (var R = t.split(`
-`), F = r.enumerate(R); F.moveNext(); ) {
+            for (var $ = t.split(`
+`), F = r.enumerate($); F.moveNext(); ) {
               var O = F.current, B = r.replaceString(O, "  ", " "), H = r.trim(B).split(" ");
               if (H.length > 0)
                 switch (H[0]) {
@@ -15753,21 +15753,21 @@ function requireSrc() {
                           this._meshTextures.push(this._textureCache[this._textureLib[K]]);
                         } catch {
                         }
-                      this._addMaterial(y), M = new Ra(), M.startIndex = A, M.indexCount = 0, M.materialIndex = b;
+                      this._addMaterial(y), M = new $a(), M.startIndex = A, M.indexCount = 0, M.materialIndex = b;
                     }
                     break;
                   case "v":
-                    this.flipHandedness ? l.push($.create(-parseFloat(H[1]), parseFloat(H[2]), parseFloat(H[3]))) : l.push($.create(parseFloat(H[1]), parseFloat(H[2]), parseFloat(H[3])));
+                    this.flipHandedness ? l.push(R.create(-parseFloat(H[1]), parseFloat(H[2]), parseFloat(H[3]))) : l.push(R.create(parseFloat(H[1]), parseFloat(H[2]), parseFloat(H[3])));
                     break;
                   case "vn":
-                    this.flipHandedness ? g.push($.create(-parseFloat(H[1]), parseFloat(H[2]), parseFloat(H[3]))) : g.push($.create(parseFloat(H[1]), parseFloat(H[2]), parseFloat(H[3])));
+                    this.flipHandedness ? g.push(R.create(-parseFloat(H[1]), parseFloat(H[2]), parseFloat(H[3]))) : g.push(R.create(parseFloat(H[1]), parseFloat(H[2]), parseFloat(H[3])));
                     break;
                   case "vt":
                     _.push(Mt.create(parseFloat(H[1]), this.flipV ? 1 - parseFloat(H[2]) : parseFloat(H[2])));
                     break;
                   case "g":
                   case "o":
-                    e && (b > -1 && (M.indexCount = A - M.startIndex, a.drawGroup.push(M), M = new Ra(), M.startIndex = A, M.indexCount = 0, M.materialIndex = b), a = new Wn()), e = !0, H.length > 1 ? a.name = H[1] : a.name = "Unnamed", n.push(a);
+                    e && (b > -1 && (M.indexCount = A - M.startIndex, a.drawGroup.push(M), M = new $a(), M.startIndex = A, M.indexCount = 0, M.materialIndex = b), a = new Wn()), e = !0, H.length > 1 ? a.name = H[1] : a.name = "Unnamed", n.push(a);
                     break;
                   case "f":
                     var ot = this._getIndexies(H[1]), lt = this._getIndexies(H[2]), gt = this._getIndexies(H[3]);
@@ -15860,7 +15860,7 @@ function requireSrc() {
             }, l.readAsArrayBuffer(s);
           },
           _read3dsFromBin: function(t, e) {
-            for (var n, a, s, l = "", g = "", _ = 0, m = 0, b = [], y = [], M = [], A = -1, R = new Qn(), F = 0, O = 0, B = !1, H = !1, K = 0, J = 0, it = 0, ot = [], lt = null, gt = [], ut = [], St = {}, mt = t.get_length() - 1, Dt = 0, yt = 0; t.get_position() < mt && !B; )
+            for (var n, a, s, l = "", g = "", _ = 0, m = 0, b = [], y = [], M = [], A = -1, $ = new Qn(), F = 0, O = 0, B = !1, H = !1, K = 0, J = 0, it = 0, ot = [], lt = null, gt = [], ut = [], St = {}, mt = t.get_length() - 1, Dt = 0, yt = 0; t.get_position() < mt && !B; )
               switch (a = t.readUInt16(), s = t.readUInt32(), a) {
                 case 19789:
                   break;
@@ -15904,7 +15904,7 @@ function requireSrc() {
                 case 16704:
                   for (O = t.readUInt16(), n = 0; n < O; n++) {
                     var vi = b[Dt + n], Xi = Mt.create(t.readSingle(), this.flipV ? 1 - t.readSingle() : t.readSingle());
-                    b[Dt + n] = Cr.createUV(vi.get_position(), new $(), Xi);
+                    b[Dt + n] = Cr.createUV(vi.get_position(), new R(), Xi);
                   }
                   break;
                 case 16736:
@@ -15922,19 +15922,19 @@ function requireSrc() {
                   do
                     Xe = t.readByte(), Xe > 0 && (Yi += String.fromCharCode(Xe)), n++;
                   while (Xe);
-                  M.push(Yi), A > -1 && this._addMaterial(R), A++, R = new Qn(), R.diffuse = Pt.get_white(), R.ambient = Pt.get_white(), R.specular = Pt.get_black(), R.specularSharpness = 30, R.opacity = 1;
+                  M.push(Yi), A > -1 && this._addMaterial($), A++, $ = new Qn(), $.diffuse = Pt.get_white(), $.ambient = Pt.get_white(), $.specular = Pt.get_black(), $.specularSharpness = 30, $.opacity = 1;
                   break;
                 case 40976:
-                  R.ambient = this._loadColorChunk(t);
+                  $.ambient = this._loadColorChunk(t);
                   break;
                 case 40992:
-                  R.diffuse = this._loadColorChunk(t);
+                  $.diffuse = this._loadColorChunk(t);
                   break;
                 case 41008:
-                  R.specular = this._loadColorChunk(t);
+                  $.specular = this._loadColorChunk(t);
                   break;
                 case 41024:
-                  R.specularSharpness = 1 + 2 * this._loadPercentageChunk(t), R.specularSharpness = Math.max(10, R.specularSharpness);
+                  $.specularSharpness = 1 + 2 * this._loadPercentageChunk(t), $.specularSharpness = Math.max(10, $.specularSharpness);
                   break;
                 case 41472:
                   break;
@@ -15948,7 +15948,7 @@ function requireSrc() {
                   var xe = this.filename.substring(0, this.filename.lastIndexOf("\\") + 1);
                   try {
                     var Ni = this._tourDocument.getCachedTexture2d(xe + ee);
-                    Ni != null ? (this._meshTextures.push(Ni), this.meshFilenames.push(ee), R.diffuse = Pt.get_white()) : this._meshTextures.push(null);
+                    Ni != null ? (this._meshTextures.push(Ni), this.meshFilenames.push(ee), $.diffuse = Pt.get_white()) : this._meshTextures.push(null);
                   } catch {
                     this._meshTextures.push(null);
                   }
@@ -15984,7 +15984,7 @@ function requireSrc() {
                     if (Ni != null) {
                       this._meshSpecularTextures.push(Ni), this.meshFilenames.push(ee);
                       var Ir = r.truncate(255.99 * he / 100);
-                      R.specular = j.fromArgb(255, Ir, Ir, Ir);
+                      $.specular = j.fromArgb(255, Ir, Ir, Ir);
                     } else
                       this._meshSpecularTextures.push(null);
                   } catch {
@@ -16017,7 +16017,7 @@ function requireSrc() {
                   var yn = new Array(3);
                   for (n = 0; n < 3; n++)
                     yn[n] = t.readSingle();
-                  r.keyExists(St, l) && (St[l].pivotPoint = $.create(-yn[0], -yn[1], -yn[2]));
+                  r.keyExists(St, l) && (St[l].pivotPoint = R.create(-yn[0], -yn[1], -yn[2]));
                   break;
                 case 45088:
                   var yr = new Array(8);
@@ -16028,7 +16028,7 @@ function requireSrc() {
                   t.seekRelative(s - 6);
                   break;
               }
-            t.close(), A > -1 && this._addMaterial(R);
+            t.close(), A > -1 && this._addMaterial($);
             for (var dr = Math.PI / 180, ji = this.smooth ? 70 * dr : 45 * dr, wr = this._calculateVertexNormalsMerged(b, y, ji), zr = [], Sn = _ * 3, xr = 0; xr < Sn; ++xr) {
               var Lr = b[y[xr]];
               Lr.set_normal(wr[xr]), zr.push(Lr);
@@ -16040,7 +16040,7 @@ function requireSrc() {
                   var Va = gs.current;
                   cn.push(Va * 3), cn.push(Va * 3 + 1), cn.push(Va * 3 + 2);
                 }
-                var ya = new Ra();
+                var ya = new $a();
                 ya.startIndex = eo, ya.indexCount = hn.applyLists[n].length * 3, ya.materialIndex = sa, ds.push(ya);
               }
               hn.drawGroup = ds;
@@ -16081,27 +16081,27 @@ function requireSrc() {
           _offsetObjects: function(t, e, n, a) {
             for (var s = r.enumerate(e); s.moveNext(); ) {
               var l = s.current, g = l.localMat;
-              this._offsetObjects(t, l.children, g, $.addVectors(l.pivotPoint, a));
+              this._offsetObjects(t, l.children, g, R.addVectors(l.pivotPoint, a));
               for (var _ = r.enumerate(l.drawGroup); _.moveNext(); )
                 for (var m = _.current, b = m.startIndex + m.indexCount, y = m.startIndex; y < b; y++) {
                   var M = t[y];
-                  M.set_position($.addVectors(M.get_position(), $.addVectors(l.pivotPoint, a))), t[y] = M;
+                  M.set_position(R.addVectors(M.get_position(), R.addVectors(l.pivotPoint, a))), t[y] = M;
                 }
             }
           },
           setupLighting: function(t) {
-            var e = $.create(t.get_world().get_offsetX(), t.get_world().get_offsetY(), t.get_world().get_offsetZ()), n = $.subtractVectors(e, t.get_reflectedLightPosition()), a = $.subtractVectors(t.get_sunPosition(), t.get_reflectedLightPosition()), s = a.length() <= 0 ? 1 : $.dot(n, a) / (n.length() * a.length()), l = Math.max(0, s);
+            var e = R.create(t.get_world().get_offsetX(), t.get_world().get_offsetY(), t.get_world().get_offsetZ()), n = R.subtractVectors(e, t.get_reflectedLightPosition()), a = R.subtractVectors(t.get_sunPosition(), t.get_reflectedLightPosition()), s = a.length() <= 0 ? 1 : R.dot(n, a) / (n.length() * a.length()), l = Math.max(0, s);
             l = Math.sqrt(l);
             var g = 0, _ = 1;
             if (t.get_occludingPlanetRadius() > 0) {
-              var m = $.subtractVectors(e, t.get_occludingPlanetPosition()).length() - t.get_occludingPlanetRadius();
+              var m = R.subtractVectors(e, t.get_occludingPlanetPosition()).length() - t.get_occludingPlanetRadius();
               g = Math.max(0, Math.min(1, 1 - m / t.get_occludingPlanetRadius() * 300)), l *= 1 - g;
-              var b = $.subtractVectors(t.get_occludingPlanetPosition(), t.get_sunPosition()), y = $.subtractVectors(t.get_occludingPlanetPosition(), e), M = $.create(-y.x, -y.y, -y.z);
+              var b = R.subtractVectors(t.get_occludingPlanetPosition(), t.get_sunPosition()), y = R.subtractVectors(t.get_occludingPlanetPosition(), e), M = R.create(-y.x, -y.y, -y.z);
               M.normalize(), t.set_hemisphereLightUp(M);
-              var A = $.subtractVectors(t.get_sunPosition(), e), R = b.length(), F = -$.dot(A, b) / (R * R);
+              var A = R.subtractVectors(t.get_sunPosition(), e), $ = b.length(), F = -R.dot(A, b) / ($ * $);
               if (F > 1) {
-                var O = $.addVectors(t.get_sunPosition(), $.multiplyScalar(b, F)), B = $.subtractVectors(O, e).length();
-                $.subtractVectors(O, t.get_sunPosition()).length();
+                var O = R.addVectors(t.get_sunPosition(), R.multiplyScalar(b, F)), B = R.subtractVectors(O, e).length();
+                R.subtractVectors(O, t.get_sunPosition()).length();
                 var H = 4645784e-9, K = t.get_occludingPlanetRadius() + (F - 1) * (t.get_occludingPlanetRadius() + H), J = t.get_occludingPlanetRadius() + (F - 1) * (t.get_occludingPlanetRadius() - H);
                 if (B < K) {
                   var it = 0;
@@ -16122,8 +16122,8 @@ function requireSrc() {
             if (this._readyToRender) {
               this._dirty && !this.issLayer && this._reload();
               var n = t.get_world(), a = this._mesh.boundingSphere.center, s = 1;
-              this._mesh.boundingSphere.radius > 0 && (s = 1 / this._mesh.boundingSphere.radius), t.set_world(tt.multiplyMatrix(tt.multiplyMatrix(tt.translation($.create(-a.x, -a.y, -a.z)), tt._scaling(s, s, s)), n));
-              var l = tt.multiplyMatrix(t.get_world(), t.get_view()), g = l.transform($.get_empty()), _ = Math.sqrt(l.get_m11() * l.get_m11() + l.get_m22() * l.get_m22() + l.get_m33() * l.get_m33()) / s, m = g.length(), b = _, y = r.truncate(t.height), M = t.get_projection().get_m11(), A = t.get_projection().get_m34(), R = t.get_projection().get_m44(), F = Math.abs(A) * m + R, O = M / F * y, B = b * O;
+              this._mesh.boundingSphere.radius > 0 && (s = 1 / this._mesh.boundingSphere.radius), t.set_world(tt.multiplyMatrix(tt.multiplyMatrix(tt.translation(R.create(-a.x, -a.y, -a.z)), tt._scaling(s, s, s)), n));
+              var l = tt.multiplyMatrix(t.get_world(), t.get_view()), g = l.transform(R.get_empty()), _ = Math.sqrt(l.get_m11() * l.get_m11() + l.get_m22() * l.get_m22() + l.get_m33() * l.get_m33()) / s, m = g.length(), b = _, y = r.truncate(t.height), M = t.get_projection().get_m11(), A = t.get_projection().get_m34(), $ = t.get_projection().get_m44(), F = Math.abs(A) * m + $, O = M / F * y, B = b * O;
               if (!(B < 0.5)) {
                 var H = t.get_sunlightColor(), K = t.get_reflectedLightColor(), J = t.get_hemisphereLightColor();
                 if (X.get_current().get_solarSystemLighting() ? (this.setupLighting(t), this.useCurrentAmbient || t.set_ambientLightColor(j.fromArgb(255, 11, 11, 11))) : (t.set_sunlightColor(Pt.get_black()), t.set_reflectedLightColor(Pt.get_black()), t.set_hemisphereLightColor(Pt.get_black()), t.set_ambientLightColor(Pt.get_white())), this._mesh != null) {
@@ -16190,23 +16190,23 @@ function requireSrc() {
         }, Zi.drawEllipse = function(t, e, n, a, s, l) {
           Zi._ellipseShader == null && (Zi._ellipseShader = new Pe()), Zi._ellipseWithoutStartPointVertexBuffer == null && (Zi._ellipseWithoutStartPointVertexBuffer = Zi.createEllipseVertexBufferWithoutStartPoint(360));
           var g = t.get_world();
-          t.set_world(l), t.gl.bindBuffer(34962, Zi._ellipseWithoutStartPointVertexBuffer.vertexBuffer), t.gl.bindBuffer(34963, null), Pe.use(t, e, n, a, s, 1, g, $.create(0, 0, 0)), t.gl.drawArrays(3, 0, Zi._ellipseWithoutStartPointVertexBuffer.count - 1), t.set_world(g);
+          t.set_world(l), t.gl.bindBuffer(34962, Zi._ellipseWithoutStartPointVertexBuffer.vertexBuffer), t.gl.bindBuffer(34963, null), Pe.use(t, e, n, a, s, 1, g, R.create(0, 0, 0)), t.gl.drawArrays(3, 0, Zi._ellipseWithoutStartPointVertexBuffer.count - 1), t.set_world(g);
         }, Zi.createEllipseVertexBuffer = function(t) {
           for (var e = new as(t), n = e.lock(), a = 0, s = 0; s < t / 2; ++s)
-            n[a++] = $.create(2 * s / t * 0.05, 0, 0);
+            n[a++] = R.create(2 * s / t * 0.05, 0, 0);
           for (var s = 0; s < t / 2; ++s)
-            n[a++] = $.create(2 * s / t * 0.95 + 0.05, 0, 0);
+            n[a++] = R.create(2 * s / t * 0.95 + 0.05, 0, 0);
           return e.unlock(), e;
         }, Zi.createEllipseVertexBufferWithoutStartPoint = function(t) {
           var e = new as(t), n = e.lock();
-          n[0] = $.create(1e-6, 0, 0);
+          n[0] = R.create(1e-6, 0, 0);
           for (var a = 1; a < t; ++a)
-            n[a] = $.create(2 * a / t, 0, 0);
+            n[a] = R.create(2 * a / t, 0, 0);
           return e.unlock(), e;
         };
         var hc = {};
         function Ki() {
-          this._systemGenerated = !1, this.meanAnomoly = 0, this.orbitalYears = 0, this.observingLocation = !1, this.reference = 18, this.parentsRoationalBase = !1, this.referenceFrameType = 0, this.meanRadius = 6371e3, this.oblateness = 33528e-7, this.heading = 0, this.pitch = 0, this.roll = 0, this.scale = 1, this.tilt = 0, this.translation = new $(), this.lat = 0, this.lng = 0, this.altitude = 0, this.rotationalPeriod = 0, this.zeroRotationDate = 0, this.representativeColor = Pt.get_white(), this.showAsPoint = !1, this.showOrbitPath = !1, this.stationKeeping = !0, this.semiMajorAxis = 0, this.semiMajorAxisUnits = 1, this.eccentricity = 0, this.inclination = 0, this.argumentOfPeriapsis = 0, this.longitudeOfAscendingNode = 0, this.meanAnomolyAtEpoch = 0, this.meanDailyMotion = 0, this.epoch = 0, this._orbit = null, this._elements = new Vn(), this.worldMatrix = new tt(), this.worldMatrix = tt.get_identity();
+          this._systemGenerated = !1, this.meanAnomoly = 0, this.orbitalYears = 0, this.observingLocation = !1, this.reference = 18, this.parentsRoationalBase = !1, this.referenceFrameType = 0, this.meanRadius = 6371e3, this.oblateness = 33528e-7, this.heading = 0, this.pitch = 0, this.roll = 0, this.scale = 1, this.tilt = 0, this.translation = new R(), this.lat = 0, this.lng = 0, this.altitude = 0, this.rotationalPeriod = 0, this.zeroRotationDate = 0, this.representativeColor = Pt.get_white(), this.showAsPoint = !1, this.showOrbitPath = !1, this.stationKeeping = !0, this.semiMajorAxis = 0, this.semiMajorAxisUnits = 1, this.eccentricity = 0, this.inclination = 0, this.argumentOfPeriapsis = 0, this.longitudeOfAscendingNode = 0, this.meanAnomolyAtEpoch = 0, this.meanDailyMotion = 0, this.epoch = 0, this._orbit = null, this._elements = new Vn(), this.worldMatrix = new tt(), this.worldMatrix = tt.get_identity();
         }
         Ki.isTLECheckSumGood = function(t) {
           if (t.length !== 69)
@@ -16313,7 +16313,7 @@ function requireSrc() {
             t._writeStartElement("ReferenceFrame"), t._writeAttributeString("Name", this.name), t._writeAttributeString("Parent", this.parent), t._writeAttributeString("ReferenceFrameType", we.toXml("ReferenceFrameTypes", this.referenceFrameType)), t._writeAttributeString("Reference", we.toXml("ReferenceFrames", this.reference)), t._writeAttributeString("ParentsRoationalBase", this.parentsRoationalBase.toString()), t._writeAttributeString("MeanRadius", this.meanRadius.toString()), t._writeAttributeString("Oblateness", this.oblateness.toString()), t._writeAttributeString("Heading", this.heading.toString()), t._writeAttributeString("Pitch", this.pitch.toString()), t._writeAttributeString("Roll", this.roll.toString()), t._writeAttributeString("Scale", this.scale.toString()), t._writeAttributeString("Tilt", this.tilt.toString()), t._writeAttributeString("Translation", this.translation.toString()), this.referenceFrameType || (t._writeAttributeString("Lat", this.lat.toString()), t._writeAttributeString("Lng", this.lng.toString()), t._writeAttributeString("Altitude", this.altitude.toString())), t._writeAttributeString("RotationalPeriod", this.rotationalPeriod.toString()), t._writeAttributeString("ZeroRotationDate", this.zeroRotationDate.toString()), t._writeAttributeString("RepresentativeColor", this.get_representativeColor().save()), t._writeAttributeString("ShowAsPoint", this.showAsPoint.toString()), t._writeAttributeString("ShowOrbitPath", this.showOrbitPath.toString()), t._writeAttributeString("StationKeeping", this.stationKeeping.toString()), this.referenceFrameType === 1 && (t._writeAttributeString("SemiMajorAxis", this.semiMajorAxis.toString()), t._writeAttributeString("SemiMajorAxisScale", we.toXml("AltUnits", this.semiMajorAxisUnits)), t._writeAttributeString("Eccentricity", this.eccentricity.toString()), t._writeAttributeString("Inclination", this.inclination.toString()), t._writeAttributeString("ArgumentOfPeriapsis", this.argumentOfPeriapsis.toString()), t._writeAttributeString("LongitudeOfAscendingNode", this.longitudeOfAscendingNode.toString()), t._writeAttributeString("MeanAnomolyAtEpoch", this.meanAnomolyAtEpoch.toString()), t._writeAttributeString("MeanDailyMotion", this.meanDailyMotion.toString()), t._writeAttributeString("Epoch", this.epoch.toString())), t._writeEndElement();
           },
           initializeFromXml: function(t) {
-            this.name = t.attributes.getNamedItem("Name").nodeValue, this.parent = t.attributes.getNamedItem("Parent").nodeValue, this.referenceFrameType = we.parse("ReferenceFrameTypes", t.attributes.getNamedItem("ReferenceFrameType").nodeValue), this.reference = we.parse("ReferenceFrames", t.attributes.getNamedItem("Reference").nodeValue), this.parentsRoationalBase = r.boolean(t.attributes.getNamedItem("ParentsRoationalBase").nodeValue), this.meanRadius = parseFloat(t.attributes.getNamedItem("MeanRadius").nodeValue), this.oblateness = parseFloat(t.attributes.getNamedItem("Oblateness").nodeValue), this.heading = parseFloat(t.attributes.getNamedItem("Heading").nodeValue), this.pitch = parseFloat(t.attributes.getNamedItem("Pitch").nodeValue), this.roll = parseFloat(t.attributes.getNamedItem("Roll").nodeValue), this.scale = parseFloat(t.attributes.getNamedItem("Scale").nodeValue), this.tilt = parseFloat(t.attributes.getNamedItem("Tilt").nodeValue), this.translation = $.parse(t.attributes.getNamedItem("Translation").nodeValue), this.referenceFrameType || (this.lat = parseFloat(t.attributes.getNamedItem("Lat").nodeValue), this.lng = parseFloat(t.attributes.getNamedItem("Lng").nodeValue), this.altitude = parseFloat(t.attributes.getNamedItem("Altitude").nodeValue)), this.rotationalPeriod = parseFloat(t.attributes.getNamedItem("RotationalPeriod").nodeValue), this.zeroRotationDate = parseFloat(t.attributes.getNamedItem("ZeroRotationDate").nodeValue), this.set_representativeColor(j.load(t.attributes.getNamedItem("RepresentativeColor").nodeValue)), this.showAsPoint = r.boolean(t.attributes.getNamedItem("ShowAsPoint").nodeValue), t.attributes.getNamedItem("StationKeeping") != null && (this.stationKeeping = r.boolean(t.attributes.getNamedItem("StationKeeping").nodeValue)), this.referenceFrameType === 1 && (this.showOrbitPath = r.boolean(t.attributes.getNamedItem("ShowOrbitPath").nodeValue), this.semiMajorAxis = parseFloat(t.attributes.getNamedItem("SemiMajorAxis").nodeValue), this.semiMajorAxisUnits = we.parse("AltUnits", t.attributes.getNamedItem("SemiMajorAxisScale").nodeValue), this.eccentricity = parseFloat(t.attributes.getNamedItem("Eccentricity").nodeValue), this.inclination = parseFloat(t.attributes.getNamedItem("Inclination").nodeValue), this.argumentOfPeriapsis = parseFloat(t.attributes.getNamedItem("ArgumentOfPeriapsis").nodeValue), this.longitudeOfAscendingNode = parseFloat(t.attributes.getNamedItem("LongitudeOfAscendingNode").nodeValue), this.meanAnomolyAtEpoch = parseFloat(t.attributes.getNamedItem("MeanAnomolyAtEpoch").nodeValue), this.meanDailyMotion = parseFloat(t.attributes.getNamedItem("MeanDailyMotion").nodeValue), this.epoch = parseFloat(t.attributes.getNamedItem("Epoch").nodeValue));
+            this.name = t.attributes.getNamedItem("Name").nodeValue, this.parent = t.attributes.getNamedItem("Parent").nodeValue, this.referenceFrameType = we.parse("ReferenceFrameTypes", t.attributes.getNamedItem("ReferenceFrameType").nodeValue), this.reference = we.parse("ReferenceFrames", t.attributes.getNamedItem("Reference").nodeValue), this.parentsRoationalBase = r.boolean(t.attributes.getNamedItem("ParentsRoationalBase").nodeValue), this.meanRadius = parseFloat(t.attributes.getNamedItem("MeanRadius").nodeValue), this.oblateness = parseFloat(t.attributes.getNamedItem("Oblateness").nodeValue), this.heading = parseFloat(t.attributes.getNamedItem("Heading").nodeValue), this.pitch = parseFloat(t.attributes.getNamedItem("Pitch").nodeValue), this.roll = parseFloat(t.attributes.getNamedItem("Roll").nodeValue), this.scale = parseFloat(t.attributes.getNamedItem("Scale").nodeValue), this.tilt = parseFloat(t.attributes.getNamedItem("Tilt").nodeValue), this.translation = R.parse(t.attributes.getNamedItem("Translation").nodeValue), this.referenceFrameType || (this.lat = parseFloat(t.attributes.getNamedItem("Lat").nodeValue), this.lng = parseFloat(t.attributes.getNamedItem("Lng").nodeValue), this.altitude = parseFloat(t.attributes.getNamedItem("Altitude").nodeValue)), this.rotationalPeriod = parseFloat(t.attributes.getNamedItem("RotationalPeriod").nodeValue), this.zeroRotationDate = parseFloat(t.attributes.getNamedItem("ZeroRotationDate").nodeValue), this.set_representativeColor(j.load(t.attributes.getNamedItem("RepresentativeColor").nodeValue)), this.showAsPoint = r.boolean(t.attributes.getNamedItem("ShowAsPoint").nodeValue), t.attributes.getNamedItem("StationKeeping") != null && (this.stationKeeping = r.boolean(t.attributes.getNamedItem("StationKeeping").nodeValue)), this.referenceFrameType === 1 && (this.showOrbitPath = r.boolean(t.attributes.getNamedItem("ShowOrbitPath").nodeValue), this.semiMajorAxis = parseFloat(t.attributes.getNamedItem("SemiMajorAxis").nodeValue), this.semiMajorAxisUnits = we.parse("AltUnits", t.attributes.getNamedItem("SemiMajorAxisScale").nodeValue), this.eccentricity = parseFloat(t.attributes.getNamedItem("Eccentricity").nodeValue), this.inclination = parseFloat(t.attributes.getNamedItem("Inclination").nodeValue), this.argumentOfPeriapsis = parseFloat(t.attributes.getNamedItem("ArgumentOfPeriapsis").nodeValue), this.longitudeOfAscendingNode = parseFloat(t.attributes.getNamedItem("LongitudeOfAscendingNode").nodeValue), this.meanAnomolyAtEpoch = parseFloat(t.attributes.getNamedItem("MeanAnomolyAtEpoch").nodeValue), this.meanDailyMotion = parseFloat(t.attributes.getNamedItem("MeanDailyMotion").nodeValue), this.epoch = parseFloat(t.attributes.getNamedItem("Epoch").nodeValue));
           },
           fromTLE: function(t, e, n) {
             this.epoch = Q._twoLineDateToJulian(t.substr(18, 14)), this.eccentricity = parseFloat("0." + e.substr(26, 7)), this.inclination = parseFloat(e.substr(8, 8)), this.longitudeOfAscendingNode = parseFloat(e.substr(17, 8)), this.argumentOfPeriapsis = parseFloat(e.substr(34, 8));
@@ -16362,18 +16362,18 @@ function requireSrc() {
           _computeFixedSherical: function(t) {
             this.observingLocation && (this.lat = Q.get_location().get_lat(), this.lng = Q.get_location().get_lng(), this.altitude = Q.get_altitude()), this.worldMatrix = tt.get_identity(), this.worldMatrix.translate(this.translation);
             var e = 1 / t.get_nominalRadius() * this.scale * this.meanRadius;
-            if (this.worldMatrix.scale($.create(e, e, e)), this.worldMatrix._multiply(tt.rotationYawPitchRoll(this.heading / 180 * Math.PI, this.pitch / 180 * Math.PI, this.roll / 180 * Math.PI)), this.worldMatrix._multiply(tt._rotationZ(-90 / 180 * Math.PI)), this.rotationalPeriod) {
+            if (this.worldMatrix.scale(R.create(e, e, e)), this.worldMatrix._multiply(tt.rotationYawPitchRoll(this.heading / 180 * Math.PI, this.pitch / 180 * Math.PI, this.roll / 180 * Math.PI)), this.worldMatrix._multiply(tt._rotationZ(-90 / 180 * Math.PI)), this.rotationalPeriod) {
               var n = (Q.get_jNow() - this.zeroRotationDate) / this.rotationalPeriod * Math.PI * 2 % (Math.PI * 2);
               this.worldMatrix._multiply(tt._rotationX(-n));
             }
-            this.worldMatrix.translate($.create(1 + this.altitude / t.get_nominalRadius(), 0, 0)), this.worldMatrix._multiply(tt._rotationZ(this.lat / 180 * Math.PI)), this.worldMatrix._multiply(tt._rotationY(-(this.lng + 180) / 180 * Math.PI));
+            this.worldMatrix.translate(R.create(1 + this.altitude / t.get_nominalRadius(), 0, 0)), this.worldMatrix._multiply(tt._rotationZ(this.lat / 180 * Math.PI)), this.worldMatrix._multiply(tt._rotationY(-(this.lng + 180) / 180 * Math.PI));
           },
           _computeFrameTrajectory: function(t) {
           },
           _computeOrbital: function(t) {
             var e = this.get_elements(), n = hi.calculateRectangularJD(Q.get_jNow(), e);
             this.meanAnomoly = e.meanAnnomolyOut;
-            var a = hi.calculateRectangular(e, this.meanAnomoly + 1e-3), s = $.subtractVectors(n, a), l = n.copy();
+            var a = hi.calculateRectangular(e, this.meanAnomoly + 1e-3), s = R.subtractVectors(n, a), l = n.copy();
             l.normalize(), s.normalize(), n.length();
             var g = 1;
             switch (this.semiMajorAxisUnits) {
@@ -16409,14 +16409,14 @@ function requireSrc() {
                 break;
             }
             g *= 1 / t.get_nominalRadius();
-            var _ = tt.lookAtLH($.create(0, 0, 0), s, l);
+            var _ = tt.lookAtLH(R.create(0, 0, 0), s, l);
             _.invert(), this.worldMatrix = tt.get_identity(), this.worldMatrix.translate(this.translation);
             var m = 1 / t.get_nominalRadius() * this.scale * this.meanRadius;
-            if (this.worldMatrix.scale($.create(m, m, m)), this.worldMatrix._multiply(tt.rotationYawPitchRoll(this.heading / 180 * Math.PI, this.pitch / 180 * Math.PI, this.roll / 180 * Math.PI)), this.rotationalPeriod) {
+            if (this.worldMatrix.scale(R.create(m, m, m)), this.worldMatrix._multiply(tt.rotationYawPitchRoll(this.heading / 180 * Math.PI, this.pitch / 180 * Math.PI, this.roll / 180 * Math.PI)), this.rotationalPeriod) {
               var b = (Q.get_jNow() - this.zeroRotationDate) / this.rotationalPeriod * Math.PI * 2 % (Math.PI * 2);
               this.worldMatrix._multiply(tt._rotationX(-b));
             }
-            n = $.scale(n, g), this.worldMatrix.translate(n), this.stationKeeping && (this.worldMatrix = tt.multiplyMatrix(_, this.worldMatrix));
+            n = R.scale(n, g), this.worldMatrix.translate(n), this.stationKeeping && (this.worldMatrix = tt.multiplyMatrix(_, this.worldMatrix));
           }
         };
         function Fs() {
@@ -16467,7 +16467,7 @@ function requireSrc() {
           return e;
         };
         var gc = {};
-        function $a() {
+        function Ra() {
           this.guid = new er(), this.header = [], this.rows = [], this.delimiter = "	", this.locked = !1;
         }
         var mc = {
@@ -16515,7 +16515,7 @@ function requireSrc() {
             n && (this.rows = _);
           },
           clone: function() {
-            for (var t = new $a(), e = 0; e < this.header.length; e++)
+            for (var t = new Ra(), e = 0; e < this.header.length; e++)
               t.header.push(this.header[e]);
             for (var n = 0; n < this.rows.length; n++) {
               t.rows.push([]);
@@ -16922,8 +16922,8 @@ function requireSrc() {
               Ge._initBegun || (Ge._startInit(), Ge._initBegun = !0);
               return;
             }
-            var _ = tt.translation($.negate(n)), m = tt.multiplyMatrix(t.get_world(), _), b = tt.multiplyMatrix(m, t.get_view());
-            if ($._transformCoordinate(t.cameraPosition, tt.invertMatrix(t.get_world())), Ge._mpcVertexBuffer != null)
+            var _ = tt.translation(R.negate(n)), m = tt.multiplyMatrix(t.get_world(), _), b = tt.multiplyMatrix(m, t.get_view());
+            if (R._transformCoordinate(t.cameraPosition, tt.invertMatrix(t.get_world())), Ge._mpcVertexBuffer != null)
               for (var g = 0; g < 7; g++)
                 Ge._mpcBlendStates[g].set_targetState(!0), Ge._mpcBlendStates[g].get_state() && (Gt.use(t, b, Ge._mpcVertexBuffer[g].vertexBuffer, Ge.starTexture.texture2d, Pt.get_white(), e * Ge._mpcBlendStates[g].get_opacity(), !1, Q.get_jNow() - ur.baseDate, 0, t.cameraPosition, 200, 0.1), t.gl.drawArrays(0, 0, Ge._mpcVertexBuffer[g].count));
           }
@@ -16951,7 +16951,7 @@ function requireSrc() {
         };
         var yc = {};
         function fr() {
-          this._camParams = _i.create(0, 0, -1, 0, 0, 100), this._location3d = $.create(0, 0, 0), this.htmlDescription = "", this._constellation = "", this._classification = 1048576, this._type = 2, this._magnitude = 0, this._distnace = 0, this.angularSize = 60, this.annotation = "", this._thumbNail = null, this._studyImageset = null, this._backgroundImageSet = null, this._searchDistance = 0, this._elevation = 50;
+          this._camParams = _i.create(0, 0, -1, 0, 0, 100), this._location3d = R.create(0, 0, 0), this.htmlDescription = "", this._constellation = "", this._classification = 1048576, this._type = 2, this._magnitude = 0, this._distnace = 0, this.angularSize = 60, this.annotation = "", this._thumbNail = null, this._studyImageset = null, this._backgroundImageSet = null, this._searchDistance = 0, this._elevation = 50;
         }
         fr.create = function(t, e, n, a, s, l, g) {
           var _ = new fr();
@@ -16963,7 +16963,7 @@ function requireSrc() {
           var e = new fr();
           if (e._name = t.attributes.getNamedItem("Name").nodeValue, t.attributes.getNamedItem("MSRComponentId") != null && t.attributes.getNamedItem("Permission") != null && t.attributes.getNamedItem("Url") != null)
             return e.set_url(t.attributes.getNamedItem("Url").nodeValue), e.set_thumbnailUrl(t.attributes.getNamedItem("Thumbnail").nodeValue), e;
-          t.attributes.getNamedItem("DataSetType") != null && (e._type = we.parse("ImageSetType", t.attributes.getNamedItem("DataSetType").nodeValue)), e.get_type() === 2 ? (e._camParams.set_RA(parseFloat(t.attributes.getNamedItem("RA").nodeValue)), e._camParams.set_dec(parseFloat(t.attributes.getNamedItem("Dec").nodeValue))) : (e.set_lat(parseFloat(t.attributes.getNamedItem("Lat").nodeValue)), e.set_lng(parseFloat(t.attributes.getNamedItem("Lng").nodeValue))), t.attributes.getNamedItem("Constellation") != null && (e._constellation = t.attributes.getNamedItem("Constellation").nodeValue), t.attributes.getNamedItem("Classification") != null && (e._classification = we.parse("Classification", t.attributes.getNamedItem("Classification").nodeValue)), t.attributes.getNamedItem("Magnitude") != null && (e._magnitude = parseFloat(t.attributes.getNamedItem("Magnitude").nodeValue)), t.attributes.getNamedItem("AngularSize") != null && (e.angularSize = parseFloat(t.attributes.getNamedItem("AngularSize").nodeValue)), t.attributes.getNamedItem("ZoomLevel") != null && e.set_zoomLevel(parseFloat(t.attributes.getNamedItem("ZoomLevel").nodeValue)), t.attributes.getNamedItem("Rotation") != null && (e._camParams.rotation = parseFloat(t.attributes.getNamedItem("Rotation").nodeValue)), t.attributes.getNamedItem("Annotation") != null && (e.annotation = t.attributes.getNamedItem("Annotation").nodeValue), t.attributes.getNamedItem("Angle") != null && (e._camParams.angle = parseFloat(t.attributes.getNamedItem("Angle").nodeValue)), t.attributes.getNamedItem("Opacity") != null ? e._camParams.opacity = parseFloat(t.attributes.getNamedItem("Opacity").nodeValue) : e._camParams.opacity = 100, e.set_target(65536), t.attributes.getNamedItem("Target") != null && e.set_target(we.parse("SolarSystemObjects", t.attributes.getNamedItem("Target").nodeValue)), t.attributes.getNamedItem("ViewTarget") != null && (e._camParams.viewTarget = $.parse(t.attributes.getNamedItem("ViewTarget").nodeValue)), t.attributes.getNamedItem("TargetReferenceFrame") != null && (e._camParams.targetReferenceFrame = t.attributes.getNamedItem("TargetReferenceFrame").nodeValue);
+          t.attributes.getNamedItem("DataSetType") != null && (e._type = we.parse("ImageSetType", t.attributes.getNamedItem("DataSetType").nodeValue)), e.get_type() === 2 ? (e._camParams.set_RA(parseFloat(t.attributes.getNamedItem("RA").nodeValue)), e._camParams.set_dec(parseFloat(t.attributes.getNamedItem("Dec").nodeValue))) : (e.set_lat(parseFloat(t.attributes.getNamedItem("Lat").nodeValue)), e.set_lng(parseFloat(t.attributes.getNamedItem("Lng").nodeValue))), t.attributes.getNamedItem("Constellation") != null && (e._constellation = t.attributes.getNamedItem("Constellation").nodeValue), t.attributes.getNamedItem("Classification") != null && (e._classification = we.parse("Classification", t.attributes.getNamedItem("Classification").nodeValue)), t.attributes.getNamedItem("Magnitude") != null && (e._magnitude = parseFloat(t.attributes.getNamedItem("Magnitude").nodeValue)), t.attributes.getNamedItem("AngularSize") != null && (e.angularSize = parseFloat(t.attributes.getNamedItem("AngularSize").nodeValue)), t.attributes.getNamedItem("ZoomLevel") != null && e.set_zoomLevel(parseFloat(t.attributes.getNamedItem("ZoomLevel").nodeValue)), t.attributes.getNamedItem("Rotation") != null && (e._camParams.rotation = parseFloat(t.attributes.getNamedItem("Rotation").nodeValue)), t.attributes.getNamedItem("Annotation") != null && (e.annotation = t.attributes.getNamedItem("Annotation").nodeValue), t.attributes.getNamedItem("Angle") != null && (e._camParams.angle = parseFloat(t.attributes.getNamedItem("Angle").nodeValue)), t.attributes.getNamedItem("Opacity") != null ? e._camParams.opacity = parseFloat(t.attributes.getNamedItem("Opacity").nodeValue) : e._camParams.opacity = 100, e.set_target(65536), t.attributes.getNamedItem("Target") != null && e.set_target(we.parse("SolarSystemObjects", t.attributes.getNamedItem("Target").nodeValue)), t.attributes.getNamedItem("ViewTarget") != null && (e._camParams.viewTarget = R.parse(t.attributes.getNamedItem("ViewTarget").nodeValue)), t.attributes.getNamedItem("TargetReferenceFrame") != null && (e._camParams.targetReferenceFrame = t.attributes.getNamedItem("TargetReferenceFrame").nodeValue);
           var n = xt.selectSingleNode(t, "Description");
           n != null && (e.htmlDescription = xt.getInnerText(n));
           var a = xt.selectSingleNode(t, "BackgroundImageSet");
@@ -17194,7 +17194,7 @@ function requireSrc() {
               return D._planet3dLocations[t].copy();
           } catch {
           }
-          return $.create(0, 0, 0);
+          return R.create(0, 0, 0);
         }, D.getPlanet3dSufaceAltitude = function(t) {
           try {
             if (t < 21)
@@ -17207,9 +17207,9 @@ function requireSrc() {
           return a ? s = D.getPlanet3dLocationJD(t, a) : s = D.getPlanet3dLocation(t), s.add(U.raDecTo3dAu(n / 15 + 6, e, D.getPlanet3dSufaceAltitude(t))), s;
         }, D.getPlanet3dLocationJD = function(t, e) {
           try {
-            var n = new $(), a = ge.getPlanet(e, 0, 0, 0, -6378149), s = U.raDecTo3dAu(a.RA, a.dec, a.distance);
+            var n = new R(), a = ge.getPlanet(e, 0, 0, 0, -6378149), s = U.raDecTo3dAu(a.RA, a.dec, a.distance);
             if (t === 19)
-              n = $.create(-s.x, -s.y, -s.z);
+              n = R.create(-s.x, -s.y, -s.z);
             else {
               var l = ge.getPlanet(e, t, 0, 0, -6378149);
               n = U.raDecTo3dAu(l.RA, l.dec, l.distance), n.subtract(s);
@@ -17232,7 +17232,7 @@ function requireSrc() {
               }
             return n;
           } catch {
-            return $.create(0, 0, 0);
+            return R.create(0, 0, 0);
           }
         }, D.getPlanetLocation = function(t) {
           var e = D.getPlanetIDFromName(t);
@@ -17372,12 +17372,12 @@ function requireSrc() {
             D._planetScales[0] = 0.5, D._planetScales[5] = 0.5, D._planetScales[18] = 0.5;
           }
           D._planetDrawOrder = {}, D._planetLocations = new Array(20);
-          var s = new $(), l = 0;
+          var s = new R(), l = 0;
           {
             var g = ge.getPlanet(D._jNow, l, t ? 0 : Q.get_location().get_lat(), t ? 0 : Q.get_location().get_lng(), t ? -6378149 : Q.get_altitude());
             s = U.raDecTo3dAu(g.RA, g.dec, g.distance);
           }
-          D._planet3dLocations[19] = $.create(-s.x, -s.y, -s.z), D._planet3dLocations[19].rotateX(D._obliquity);
+          D._planet3dLocations[19] = R.create(-s.x, -s.y, -s.z), D._planet3dLocations[19].rotateX(D._obliquity);
           for (var a = 0; a < 18; a++) {
             if (D._planetLocations[a] = ge.getPlanet(D._jNow, a, t ? 0 : Q.get_location().get_lat(), t ? 0 : Q.get_location().get_lng(), t ? -6378149 : Q.get_altitude()), D._planet3dLocations[a] = U.raDecTo3dAu(D._planetLocations[a].RA, D._planetLocations[a].dec, D._planetLocations[a].distance), D._planet3dLocations[a].subtract(s), D._planet3dLocations[a].rotateX(D._obliquity), X.get_active().get_actualPlanetScale() && (D._planetScales[a] = 2 * Math.atan(0.5 * (D._planetDiameters[a] / D._planetLocations[a].distance)) / Math.PI * 180), X.get_active().get_solarSystemScale() !== 1) {
               var _ = a;
@@ -17408,7 +17408,7 @@ function requireSrc() {
               for (var e = 1; e < 20; e++)
                 if (D._orbits[e] = new Array(D._orbitalSampleRate), e < 9 || e === 19) {
                   for (var n = 0; n < D._orbitalSampleRate; n++) {
-                    var a = t, s = D._jNow + D.planetOrbitalYears[e] * 365.25 / D._orbitalSampleRate * (n - D._orbitalSampleRate / 2), l = new $();
+                    var a = t, s = D._jNow + D.planetOrbitalYears[e] * 365.25 / D._orbitalSampleRate * (n - D._orbitalSampleRate / 2), l = new R();
                     if (e === 9 ? a = -1 : e > 9 && e < 14 && (a = 4), a > -1) {
                       var g = ge.getPlanet(s, a, 0, 0, -6378149);
                       l = U.raDecTo3dAu(g.RA, g.dec, g.distance);
@@ -17417,7 +17417,7 @@ function requireSrc() {
                       var _ = ge.getPlanet(s, e, 0, 0, -6378149);
                       D._orbits[e][n] = U.raDecTo3dAu(_.RA, _.dec, _.distance), D._orbits[e][n].subtract(l);
                     } else
-                      D._orbits[e][n] = $.create(-l.x, -l.y, -l.z);
+                      D._orbits[e][n] = R.create(-l.x, -l.y, -l.z);
                     D._orbits[e][n].rotateX(D._obliquity);
                   }
                   D._orbits[e][D._orbitalSampleRate - 1] = D._orbits[e][0];
@@ -17461,13 +17461,13 @@ function requireSrc() {
           r.clearKeys(D._drawOrder);
           for (var b = t.cameraPosition.copy(), y = 0; y < 14; y++)
             if (!(X.get_active().get_solarSystemLighting() && D._planetLocations[y].eclipsed)) {
-              var M = $.subtractVectors(b, $.subtractVectors(D._planet3dLocations[y], n));
+              var M = R.subtractVectors(b, R.subtractVectors(D._planet3dLocations[y], n));
               r.keyExists(D._drawOrder, M.length()) || (D._drawOrder[M.length()] = y);
             }
-          var A = $.subtractVectors(b, $.subtractVectors(D._planet3dLocations[19], n));
+          var A = R.subtractVectors(b, R.subtractVectors(D._planet3dLocations[19], n));
           r.keyExists(D._drawOrder, A.length()) || (D._drawOrder[A.length()] = 19);
-          for (var R = r.enumerate(r.keys(D._drawOrder)); R.moveNext(); ) {
-            var F = R.current, y = D._drawOrder[F];
+          for (var $ = r.enumerate(r.keys(D._drawOrder)); $.moveNext(); ) {
+            var F = $.current, y = D._drawOrder[F];
             D._drawPlanet3d(t, y, n);
           }
           return !0;
@@ -17478,15 +17478,15 @@ function requireSrc() {
           var s = t.get_world().clone();
           if (D._setupMatrixForPlanetGeometry(t, e, n, a), e === 0) {
             var l = D.getAdjustedPlanetRadius(e);
-            s.scale($.create(l, l, l));
-            var g = $.subtractVectors(D._planet3dLocations[e], n);
+            s.scale(R.create(l, l, l));
+            var g = R.subtractVectors(D._planet3dLocations[e], n);
             s._multiply(tt.translation(g)), t.set_worldBaseNonRotating(s);
           }
         }, D._setupMatrixForPlanetGeometry = function(t, e, n, a) {
           var s = D.getAdjustedPlanetRadius(e), l = 0;
           e === 19 ? l = Math.PI + U.mstFromUTC2(Q.get_now(), 0) / 180 * Math.PI : l = Math.PI + (D._jNow - 2451545) / D.planetRotationPeriod[e] * Math.PI * 2 % (Math.PI * 2), e === 9 && (l -= Math.PI / 2);
-          var g = t.get_world().clone(), _ = t.get_world().clone(), m = $.subtractVectors(D._planet3dLocations[e], n), b = D.getPlanetOrientationAtEpoch(e);
-          return g.scale($.create(s, s, s)), g._multiply(tt._rotationY(-l)), g._multiply(b), e === t.viewCamera.target && (D.earthMatrix = tt.get_identity(), D.earthMatrix._multiply(tt._rotationY(-l)), D.earthMatrix._multiply(b), D.earthMatrixInv = D.earthMatrix.clone(), D.earthMatrixInv.invert()), g._multiply(tt.translation(m)), t.set_world(g), t.set_worldBase(t.get_world().clone()), t.set_nominalRadius(D.getPlanetRadiusInMeters(e)), a && t.makeFrustum(), _.scale($.create(s, s, s)), _._multiply(b), _._multiply(tt.translation(m)), t.set_worldBaseNonRotating(_), l;
+          var g = t.get_world().clone(), _ = t.get_world().clone(), m = R.subtractVectors(D._planet3dLocations[e], n), b = D.getPlanetOrientationAtEpoch(e);
+          return g.scale(R.create(s, s, s)), g._multiply(tt._rotationY(-l)), g._multiply(b), e === t.viewCamera.target && (D.earthMatrix = tt.get_identity(), D.earthMatrix._multiply(tt._rotationY(-l)), D.earthMatrix._multiply(b), D.earthMatrixInv = D.earthMatrix.clone(), D.earthMatrixInv.invert()), g._multiply(tt.translation(m)), t.set_world(g), t.set_worldBase(t.get_world().clone()), t.set_nominalRadius(D.getPlanetRadiusInMeters(e)), a && t.makeFrustum(), _.scale(R.create(s, s, s)), _._multiply(b), _._multiply(tt.translation(m)), t.set_worldBaseNonRotating(_), l;
         }, D.initPlanetResources = function(t) {
         }, D._drawSingleOrbit = function(t, e, n, a, s, l, g) {
           if (!(g < 0.01))
@@ -17495,17 +17495,17 @@ function requireSrc() {
               t.get_viewPoint();
               var b = t.device;
               b.save(), b.strokeStyle = e.toString(), b.lineWidth = 2, b.globalAlpha = 1;
-              for (var y = new $(), M = new $(), A = new $(), R = !0, F = tt.translation($.negate(a)), O = tt.multiplyMatrix(F, t.WVP), B = tt.multiplyMatrix(F, t.WV), H = 0; H < _; H++) {
+              for (var y = new R(), M = new R(), A = new R(), $ = !0, F = tt.translation(R.negate(a)), O = tt.multiplyMatrix(F, t.WVP), B = tt.multiplyMatrix(F, t.WV), H = 0; H < _; H++) {
                 var K = D._orbits[n][H], J = (Math.atan2(D._orbits[n][H].z, D._orbits[n][H].x) + Math.PI * 2 - s) % (Math.PI * 2), it = r.truncate(J / (Math.PI * 2) * 255), ot = it / 255;
-                it < 2 && !m && (K = l, ot = 1), M = B.transform(K), y = O.transform(K), M.z > 0 && (R ? R = !1 : (b.beginPath(), b.globalAlpha = ot * g, b.moveTo(A.x, A.y), b.lineTo(y.x, y.y), b.stroke())), A = y;
+                it < 2 && !m && (K = l, ot = 1), M = B.transform(K), y = O.transform(K), M.z > 0 && ($ ? $ = !1 : (b.beginPath(), b.globalAlpha = ot * g, b.moveTo(A.x, A.y), b.lineTo(y.x, y.y), b.stroke())), A = y;
               }
               b.restore();
             } else if (n !== 9) {
               var _ = D._orbitalSampleRate, m = !1;
               t.get_viewPoint();
-              for (var y = new $(), M = new $(), A = new $(), lt = new j(), R = !0, gt = new vo(), H = 0; H < _; H++) {
+              for (var y = new R(), M = new R(), A = new R(), lt = new j(), $ = !0, gt = new vo(), H = 0; H < _; H++) {
                 var K = D._orbits[n][H].copy(), J = (Math.atan2(K.z, K.x) + Math.PI * 2 - s) % (Math.PI * 2), it = r.truncate(J / (Math.PI * 2) * 255), ot = it / 255, ut = j.fromArgb(it, e.r, e.g, e.b);
-                it < 2 && !m && !R && (K = $.subtractVectors(l, a), ot = 1, it = 255, ut.a = 255, lt.a = 255, gt.addLine(A, K.copy(), lt._clone(), ut._clone()), lt.a = 0, ut.a = 0, K = D._orbits[n][H].copy(), m = !0), K = $.subtractVectors(K, a), R ? R = !1 : gt.addLine(A, K, lt, ut), A = K, lt = ut._clone();
+                it < 2 && !m && !$ && (K = R.subtractVectors(l, a), ot = 1, it = 255, ut.a = 255, lt.a = 255, gt.addLine(A, K.copy(), lt._clone(), ut._clone()), lt.a = 0, ut.a = 0, K = D._orbits[n][H].copy(), m = !0), K = R.subtractVectors(K, a), $ ? $ = !1 : gt.addLine(A, K, lt, ut), A = K, lt = ut._clone();
               }
               gt.drawLines(t, 1, Pt.get_white()), gt.clear();
             } else {
@@ -17524,7 +17524,7 @@ function requireSrc() {
                   St = 1327124400188e-1;
                   break;
               }
-              var mt = 1 / 1440 * 0.1, Dt = D.getPlanetPositionDirect(n, D._jNow), yt = D.getPlanetPositionDirect(n, D._jNow - mt), ue = $.scale($.subtractVectors(Dt, yt), 1 / mt), _e = D._stateVectorToKeplerian(Dt, ue, St);
+              var mt = 1 / 1440 * 0.1, Dt = D.getPlanetPositionDirect(n, D._jNow), yt = D.getPlanetPositionDirect(n, D._jNow - mt), ue = R.scale(R.subtractVectors(Dt, yt), 1 / mt), _e = D._stateVectorToKeplerian(Dt, ue, St);
               D._drawSingleOrbitElements(t, e, n, a, s, l, _e);
             }
         }, D.getPlanetPositionDirect = function(t, e) {
@@ -17540,7 +17540,7 @@ function requireSrc() {
               n = ii.eclipticLongitude(e), a = ii.eclipticLatitude(e), s = ii.radiusVector(e);
               break;
             case 3:
-              n = Rt.eclipticLongitude(e), a = Rt.eclipticLatitude(e), s = Rt.radiusVector(e);
+              n = $t.eclipticLongitude(e), a = $t.eclipticLatitude(e), s = $t.radiusVector(e);
               break;
             case 4:
               n = Y.eclipticLongitude(e), a = Y.eclipticLatitude(e), s = Y.radiusVector(e);
@@ -17561,27 +17561,27 @@ function requireSrc() {
               n = Se.eclipticLongitude(e), a = Se.eclipticLatitude(e), s = Se.radiusVector(e) / 149598e3;
               break;
             case 10:
-              var l = $i.calculate(e), g = l.satellite1.eclipticRectangularCoordinates;
-              return $.create(g.x, g.z, g.y);
+              var l = Ri.calculate(e), g = l.satellite1.eclipticRectangularCoordinates;
+              return R.create(g.x, g.z, g.y);
             case 11:
-              var l = $i.calculate(e), g = l.satellite2.eclipticRectangularCoordinates;
-              return $.create(g.x, g.z, g.y);
+              var l = Ri.calculate(e), g = l.satellite2.eclipticRectangularCoordinates;
+              return R.create(g.x, g.z, g.y);
             case 12:
-              var l = $i.calculate(e), g = l.satellite3.eclipticRectangularCoordinates;
-              return $.create(g.x, g.z, g.y);
+              var l = Ri.calculate(e), g = l.satellite3.eclipticRectangularCoordinates;
+              return R.create(g.x, g.z, g.y);
             case 13:
-              var l = $i.calculate(e), g = l.satellite4.eclipticRectangularCoordinates;
-              return $.create(g.x, g.z, g.y);
+              var l = Ri.calculate(e), g = l.satellite4.eclipticRectangularCoordinates;
+              return R.create(g.x, g.z, g.y);
           }
           n = U.degreesToRadians(n), a = U.degreesToRadians(a);
-          var _ = $.create(Math.cos(n) * Math.cos(a) * s, Math.sin(n) * Math.cos(a) * s, Math.sin(a) * s), m = (U.meanObliquityOfEcliptic(e) - U.meanObliquityOfEcliptic(2451545)) * D.RC;
-          return _.rotateX(m), $.create(_.x, _.z, _.y);
+          var _ = R.create(Math.cos(n) * Math.cos(a) * s, Math.sin(n) * Math.cos(a) * s, Math.sin(a) * s), m = (U.meanObliquityOfEcliptic(e) - U.meanObliquityOfEcliptic(2451545)) * D.RC;
+          return _.rotateX(m), R.create(_.x, _.z, _.y);
         }, D._stateVectorToKeplerian = function(t, e, n) {
-          var a = $.scale(t, 149598e3), s = $.scale($.scale(e, 1 / 86400), 149598e3), l = a.length(), g = s.length(), _ = 1 / (2 / l - g * g / n), m = $.cross(a, s), b = $.subtractVectors($.scale($.cross(s, m), 1 / n), $.scale(a, 1 / l)), y = b.length();
+          var a = R.scale(t, 149598e3), s = R.scale(R.scale(e, 1 / 86400), 149598e3), l = a.length(), g = s.length(), _ = 1 / (2 / l - g * g / n), m = R.cross(a, s), b = R.subtractVectors(R.scale(R.cross(s, m), 1 / n), R.scale(a, 1 / l)), y = b.length();
           m.normalize(), b.normalize();
-          var M = $.cross(m, b);
+          var M = R.cross(m, b);
           a.normalize();
-          var A = $.dot(b, a), R = $.dot(M, a), F = Math.atan2(Math.sqrt(1 - y * y) * R, y + A), O = new To();
+          var A = R.dot(b, a), $ = R.dot(M, a), F = Math.atan2(Math.sqrt(1 - y * y) * $, y + A), O = new To();
           return O.orientation = tt.create(b.x, b.y, b.z, 0, M.x, M.y, M.z, 0, m.x, m.y, m.z, 0, 0, 0, 0, 1), O.a = _, O.e = y, O.ea = F, O;
         }, D._drawSingleOrbitElements = function(t, e, n, a, s, l, g) {
           var _;
@@ -17599,13 +17599,13 @@ function requireSrc() {
               _ = 1;
               break;
           }
-          var m = $.negate(a);
+          var m = R.negate(a);
           n === 9 ? m.add(D._planet3dLocations[19]) : (n === 10 || n === 11 || n === 12 || n === 13) && m.add(D._planet3dLocations[4]);
-          var b = $.subtractVectors(l, a), y = tt.multiplyMatrix(tt.multiplyMatrix(g.orientation, tt.translation(m)), t.get_world());
+          var b = R.subtractVectors(l, a), y = tt.multiplyMatrix(tt.multiplyMatrix(g.orientation, tt.translation(m)), t.get_world());
           Zi.drawEllipseWithPosition(t, g.a / 149598e3 * _, g.e, g.ea, e, y, b);
         }, D.isPlanetInFrustum = function(t, e) {
           var n = t.get_frustum();
-          $.create(0, 0, 0);
+          R.create(0, 0, 0);
           for (var a = new Qa(0, 0, 0, 1), s = 0; s < 6; s++)
             if (n[s].dot(a) + e < 0)
               return !1;
@@ -17619,22 +17619,22 @@ function requireSrc() {
             t.get_world(), t.get_worldBase(), t.get_worldBaseNonRotating();
             var m = D._planet3dLocations[0].copy(), b = D._planet3dLocations[e].copy();
             m = a.transform(m), b = a.transform(b), t.set_world(a), t.set_worldBase(s), t.set_worldBaseNonRotating(l), D._setupMatrixForPlanetGeometry(t, e, n, !0);
-            var y = $.subtractVectors(m, b);
-            y.normalize(), t.set_sunPosition(y), ne.sunPosition = $.subtractVectors(D._planet3dLocations[0], b);
-            var M = $.subtractVectors(D._planet3dLocations[e], n);
+            var y = R.subtractVectors(m, b);
+            y.normalize(), t.set_sunPosition(y), ne.sunPosition = R.subtractVectors(D._planet3dLocations[0], b);
+            var M = R.subtractVectors(D._planet3dLocations[e], n);
             M.subtract(t.cameraPosition);
-            var A = M.length(), R = 2 * Math.atan(0.5 * (g / A)) / Math.PI * 180, F = 0;
-            if (R > 10.5 ? F = 0 : R > 3.9 ? F = 1 : R > 0.72 ? F = 2 : R > 0.05 ? F = 3 : F = 4, e === 19 && F < 2 && X.get_active().get_solarSystemScale() * 1e-5, F < 4) {
+            var A = M.length(), $ = 2 * Math.atan(0.5 * (g / A)) / Math.PI * 180, F = 0;
+            if ($ > 10.5 ? F = 0 : $ > 3.9 ? F = 1 : $ > 0.72 ? F = 2 : $ > 0.05 ? F = 3 : F = 4, e === 19 && F < 2 && X.get_active().get_solarSystemScale() * 1e-5, F < 4) {
               var O = t.lighting;
               e === 5 && t.gl == null && (t.lighting = !1, D.drawSaturnsRings(t, !1, A), t.lighting = O), e || (t.lighting = !1), D._drawSphere(t, e), e === 5 && (t.gl == null ? (t.lighting = !1, D.drawSaturnsRings(t, !0, A)) : (t.lighting = !1, D._drawRings(t), t.lighting = O)), t.lighting = O;
             } else if (!e)
-              D.drawPointPlanet(t, new $(), 10 * D._planetDiameters[e], D.planetColors[e], !0);
+              D.drawPointPlanet(t, new R(), 10 * D._planetDiameters[e], D.planetColors[e], !0);
             else if (e < 9 || e === 19) {
               var B = 800 * D._planetDiameters[e];
-              D.drawPointPlanet(t, new $(), Math.max(0.05, Math.min(0.1, B)), D.planetColors[e], !0);
-            } else if (R > 2e-3) {
+              D.drawPointPlanet(t, new R(), Math.max(0.05, Math.min(0.1, B)), D.planetColors[e], !0);
+            } else if ($ > 2e-3) {
               var B = 800 * D._planetDiameters[e];
-              D.drawPointPlanet(t, new $(), Math.max(0.05, Math.min(0.1, B)), D.planetColors[e], !0);
+              D.drawPointPlanet(t, new R(), Math.max(0.05, Math.min(0.1, B)), D.planetColors[e], !0);
             }
           }
           P._draw(t, 1, !1, D.getNameFrom3dId(e), !0, !1), t.set_world(a), t.set_worldBase(s), t.set_worldBaseNonRotating(l);
@@ -17643,30 +17643,30 @@ function requireSrc() {
             D._ringImage = document.createElement("img");
             var a = D._ringImage;
             a.crossOrigin = "anonymous", D._ringImage.src = ze.singleton.engineAssetUrl("saturnringsshadow.png"), D._ringsTriangleLists[0] = [], D._ringsTriangleLists[1] = [];
-            var s = 2.25, l = $.create(-s, 0, -s), g = $.create(s, 0, -s), _ = $.create(-s, 0, s), m = $.create(s, 0, s);
-            $.create(0, 0, 0), $.create(-s, 0, 0), $.create(0, 0, -s), $.create(0, 0, s), $.create(s, 0, 0);
+            var s = 2.25, l = R.create(-s, 0, -s), g = R.create(s, 0, -s), _ = R.create(-s, 0, s), m = R.create(s, 0, s);
+            R.create(0, 0, 0), R.create(-s, 0, 0), R.create(0, 0, -s), R.create(0, 0, s), R.create(s, 0, 0);
             var b = 6, y;
             y = [];
             var M = 1024, A = 1024;
             y.push(Ht.createPosSize(l, 0, 0, M, A)), y.push(Ht.createPosSize(g, 1, 0, M, A)), y.push(Ht.createPosSize(_, 0, 1, M, A)), y.push(Ht.createPosSize(m, 1, 1, M, A));
-            var R = [];
-            R.push(pi.create(0, 2, 1)), R.push(pi.create(2, 3, 1));
+            var $ = [];
+            $.push(pi.create(0, 2, 1)), $.push(pi.create(2, 3, 1));
             for (var F = 5; F-- > 1; ) {
-              for (var O = [], B = r.enumerate(R); B.moveNext(); ) {
+              for (var O = [], B = r.enumerate($); B.moveNext(); ) {
                 var H = B.current;
                 H.subDivideNoNormalize(O, y);
               }
-              R = O;
+              $ = O;
             }
-            for (var K = 0.6 / (M / 256), J = r.enumerate(R); J.moveNext(); ) {
+            for (var K = 0.6 / (M / 256), J = r.enumerate($); J.moveNext(); ) {
               var H = J.current, it = y[H.a], ot = y[H.b], lt = y[H.c];
               D._ringsTriangleLists[0].push(Me.createWithMiter(it, ot, lt, D._ringImage, b, K));
             }
           }
           if (t.gl == null) {
             t.cameraPosition;
-            var gt = new $(), ut = tt.multiplyMatrix(tt._rotationY(Math.atan2(t.get_sunPosition().x, t.get_sunPosition().z)), t.get_worldBaseNonRotating()), St = tt.multiplyMatrix(ut, t.get_view()), mt = tt.multiplyMatrix(St, t.get_projection()), M = t.width, A = t.height;
-            mt.scale($.create(M / 2, -A / 2, 1)), mt.translate($.create(M / 2, A / 2, 0));
+            var gt = new R(), ut = tt.multiplyMatrix(tt._rotationY(Math.atan2(t.get_sunPosition().x, t.get_sunPosition().z)), t.get_worldBaseNonRotating()), St = tt.multiplyMatrix(ut, t.get_view()), mt = tt.multiplyMatrix(St, t.get_projection()), M = t.width, A = t.height;
+            mt.scale(R.create(M / 2, -A / 2, 1)), mt.translate(R.create(M / 2, A / 2, 0));
             for (var Dt = 0, yt = 0; yt < 2; yt++) {
               for (var ue = r.enumerate(D._ringsTriangleLists[0]); ue.moveNext(); ) {
                 var H = ue.current;
@@ -17678,7 +17678,7 @@ function requireSrc() {
             }
           }
         }, D._drawRings = function(t) {
-          D._initRings(), ne.use(t, D._ringsVertexBuffer.vertexBuffer, null, D._ringsTexture.texture2d, 1, !1, $.zero), t.gl.drawArrays(5, 0, D._triangleCountRings);
+          D._initRings(), ne.use(t, D._ringsVertexBuffer.vertexBuffer, null, D._ringsTexture.texture2d, 1, !1, R.zero), t.gl.drawArrays(5, 0, D._triangleCountRings);
         }, D._initRings = function() {
           if (D._ringsVertexBuffer == null) {
             D._ringsTexture = D.loadPlanetTexture(ze.singleton.engineAssetUrl("saturnringsstrip.png"));
@@ -17686,7 +17686,7 @@ function requireSrc() {
             D._ringsVertexBuffer = new wa((192 + 1) * 2), D._triangleCountRings = (192 + 1) * 2;
             for (var n = D._ringsVertexBuffer.lock(), a = Math.PI * 2 / 192, s = 0, l = 0; l <= 192; l += 2) {
               var g = l * a, _ = (l + 1) * a;
-              n[s] = new Ht(), n[s].position = $.create(Math.cos(g) * t, 0, Math.sin(g) * t), n[s].tu = 1, n[s].tv = 0, s++, n[s] = new Ht(), n[s].position = $.create(Math.cos(g) * e, 0, Math.sin(g) * e), n[s].tu = 0, n[s].tv = 0, s++, n[s] = new Ht(), n[s].position = $.create(Math.cos(_) * t, 0, Math.sin(_) * t), n[s].tu = 1, n[s].tv = 1, s++, n[s] = new Ht(), n[s].position = $.create(Math.cos(_) * e, 0, Math.sin(_) * e), n[s].tu = 0, n[s].tv = 1, s++;
+              n[s] = new Ht(), n[s].position = R.create(Math.cos(g) * t, 0, Math.sin(g) * t), n[s].tu = 1, n[s].tv = 0, s++, n[s] = new Ht(), n[s].position = R.create(Math.cos(g) * e, 0, Math.sin(g) * e), n[s].tu = 0, n[s].tv = 0, s++, n[s] = new Ht(), n[s].position = R.create(Math.cos(_) * t, 0, Math.sin(_) * t), n[s].tu = 1, n[s].tv = 1, s++, n[s] = new Ht(), n[s].position = R.create(Math.cos(_) * e, 0, Math.sin(_) * e), n[s].tu = 0, n[s].tv = 1, s++;
             }
             D._ringsVertexBuffer.unlock();
           }
@@ -17697,7 +17697,7 @@ function requireSrc() {
             _.minSize = 20, _.addPoint(e.copy(), a._clone(), new ni(0, 1), n / 100), _.depthBuffered = !0, _.draw(t, 1, !1);
           } else {
             var m = t.WVP.transform(l);
-            if (m.z < 0 || !s && $.dot(t.get_viewPoint(), l) < 0.55)
+            if (m.z < 0 || !s && R.dot(t.get_viewPoint(), l) < 0.55)
               return;
             var b = t.device;
             b.save(), b.beginPath(), b.arc(m.x, m.y, g, 0, Math.PI * 2, !0), b.lineWidth = 1, b.fillStyle = a.toString(), b.fill(), b.globalAlpha = 1, b.strokeStyle = a.toString(), b.stroke(), b.restore();
@@ -17739,7 +17739,7 @@ function requireSrc() {
             D._planetPoints[0].position = U.raDecTo3dAu(a.RA - m / 15, a.dec + _, 1), D._planetPoints[0].tu = 0, D._planetPoints[0].tv = 1, D._planetPoints[0].color = Pt.get_white(), D._planetPoints[1].position = U.raDecTo3dAu(a.RA - m / 15, a.dec - _, 1), D._planetPoints[1].tu = 0, D._planetPoints[1].tv = 0, D._planetPoints[1].color = Pt.get_white(), D._planetPoints[2].position = U.raDecTo3dAu(a.RA + m / 15, a.dec + _, 1), D._planetPoints[2].tu = 1, D._planetPoints[2].tv = 1, D._planetPoints[2].color = Pt.get_white(), D._planetPoints[3].position = U.raDecTo3dAu(a.RA + m / 15, a.dec - _, 1), D._planetPoints[3].tu = 1, D._planetPoints[3].tv = 0, D._planetPoints[3].color = Pt.get_white(), D._planetSprite.draw(t, D._planetPoints, 4, l, !0, 1);
           } else {
             var b = U.raDecTo3d(a.RA, a.dec), y = D._planetScales[e] / (t.get_fovScale() / 3600) / 2, M = t.WVP.transform(b);
-            if (M.z < 0 || $.dot(t.get_viewPoint(), b) < 0.55)
+            if (M.z < 0 || R.dot(t.get_viewPoint(), b) < 0.55)
               return;
             var A = t.device;
             A.save(), A.globalAlpha = n, A.beginPath(), A.arc(M.x, M.y, y, 0, Math.PI * 2, !0), A.lineWidth = 0, A.closePath(), A.clip(), A.drawImage(l.imageElement, M.x - y, M.y - y, y * 2, y * 2), A.globalAlpha = 1, A.restore();
@@ -17768,7 +17768,7 @@ function requireSrc() {
         }
         var Lc = {};
         function ti() {
-          this.height = 0, this.width = 0, this.lighting = !1, this._viewPoint = new $(), this.space = !1, this._fovAngle = 0, this._fovScale = 0, this._nominalRadius = 6378137, this._mainTexture = null, this.viewMover = null, this.viewCamera = new _i(), this.targetCamera = new _i(), this.alt = 0, this.az = 0, this.targetAlt = 0, this.targetAz = 0, this._backgroundImageset = null, this._foregroundImageset = null, this._activeCatalogHipsImagesets = [], this._targetHeight = 1, this.targetAltitude = 0, this._galactic = !0, this._galacticMatrix = tt.create(-0.4838350155, -0.0548755604, -0.8734370902, 0, 0.7469822445, 0.4941094279, -0.44482963, 0, 0.4559837762, -0.867666149, -0.1980763734, 0, 0, 0, 0, 1), this._firstTimeInit = !1, this._useSolarSystemTilt = !0, this.customTrackingParams = new _i(), this._cameraOffset = new $(), this._fovLocal = Math.PI / 4, this.perspectiveFov = Math.PI / 4, this.nearPlane = 0, this._frustumDirty = !0, this._frustum = new Array(6), this._ambientLightColor = Pt.get_black(), this._hemiLightColor = Pt.get_black(), this._hemiLightUp = new $(), this._sunlightColor = Pt.get_white(), this._sunPosition = new $(), this._reflectedLightColor = Pt.get_black(), this._reflectedLightPosition = new $(), this._occludingPlanetRadius = 0, this._occludingPlanetPosition = new $(), this._lightingStateDirty = !0, this._twoSidedLighting = !1, this.cameraPosition = new $(), this._skyColor = "Blue";
+          this.height = 0, this.width = 0, this.lighting = !1, this._viewPoint = new R(), this.space = !1, this._fovAngle = 0, this._fovScale = 0, this._nominalRadius = 6378137, this._mainTexture = null, this.viewMover = null, this.viewCamera = new _i(), this.targetCamera = new _i(), this.alt = 0, this.az = 0, this.targetAlt = 0, this.targetAz = 0, this._backgroundImageset = null, this._foregroundImageset = null, this._activeCatalogHipsImagesets = [], this._targetHeight = 1, this.targetAltitude = 0, this._galactic = !0, this._galacticMatrix = tt.create(-0.4838350155, -0.0548755604, -0.8734370902, 0, 0.7469822445, 0.4941094279, -0.44482963, 0, 0.4559837762, -0.867666149, -0.1980763734, 0, 0, 0, 0, 1), this._firstTimeInit = !1, this._useSolarSystemTilt = !0, this.customTrackingParams = new _i(), this._cameraOffset = new R(), this._fovLocal = Math.PI / 4, this.perspectiveFov = Math.PI / 4, this.nearPlane = 0, this._frustumDirty = !0, this._frustum = new Array(6), this._ambientLightColor = Pt.get_black(), this._hemiLightColor = Pt.get_black(), this._hemiLightUp = new R(), this._sunlightColor = Pt.get_white(), this._sunPosition = new R(), this._reflectedLightColor = Pt.get_black(), this._reflectedLightPosition = new R(), this._occludingPlanetRadius = 0, this._occludingPlanetPosition = new R(), this._lightingStateDirty = !0, this._twoSidedLighting = !1, this.cameraPosition = new R(), this._skyColor = "Blue";
           for (var t = 0; t < 6; t++)
             this._frustum[t] = new mo(0, 0, 0, 0);
         }
@@ -17950,18 +17950,18 @@ function requireSrc() {
                   m = !0;
               }
             if (m) {
-              var R = n.get__table().rows.length;
-              if ((R > 1e4 || s > 100 * 60 * 5) && e) {
-                console.log("Too Many results - Aborting"), console.log(R);
+              var $ = n.get__table().rows.length;
+              if (($ > 1e4 || s > 100 * 60 * 5) && e) {
+                console.log("Too Many results - Aborting"), console.log($);
                 var F = new zs();
                 F.aborted = !0, F.table = n.getTableDataInView(), a(F), n.cleanUp();
               } else
                 setTimeout(function() {
                   l._tryGetAllDataInView(t, e, n, a, s);
-                }, 10), s % 200 || (console.log("Waiting for more tiles to load"), console.log(R)), s++;
+                }, 10), s % 200 || (console.log("Waiting for more tiles to load"), console.log($)), s++;
             } else {
-              var R = n.get__table().rows.length;
-              console.log("Done!"), console.log(R);
+              var $ = n.get__table().rows.length;
+              console.log("Done!"), console.log($);
               var F = new zs();
               F.aborted = !1, F.table = n.getTableDataInView(), a(F), n.cleanUp();
             }
@@ -17995,7 +17995,7 @@ function requireSrc() {
           getEarthAltitude: function(t, e, n) {
             if (Z.singleton.get_solarSystemMode()) {
               var a = U.geoTo3dDouble(t, e + 90), s = D.earthMatrixInv;
-              a = $._transformCoordinate(a, s), a.normalize();
+              a = R._transformCoordinate(a, s), a.normalize();
               var l = U.cartesianToLatLng(a);
               return this.getAltitudeForLatLongForPlanet(this.viewCamera.target, l.y, l.x);
             } else
@@ -18040,10 +18040,10 @@ function requireSrc() {
             } else
               this.targetAltitude = 0, this._targetHeight = 1;
             var a = this.viewCamera.rotation;
-            this.cameraPosition = $.create(Math.sin(a) * Math.sin(this.viewCamera.angle) * e, Math.cos(a) * Math.sin(this.viewCamera.angle) * e, -this._targetHeight - Math.cos(this.viewCamera.angle) * e);
-            var s = $.create(0, 0, -this._targetHeight);
+            this.cameraPosition = R.create(Math.sin(a) * Math.sin(this.viewCamera.angle) * e, Math.cos(a) * Math.sin(this.viewCamera.angle) * e, -this._targetHeight - Math.cos(this.viewCamera.angle) * e);
+            var s = R.create(0, 0, -this._targetHeight);
             this.cameraPosition.length();
-            var l = $.create(Math.sin(a) * Math.cos(this.viewCamera.angle), Math.cos(a) * Math.cos(this.viewCamera.angle), Math.sin(this.viewCamera.angle));
+            var l = R.create(Math.sin(a) * Math.cos(this.viewCamera.angle), Math.cos(a) * Math.cos(this.viewCamera.angle), Math.sin(this.viewCamera.angle));
             this.set_view(tt.lookAtLH(this.cameraPosition, s, l)), this.set_viewBase(this.get_view());
             var g = Math.sqrt((e + 1) * (e + 1) - 1);
             g = Math.max(0.5, g);
@@ -18070,7 +18070,7 @@ function requireSrc() {
             }
             this.set_world(n), this.set_worldBase(n.clone());
             var y = this.viewCamera.zoom;
-            this.cameraPosition = $.create(0, 0, 0), this.set_view(tt.lookAtLH(this.cameraPosition, $.create(0, 0, -1), $.create(Math.sin(s), Math.cos(s), 0))), this.set_viewBase(this.get_view().clone()), this.nearPlane = 0.1, this.set_projection(tt.perspectiveFovLH(y / 343.774, t / e, 0.1, -2)), this._setMatrixes(), this.makeFrustum();
+            this.cameraPosition = R.create(0, 0, 0), this.set_view(tt.lookAtLH(this.cameraPosition, R.create(0, 0, -1), R.create(Math.sin(s), Math.cos(s), 0))), this.set_viewBase(this.get_view().clone()), this.nearPlane = 0.1, this.set_projection(tt.perspectiveFovLH(y / 343.774, t / e, 0.1, -2)), this._setMatrixes(), this.makeFrustum();
           },
           get_solarSystemTrack: function() {
             return this.viewCamera.target;
@@ -18098,7 +18098,7 @@ function requireSrc() {
           },
           setupMatricesOverlays: function() {
             this.set_world(tt.get_identity()), tt.get_identity();
-            var t = $.create(0, 0, 0), e = $.create(0, 0, 1), n = $.create(0, 1, 0), a;
+            var t = R.create(0, 0, 0), e = R.create(0, 0, 1), n = R.create(0, 1, 0), a;
             a = tt.lookAtLH(t, e, n), a._multiply(tt._scaling(1, -1, 1)), this.set_view(a);
             var s = 1e4;
             this.nearPlane = 0.1, this.set_projection(tt.perspectiveFovLH(this._fovLocal, this.width / this.height, this.nearPlane, s));
@@ -18112,7 +18112,7 @@ function requireSrc() {
             } else
               r.emptyString(this.get_trackingFrame()) || this.set_trackingFrame("");
             this.viewCamera.viewTarget, this.viewCamera.zoom * 20;
-            var s = new $(), l = tt.get_identity();
+            var s = new R(), l = tt.get_identity();
             l._multiply(tt._rotationX(-this.viewCamera.lat / 180 * Math.PI)), l._multiply(tt._rotationY(-this.viewCamera.lng / 180 * Math.PI));
             var g = tt.get_identity(), _;
             if (this._useSolarSystemTilt && !this.get_sandboxMode()) {
@@ -18123,14 +18123,14 @@ function requireSrc() {
                 var b = Math.min(1.903089987, xt.log10(e) + 5) / 1.903089987;
                 m = m * Math.max(0, 1 - b);
               }
-              this.cameraPosition = $.create(Math.sin(-this.viewCamera.rotation) * Math.sin(m) * e, Math.cos(-this.viewCamera.rotation) * Math.sin(m) * e, Math.cos(m) * e), _ = $.create(Math.sin(-this.viewCamera.rotation), Math.cos(-this.viewCamera.rotation), 1e-5);
+              this.cameraPosition = R.create(Math.sin(-this.viewCamera.rotation) * Math.sin(m) * e, Math.cos(-this.viewCamera.rotation) * Math.sin(m) * e, Math.cos(m) * e), _ = R.create(Math.sin(-this.viewCamera.rotation), Math.cos(-this.viewCamera.rotation), 1e-5);
             } else
-              this.cameraPosition = $.create(0, 0, e), _ = $.create(Math.sin(-this.viewCamera.rotation), Math.cos(-this.viewCamera.rotation), 1e-4);
+              this.cameraPosition = R.create(0, 0, e), _ = R.create(Math.sin(-this.viewCamera.rotation), Math.cos(-this.viewCamera.rotation), 1e-4);
             this.cameraPosition = l.transform(this.cameraPosition), this._cameraOffset = this.cameraPosition.copy();
             var y = n.clone();
-            y.invert(), this._cameraOffset = $._transformCoordinate(this._cameraOffset, y), _ = l.transform(_), this.set_world(tt.get_identity()), this.set_worldBase(tt.get_identity()), this.set_worldBaseNonRotating(tt.get_identity()), this.set_view(tt.multiplyMatrix(tt.multiplyMatrix(n, tt.lookAtLH(this.cameraPosition, s, _)), g)), this.set_viewBase(this.get_view().clone());
-            var M = $.subtractVectors(s, this.cameraPosition);
-            M.normalize(), M = $._transformCoordinate(M, n), M.normalize(), this._viewPoint = M;
+            y.invert(), this._cameraOffset = R._transformCoordinate(this._cameraOffset, y), _ = l.transform(_), this.set_world(tt.get_identity()), this.set_worldBase(tt.get_identity()), this.set_worldBaseNonRotating(tt.get_identity()), this.set_view(tt.multiplyMatrix(tt.multiplyMatrix(n, tt.lookAtLH(this.cameraPosition, s, _)), g)), this.set_viewBase(this.get_view().clone());
+            var M = R.subtractVectors(s, this.cameraPosition);
+            M.normalize(), M = R._transformCoordinate(M, n), M.normalize(), this._viewPoint = M;
             var A = D.getAdjustedPlanetRadius(this.get_solarSystemTrack());
             e < A * 2 && !t ? (this.nearPlane = e * 0.03, this.nearPlane = Math.max(this.nearPlane, 1e-11), ti.back = 1900) : t ? (ti.back = 900056, ti.back = e > 900056 ? e * 3 : 900056, this.nearPlane = 3e-5) : (ti.back = e > 1900 ? e + 200 : 1900, X.get_active().get_solarSystemScale() < 13 ? this.nearPlane = Math.min(e * 0.03, 0.01) : this.nearPlane = 1e-3), this.set_projection(tt.perspectiveFovLH(this._fovLocal, this.width / this.height, this.nearPlane, ti.back)), this.perspectiveFov = this._fovLocal, this._fovAngle = this.viewCamera.zoom / 343.774 / Math.PI * 180, this._fovScale = this._fovAngle / this.height * 3600, this._setMatrixes(), this.makeFrustum();
           },
@@ -18207,7 +18207,7 @@ function requireSrc() {
             e.invert(), this._frustum[0].a = t.get_m14() + t.get_m11(), this._frustum[0].b = t.get_m24() + t.get_m21(), this._frustum[0].c = t.get_m34() + t.get_m31(), this._frustum[0].d = t.get_m44() + t.get_m41(), this._frustum[1].a = t.get_m14() - t.get_m11(), this._frustum[1].b = t.get_m24() - t.get_m21(), this._frustum[1].c = t.get_m34() - t.get_m31(), this._frustum[1].d = t.get_m44() - t.get_m41(), this._frustum[2].a = t.get_m14() - t.get_m12(), this._frustum[2].b = t.get_m24() - t.get_m22(), this._frustum[2].c = t.get_m34() - t.get_m32(), this._frustum[2].d = t.get_m44() - t.get_m42(), this._frustum[3].a = t.get_m14() + t.get_m12(), this._frustum[3].b = t.get_m24() + t.get_m22(), this._frustum[3].c = t.get_m34() + t.get_m32(), this._frustum[3].d = t.get_m44() + t.get_m42(), this._frustum[4].a = t.get_m13(), this._frustum[4].b = t.get_m23(), this._frustum[4].c = t.get_m33(), this._frustum[4].d = t.get_m43(), this._frustum[5].a = t.get_m14() - t.get_m13(), this._frustum[5].b = t.get_m24() - t.get_m23(), this._frustum[5].c = t.get_m34() - t.get_m33(), this._frustum[5].d = t.get_m44() - t.get_m43();
             for (var n = 0; n < 6; n++)
               this._frustum[n].normalize();
-            this._frustumDirty = !1, this.WVP.scale($.create(this.width / 2, -this.height / 2, 1)), this.WVP.translate($.create(this.width / 2, this.height / 2, 0)), this._setMatrixes();
+            this._frustumDirty = !1, this.WVP.scale(R.create(this.width / 2, -this.height / 2, 1)), this.WVP.translate(R.create(this.width / 2, this.height / 2, 0)), this._setMatrixes();
           },
           _initGL: function() {
             this.gl != null && (this.gl.getExtension("OES_element_index_uint"), G.uvMultiple = 1, G.demEnabled = !0, ne.init(this));
@@ -18226,7 +18226,7 @@ function requireSrc() {
           }
         };
         function Me() {
-          this.a = new Ht(), this.b = new Ht(), this.c = new Ht(), this.normal = new $(), this.opacity = 1, this.expansionInPixels = 0.6, this.tileLevel = 0, this._ta = new $(), this._tb = new $(), this._tc = new $(), this._expandedS0 = new Mt(), this._expandedS1 = new Mt(), this._expandedS2 = new Mt(), this.lighting = 1;
+          this.a = new Ht(), this.b = new Ht(), this.c = new Ht(), this.normal = new R(), this.opacity = 1, this.expansionInPixels = 0.6, this.tileLevel = 0, this._ta = new R(), this._tb = new R(), this._tc = new R(), this._expandedS0 = new Mt(), this._expandedS1 = new Mt(), this._expandedS2 = new Mt(), this.lighting = 1;
         }
         Me.create = function(t, e, n, a, s) {
           var l = new Me();
@@ -18244,31 +18244,31 @@ function requireSrc() {
         }, Me._miterPoint = function(t, e, n, a, s, l, g) {
           var _ = n - t, m = a - e, b = s - t, y = l - e, M = Math.sqrt(_ * _ + m * m);
           M && (_ /= M, m /= M), M = Math.sqrt(b * b + y * y), M && (b /= M, y /= M);
-          var A = _ + b, R = m + y;
-          M = Math.sqrt(A * A + R * R), M && (A /= M, R /= M);
+          var A = _ + b, $ = m + y;
+          M = Math.sqrt(A * A + $ * $), M && (A /= M, $ /= M);
           var F = _ - b, O = m - y;
           M = Math.sqrt(F * F + O * O);
           var B = M / 2, H = Math.min(2, g / B);
-          return A *= H, R *= H, Mt.create(t - A, e - R);
+          return A *= H, $ *= H, Mt.create(t - A, e - $);
         }, Me._miterPointOut = function(t, e, n, a, s, l, g, _) {
           var m = a - e, b = s - n, y = l - e, M = g - n, A = Math.sqrt(m * m + b * b);
           A && (m /= A, b /= A), A = Math.sqrt(y * y + M * M), A && (y /= A, M /= A);
-          var R = m + y, F = b + M;
-          A = Math.sqrt(R * R + F * F), A && (R /= A, F /= A);
+          var $ = m + y, F = b + M;
+          A = Math.sqrt($ * $ + F * F), A && ($ /= A, F /= A);
           var O = m - y, B = b - M;
           A = Math.sqrt(O * O + B * B);
           var H = A / 2, K = Math.min(2, _ / H);
-          R *= K, F *= K, t.x = e - R, t.y = n - F;
+          $ *= K, F *= K, t.x = e - $, t.y = n - F;
         };
         var kc = {
           makeNormal: function() {
             var t = this.a.position.copy(), e = this.b.position.copy(), n = this.c.position.copy();
             t.normalize(), e.normalize(), n.normalize();
             var a = t.x + e.x + n.x, s = t.y + e.y + n.y, l = t.z + e.z + n.z;
-            this.normal = $.create(a / 3, s / 3, l / 3), this.normal.normalize();
+            this.normal = R.create(a / 3, s / 3, l / 3), this.normal.normalize();
           },
           _checkBackface: function() {
-            var t = $.subtractVectors(this._ta, this._tb), e = $.subtractVectors(this._ta, this._tc), n = $.cross(t, e);
+            var t = R.subtractVectors(this._ta, this._tb), e = R.subtractVectors(this._ta, this._tc), n = R.cross(t, e);
             return n.normalize(), n.z >= 0;
           },
           draw: function(t, e) {
@@ -18280,11 +18280,11 @@ function requireSrc() {
               this._drawTriangle(t, this._texture, this._ta.x, this._ta.y, this._tb.x, this._tb.y, this._tc.x, this._tc.y, this.a.tu, this.a.tv, this.b.tu, this.b.tv, this.c.tu, this.c.tv);
             }
           },
-          _drawTriangle: function(t, e, n, a, s, l, g, _, m, b, y, M, A, R) {
+          _drawTriangle: function(t, e, n, a, s, l, g, _, m, b, y, M, A, $) {
             if (!this.intersects(0, Me.width, 0, Me.height, n, a, s, l, g, _))
               return !1;
             Me._miterPointOut(this._expandedS0, n, a, s, l, g, _, this.expansionInPixels), Me._miterPointOut(this._expandedS1, s, l, n, a, g, _, this.expansionInPixels), Me._miterPointOut(this._expandedS2, g, _, s, l, n, a, this.expansionInPixels), n = this._expandedS0.x, a = this._expandedS0.y, s = this._expandedS1.x, l = this._expandedS1.y, g = this._expandedS2.x, _ = this._expandedS2.y, t.save(), Me.renderingOn && (t.beginPath(), t.moveTo(n, a), t.lineTo(s, l), t.lineTo(g, _), t.closePath(), t.clip());
-            var F = m * (R - M) - y * R + A * M + (y - A) * b, O = -(b * (g - s) - M * g + R * s + (M - R) * n) / F, B = (M * _ + b * (l - _) - R * l + (R - M) * a) / F, H = (m * (g - s) - y * g + A * s + (y - A) * n) / F, K = -(y * _ + m * (l - _) - A * l + (A - y) * a) / F, J = (m * (R * s - M * g) + b * (y * g - A * s) + (A * M - y * R) * n) / F, it = (m * (R * l - M * _) + b * (y * _ - A * l) + (A * M - y * R) * a) / F;
+            var F = m * ($ - M) - y * $ + A * M + (y - A) * b, O = -(b * (g - s) - M * g + $ * s + (M - $) * n) / F, B = (M * _ + b * (l - _) - $ * l + ($ - M) * a) / F, H = (m * (g - s) - y * g + A * s + (y - A) * n) / F, K = -(y * _ + m * (l - _) - A * l + (A - y) * a) / F, J = (m * ($ * s - M * g) + b * (y * g - A * s) + (A * M - y * $) * n) / F, it = (m * ($ * l - M * _) + b * (y * _ - A * l) + (A * M - y * $) * a) / F;
             return t.transform(O, B, H, K, J, it), Me.renderingOn && (t.globalAlpha = this.opacity, this.lighting < 1 && (t.globalAlpha = 1, t.fillStyle = "Black", t.fillRect(0, 0, Me.width, Me.height), t.globalAlpha = this.lighting * this.opacity), t.drawImage(e, 0, 0)), t.restore(), !0;
           },
           intersects: function(t, e, n, a, s, l, g, _, m, b) {
@@ -18294,8 +18294,8 @@ function requireSrc() {
             return this.tileLevel < 4 && (Math.abs(s - g) > y || Math.abs(l - _) > y || Math.abs(m - g) > y || Math.abs(b - _) > y || Math.abs(s - m) > y || Math.abs(l - b) > y) ? !1 : this.lineRectangleIntersect(t, e, n, a, s, l, g, _) || this.lineRectangleIntersect(t, e, n, a, g, _, m, b) || this.lineRectangleIntersect(t, e, n, a, m, b, s, l);
           },
           lineRectangleIntersect: function(t, e, n, a, s, l, g, _) {
-            var m, b, y, M, A, R;
-            A = (_ - l) / (g - s), R = l - A * s, A > 0 ? (m = A * t + R, b = A * e + R) : (m = A * e + R, b = A * t + R), l < _ ? (y = l, M = _) : (y = _, M = l);
+            var m, b, y, M, A, $;
+            A = (_ - l) / (g - s), $ = l - A * s, A > 0 ? (m = A * t + $, b = A * e + $) : (m = A * e + $, b = A * t + $), l < _ ? (y = l, M = _) : (y = _, M = l);
             var F, O;
             return F = m > y ? m : y, O = b < M ? b : M, F < O && !(O < n || F > a);
           }
@@ -18592,11 +18592,11 @@ function requireSrc() {
             return t;
           },
           createPolygon: function(t) {
-            var e = new Ro();
+            var e = new $o();
             return e.set_fill(t), e;
           },
           createPolyLine: function(t) {
-            return new $o();
+            return new Ro();
           },
           createCircle: function(t) {
             var e = new Eo();
@@ -19068,7 +19068,7 @@ function requireSrc() {
           }
         };
         function vn(t) {
-          this.height = 128, this.items = [], this._glyphVersion = -1, this.viewTransform = tt.get_identity(), this._textObject = new Rn(), this._vertCount = 0, this.height = t * 3;
+          this.height = 128, this.items = [], this._glyphVersion = -1, this.viewTransform = tt.get_identity(), this._textObject = new $n(), this._vertCount = 0, this.height = t * 3;
         }
         var Ec = {
           add: function(t) {
@@ -19076,9 +19076,9 @@ function requireSrc() {
           },
           draw: function(t, e, n) {
             if (t.gl == null)
-              for (var a = $._transformCoordinate(t.get_viewPoint(), this.viewTransform), s = this.height / t.get_fovAngle() * t.height / 180, l = r.enumerate(this.items); l.moveNext(); ) {
+              for (var a = R._transformCoordinate(t.get_viewPoint(), this.viewTransform), s = this.height / t.get_fovAngle() * t.height / 180, l = r.enumerate(this.items); l.moveNext(); ) {
                 var g = l.current, _ = t.WVP.transform(g.center);
-                if (!(_.z < 0) && !($.dot(a, g.center) < 0.55)) {
+                if (!(_.z < 0) && !(R.dot(a, g.center) < 0.55)) {
                   var m = t.WVP.transform(g.top), b = Math.atan2(_.x - m.x, _.y - m.y), y = t.device;
                   y.save(), y.translate(_.x, _.y), y.rotate(-b), y.globalAlpha = e, y.fillStyle = n.toString(), y.font = "normal normal " + Math.round(s * 1.2).toString() + "px Arial", y.textBaseline = "top";
                   var M = y.measureText(g.text);
@@ -19104,8 +19104,8 @@ function requireSrc() {
                 for (var A = a.length, b = 0; b < A; b++) {
                   var y = this._glyphCache.getGlyphItem(a.substr(b, 1));
                   if (y != null) {
-                    var R = Ji.create(s * n.scale * g, 0 * n.scale * g, y.extents.x * l * n.scale * g, y.extents.y * l * n.scale * g);
-                    s += y.extents.x * l, n.addGlyphPoints(t, y.size, R, y.uvRect);
+                    var $ = Ji.create(s * n.scale * g, 0 * n.scale * g, y.extents.x * l * n.scale * g, y.extents.y * l * n.scale * g);
+                    s += y.extents.x * l, n.addGlyphPoints(t, y.size, $, y.uvRect);
                   }
                 }
               }
@@ -19129,7 +19129,7 @@ function requireSrc() {
           var e = t.attributes.getNamedItem("Glyph").nodeValue, n = new ta(e);
           return n.uvRect = Ji.create(parseFloat(t.attributes.getNamedItem("UVLeft").nodeValue), parseFloat(t.attributes.getNamedItem("UVTop").nodeValue), parseFloat(t.attributes.getNamedItem("UVWidth").nodeValue), parseFloat(t.attributes.getNamedItem("UVHeight").nodeValue)), n.size = Mt.create(parseFloat(t.attributes.getNamedItem("SizeWidth").nodeValue), parseFloat(t.attributes.getNamedItem("SizeHeight").nodeValue)), n.extents = Mt.create(parseFloat(t.attributes.getNamedItem("ExtentsWidth").nodeValue), parseFloat(t.attributes.getNamedItem("ExtentsHeight").nodeValue)), n;
         };
-        var Rc = {
+        var $c = {
           addRef: function() {
             this.referenceCount++;
           },
@@ -19138,14 +19138,14 @@ function requireSrc() {
           }
         };
         function Tr(t) {
-          this._cellHeight = 128, this._gridSize = 8, this.ready = !1, this._glyphItems = {}, this.textObject = new Rn(), this._dirty = !0, this._textureDirty = !0, this._version = 0, this._cellHeight = t, this._texture = D.loadPlanetTexture(ze.singleton.engineAssetUrl("glyphs1.png")), this._webFile = new _r(ze.singleton.engineAssetUrl("glyphs1.xml")), this._webFile.onStateChange = r.bind("_glyphXmlReady", this), this._webFile.send();
+          this._cellHeight = 128, this._gridSize = 8, this.ready = !1, this._glyphItems = {}, this.textObject = new $n(), this._dirty = !0, this._textureDirty = !0, this._version = 0, this._cellHeight = t, this._texture = D.loadPlanetTexture(ze.singleton.engineAssetUrl("glyphs1.png")), this._webFile = new _r(ze.singleton.engineAssetUrl("glyphs1.xml")), this._webFile.onStateChange = r.bind("_glyphXmlReady", this), this._webFile.send();
         }
         Tr.getCache = function(t) {
           return r.keyExists(Tr._caches, t) || (Tr._caches[t] = new Tr(t)), Tr._caches[t];
         }, Tr.cleanUpAll = function() {
           r.clearKeys(Tr._caches);
         };
-        var $c = {
+        var Rc = {
           get_height: function() {
             return this._cellHeight;
           },
@@ -19204,32 +19204,32 @@ function requireSrc() {
           }
         };
         function nr(t, e, n, a, s) {
-          this.rotation = 0, this.tilt = 0, this.bank = 0, this._matInit = !1, this.color = Pt.get_white(), this.sky = !0, this.scale = 0, this.opacity = 1, this.text = "", this.width = 1, this.height = 1, this.alignment = 0, this.text = n, this.up = e, this.center = t, this.scale = s, this.top = $.addVectors(t, $.scale(e, s)), a < 0 && (this.sky = !1);
+          this.rotation = 0, this.tilt = 0, this.bank = 0, this._matInit = !1, this.color = Pt.get_white(), this.sky = !0, this.scale = 0, this.opacity = 1, this.text = "", this.width = 1, this.height = 1, this.alignment = 0, this.text = n, this.up = e, this.center = t, this.scale = s, this.top = R.addVectors(t, R.scale(e, s)), a < 0 && (this.sky = !1);
         }
         var Dc = {
           addGlyphPoints: function(t, e, n, a) {
             for (var s = new Array(6), l = 0; l < 6; l++)
               s[l] = new Ht();
-            var g = $.cross(this.center, this.up), _ = $.cross(this.up, this.center);
+            var g = R.cross(this.center, this.up), _ = R.cross(this.up, this.center);
             g.normalize(), _.normalize(), this.up.normalize();
-            var m = $.cross(this.center, _);
+            var m = R.cross(this.center, _);
             m.normalize(), this.alignment ? this.alignment === 1 && (g.multiply(-n.get_left() * 2), _.multiply(n.get_right() * 2)) : (g.multiply(this.width - n.get_left() * 2), _.multiply(this.width - (this.width * 2 - n.get_right() * 2)));
-            var b = m.copy(), y = $.subtractVectors($.get_empty(), m);
+            var b = m.copy(), y = R.subtractVectors(R.get_empty(), m);
             b.multiply(this.height - n.get_top() * 2), y.multiply(this.height - (this.height * 2 - n.get_bottom() * 2));
             var M = this.center.copy();
             M.add(b), this.sky ? M.add(g) : M.subtract(g);
             var A = this.center.copy();
             A.add(b), this.sky ? A.add(_) : A.subtract(_);
-            var R = this.center.copy();
-            this.sky ? R.add(g) : R.subtract(g), R.add(y);
+            var $ = this.center.copy();
+            this.sky ? $.add(g) : $.subtract(g), $.add(y);
             var F = this.center.copy();
-            if (this.sky ? F.add(_) : F.subtract(_), F.add(y), s[0].position = M.copy(), s[0].tu = a.get_left(), s[0].tv = a.get_top(), s[2].tu = a.get_left(), s[2].tv = a.get_bottom(), s[2].position = R.copy(), s[1].tu = a.get_right(), s[1].tv = a.get_top(), s[1].position = A.copy(), s[3].tu = a.get_right(), s[3].tv = a.get_bottom(), s[3].position = F.copy(), s[5].tu = a.get_right(), s[5].tv = a.get_top(), s[5].position = A.copy(), s[4].tu = a.get_left(), s[4].tv = a.get_bottom(), s[4].position = R.copy(), this.rotation || this.tilt || this.bank) {
+            if (this.sky ? F.add(_) : F.subtract(_), F.add(y), s[0].position = M.copy(), s[0].tu = a.get_left(), s[0].tv = a.get_top(), s[2].tu = a.get_left(), s[2].tv = a.get_bottom(), s[2].position = $.copy(), s[1].tu = a.get_right(), s[1].tv = a.get_top(), s[1].position = A.copy(), s[3].tu = a.get_right(), s[3].tv = a.get_bottom(), s[3].position = F.copy(), s[5].tu = a.get_right(), s[5].tv = a.get_top(), s[5].position = A.copy(), s[4].tu = a.get_left(), s[4].tv = a.get_bottom(), s[4].position = $.copy(), this.rotation || this.tilt || this.bank) {
               if (!this._matInit) {
-                var O = tt.lookAtLH(this.center, new $(), this.up), B = O.clone();
+                var O = tt.lookAtLH(this.center, new R(), this.up), B = O.clone();
                 B.invert(), this._rtbMat = tt.multiplyMatrix(tt.multiplyMatrix(tt.multiplyMatrix(tt.multiplyMatrix(O, tt._rotationZ(-this.rotation / 180 * Math.PI)), tt._rotationX(-this.tilt / 180 * Math.PI)), tt._rotationY(-this.bank / 180 * Math.PI)), B), this._matInit = !0;
               }
               for (var l = 0; l < 6; l++)
-                s[l].position = $._transformCoordinate(s[l].position, this._rtbMat);
+                s[l].position = R._transformCoordinate(s[l].position, this._rtbMat);
             }
             for (var H = r.enumerate(s); H.moveNext(); ) {
               var K = H.current;
@@ -19399,7 +19399,7 @@ function requireSrc() {
         }
         var zc = {};
         function G() {
-          this._renderTriangleLists = new Array(4), this._indexBuffers = new Array(4), this.level = 0, this.tileX = 0, this.tileY = 0, this.texture = null, this.texture2d = null, this.isCatalogTile = !1, this.readyToRender = !1, this.inViewFrustum = !0, this.globalCenter = $.zero, this.children = [null, null, null, null], this.parent = null, this.localCenter = new $(), this.renderedAtOrBelowGeneration = 0, this._demScaleFactor = 6371e3, this.demIndex = 0, this.demAverage = 0, this.demReady = !1, this.texReady = !1, this.demTile = !1, this.demDownloading = !1, this.renderedGeneration = 0, this.accomidation = 0, this.accessCount = 0, this.downloading = !1, this.geometryCreated = !1, this._isHdTile = !1, this.demSize = 33 * 33, this._topLeftScreen = new $(), this._bottomRightScreen = new $(), this._topRightScreen = new $(), this._bottomLeftScreen = new $(), this.sphereRadius = 0, this.sphereCenter = new $(), this.radius = 1, this.triangleCount = 0, this.requestHits = 0, this.requestPending = !1, this.errored = !1, this._key = null, this._tileId = null, this._vertexCount = 0, this.renderChildPart = null, this.renderChildPart = new Array(4);
+          this._renderTriangleLists = new Array(4), this._indexBuffers = new Array(4), this.level = 0, this.tileX = 0, this.tileY = 0, this.texture = null, this.texture2d = null, this.isCatalogTile = !1, this.readyToRender = !1, this.inViewFrustum = !0, this.globalCenter = R.zero, this.children = [null, null, null, null], this.parent = null, this.localCenter = new R(), this.renderedAtOrBelowGeneration = 0, this._demScaleFactor = 6371e3, this.demIndex = 0, this.demAverage = 0, this.demReady = !1, this.texReady = !1, this.demTile = !1, this.demDownloading = !1, this.renderedGeneration = 0, this.accomidation = 0, this.accessCount = 0, this.downloading = !1, this.geometryCreated = !1, this._isHdTile = !1, this.demSize = 33 * 33, this._topLeftScreen = new R(), this._bottomRightScreen = new R(), this._topRightScreen = new R(), this._bottomLeftScreen = new R(), this.sphereRadius = 0, this.sphereCenter = new R(), this.radius = 1, this.triangleCount = 0, this.requestHits = 0, this.requestPending = !1, this.errored = !1, this._key = null, this._tileId = null, this._vertexCount = 0, this.renderChildPart = null, this.renderChildPart = new Array(4);
           for (var t = 0; t < 4; t++)
             this.renderChildPart[t] = mn.create(!1, 500);
         }
@@ -19453,7 +19453,7 @@ function requireSrc() {
             return l;
           },
           geoTo3dWithAltitude: function(t, e, n, a) {
-            var s = 1 + n / this.get__demScaleFactor(), l = $.create(Math.cos(e * G.RC) * Math.cos(t * G.RC) * s, Math.sin(t * G.RC) * s, Math.sin(e * G.RC) * Math.cos(t * G.RC) * s);
+            var s = 1 + n / this.get__demScaleFactor(), l = R.create(Math.cos(e * G.RC) * Math.cos(t * G.RC) * s, Math.sin(t * G.RC) * s, Math.sin(e * G.RC) * Math.cos(t * G.RC) * s);
             return a && l.subtract(this.localCenter), l;
           },
           get__demScaleFactor: function() {
@@ -19563,7 +19563,7 @@ function requireSrc() {
                 if (g.opacity = n, s) {
                   var _ = g.normal.copy();
                   t.get_world().multiplyVector(_), _.normalize();
-                  var m = $.dot(_, t.get_sunPosition());
+                  var m = R.dot(_, t.get_sunPosition());
                   m < 0 ? m = 0 : m = Math.min(1, m * 1), g.lighting = m;
                 } else
                   g.lighting = 1;
@@ -19631,11 +19631,11 @@ function requireSrc() {
           },
           geoTo3d: function(t, e, n) {
             if (this.dataset.get_dataSetType() === 3) {
-              var a = $.create(-(Math.cos(e * G.RC) * Math.cos(t * G.RC) * this.radius), Math.sin(t * G.RC) * this.radius, Math.sin(e * G.RC) * Math.cos(t * G.RC) * this.radius);
+              var a = R.create(-(Math.cos(e * G.RC) * Math.cos(t * G.RC) * this.radius), Math.sin(t * G.RC) * this.radius, Math.sin(e * G.RC) * Math.cos(t * G.RC) * this.radius);
               return a;
             } else {
               e -= 180;
-              var a = $.create(Math.cos(e * G.RC) * Math.cos(t * G.RC) * this.radius, Math.sin(t * G.RC) * this.radius, Math.sin(e * G.RC) * Math.cos(t * G.RC) * this.radius);
+              var a = R.create(Math.cos(e * G.RC) * Math.cos(t * G.RC) * this.radius, Math.sin(t * G.RC) * this.radius, Math.sin(e * G.RC) * Math.cos(t * G.RC) * this.radius);
               return a;
             }
           },
@@ -19734,8 +19734,8 @@ function requireSrc() {
             for (var e = 1e5, n = !1, a = null, s = r.enumerate(r.keys(Ut._queue)); s.moveNext(); ) {
               var l = s.current, g = Ut._queue[l];
               if (!g.requestPending && g.inViewFrustum) {
-                var _ = $.makeCopy(g.get_sphereCenter());
-                _._transformByMatrics(t.get_world()), t.space ? _.subtract($.create(0, 0, -1)) : _.subtract(t.cameraPosition);
+                var _ = R.makeCopy(g.get_sphereCenter());
+                _._transformByMatrics(t.get_world()), t.space ? _.subtract(R.create(0, 0, -1)) : _.subtract(t.cameraPosition);
                 var m = Math.max(0, _.length() - g.get_sphereRadius()), b = g.get_dataset().get_projection() === 2 || g.get_dataset().get_projection() === 5;
                 m < e && (!n || b) && (e = m, a = g.get_key(), g.level, n = b);
               }
@@ -19820,7 +19820,7 @@ function requireSrc() {
         function wn() {
         }
         wn.lineToPoint = function(t, e, n) {
-          var a = $.subtractVectors(e, t), s = $.subtractVectors(n, t), l = $.cross(s, a).length() / a.length();
+          var a = R.subtractVectors(e, t), s = R.subtractVectors(n, t), l = R.cross(s, a).length() / a.length();
           return l;
         }, wn.getUVFromInnerPoint = function(t, e, n, a, s) {
           t.normalize(), e.normalize(), n.normalize(), a.normalize(), s.normalize();
@@ -20090,8 +20090,8 @@ function requireSrc() {
           },
           makePosition: function(t, e, n, a, s) {
             t -= 960, e -= 558;
-            var l = $.create(t + n, e + a, 1347);
-            return (this._domeMatX || this._domeMatY || this._domeAngle !== s) && (this._domeMatX = t, this._domeMatY = e, this._domeMatrix = tt.translation($.create(-t, -e, 0)), this._domeMatrix._multiply(tt._rotationZ(s / 180 * Math.PI)), this._domeMatrix._multiply(tt.translation($.create(t, e, 0)))), l = $._transformCoordinate(l, this._domeMatrix), l;
+            var l = R.create(t + n, e + a, 1347);
+            return (this._domeMatX || this._domeMatY || this._domeAngle !== s) && (this._domeMatX = t, this._domeMatY = e, this._domeMatrix = tt.translation(R.create(-t, -e, 0)), this._domeMatrix._multiply(tt._rotationZ(s / 180 * Math.PI)), this._domeMatrix._multiply(tt.translation(R.create(t, e, 0)))), l = R._transformCoordinate(l, this._domeMatrix), l;
           },
           draw3D: function(t, e) {
             ti.useGl && ((this.texture == null || this.isDynamic) && this.initializeTexture(), (!this.isDesignTimeOnly || e) && (this.initializeGeometry(), this.updateRotation()));
@@ -20305,14 +20305,14 @@ function requireSrc() {
             return g[0] = Ji.create(e - l, n - l, l, l), g[1] = Ji.create(e + a / 2 - l / 2, n - l, l, l), g[2] = Ji.create(e + a, n - l, l, l), g[3] = Ji.create(e + a, n + s / 2 - l / 2, l, l), g[4] = Ji.create(e + a, n + s, l, l), g[5] = Ji.create(e + a / 2 - l / 2, n + s, l, l), g[6] = Ji.create(e - l, n + s, l, l), g[7] = Ji.create(e - l, n + s / 2 - l / 2, l, l), g[8] = Ji.create(e + a / 2 - l / 2, n - 30 * this._ratio, l, l), g;
           }
         };
-        function Rn() {
+        function $n() {
           this.bold = !1, this.italic = !1, this.underline = !1, this.fontSize = 0, this.borderStyle = 0;
         }
-        Rn.create = function(t, e, n, a, s, l, g, _, m) {
-          var b = new Rn();
+        $n.create = function(t, e, n, a, s, l, g, _, m) {
+          var b = new $n();
           return b.text = t, b.bold = e, b.italic = n, b.underline = a, b.fontSize = s, b.fontName = l, b.foregroundColor = g, b.backgroundColor = _, b.borderStyle = m, b;
-        }, Rn._fromXml = function(t) {
-          var e = new Rn();
+        }, $n._fromXml = function(t) {
+          var e = new $n();
           return e.text = xt.getInnerText(t), e.borderStyle = 0, e.bold = r.boolean(t.attributes.getNamedItem("Bold").nodeValue), e.italic = r.boolean(t.attributes.getNamedItem("Italic").nodeValue), e.underline = r.boolean(t.attributes.getNamedItem("Underline").nodeValue), e.fontSize = parseFloat(t.attributes.getNamedItem("FontSize").nodeValue), e.fontName = t.attributes.getNamedItem("FontName").nodeValue, e.foregroundColor = j.load(t.attributes.getNamedItem("ForgroundColor").nodeValue), e.backgroundColor = j.load(t.attributes.getNamedItem("BackgroundColor").nodeValue), t.attributes.getNamedItem("BorderStyle") != null && (e.borderStyle = we.parse("TextBorderStyle", t.attributes.getNamedItem("BorderStyle").nodeValue)), e;
         };
         var Zc = {
@@ -20386,19 +20386,19 @@ function requireSrc() {
               for (var M = r.enumerate(y.childNodes); M.moveNext(); ) {
                 var A = M.current;
                 if (A.nodeName === "Layer") {
-                  var R = ai.fromXml(A, !0);
-                  if (R != null) {
-                    if (r.canCast(R, qi)) {
-                      var F = R, O = F.get_imageSet();
+                  var $ = ai.fromXml(A, !0);
+                  if ($ != null) {
+                    if (r.canCast($, qi)) {
+                      var F = $, O = F.get_imageSet();
                       if (O.get_projection() === 7 && O.get_extension() === ".tsv") {
                         Z.singleton.addCatalogHips(O);
                         continue;
                       }
                     }
-                    var B = r.format("{0}.txt", R.id.toString());
-                    r.keyExists(P.get_layerList(), R.id) && P.deleteLayerByID(R.id, !0, !1);
+                    var B = r.format("{0}.txt", $.id.toString());
+                    r.keyExists(P.get_layerList(), $.id) && P.deleteLayerByID($.id, !0, !1);
                     try {
-                      R.loadedFromTour = !0, R.loadData(this, B), P.add(R, !1);
+                      $.loadedFromTour = !0, $.loadData(this, B), P.add($, !1);
                     } catch {
                     }
                   }
@@ -20448,8 +20448,8 @@ function requireSrc() {
               if (r.keyExists(P.get_layerList(), b)) {
                 var y = P.get_layerList()[b], M = y.get_name(), A = Z.singleton.renderContext.getCatalogHipsByName(M);
                 if (A != null) {
-                  var R = qi.create(A);
-                  R.id = b, R.set_name(M), R.set_referenceFrame("Sky"), R.saveToXml(t);
+                  var $ = qi.create(A);
+                  $.id = b, $.set_name(M), $.set_referenceFrame("Sky"), $.saveToXml(t);
                 } else
                   P.get_layerList()[b].saveToXml(t);
               }
@@ -20799,18 +20799,18 @@ function requireSrc() {
           tourStopList_MouseClick: function(t, e) {
             if (this._tour.get_editMode(), this.tourStopList.multipleSelection) {
               this._contextMenu != null && this._contextMenu._dispose(), this._contextMenu = new un();
-              var n = $t.create(pt.getLocalizedText(1345, "Select All")), a = $t.create(pt.getLocalizedText(427, "Cut")), s = $t.create(pt.getLocalizedText(428, "Copy")), l = $t.create(pt.getLocalizedText(429, "Paste")), g = $t.create(pt.getLocalizedText(167, "Delete"));
+              var n = Rt.create(pt.getLocalizedText(1345, "Select All")), a = Rt.create(pt.getLocalizedText(427, "Cut")), s = Rt.create(pt.getLocalizedText(428, "Copy")), l = Rt.create(pt.getLocalizedText(429, "Paste")), g = Rt.create(pt.getLocalizedText(167, "Delete"));
               a.click = r.bind("_cutMenu_Click", this), s.click = r.bind("_copyMenu_Click", this), l.click = r.bind("_pasteMenu_Click", this), g.click = r.bind("_deleteMenu_Click", this), n.click = r.bind("_selectAllMenu_Click", this);
               var _ = new sr();
               this._contextMenu.items.push(n), this._contextMenu.items.push(_), this._contextMenu.items.push(a), this._contextMenu.items.push(s), l.enabled = this.tourEditorUI.clipboardType === "WorldWideTelescope.Slide", this._contextMenu.items.push(l), this._contextMenu.items.push(g), this._contextMenu._show(Di.get_position());
             } else if (this._tour.get_currentTourStop() == null) {
               this._contextMenu != null && this._contextMenu._dispose(), this._contextMenu = new un();
-              var n = $t.create(pt.getLocalizedText(1345, "Select All")), l = $t.create(pt.getLocalizedText(425, "Paste")), _ = new sr(), m = new sr(), b = $t.create(pt.getLocalizedText(426, "Add New Slide"));
+              var n = Rt.create(pt.getLocalizedText(1345, "Select All")), l = Rt.create(pt.getLocalizedText(425, "Paste")), _ = new sr(), m = new sr(), b = Rt.create(pt.getLocalizedText(426, "Add New Slide"));
               l.click = r.bind("_pasteMenu_Click", this), n.click = r.bind("_selectAllMenu_Click", this), b.click = r.bind("_addNewSlide_Click", this), l.enabled = this.tourEditorUI.clipboardType === "WorldWideTelescope.Slide", this._contextMenu.items.push(n), this._contextMenu.items.push(_), this._contextMenu.items.push(l), this._contextMenu.items.push(m), this._contextMenu.items.push(b), this._contextMenu._show(Di.get_position());
             } else {
               this._contextMenu != null && this._contextMenu._dispose(), this._contextMenu = new un();
-              var n = $t.create(pt.getLocalizedText(1345, "Select All")), a = $t.create(pt.getLocalizedText(427, "Cut")), s = $t.create(pt.getLocalizedText(428, "Copy")), l = $t.create(pt.getLocalizedText(429, "Paste")), g = $t.create(pt.getLocalizedText(167, "Delete")), _ = new sr(), y = new sr(), M = new sr(), A = new sr(), R = new sr(), F = new sr(), b = $t.create(pt.getLocalizedText(431, "Insert New Slide")), O = $t.create(pt.getLocalizedText(627, "Duplicate Slide at End Position")), B = $t.create(pt.getLocalizedText(628, "Merge Tour after slide...")), H = $t.create(pt.getLocalizedText(432, "Preview Tour From Here")), m = new sr(), K = $t.create(pt.getLocalizedText(433, "Capture New Thumbnail")), J = $t.create(pt.getLocalizedText(434, "Set Start Camera Position")), it = $t.create(pt.getLocalizedText(435, "Set End Camera Position")), ot = $t.create(pt.getLocalizedText(436, "Show Start Camera Position")), lt = $t.create(pt.getLocalizedText(437, "Show End Camera Position")), gt = $t.create(pt.getLocalizedText(438, "Master Slide"));
-              $t.create(pt.getLocalizedText(1346, "Create Timeline")), $t.create(pt.getLocalizedText(1347, "Show Timeline"));
+              var n = Rt.create(pt.getLocalizedText(1345, "Select All")), a = Rt.create(pt.getLocalizedText(427, "Cut")), s = Rt.create(pt.getLocalizedText(428, "Copy")), l = Rt.create(pt.getLocalizedText(429, "Paste")), g = Rt.create(pt.getLocalizedText(167, "Delete")), _ = new sr(), y = new sr(), M = new sr(), A = new sr(), $ = new sr(), F = new sr(), b = Rt.create(pt.getLocalizedText(431, "Insert New Slide")), O = Rt.create(pt.getLocalizedText(627, "Duplicate Slide at End Position")), B = Rt.create(pt.getLocalizedText(628, "Merge Tour after slide...")), H = Rt.create(pt.getLocalizedText(432, "Preview Tour From Here")), m = new sr(), K = Rt.create(pt.getLocalizedText(433, "Capture New Thumbnail")), J = Rt.create(pt.getLocalizedText(434, "Set Start Camera Position")), it = Rt.create(pt.getLocalizedText(435, "Set End Camera Position")), ot = Rt.create(pt.getLocalizedText(436, "Show Start Camera Position")), lt = Rt.create(pt.getLocalizedText(437, "Show End Camera Position")), gt = Rt.create(pt.getLocalizedText(438, "Master Slide"));
+              Rt.create(pt.getLocalizedText(1346, "Create Timeline")), Rt.create(pt.getLocalizedText(1347, "Show Timeline"));
               var ut = this._tour.get_currentTourStop().get_nextSlide();
               switch (ut) {
                 case "":
@@ -20826,7 +20826,7 @@ function requireSrc() {
                   St > -1 && (r.emptyString(this._tour.get_tourStops()[St].get_description()) ? ut = r.format(" (Slide {0})", St) : ut = " (" + this._tour.get_tourStops()[St].get_description() + ")");
                   break;
               }
-              var mt = $t.create(pt.getLocalizedText(590, "Set Next Slide") + ut), Dt = $t.create(pt.getLocalizedText(439, "Track Date/Time/Location")), yt = $t.create(pt.getLocalizedText(629, "Fade In Slide Elements")), ue = $t.create(pt.getLocalizedText(20, "Properties")), _e = $t.create(pt.getLocalizedText(1029, "Animation Tween Type")), Qt = $t.create(pt.getLocalizedText(1030, "Linear")), Ft = $t.create(pt.getLocalizedText(1031, "Ease In/Out")), vi = $t.create(pt.getLocalizedText(1032, "Ease In")), Ei = $t.create(pt.getLocalizedText(1033, "Ease Out")), Li = $t.create(pt.getLocalizedText(1034, "Exponential"));
+              var mt = Rt.create(pt.getLocalizedText(590, "Set Next Slide") + ut), Dt = Rt.create(pt.getLocalizedText(439, "Track Date/Time/Location")), yt = Rt.create(pt.getLocalizedText(629, "Fade In Slide Elements")), ue = Rt.create(pt.getLocalizedText(20, "Properties")), _e = Rt.create(pt.getLocalizedText(1029, "Animation Tween Type")), Qt = Rt.create(pt.getLocalizedText(1030, "Linear")), Ft = Rt.create(pt.getLocalizedText(1031, "Ease In/Out")), vi = Rt.create(pt.getLocalizedText(1032, "Ease In")), Ei = Rt.create(pt.getLocalizedText(1033, "Ease Out")), Li = Rt.create(pt.getLocalizedText(1034, "Exponential"));
               switch (Qt.tag = 0, Ft.tag = 3, vi.tag = 1, Ei.tag = 2, Li.tag = 4, Qt.click = r.bind("_interpolation_Click", this), Ft.click = r.bind("_interpolation_Click", this), vi.click = r.bind("_interpolation_Click", this), Ei.click = r.bind("_interpolation_Click", this), Li.click = r.bind("_interpolation_Click", this), this._tour.get_currentTourStop().get_interpolationType()) {
                 case 0:
                   Qt.checked = !0;
@@ -20844,7 +20844,7 @@ function requireSrc() {
                   Li.checked = !0;
                   break;
               }
-              _e.dropDownItems.push(Qt), _e.dropDownItems.push(Ft), _e.dropDownItems.push(vi), _e.dropDownItems.push(Ei), _e.dropDownItems.push(Li), n.click = r.bind("_selectAllMenu_Click", this), O.click = r.bind("_insertDuplicate_Click", this), a.click = r.bind("_cutMenu_Click", this), s.click = r.bind("_copyMenu_Click", this), l.click = r.bind("_pasteMenu_Click", this), g.click = r.bind("_deleteMenu_Click", this), b.click = r.bind("_insertNewSlide_Click", this), ue.click = r.bind("_properties_Click", this), K.click = r.bind("_captureThumbnail_Click", this), J.click = r.bind("_setSkyPosition_Click", this), it.click = r.bind("_setEndSkyPosition_Click", this), lt.click = r.bind("_showEndSkyPosition_Click", this), ot.click = r.bind("_showSkyPosition_Click", this), H.click = r.bind("_playFromHere_Click", this), gt.click = r.bind("_masterSlide_Click", this), mt.click = r.bind("_setNextSlide_Click", this), Dt.click = r.bind("_trackSpaceTime_Click", this), B.click = r.bind("_insertSlideshow_Click", this), yt.click = r.bind("_fadeInOverlays_Click", this), this._tour.get_currentTourStop().get_masterSlide() && (gt.checked = !0), this._tour.get_currentTourStop().get_hasTime() && (Dt.checked = !0), yt.checked = this._tour.get_currentTourStop().get_fadeInOverlays(), this._contextMenu.items.push(n), this._contextMenu.items.push(F), this._contextMenu.items.push(a), this._contextMenu.items.push(s), l.enabled = this.tourEditorUI.clipboardType === "WorldWideTelescope.Slide", this._contextMenu.items.push(l), this._contextMenu.items.push(g), this._contextMenu.items.push(_), this._contextMenu.items.push(b), this._contextMenu.items.push(O), this._contextMenu.items.push(B), this._contextMenu.items.push(m), this._contextMenu.items.push(H), this._contextMenu.items.push(y), this._contextMenu.items.push(J), this._contextMenu.items.push(it), this._contextMenu.items.push(M), this._contextMenu.items.push(ot), this._contextMenu.items.push(lt), this._contextMenu.items.push(A), this._contextMenu.items.push(K), this._contextMenu.items.push(R), this._contextMenu.items.push(gt), this._contextMenu.items.push(mt), this._contextMenu.items.push(yt), this._contextMenu.items.push(Dt), this._contextMenu.items.push(_e), this._contextMenu._show(Mt.create(e.clientX, e.clientY));
+              _e.dropDownItems.push(Qt), _e.dropDownItems.push(Ft), _e.dropDownItems.push(vi), _e.dropDownItems.push(Ei), _e.dropDownItems.push(Li), n.click = r.bind("_selectAllMenu_Click", this), O.click = r.bind("_insertDuplicate_Click", this), a.click = r.bind("_cutMenu_Click", this), s.click = r.bind("_copyMenu_Click", this), l.click = r.bind("_pasteMenu_Click", this), g.click = r.bind("_deleteMenu_Click", this), b.click = r.bind("_insertNewSlide_Click", this), ue.click = r.bind("_properties_Click", this), K.click = r.bind("_captureThumbnail_Click", this), J.click = r.bind("_setSkyPosition_Click", this), it.click = r.bind("_setEndSkyPosition_Click", this), lt.click = r.bind("_showEndSkyPosition_Click", this), ot.click = r.bind("_showSkyPosition_Click", this), H.click = r.bind("_playFromHere_Click", this), gt.click = r.bind("_masterSlide_Click", this), mt.click = r.bind("_setNextSlide_Click", this), Dt.click = r.bind("_trackSpaceTime_Click", this), B.click = r.bind("_insertSlideshow_Click", this), yt.click = r.bind("_fadeInOverlays_Click", this), this._tour.get_currentTourStop().get_masterSlide() && (gt.checked = !0), this._tour.get_currentTourStop().get_hasTime() && (Dt.checked = !0), yt.checked = this._tour.get_currentTourStop().get_fadeInOverlays(), this._contextMenu.items.push(n), this._contextMenu.items.push(F), this._contextMenu.items.push(a), this._contextMenu.items.push(s), l.enabled = this.tourEditorUI.clipboardType === "WorldWideTelescope.Slide", this._contextMenu.items.push(l), this._contextMenu.items.push(g), this._contextMenu.items.push(_), this._contextMenu.items.push(b), this._contextMenu.items.push(O), this._contextMenu.items.push(B), this._contextMenu.items.push(m), this._contextMenu.items.push(H), this._contextMenu.items.push(y), this._contextMenu.items.push(J), this._contextMenu.items.push(it), this._contextMenu.items.push(M), this._contextMenu.items.push(ot), this._contextMenu.items.push(lt), this._contextMenu.items.push(A), this._contextMenu.items.push(K), this._contextMenu.items.push($), this._contextMenu.items.push(gt), this._contextMenu.items.push(mt), this._contextMenu.items.push(yt), this._contextMenu.items.push(Dt), this._contextMenu.items.push(_e), this._contextMenu._show(Mt.create(e.clientX, e.clientY));
             }
           },
           _selectAllMenu_Click: function(t, e) {
@@ -21193,7 +21193,7 @@ function requireSrc() {
                   var M = this.addOverlay(this.get_focus());
                   M.set_x(this.get_focus().get_x()), M.set_y(this.get_focus().get_y()), this.set_focus(M), this.selection.setSelection(this.get_focus()), Vi._updateOverlayList(this._tour.get_currentTourStop(), this.selection), this._dragCopying = !1;
                 }
-              var A = this.get_focus().get_width() / this.get_focus().get_height(), R = Mt.create(this.get_focus().get_x(), this.get_focus().get_y());
+              var A = this.get_focus().get_width() / this.get_focus().get_height(), $ = Mt.create(this.get_focus().get_x(), this.get_focus().get_y());
               if (e.ctrlKey)
                 switch (s = pt.getLocalizedText(537, "Resize"), this._selectionAction) {
                   case 0:
@@ -21224,49 +21224,49 @@ function requireSrc() {
                     s = pt.getLocalizedText(538, "Rotate"), this.get_focus().set_rotationAngle(this.get_focus().get_rotationAngle() + l / 10);
                     break;
                   case 9:
-                    s = pt.getLocalizedText(539, "Drag Copy"), R.x += l, R.y += g;
+                    s = pt.getLocalizedText(539, "Drag Copy"), $.x += l, $.y += g;
                     break;
                 }
               else
                 switch (this._selectionAction !== 8 && this._selectionAction !== 9 && (l > this.get_focus().get_width() - 2 && (l = 0), g > this.get_focus().get_height() - 2 && (g = 0)), s = pt.getLocalizedText(537, "Resize"), this._selectionAction) {
                   case 0:
-                    this.get_focus().set_width(this.get_focus().get_width() - l), this.get_focus().set_height(this.get_focus().get_height() - l / A), R.x += l / 2, R.y += l / A / 2;
+                    this.get_focus().set_width(this.get_focus().get_width() - l), this.get_focus().set_height(this.get_focus().get_height() - l / A), $.x += l / 2, $.y += l / A / 2;
                     break;
                   case 1:
-                    this.get_focus().set_height(this.get_focus().get_height() - g), R.y += g / 2;
+                    this.get_focus().set_height(this.get_focus().get_height() - g), $.y += g / 2;
                     break;
                   case 2:
-                    this.get_focus().set_width(this.get_focus().get_width() + l), this.get_focus().set_height(this.get_focus().get_height() + l / A), R.x += l / 2, R.y -= l / A / 2;
+                    this.get_focus().set_width(this.get_focus().get_width() + l), this.get_focus().set_height(this.get_focus().get_height() + l / A), $.x += l / 2, $.y -= l / A / 2;
                     break;
                   case 3:
-                    this.get_focus().set_width(this.get_focus().get_width() + l), R.x += l / 2;
+                    this.get_focus().set_width(this.get_focus().get_width() + l), $.x += l / 2;
                     break;
                   case 4:
-                    this.get_focus().set_width(this.get_focus().get_width() + l), this.get_focus().set_height(this.get_focus().get_height() + l / A), R.x += l / 2, R.y += l / A / 2;
+                    this.get_focus().set_width(this.get_focus().get_width() + l), this.get_focus().set_height(this.get_focus().get_height() + l / A), $.x += l / 2, $.y += l / A / 2;
                     break;
                   case 5:
-                    this.get_focus().set_height(this.get_focus().get_height() + g), R.y += g / 2;
+                    this.get_focus().set_height(this.get_focus().get_height() + g), $.y += g / 2;
                     break;
                   case 6:
-                    this.get_focus().set_width(this.get_focus().get_width() - l), this.get_focus().set_height(this.get_focus().get_height() - l / A), R.x += l / 2, R.y -= l / A / 2;
+                    this.get_focus().set_width(this.get_focus().get_width() - l), this.get_focus().set_height(this.get_focus().get_height() - l / A), $.x += l / 2, $.y -= l / A / 2;
                     break;
                   case 7:
-                    this.get_focus().set_width(this.get_focus().get_width() - l), R.x += l / 2;
+                    this.get_focus().set_width(this.get_focus().get_width() - l), $.x += l / 2;
                     break;
                   case 8:
                     s = pt.getLocalizedText(538, "Rotate"), this.get_focus().set_rotationAngle(this.get_focus().get_rotationAngle() + l);
                     break;
                   case 9:
-                    s = pt.getLocalizedText(540, "Move"), R.x += l, R.y += g;
+                    s = pt.getLocalizedText(540, "Move"), $.x += l, $.y += g;
                     break;
                 }
-              if (this._selectionAction !== 9 && this._selectionAction !== 8 && (R = this.selection.pointToScreenSpace(R)), this.selection.get_multiSelect())
+              if (this._selectionAction !== 9 && this._selectionAction !== 8 && ($ = this.selection.pointToScreenSpace($)), this.selection.get_multiSelect())
                 for (var F = r.enumerate(this.selection.selectionSet); F.moveNext(); ) {
                   var y = F.current;
                   y.set_x(y.get_x() + l), y.set_y(y.get_y() + g);
                 }
               else
-                this.get_focus().set_x(R.x), this.get_focus().set_y(R.y);
+                this.get_focus().set_x($.x), this.get_focus().set_y($.y);
               this._needUndoFrame && (this._needUndoFrame = !1, a.set_actionText(s), oe.push(a));
             } else if (this.get_focus() != null) {
               if (this.get_focus().hitTest(n))
@@ -21309,7 +21309,7 @@ function requireSrc() {
           _showNoSelectionContextMenu: function(t) {
             if (this._contextMenu != null && this._contextMenu._dispose(), this._tour.get_currentTourStop() != null) {
               this._contextMenu = new un();
-              var e = $t.create(pt.getLocalizedText(425, "Paste"));
+              var e = Rt.create(pt.getLocalizedText(425, "Paste"));
               e.enabled = this.clipboardType === "WorldWideTelescope.Overlay", e.click = r.bind("_pasteMenu_Click", this), this._contextMenu.items.push(e), this._contextMenu._show(t);
             }
           },
@@ -21338,7 +21338,7 @@ function requireSrc() {
             if (this.get_focus() != null) {
               var e = this.selection.get_multiSelect();
               this._contextMenu != null && this._contextMenu._dispose(), this._contextMenu = new un();
-              var n = $t.create(pt.getLocalizedText(427, "Cut")), a = $t.create(pt.getLocalizedText(428, "Copy")), s = $t.create(pt.getLocalizedText(425, "Paste")), l = $t.create(pt.getLocalizedText(167, "Delete")), g = new sr(), _ = new sr(), m = new sr(), b = $t.create(pt.getLocalizedText(452, "Bring to Front")), y = $t.create(pt.getLocalizedText(453, "Send to Back")), M = $t.create(pt.getLocalizedText(454, "Bring Forward")), A = $t.create(pt.getLocalizedText(455, "Send Backward")), R = $t.create(pt.getLocalizedText(20, "Properties")), F = $t.create(pt.getLocalizedText(502, "Edit")), O = $t.create(pt.getLocalizedText(587, "Hyperlink")), B = this.get_focus().get_linkID();
+              var n = Rt.create(pt.getLocalizedText(427, "Cut")), a = Rt.create(pt.getLocalizedText(428, "Copy")), s = Rt.create(pt.getLocalizedText(425, "Paste")), l = Rt.create(pt.getLocalizedText(167, "Delete")), g = new sr(), _ = new sr(), m = new sr(), b = Rt.create(pt.getLocalizedText(452, "Bring to Front")), y = Rt.create(pt.getLocalizedText(453, "Send to Back")), M = Rt.create(pt.getLocalizedText(454, "Bring Forward")), A = Rt.create(pt.getLocalizedText(455, "Send Backward")), $ = Rt.create(pt.getLocalizedText(20, "Properties")), F = Rt.create(pt.getLocalizedText(502, "Edit")), O = Rt.create(pt.getLocalizedText(587, "Hyperlink")), B = this.get_focus().get_linkID();
               switch (this.get_focus().get_linkID()) {
                 case "":
                 case null:
@@ -21355,7 +21355,7 @@ function requireSrc() {
                   H > -1 && (r.emptyString(this._tour.get_tourStops()[H].get_description()) ? B = r.format(" (" + pt.getLocalizedText(1340, "Slide") + " {0})", H) : B = " (" + this._tour.get_tourStops()[H].get_description() + ")");
                   break;
               }
-              var K = $t.create(pt.getLocalizedText(588, "Animate")), J = $t.create(pt.getLocalizedText(589, "Link to Slide") + B), it = $t.create(pt.getLocalizedText(458, "Color/Opacity")), ot = $t.create(pt.getLocalizedText(630, "Flipbook Properties")), lt = $t.create(pt.getLocalizedText(1029, "Animation Tween Type")), gt = $t.create(pt.getLocalizedText(1030, "Linear")), ut = $t.create(pt.getLocalizedText(1031, "Ease In/Out")), St = $t.create(pt.getLocalizedText(1032, "Ease In")), mt = $t.create(pt.getLocalizedText(1033, "Ease Out")), Dt = $t.create(pt.getLocalizedText(1034, "Exponential")), yt = $t.create(pt.getLocalizedText(1035, "Slide Default")), ue = $t.create(pt.getLocalizedText(790, "Align")), _e = $t.create(pt.getLocalizedText(1333, "Top")), Qt = $t.create(pt.getLocalizedText(1334, "Bottom")), Ft = $t.create(pt.getLocalizedText(1335, "Left")), vi = $t.create(pt.getLocalizedText(1336, "Right")), Ei = $t.create(pt.getLocalizedText(1337, "Horizontal")), Li = $t.create(pt.getLocalizedText(1338, "Vertical")), ri = $t.create(pt.getLocalizedText(1339, "Centered"));
+              var K = Rt.create(pt.getLocalizedText(588, "Animate")), J = Rt.create(pt.getLocalizedText(589, "Link to Slide") + B), it = Rt.create(pt.getLocalizedText(458, "Color/Opacity")), ot = Rt.create(pt.getLocalizedText(630, "Flipbook Properties")), lt = Rt.create(pt.getLocalizedText(1029, "Animation Tween Type")), gt = Rt.create(pt.getLocalizedText(1030, "Linear")), ut = Rt.create(pt.getLocalizedText(1031, "Ease In/Out")), St = Rt.create(pt.getLocalizedText(1032, "Ease In")), mt = Rt.create(pt.getLocalizedText(1033, "Ease Out")), Dt = Rt.create(pt.getLocalizedText(1034, "Exponential")), yt = Rt.create(pt.getLocalizedText(1035, "Slide Default")), ue = Rt.create(pt.getLocalizedText(790, "Align")), _e = Rt.create(pt.getLocalizedText(1333, "Top")), Qt = Rt.create(pt.getLocalizedText(1334, "Bottom")), Ft = Rt.create(pt.getLocalizedText(1335, "Left")), vi = Rt.create(pt.getLocalizedText(1336, "Right")), Ei = Rt.create(pt.getLocalizedText(1337, "Horizontal")), Li = Rt.create(pt.getLocalizedText(1338, "Vertical")), ri = Rt.create(pt.getLocalizedText(1339, "Centered"));
               switch (ue.dropDownItems.push(_e), ue.dropDownItems.push(Qt), ue.dropDownItems.push(Ft), ue.dropDownItems.push(vi), ue.dropDownItems.push(Ei), ue.dropDownItems.push(Li), ue.dropDownItems.push(ri), gt.tag = 0, ut.tag = 3, St.tag = 1, mt.tag = 2, Dt.tag = 4, yt.tag = 5, gt.click = r.bind("_interpolation_Click", this), ut.click = r.bind("_interpolation_Click", this), St.click = r.bind("_interpolation_Click", this), mt.click = r.bind("_interpolation_Click", this), Dt.click = r.bind("_interpolation_Click", this), yt.click = r.bind("_interpolation_Click", this), this.get_focus().get_interpolationType()) {
                 case 0:
                   gt.checked = !0;
@@ -21376,7 +21376,7 @@ function requireSrc() {
                   yt.checked = !0;
                   break;
               }
-              lt.dropDownItems.push(yt), lt.dropDownItems.push(gt), lt.dropDownItems.push(ut), lt.dropDownItems.push(St), lt.dropDownItems.push(mt), lt.dropDownItems.push(Dt), n.click = r.bind("_cutMenu_Click", this), a.click = r.bind("_copyMenu_Click", this), l.click = r.bind("_deleteMenu_Click", this), b.click = r.bind("_bringToFront_Click", this), y.click = r.bind("_sendToBack_Click", this), A.click = r.bind("_sendBackward_Click", this), M.click = r.bind("_bringForward_Click", this), R.click = r.bind("_properties_Click", this), F.click = r.bind("_editText_Click", this), O.click = r.bind("_url_Click", this), it.click = r.bind("_pickColor_Click", this), s.click = r.bind("_pasteMenu_Click", this), K.click = r.bind("_animateMenu_Click", this), ot.click = r.bind("_flipbookProperties_Click", this), J.click = r.bind("_linkID_Click", this), _e.click = r.bind("_alignTop_Click", this), Qt.click = r.bind("_alignBottom_Click", this), Ft.click = r.bind("_alignLeft_Click", this), vi.click = r.bind("_alignRight_Click", this), Ei.click = r.bind("_alignHorizon_Click", this), Li.click = r.bind("_alignVertical_Click", this), ri.click = r.bind("_alignCenter_Click", this), this._contextMenu.items.push(n), this._contextMenu.items.push(a), this._contextMenu.items.push(s), this._contextMenu.items.push(l), this._contextMenu.items.push(g), this._contextMenu.items.push(b), this._contextMenu.items.push(y), this._contextMenu.items.push(M), this._contextMenu.items.push(A), this._contextMenu.items.push(ue), this._contextMenu.items.push(_), s.enabled = !1, this._contextMenu.items.push(it), this._contextMenu.items.push(O), this._contextMenu.items.push(J), this._contextMenu.items.push(K), this._contextMenu.items.push(m), this._contextMenu.items.push(ot), K.checked = this.get_focus().get_animate(), this._contextMenu.items.push(lt), lt.enabled = this.get_focus().get_animate(), ot.visible = r.canCast(this.get_focus(), ba), m.visible = r.canCast(this.get_focus(), ba), e ? (O.visible = !1, J.visible = !1, R.visible = !1, ot.visible = !1, M.visible = !1, A.visible = !1) : ue.visible = !1, this._contextMenu.items.push(R), this.get_focus() != null && r.typeOf(this.get_focus()) === Zr && this._contextMenu.items.push(F), this._contextMenu._show(t);
+              lt.dropDownItems.push(yt), lt.dropDownItems.push(gt), lt.dropDownItems.push(ut), lt.dropDownItems.push(St), lt.dropDownItems.push(mt), lt.dropDownItems.push(Dt), n.click = r.bind("_cutMenu_Click", this), a.click = r.bind("_copyMenu_Click", this), l.click = r.bind("_deleteMenu_Click", this), b.click = r.bind("_bringToFront_Click", this), y.click = r.bind("_sendToBack_Click", this), A.click = r.bind("_sendBackward_Click", this), M.click = r.bind("_bringForward_Click", this), $.click = r.bind("_properties_Click", this), F.click = r.bind("_editText_Click", this), O.click = r.bind("_url_Click", this), it.click = r.bind("_pickColor_Click", this), s.click = r.bind("_pasteMenu_Click", this), K.click = r.bind("_animateMenu_Click", this), ot.click = r.bind("_flipbookProperties_Click", this), J.click = r.bind("_linkID_Click", this), _e.click = r.bind("_alignTop_Click", this), Qt.click = r.bind("_alignBottom_Click", this), Ft.click = r.bind("_alignLeft_Click", this), vi.click = r.bind("_alignRight_Click", this), Ei.click = r.bind("_alignHorizon_Click", this), Li.click = r.bind("_alignVertical_Click", this), ri.click = r.bind("_alignCenter_Click", this), this._contextMenu.items.push(n), this._contextMenu.items.push(a), this._contextMenu.items.push(s), this._contextMenu.items.push(l), this._contextMenu.items.push(g), this._contextMenu.items.push(b), this._contextMenu.items.push(y), this._contextMenu.items.push(M), this._contextMenu.items.push(A), this._contextMenu.items.push(ue), this._contextMenu.items.push(_), s.enabled = !1, this._contextMenu.items.push(it), this._contextMenu.items.push(O), this._contextMenu.items.push(J), this._contextMenu.items.push(K), this._contextMenu.items.push(m), this._contextMenu.items.push(ot), K.checked = this.get_focus().get_animate(), this._contextMenu.items.push(lt), lt.enabled = this.get_focus().get_animate(), ot.visible = r.canCast(this.get_focus(), ba), m.visible = r.canCast(this.get_focus(), ba), e ? (O.visible = !1, J.visible = !1, $.visible = !1, ot.visible = !1, M.visible = !1, A.visible = !1) : ue.visible = !1, this._contextMenu.items.push($), this.get_focus() != null && r.typeOf(this.get_focus()) === Zr && this._contextMenu.items.push(F), this._contextMenu._show(t);
             }
           },
           _editText_Click: function(t, e) {
@@ -22912,13 +22912,13 @@ function requireSrc() {
         };
         var gh = {
           subDivide: function(t, e) {
-            var n = $.lerp(e[this.b].position, e[this.c].position, 0.5), a = $.lerp(e[this.c].position, e[this.a].position, 0.5), s = $.lerp(e[this.a].position, e[this.b].position, 0.5), l = Mt.lerp(Mt.create(e[this.b].tu, e[this.b].tv), Mt.create(e[this.c].tu, e[this.c].tv), 0.5), g = Mt.lerp(Mt.create(e[this.c].tu, e[this.c].tv), Mt.create(e[this.a].tu, e[this.a].tv), 0.5), _ = Mt.lerp(Mt.create(e[this.a].tu, e[this.a].tv), Mt.create(e[this.b].tu, e[this.b].tv), 0.5);
+            var n = R.lerp(e[this.b].position, e[this.c].position, 0.5), a = R.lerp(e[this.c].position, e[this.a].position, 0.5), s = R.lerp(e[this.a].position, e[this.b].position, 0.5), l = Mt.lerp(Mt.create(e[this.b].tu, e[this.b].tv), Mt.create(e[this.c].tu, e[this.c].tv), 0.5), g = Mt.lerp(Mt.create(e[this.c].tu, e[this.c].tv), Mt.create(e[this.a].tu, e[this.a].tv), 0.5), _ = Mt.lerp(Mt.create(e[this.a].tu, e[this.a].tv), Mt.create(e[this.b].tu, e[this.b].tv), 0.5);
             n.normalize(), a.normalize(), s.normalize();
             var m = e.length, b = e.length + 1, y = e.length + 2;
             e.push(Ht.createPosRaw(n, l.x, l.y)), e.push(Ht.createPosRaw(a, g.x, g.y)), e.push(Ht.createPosRaw(s, _.x, _.y)), t.push(pi.create(this.a, y, b)), t.push(pi.create(this.b, m, y)), t.push(pi.create(this.c, b, m)), t.push(pi.create(m, b, y));
           },
           subDivideNoNormalize: function(t, e) {
-            var n = $.lerp(e[this.b].position, e[this.c].position, 0.5), a = $.lerp(e[this.c].position, e[this.a].position, 0.5), s = $.lerp(e[this.a].position, e[this.b].position, 0.5), l = Mt.lerp(Mt.create(e[this.b].tu, e[this.b].tv), Mt.create(e[this.c].tu, e[this.c].tv), 0.5), g = Mt.lerp(Mt.create(e[this.c].tu, e[this.c].tv), Mt.create(e[this.a].tu, e[this.a].tv), 0.5), _ = Mt.lerp(Mt.create(e[this.a].tu, e[this.a].tv), Mt.create(e[this.b].tu, e[this.b].tv), 0.5), m = e.length, b = e.length + 1, y = e.length + 2;
+            var n = R.lerp(e[this.b].position, e[this.c].position, 0.5), a = R.lerp(e[this.c].position, e[this.a].position, 0.5), s = R.lerp(e[this.a].position, e[this.b].position, 0.5), l = Mt.lerp(Mt.create(e[this.b].tu, e[this.b].tv), Mt.create(e[this.c].tu, e[this.c].tv), 0.5), g = Mt.lerp(Mt.create(e[this.c].tu, e[this.c].tv), Mt.create(e[this.a].tu, e[this.a].tv), 0.5), _ = Mt.lerp(Mt.create(e[this.a].tu, e[this.a].tv), Mt.create(e[this.b].tu, e[this.b].tv), 0.5), m = e.length, b = e.length + 1, y = e.length + 2;
             e.push(Ht.createPosRaw(n, l.x, l.y)), e.push(Ht.createPosRaw(a, g.x, g.y)), e.push(Ht.createPosRaw(s, _.x, _.y)), t.push(pi.create(this.a, y, b)), t.push(pi.create(this.b, m, y)), t.push(pi.create(this.c, b, m)), t.push(pi.create(m, b, y));
           }
         };
@@ -23474,15 +23474,15 @@ function requireSrc() {
             }
           }
         };
-        function $t() {
+        function Rt() {
           this.tag = null, this.dropDownItems = [], this.checked = !1, this.enabled = !0, this.visible = !0;
         }
-        $t.create = function(t) {
-          var e = new $t();
+        Rt.create = function(t) {
+          var e = new Rt();
           return e.name = t, e;
         };
-        var Rh = {};
-        function $h() {
+        var $h = {};
+        function Rh() {
         }
         var Dh = {};
         function bn() {
@@ -23498,20 +23498,20 @@ function requireSrc() {
             this.__showDialogHook != null && this.__showDialogHook(t, e);
           }
         };
-        function $n() {
+        function Rn() {
           this.image = null, this.layer = null, this.tile = null, this._dropDown = null, this._downPosition = 0, this._lowPosition = 0, this._highPosition = 255, this._center = 127, this._ignoreNextClick = !1, this._dragType = 4, this._updated = !1, this.selectedCurveStyle = 0;
         }
-        $n.updateImage = function(t, e) {
+        Rn.updateImage = function(t, e) {
           if (!ti.useGlVersion2) {
             var n = r.safeCast(t.get_imageSet().get_wcsImage(), Kr), a = Ut.getTile(0, 0, 0, t.get_imageSet(), null);
             a.texture2d = n.getBitmap().getTexture();
           }
-        }, $n.updateScale = function(t, e, n, a) {
+        }, Rn.updateScale = function(t, e, n, a) {
           if (t.get_imageSet().get_fitsProperties().scaleType = e, t.get_imageSet().get_fitsProperties().lowerCut = n, t.get_imageSet().get_fitsProperties().upperCut = a, !ti.useGlVersion2) {
             var s = r.safeCast(t.get_imageSet().get_wcsImage(), Kr), l = Ut.getTile(0, 0, 0, t.get_imageSet(), null);
             l.texture2d = s.getBitmap().getTexture();
           }
-        }, $n.updateColorMapper = function(t, e) {
+        }, Rn.updateColorMapper = function(t, e) {
           if (t.get_imageSet().get_fitsProperties().colorMapName = e, !ti.useGlVersion2) {
             var n = r.safeCast(t.get_imageSet().get_wcsImage(), Kr), a = Ut.getTile(0, 0, 0, t.get_imageSet(), null);
             a.texture2d = n.getBitmap().getTexture();
@@ -23738,7 +23738,7 @@ function requireSrc() {
               var n = e.current, a = new Ys();
               a.eventTime = r.date(n[this._dateColumn]);
               var s = (6371e3 - parseFloat(n[this._depthColumn]) * 1e3) / 6371e3;
-              a.location = U.geoTo3dRad(parseFloat(n[this._latColumn]), parseFloat(n[this._lngColumn]) + 180, s), a.tranformed = new $(), a.size = Math.pow(2, parseFloat(n[this._magColumn])) / 50, this._worldList[t] = a.location, this._transformedList[t] = a.tranformed, this.items.push(a), t++;
+              a.location = U.geoTo3dRad(parseFloat(n[this._latColumn]), parseFloat(n[this._lngColumn]) + 180, s), a.tranformed = new R(), a.size = Math.pow(2, parseFloat(n[this._magColumn])) / 50, this._worldList[t] = a.location, this._transformedList[t] = a.tranformed, this.items.push(a), t++;
             }
           },
           draw: function(t) {
@@ -23747,7 +23747,7 @@ function requireSrc() {
               var e = t.device;
               e.globalAlpha = 0.4;
               var n = t.width, a = t.height;
-              $.makeCopy(t.get_viewPoint());
+              R.makeCopy(t.get_viewPoint());
               for (var s = t.get_fovScale() / 100, l = r.enumerate(this.items); l.moveNext(); ) {
                 var g = l.current;
                 if (g.tranformed.z < 1) {
@@ -24032,10 +24032,10 @@ function requireSrc() {
                   this.renderContext.drawImageSet(this._milkyWayBackground, y * 100), Me.cullInside = !1;
                 }
                 this._drawSkyOverlays(), this.renderContext.lighting = b, this.renderContext.space = !1, this.renderContext.set_world(_), this.renderContext.set_worldBase(_), this.renderContext.makeFrustum();
-                var M = this.renderContext.cameraPosition, A = this.renderContext.get_world(), R = this.renderContext.get_world();
-                R._multiply(tt.translation(this.renderContext.viewCamera.viewTarget)), this.renderContext.cameraPosition = $.subtractVectors(this.renderContext.cameraPosition, this.renderContext.viewCamera.viewTarget), this.renderContext.set_world(R), this.renderContext.makeFrustum(), X.get_active().get_solarSystemCosmos() && W.drawCosmos3D(this.renderContext, 1), X.get_active().get_solarSystemMilkyWay() && g > 0 && W.drawGalaxyImage(this.renderContext, g), X.get_active().get_solarSystemStars() && W.drawStars3D(this.renderContext, 1), R = A;
-                var F = this.renderContext.viewCamera.viewTarget, O = $.create(-F.x, -F.y, -F.z);
-                this.renderContext.cameraPosition = M, R._multiply(tt.translation(O)), this.renderContext.set_world(R), this.renderContext.makeFrustum(), P._draw(this.renderContext, 1, !0, "Sky", !0, !1), this.renderContext.set_world(A), this.renderContext.makeFrustum(), this.renderContext.get_solarSystemCameraDistance() < 15e3 && (this.renderContext.setupMatricesSolarSystem(!1), X.get_active().get_solarSystemMinorPlanets() && Ge.drawMPC3D(this.renderContext, 1, this.renderContext.viewCamera.viewTarget), X.get_active().get_solarSystemPlanets() && D.drawPlanets3D(this.renderContext, 1, this.renderContext.viewCamera.viewTarget));
+                var M = this.renderContext.cameraPosition, A = this.renderContext.get_world(), $ = this.renderContext.get_world();
+                $._multiply(tt.translation(this.renderContext.viewCamera.viewTarget)), this.renderContext.cameraPosition = R.subtractVectors(this.renderContext.cameraPosition, this.renderContext.viewCamera.viewTarget), this.renderContext.set_world($), this.renderContext.makeFrustum(), X.get_active().get_solarSystemCosmos() && W.drawCosmos3D(this.renderContext, 1), X.get_active().get_solarSystemMilkyWay() && g > 0 && W.drawGalaxyImage(this.renderContext, g), X.get_active().get_solarSystemStars() && W.drawStars3D(this.renderContext, 1), $ = A;
+                var F = this.renderContext.viewCamera.viewTarget, O = R.create(-F.x, -F.y, -F.z);
+                this.renderContext.cameraPosition = M, $._multiply(tt.translation(O)), this.renderContext.set_world($), this.renderContext.makeFrustum(), P._draw(this.renderContext, 1, !0, "Sky", !0, !1), this.renderContext.set_world(A), this.renderContext.makeFrustum(), this.renderContext.get_solarSystemCameraDistance() < 15e3 && (this.renderContext.setupMatricesSolarSystem(!1), X.get_active().get_solarSystemMinorPlanets() && Ge.drawMPC3D(this.renderContext, 1, this.renderContext.viewCamera.viewTarget), X.get_active().get_solarSystemPlanets() && D.drawPlanets3D(this.renderContext, 1, this.renderContext.viewCamera.viewTarget));
               } else {
                 if (!this.renderType || this.renderType === 1 ? this.renderContext._setupMatricesLand3d() : this.renderContext.setupMatricesSpace3d(this.renderContext.width, this.renderContext.height), this.renderContext.drawImageSet(this.renderContext.get_backgroundImageset(), 100), this.renderContext.get_foregroundImageset() != null)
                   if (this.renderContext.get_foregroundImageset().get_dataSetType() !== this.renderContext.get_backgroundImageset().get_dataSetType())
@@ -24183,7 +24183,7 @@ function requireSrc() {
               if (s[0] = Mt.create(n.pageX, n.pageY), s[1] = Mt.create(a.pageX, a.pageY), this._pinchingZoomRect[0] != null && this._pinchingZoomRect[1] != null) {
                 var l = Mt.create(this.renderContext.width / 2, this.renderContext.height / 2), g = Mt.subtract(s[0], this._pinchingZoomRect[0]), _ = Mt.subtract(s[1], this._pinchingZoomRect[1]), m = Mt.subtract(this._pinchingZoomRect[0], l), b = Mt.subtract(this._pinchingZoomRect[1], l);
                 m.normalize(), b.normalize();
-                var y = g.x * m.x + g.y * m.y, M = _.x * b.x + _.y * b.y, A = Mt.create(y * m.x, y * m.y), R = Mt.create(M * b.x, M * b.y), F = Mt.subtract(g, A), O = Mt.subtract(_, R), B = A.get_length() + R.get_length(), H = F.get_length() + O.get_length();
+                var y = g.x * m.x + g.y * m.y, M = _.x * b.x + _.y * b.y, A = Mt.create(y * m.x, y * m.y), $ = Mt.create(M * b.x, M * b.y), F = Mt.subtract(g, A), O = Mt.subtract(_, $), B = A.get_length() + $.get_length(), H = F.get_length() + O.get_length();
                 if (B >= H) {
                   var K = this.getDistance(this._pinchingZoomRect[0], this._pinchingZoomRect[1]), J = this.getDistance(s[0], s[1]), it = K / J;
                   this.zoom(it);
@@ -24307,9 +24307,9 @@ function requireSrc() {
             return U.cartesianToSphericalSky(a);
           },
           transformPickPointToWorldSpace: function(t, e, n) {
-            var a = new $();
+            var a = new R();
             if (this.renderContext.get_projection() != null) {
-              var s = new $();
+              var s = new R();
               s.x = (2 * t.x / e - 1) / this.renderContext.get_projection().get_m11(), s.y = (2 * t.y / n - 1) / this.renderContext.get_projection().get_m22(), s.z = 1;
               var l = tt.multiplyMatrix(this.renderContext.get_view(), this.renderContext.get_world());
               l.invert(), a.x = s.x * l.get_m11() + s.y * l.get_m21() + s.z * l.get_m31(), a.y = s.x * l.get_m12() + s.y * l.get_m22() + s.z * l.get_m32(), a.z = s.x * l.get_m13() + s.y * l.get_m23() + s.z * l.get_m33(), a.normalize();
@@ -24378,7 +24378,7 @@ function requireSrc() {
                   if (s === 20) {
                     t.get_classification() === 1048576 ? _ = 1404946007758 : _ = 63239.6717 * 100;
                     var m = U.raDecTo3dAu(t.get_RA(), t.get_dec(), t.get_distance()), b = U.meanObliquityOfEcliptic(Q.get_jNow()) / 180 * Math.PI;
-                    m.rotateX(b), g.viewTarget = $.negate(g.viewTarget);
+                    m.rotateX(b), g.viewTarget = R.negate(g.viewTarget);
                   } else {
                     switch (g.viewTarget = D.getPlanet3dLocationJD(s, Q.getJNowForFutureTime(l)), s) {
                       case 0:
@@ -24435,14 +24435,14 @@ function requireSrc() {
                   var y = this.renderContext.viewCamera.copy();
                   this._solarSystemTrack === 20 && !r.emptyString(this.renderContext.get_trackingFrame()) && (y = this.renderContext.customTrackingParams, this.renderContext.set_trackingFrame("")), g.zoom = _;
                   var M = g.viewTarget;
-                  if (M.subtract(y.viewTarget), t.get_classification() === 1 && (M = $.negate(M)), M.length()) {
+                  if (M.subtract(y.viewTarget), t.get_classification() === 1 && (M = R.negate(M)), M.length()) {
                     var A = M.toRaDec();
                     s === 20 ? g.lat = -A.y : g.lat = A.y, g.lng = A.x * 15 - 90;
                   } else
                     g.lat = this.renderContext.viewCamera.lat, g.lng = this.renderContext.viewCamera.lng;
                   s !== 20 && (g.viewTarget = D.getPlanetTargetPoint(s, g.lat, g.lng, Q.getJNowForFutureTime(l)));
-                  var R = new Ds(y, g, l, Q.get_now(), Q.getTimeForFutureTime(l), 3);
-                  R.fastDirectionMove = !0, this.set__mover(R);
+                  var $ = new Ds(y, g, l, Q.get_now(), Q.getTimeForFutureTime(l), 3);
+                  $.fastDirectionMove = !0, this.set__mover($);
                   return;
                 }
               }
@@ -24643,7 +24643,7 @@ function requireSrc() {
             } else {
               if (this._crossHairs == null) {
                 var l = 0.03, g = l * t.height / t.width;
-                this._crossHairs = new an(), this._crossHairs.set_depthBuffered(!1), this._crossHairs.pure2D = !0, this._crossHairs.addLine($.create(-g, 0, 0), $.create(g, 0, 0)), this._crossHairs.addLine($.create(0, -l, 0), $.create(0, l, 0));
+                this._crossHairs = new an(), this._crossHairs.set_depthBuffered(!1), this._crossHairs.pure2D = !0, this._crossHairs.addLine(R.create(-g, 0, 0), R.create(g, 0, 0)), this._crossHairs.addLine(R.create(0, -l, 0), R.create(0, l, 0));
               }
               this._crossHairs.drawLines(t, 1, j.load(X.get_current().get_crosshairsColor()));
             }
@@ -24672,14 +24672,14 @@ function requireSrc() {
             l.addEventListener("load", function(g) {
               var _ = l.width / l.height, m = e / n, b = e, y = n;
               _ < m ? y = r.truncate(b / _) : b = r.truncate(y * _);
-              var M = (e - b) / 2, A = (n - y) / 2, R = document.createElement("canvas");
-              R.height = n, R.width = e;
-              var F = R.getContext("2d");
-              if (F.drawImage(l, M, A, b, y), typeof R.msToBlob == "function") {
-                var O = R.msToBlob();
+              var M = (e - b) / 2, A = (n - y) / 2, $ = document.createElement("canvas");
+              $.height = n, $.width = e;
+              var F = $.getContext("2d");
+              if (F.drawImage(l, M, A, b, y), typeof $.msToBlob == "function") {
+                var O = $.msToBlob();
                 t(O);
               } else
-                R.toBlob(t, a);
+                $.toBlob(t, a);
             }, !1), l.src = Z.singleton.canvas.toDataURL();
           },
           clampZooms: function(t) {
@@ -24715,26 +24715,26 @@ function requireSrc() {
           this._ascention = 0, this._declination = 0, this._ascention = t + Math.PI * 80 % (Math.PI * 2), this._declination = e;
         }
         U.geoTo3d = function(t, e) {
-          return $.create(Math.cos(e * U.RC) * Math.cos(t * U.RC) * 1, Math.sin(t * U.RC) * 1, Math.sin(e * U.RC) * Math.cos(t * U.RC) * 1);
+          return R.create(Math.cos(e * U.RC) * Math.cos(t * U.RC) * 1, Math.sin(t * U.RC) * 1, Math.sin(e * U.RC) * Math.cos(t * U.RC) * 1);
         }, U.geoTo3dDouble = function(t, e) {
-          return $.create(Math.cos(e * U.RC) * Math.cos(t * U.RC) * 1, Math.sin(t * U.RC) * 1, Math.sin(e * U.RC) * Math.cos(t * U.RC) * 1);
+          return R.create(Math.cos(e * U.RC) * Math.cos(t * U.RC) * 1, Math.sin(t * U.RC) * 1, Math.sin(e * U.RC) * Math.cos(t * U.RC) * 1);
         }, U.geoTo3dRad = function(t, e, n) {
-          return $.create(Math.cos(e * U.RC) * Math.cos(t * U.RC) * n, Math.sin(t * U.RC) * n, Math.sin(e * U.RC) * Math.cos(t * U.RC) * n);
+          return R.create(Math.cos(e * U.RC) * Math.cos(t * U.RC) * n, Math.sin(t * U.RC) * n, Math.sin(e * U.RC) * Math.cos(t * U.RC) * n);
         }, U.raDecTo3d = function(t, e) {
-          return $.create(Math.cos(t * U.RCRA) * Math.cos(e * U.RC) * 1, Math.sin(e * U.RC) * 1, Math.sin(t * U.RCRA) * Math.cos(e * U.RC) * 1);
+          return R.create(Math.cos(t * U.RCRA) * Math.cos(e * U.RC) * 1, Math.sin(e * U.RC) * 1, Math.sin(t * U.RCRA) * Math.cos(e * U.RC) * 1);
         }, U.raDecTo3dAu = function(t, e, n) {
-          return $.create(Math.cos(t * U.RCRA) * Math.cos(e * U.RC) * n, Math.sin(e * U.RC) * n, Math.sin(t * U.RCRA) * Math.cos(e * U.RC) * n);
+          return R.create(Math.cos(t * U.RCRA) * Math.cos(e * U.RC) * n, Math.sin(e * U.RC) * n, Math.sin(t * U.RCRA) * Math.cos(e * U.RC) * n);
         }, U.raDecTo3dMat = function(t, e, n) {
-          return $._transformCoordinate($.create(Math.cos(t * U.RCRA) * Math.cos(e * U.RC) * 1, Math.sin(e * U.RC) * 1, Math.sin(t * U.RCRA) * Math.cos(e * U.RC) * 1), n);
+          return R._transformCoordinate(R.create(Math.cos(t * U.RCRA) * Math.cos(e * U.RC) * 1, Math.sin(e * U.RC) * 1, Math.sin(t * U.RCRA) * Math.cos(e * U.RC) * 1), n);
         }, U.raDecTo3dPointRad = function(t, e) {
-          return t.set_dec(-t.get_dec()), $.create(Math.cos(t.get_RA() * U.RCRA) * Math.cos(t.get_dec() * U.RC) * e, Math.sin(t.get_dec() * U.RC) * e, Math.sin(t.get_RA() * U.RCRA) * Math.cos(t.get_dec() * U.RC) * e);
+          return t.set_dec(-t.get_dec()), R.create(Math.cos(t.get_RA() * U.RCRA) * Math.cos(t.get_dec() * U.RC) * e, Math.sin(t.get_dec() * U.RC) * e, Math.sin(t.get_RA() * U.RCRA) * Math.cos(t.get_dec() * U.RC) * e);
         }, U.sterographicTo3d = function(t, e, n, a, s, l, g, _, m) {
           var b = 90, y = 0;
           if (t -= l, e -= g, t || e) {
-            var M = (1 + Math.sin(Math.abs(a) / 180 * Math.PI)) * 6371e3 / _, A = M * M, R = 180 / Math.PI;
-            t ? y = Math.atan2(e, t) * R : y = 90 * e < 0 ? -1 : 1;
+            var M = (1 + Math.sin(Math.abs(a) / 180 * Math.PI)) * 6371e3 / _, A = M * M, $ = 180 / Math.PI;
+            t ? y = Math.atan2(e, t) * $ : y = 90 * e < 0 ? -1 : 1;
             var F = t * t + e * e;
-            b = (A - F) / (A + F), b = Math.asin(b) * R, m || (b = -b, y = -y, s = -s);
+            b = (A - F) / (A + F), b = Math.asin(b) * $, m || (b = -b, y = -y, s = -s);
           }
           return U.geoTo3dRad(b, 90 + y + s, n);
         }, U.equitorialToHorizon = function(t, e, n) {
@@ -24753,8 +24753,8 @@ function requireSrc() {
         }, U.mstFromUTC2 = function(t, e) {
           var n = t.getUTCFullYear(), a = t.getUTCMonth() + 1, s = t.getUTCDate(), l = t.getUTCHours(), g = t.getUTCMinutes(), _ = t.getUTCSeconds() + t.getUTCMilliseconds() / 1e3;
           (a === 1 || a === 2) && (n -= 1, a += 12);
-          var m = r.truncate(n / 100), b = 2 - m + Math.floor(m / 4), y = Math.floor(365.25 * n), M = Math.floor(30.6001 * (a + 1)), A, R, F;
-          if (A = b + y + M - 730550.5 + s + (l + g / 60 + _ / 3600) / 24, R = A / 36525, F = 280.46061837 + 360.98564736629 * A + 387933e-9 * R * R - R * R * R / 3871e4 + e, F > 0)
+          var m = r.truncate(n / 100), b = 2 - m + Math.floor(m / 4), y = Math.floor(365.25 * n), M = Math.floor(30.6001 * (a + 1)), A, $, F;
+          if (A = b + y + M - 730550.5 + s + (l + g / 60 + _ / 3600) / 24, $ = A / 36525, F = 280.46061837 + 360.98564736629 * A + 387933e-9 * $ * $ - $ * $ * $ / 3871e4 + e, F > 0)
             for (; F > 360; )
               F = F - 360;
           else
@@ -24772,7 +24772,7 @@ function requireSrc() {
           return Mt.create(n / Math.PI * 12, a / Math.PI * 180);
         }, U.sphericalSkyToCartesian = function(t) {
           var e = t.x * (Math.PI / 12), n = t.y * (Math.PI / 180), a = Math.cos(e) * Math.cos(n), s = -Math.sin(n), l = Math.sin(e) * Math.cos(n);
-          return $.create(a, s, l);
+          return R.create(a, s, l);
         }, U.cartesianToLatLng = function(t) {
           var e = Math.sqrt(t.x * t.x + t.y * t.y + t.z * t.z), n = Math.atan2(t.z, t.x), a = Math.asin(t.y / e);
           return Mt.create(n * 180 / Math.PI, a * 180 / Math.PI);
@@ -24907,7 +24907,7 @@ function requireSrc() {
             return Math.sqrt((e - a) * (e - a) + (n - s) * (n - s));
           },
           distance3d: function(t) {
-            var e = U.geoTo3dDouble(t.get_lat(), t.get_lng()), n = U.geoTo3dDouble(this.get_lat(), this.get_lng()), a = $.subtractVectors(e, n);
+            var e = U.geoTo3dDouble(t.get_lat(), t.get_lng()), n = U.geoTo3dDouble(this.get_lat(), this.get_lng()), a = R.subtractVectors(e, n);
             return a.length() / U.RC;
           },
           angle: function(t) {
@@ -24967,10 +24967,10 @@ function requireSrc() {
             var g = 0.5 + l, _ = n * 0.75, m = g - _, b = g + _, y = m, M = b, A = y === M ? y | 4 : y < M ? y : M + 8;
             e.fx = rn.fmodulo(b, 1), e.fy = 1 - rn.fmodulo(m, 1), e.face = A;
           } else {
-            var R = Math.min(3, r.truncate(l)), F = l - R, O;
+            var $ = Math.min(3, r.truncate(l)), F = l - $, O;
             s < 0.99 || !t.have_sth ? O = Math.sqrt(3 * (1 - s)) : O = t.sth / Math.sqrt((1 + s) / 3);
             var m = F * O, b = (1 - F) * O;
-            m >= 1 && (m = 1), b >= 1 && (b = 1), n >= 0 ? (e.fx = 1 - b, e.fy = 1 - m, e.face = R) : (e.fx = m, e.fy = b, e.face = R + 8);
+            m >= 1 && (m = 1), b >= 1 && (b = 1), n >= 0 ? (e.fx = 1 - b, e.fy = 1 - m, e.face = $) : (e.fx = m, e.fy = b, e.face = $ + 8);
           }
           return e;
         }, Qi.fromVector = function(t) {
@@ -25185,7 +25185,7 @@ function requireSrc() {
           },
           _isLeftOfHalfSpace$1: function(t, e, n) {
             t.normalize(), e.normalize();
-            var a = $.cross(t, e), s = $.dot(a, n);
+            var a = R.cross(t, e), s = R.dot(a, n);
             return s > 0;
           },
           getSurfacePointAltitude: function(t, e, n) {
@@ -25204,7 +25204,7 @@ function requireSrc() {
           _getAltitudeFromLatLng$1: function(t, e, n) {
             var a = U.geoTo3dDouble(t, e), s = wn.getUVFromInnerPoint(this.topLeft, this.topRight, this.bottomLeft, this.bottomRight, a), l = Math.max(0, Math.min(16, s.x * 16)), g = Math.max(0, Math.min(16, s.y * 16)), _ = Math.max(0, Math.min(15, r.truncate(s.x * 16))), m = Math.max(0, Math.min(15, r.truncate(s.y * 16))), b = l - _, y = g - m;
             if (this.demArray != null) {
-              var M = this.demArray[_ + 17 * m], A = this.demArray[_ + 1 + 17 * m], R = this.demArray[_ + 17 * (m + 1)], F = this.demArray[_ + 1 + 17 * (m + 1)], O = M * (1 - b) + b * A, B = R * (1 - b) + b * F, H = O * (1 - y) + y * B;
+              var M = this.demArray[_ + 17 * m], A = this.demArray[_ + 1 + 17 * m], $ = this.demArray[_ + 17 * (m + 1)], F = this.demArray[_ + 1 + 17 * (m + 1)], O = M * (1 - b) + b * A, B = $ * (1 - b) + b * F, H = O * (1 - y) + y * B;
               return H / (n ? 1 : this.get__demScaleFactor());
             }
             return this.demAverage / (n ? 1 : this.get__demScaleFactor());
@@ -25436,11 +25436,11 @@ function requireSrc() {
             var e = !0, n = this._radius$1;
             this._skyRelative$1 && (n /= t.get_fovScale() / 3600);
             var a = t.WVP.transform(this.center);
-            if (a.z < 0 && (e = !1), $.dot(t.get_viewPoint(), this.center) < 0.55 && (e = !1), t.gl != null) {
+            if (a.z < 0 && (e = !1), R.dot(t.get_viewPoint(), this.center) < 0.55 && (e = !1), t.gl != null) {
               if (ve.batchDirty || this.annotationDirty) {
-                for (var s = $.create(0, 1, 0), l = $.cross(this.center, s), g = $.cross(this.center, l), _ = this._radius$1 / 44, m = 72, b = Math.PI * 2 / m, y = [], M = 0; M <= m; M++) {
-                  var A = Math.cos(M * b) * _, R = Math.sin(M * b) * _;
-                  y.push($.create(this.center.x + A * l.x + R * g.x, this.center.y + A * l.y + R * g.y, this.center.z + A * l.z + R * g.z));
+                for (var s = R.create(0, 1, 0), l = R.cross(this.center, s), g = R.cross(this.center, l), _ = this._radius$1 / 44, m = 72, b = Math.PI * 2 / m, y = [], M = 0; M <= m; M++) {
+                  var A = Math.cos(M * b) * _, $ = Math.sin(M * b) * _;
+                  y.push(R.create(this.center.x + A * l.x + $ * g.x, this.center.y + A * l.y + $ * g.y, this.center.z + A * l.z + $ * g.z));
                 }
                 if (this._strokeWidth$1 > 0 && y.length > 1) {
                   var F = this._lineColor$1._clone();
@@ -25451,7 +25451,7 @@ function requireSrc() {
                 if (this._fill$1) {
                   var B = this._fillColor$1._clone();
                   B.a = Math.round(B.a * this.get_opacity());
-                  var H = $.create(this.center.x, this.center.y, this.center.z);
+                  var H = R.create(this.center.x, this.center.y, this.center.z);
                   y.splice(0, 0, H), ve.triangleFanPointList.addShape(y, B, new ni(0, 1));
                 }
                 this.annotationDirty = !1;
@@ -25468,7 +25468,7 @@ function requireSrc() {
             return this._skyRelative$1 || (l *= t.get_fovScale() / 3600), ve.separation(e, n, this._ra$1, this._dec$1) < l;
           }
         };
-        function Ro() {
+        function $o() {
           this._points$1 = [], this._fill$1 = !1, this._strokeWidth$1 = 1, this._lineColor$1 = Pt.get_white(), this._fillColor$1 = Pt.get_white(), ve.call(this);
         }
         var tf = {
@@ -25527,7 +25527,7 @@ function requireSrc() {
                   g.restore();
                   return;
                 }
-                if ($.dot(t.get_viewPoint(), b) < 0.75) {
+                if (R.dot(t.get_viewPoint(), b) < 0.75) {
                   g.restore();
                   return;
                 }
@@ -25537,7 +25537,7 @@ function requireSrc() {
             }
           }
         };
-        function $o() {
+        function Ro() {
           this._points$1 = [], this._strokeWidth$1 = 1, this._lineColor$1 = Pt.get_white(), ve.call(this);
         }
         var ef = {
@@ -25577,7 +25577,7 @@ function requireSrc() {
                   s.restore();
                   return;
                 }
-                if ($.dot(t.get_viewPoint(), _) < 0.75) {
+                if (R.dot(t.get_viewPoint(), _) < 0.75) {
                   s.restore();
                   return;
                 }
@@ -25621,10 +25621,10 @@ function requireSrc() {
                 return this._createGeometryBottomsUp$1(t);
               var n, a, s = 0, l = this.dataset.get_baseTileDegrees() / Math.pow(2, this.level), g = 90 - this.tileY * l, _ = 90 - (this.tileY + 1) * l, m = this.tileX * l - 180, b = (this.tileX + 1) * l - 180, y = b - m, M = _ - g;
               this.topLeft = this.geoTo3d(g, m, !1), this.bottomRight = this.geoTo3d(_, b, !1), this.topRight = this.geoTo3d(g, b, !1), this.bottomLeft = this.geoTo3d(_, m, !1);
-              var A = new Array((this._subDivisionLevel$1 + 1) * (this._subDivisionLevel$1 + 1)), R, F, O = 1 / this._subDivisionLevel$1;
+              var A = new Array((this._subDivisionLevel$1 + 1) * (this._subDivisionLevel$1 + 1)), $, F, O = 1 / this._subDivisionLevel$1;
               for (F = 0; F <= this._subDivisionLevel$1; F++)
-                for (F !== this._subDivisionLevel$1 ? n = g + O * M * F : n = _, R = 0; R <= this._subDivisionLevel$1; R++)
-                  R !== this._subDivisionLevel$1 ? a = m + O * y * R : a = b, s = F * (this._subDivisionLevel$1 + 1) + R, A[s] = Ht.createPos(this.geoTo3d(n, a, !1), R * O, F * O);
+                for (F !== this._subDivisionLevel$1 ? n = g + O * M * F : n = _, $ = 0; $ <= this._subDivisionLevel$1; $++)
+                  $ !== this._subDivisionLevel$1 ? a = m + O * y * $ : a = b, s = F * (this._subDivisionLevel$1 + 1) + $, A[s] = Ht.createPos(this.geoTo3d(n, a, !1), $ * O, F * O);
               this.triangleCount = this._subDivisionLevel$1 * this._subDivisionLevel$1 * 2;
               var B = this._subDivisionLevel$1 / 2, H = 0;
               if (t.gl == null)
@@ -25662,10 +25662,10 @@ function requireSrc() {
             return !0;
           },
           _createGeometryBottomsUp$1: function(t) {
-            var e, n, a = 0, s = this.dataset.get_baseTileDegrees() / Math.pow(2, this.level), l = -90 + (this.tileY + 1) * s, g = -90 + this.tileY * s, _ = this.tileX * s - 180, m = (this.tileX + 1) * s - 180, b = m - _, y = g - l, M = new Array((this._subDivisionLevel$1 + 1) * (this._subDivisionLevel$1 + 1)), A, R, F = 1 / this._subDivisionLevel$1;
-            for (R = 0; R <= this._subDivisionLevel$1; R++)
-              for (R !== this._subDivisionLevel$1 ? e = l + F * y * R : e = g, A = 0; A <= this._subDivisionLevel$1; A++)
-                A !== this._subDivisionLevel$1 ? n = _ + F * b * A : n = m, a = R * (this._subDivisionLevel$1 + 1) + A, M[a] = Ht.createPos(this.geoTo3d(e, n, !1), A * F, R * F);
+            var e, n, a = 0, s = this.dataset.get_baseTileDegrees() / Math.pow(2, this.level), l = -90 + (this.tileY + 1) * s, g = -90 + this.tileY * s, _ = this.tileX * s - 180, m = (this.tileX + 1) * s - 180, b = m - _, y = g - l, M = new Array((this._subDivisionLevel$1 + 1) * (this._subDivisionLevel$1 + 1)), A, $, F = 1 / this._subDivisionLevel$1;
+            for ($ = 0; $ <= this._subDivisionLevel$1; $++)
+              for ($ !== this._subDivisionLevel$1 ? e = l + F * y * $ : e = g, A = 0; A <= this._subDivisionLevel$1; A++)
+                A !== this._subDivisionLevel$1 ? n = _ + F * b * A : n = m, a = $ * (this._subDivisionLevel$1 + 1) + A, M[a] = Ht.createPos(this.geoTo3d(e, n, !1), A * F, $ * F);
             this.triangleCount = this._subDivisionLevel$1 * this._subDivisionLevel$1 * 2;
             var O = this._subDivisionLevel$1 / 2, B = 0;
             if (t.gl == null)
@@ -25921,17 +25921,17 @@ function requireSrc() {
           },
           _initializeRoute$1: function(t) {
             this._triangleList$1 = new In(), this._triangleList$1.decay = 1e3, this._triangleList$1.sky = this.get_astronomical(), this._triangleList$1.timeSeries = !0, this._triangleList$1.depthBuffered = !1, this._triangleList$1.autoTime = !1;
-            var e = 500, n = U.geoTo3dDouble(this._latStart$1, this._lngStart$1), a = U.geoTo3dDouble(this._latEnd$1, this._lngEnd$1), s = $.subtractVectors(a, n);
+            var e = 500, n = U.geoTo3dDouble(this._latStart$1, this._lngStart$1), a = U.geoTo3dDouble(this._latEnd$1, this._lngEnd$1), s = R.subtractVectors(a, n);
             s.normalize();
             var l = n;
             l.normalize();
-            var g = $.cross(l, s), _ = $.cross(s, l);
+            var g = R.cross(l, s), _ = R.cross(s, l);
             g.normalize(), _.normalize(), g.multiply(1e-3 * this._width$1), _.multiply(1e-3 * this._width$1);
-            for (var m = new $(), b = new $(), y = !0, M = 0; M <= e; M++) {
-              var A = $.lerp(n, a, M / e);
+            for (var m = new R(), b = new R(), y = !0, M = 0; M <= e; M++) {
+              var A = R.lerp(n, a, M / e);
               A.normalize();
-              var R = A, F = A;
-              R.add(g), F.add(_), y ? y = !1 : this._triangleList$1.addQuad(b, m, F, R, this.get_color(), new ni(M / e, 2)), m = R, b = F;
+              var $ = A, F = A;
+              $.add(g), F.add(_), y ? y = !1 : this._triangleList$1.addQuad(b, m, F, $, this.get_color(), new ni(M / e, 2)), m = $, b = F;
             }
           },
           getParams: function() {
@@ -26057,14 +26057,14 @@ function requireSrc() {
             console.warn("SetImageScale is considered deprecated. Use setImageScaleRaw or setImageScalePhysical instead."), this.setImageScaleRaw(t, e, n);
           },
           setImageScaleRaw: function(t, e, n) {
-            this.get_imageSet().get_fitsProperties().lowerCut = e, this.get_imageSet().get_fitsProperties().upperCut = n, this.get_imageSet().get_fitsProperties().scaleType = t, r.canCast(this._imageSet$1.get_wcsImage(), Kr) && $n.updateScale(this, t, e, n);
+            this.get_imageSet().get_fitsProperties().lowerCut = e, this.get_imageSet().get_fitsProperties().upperCut = n, this.get_imageSet().get_fitsProperties().scaleType = t, r.canCast(this._imageSet$1.get_wcsImage(), Kr) && Rn.updateScale(this, t, e, n);
           },
           setImageScalePhysical: function(t, e, n) {
             var a = e, s = n;
             this._isFitsImageset$1() && (a = (a - this._imageSet$1.get_fitsProperties().bZero) / this._imageSet$1.get_fitsProperties().bScale, s = (s - this._imageSet$1.get_fitsProperties().bZero) / this._imageSet$1.get_fitsProperties().bScale), this.setImageScaleRaw(t, a, s);
           },
           setImageZ: function(t) {
-            this._isFitsImageset$1() && $n.updateImage(this, t);
+            this._isFitsImageset$1() && Rn.updateImage(this, t);
           },
           get_colorMapperName: function() {
             return this.get_imageSet().get_fitsProperties().colorMapName;
@@ -26072,7 +26072,7 @@ function requireSrc() {
           set_colorMapperName: function(t) {
             if (Ce.fromNamedColormap(t) == null)
               throw new Error("Invalid colormap name");
-            return this.version++, this._isFitsImageset$1() && (ti.useGlVersion2 ? this._imageSet$1.get_fitsProperties().colorMapName = t : $n.updateColorMapper(this, t)), t;
+            return this.version++, this._isFitsImageset$1() && (ti.useGlVersion2 ? this._imageSet$1.get_fitsProperties().colorMapName = t : Rn.updateColorMapper(this, t)), t;
           },
           get_colorMapper: function() {
             return this.get_imageSet().get_fitsProperties().colorMapName == null ? null : Ce.fromNamedColormap(this.get_imageSet().get_fitsProperties().colorMapName);
@@ -26097,73 +26097,73 @@ function requireSrc() {
           }
         };
         function Ne() {
-          this._primaryUI$1 = null, this._heading$1 = 0, this._flipV$1 = !0, this._flipHandedness$1 = !1, this._smooth$1 = !0, this._twoSidedGeometry$1 = !1, this._pitch$1 = 0, this._roll$1 = 0, this._scale$1 = $.create(1, 1, 1), this._translate$1 = $.create(0, 0, 0), this._lightID$1 = 0, this._dirty$1 = !1, this.objType = !1, this._xHandle$1 = new Mt(), this._yHandle$1 = new Mt(), this._zHandle$1 = new Mt(), this._hprHandles$1 = new Array(6), this._uiScale$1 = 1, this._showEditUi$1 = !1, this._dragMode$1 = 0, this._pntDown$1 = new Mt(), this._valueOnDown$1 = 0, this._valueOnDown2$1 = 0, this._hitDist$1 = 20, this._lockPreferedAxis$1 = !1, this._preferY$1 = !1, ai.call(this);
+          this._primaryUI$1 = null, this._heading$1 = 0, this._flipV$1 = !0, this._flipHandedness$1 = !1, this._smooth$1 = !0, this._twoSidedGeometry$1 = !1, this._pitch$1 = 0, this._roll$1 = 0, this._scale$1 = R.create(1, 1, 1), this._translate$1 = R.create(0, 0, 0), this._lightID$1 = 0, this._dirty$1 = !1, this.objType = !1, this._xHandle$1 = new Mt(), this._yHandle$1 = new Mt(), this._zHandle$1 = new Mt(), this._hprHandles$1 = new Array(6), this._uiScale$1 = 1, this._showEditUi$1 = !1, this._dragMode$1 = 0, this._pntDown$1 = new Mt(), this._valueOnDown$1 = 0, this._valueOnDown2$1 = 0, this._hitDist$1 = 20, this._lockPreferedAxis$1 = !1, this._preferY$1 = !1, ai.call(this);
         }
         Ne._initTranslateUI$1 = function() {
           Ne._translateUILines$1 = new fa(), Ne._translateUILines$1.timeSeries = !1, Ne._translateUILines$1.set_depthBuffered(!1), Ne._translateUILines$1.showFarSide = !0, Ne._translateUI$1 = new In(), Ne._translateUI$1.depthBuffered = !1, Ne._translateUI$1.timeSeries = !1, Ne._translateUI$1.writeZbuffer = !1;
           for (var t = Math.PI * 2, e = t / 45, n = 0.05, a = 0; a < t; a += e) {
-            var s = $.create(1 - n * 4, 0, 0), l = $.create(1 - n * 4, Math.cos(a) * n, Math.sin(a) * n), g = $.create(1 - n * 4, Math.cos(a + e) * n, Math.sin(a + e) * n);
+            var s = R.create(1 - n * 4, 0, 0), l = R.create(1 - n * 4, Math.cos(a) * n, Math.sin(a) * n), g = R.create(1 - n * 4, Math.cos(a + e) * n, Math.sin(a + e) * n);
             Ne._translateUI$1.addTriangle(s, l, g, Pt.get_red(), ni.empty());
           }
           for (var a = 0; a < t; a += e) {
-            var s = $.create(1, 0, 0), g = $.create(1 - n * 4, Math.cos(a) * n, Math.sin(a) * n), l = $.create(1 - n * 4, Math.cos(a + e) * n, Math.sin(a + e) * n);
+            var s = R.create(1, 0, 0), g = R.create(1 - n * 4, Math.cos(a) * n, Math.sin(a) * n), l = R.create(1 - n * 4, Math.cos(a + e) * n, Math.sin(a + e) * n);
             Ne._translateUI$1.addTriangle(s, l, g, j.fromArgb(255, 255, Math.max(0, Math.sin(a) * 128), Math.max(0, Math.sin(a) * 128)), ni.empty());
           }
-          Ne._translateUILines$1.addLine($.create(0, 0, 0), $.create(1, 0, 0), Pt.get_red(), ni.empty());
+          Ne._translateUILines$1.addLine(R.create(0, 0, 0), R.create(1, 0, 0), Pt.get_red(), ni.empty());
           for (var a = 0; a < t; a += e) {
-            var s = $.create(0, 1 - n * 4, 0), g = $.create(Math.cos(a) * n, 1 - n * 4, Math.sin(a) * n), l = $.create(Math.cos(a + e) * n, 1 - n * 4, Math.sin(a + e) * n);
+            var s = R.create(0, 1 - n * 4, 0), g = R.create(Math.cos(a) * n, 1 - n * 4, Math.sin(a) * n), l = R.create(Math.cos(a + e) * n, 1 - n * 4, Math.sin(a + e) * n);
             Ne._translateUI$1.addTriangle(s, l, g, Pt.get_green(), ni.empty());
           }
           for (var a = 0; a < t; a += e) {
-            var s = $.create(0, 1, 0), l = $.create(Math.cos(a) * n, 1 - n * 4, Math.sin(a) * n), g = $.create(Math.cos(a + e) * n, 1 - n * 4, Math.sin(a + e) * n);
+            var s = R.create(0, 1, 0), l = R.create(Math.cos(a) * n, 1 - n * 4, Math.sin(a) * n), g = R.create(Math.cos(a + e) * n, 1 - n * 4, Math.sin(a + e) * n);
             Ne._translateUI$1.addTriangle(s, l, g, j.fromArgb(255, Math.max(0, Math.sin(a) * 128), 255, Math.max(0, Math.sin(a) * 128)), ni.empty());
           }
-          Ne._translateUILines$1.addLine($.create(0, 0, 0), $.create(0, 1, 0), Pt.get_green(), ni.empty());
+          Ne._translateUILines$1.addLine(R.create(0, 0, 0), R.create(0, 1, 0), Pt.get_green(), ni.empty());
           for (var a = 0; a < t; a += e) {
-            var s = $.create(0, 0, 1 - n * 4), l = $.create(Math.cos(a) * n, Math.sin(a) * n, 1 - n * 4), g = $.create(Math.cos(a + e) * n, Math.sin(a + e) * n, 1 - n * 4);
+            var s = R.create(0, 0, 1 - n * 4), l = R.create(Math.cos(a) * n, Math.sin(a) * n, 1 - n * 4), g = R.create(Math.cos(a + e) * n, Math.sin(a + e) * n, 1 - n * 4);
             Ne._translateUI$1.addTriangle(s, l, g, Pt.get_blue(), ni.empty());
           }
           for (var a = 0; a < t; a += e) {
-            var s = $.create(0, 0, 1), g = $.create(Math.cos(a) * n, Math.sin(a) * n, 1 - n * 4), l = $.create(Math.cos(a + e) * n, Math.sin(a + e) * n, 1 - n * 4);
+            var s = R.create(0, 0, 1), g = R.create(Math.cos(a) * n, Math.sin(a) * n, 1 - n * 4), l = R.create(Math.cos(a + e) * n, Math.sin(a + e) * n, 1 - n * 4);
             Ne._translateUI$1.addTriangle(s, l, g, j.fromArgb(255, Math.max(0, Math.sin(a) * 128), Math.max(0, Math.sin(a) * 128), 255), ni.empty());
           }
-          Ne._translateUILines$1.addLine($.create(0, 0, 0), $.create(0, 0, 1), Pt.get_blue(), ni.empty()), Ne._initRotateUI$1(), Ne._initScaleUI$1();
+          Ne._translateUILines$1.addLine(R.create(0, 0, 0), R.create(0, 0, 1), Pt.get_blue(), ni.empty()), Ne._initRotateUI$1(), Ne._initScaleUI$1();
         }, Ne._initScaleUI$1 = function() {
           Ne._scaleUI$1 = new In(), Ne._scaleUI$1.depthBuffered = !1, Ne._scaleUI$1.timeSeries = !1, Ne._scaleUI$1.writeZbuffer = !1;
           var t = 0.05;
-          Ne._makeCube$1(Ne._scaleUI$1, $.create(1 - t * 2, 0, 0), t * 2, Pt.get_red()), Ne._makeCube$1(Ne._scaleUI$1, $.create(0, 1 - t * 2, 0), t * 2, Pt.get_green()), Ne._makeCube$1(Ne._scaleUI$1, $.create(0, 0, 1 - t * 2), t * 2, Pt.get_blue());
+          Ne._makeCube$1(Ne._scaleUI$1, R.create(1 - t * 2, 0, 0), t * 2, Pt.get_red()), Ne._makeCube$1(Ne._scaleUI$1, R.create(0, 1 - t * 2, 0), t * 2, Pt.get_green()), Ne._makeCube$1(Ne._scaleUI$1, R.create(0, 0, 1 - t * 2), t * 2, Pt.get_blue());
         }, Ne._makeCube$1 = function(t, e, n, a) {
           var s = j.fromArgb(255, r.truncate(a.r * 0.6), a.g, r.truncate(a.b * 0.6)), l = j.fromArgb(255, r.truncate(a.r * 0.8), r.truncate(a.g * 0.8), r.truncate(a.b * 0.8));
-          t.addQuad($.create(e.x + n, e.y + n, e.z + n), $.create(e.x + n, e.y + n, e.z - n), $.create(e.x - n, e.y + n, e.z + n), $.create(e.x - n, e.y + n, e.z - n), a, ni.empty()), t.addQuad($.create(e.x + n, e.y - n, e.z + n), $.create(e.x - n, e.y - n, e.z + n), $.create(e.x + n, e.y - n, e.z - n), $.create(e.x - n, e.y - n, e.z - n), a, ni.empty()), t.addQuad($.create(e.x - n, e.y + n, e.z + n), $.create(e.x - n, e.y + n, e.z - n), $.create(e.x - n, e.y - n, e.z + n), $.create(e.x - n, e.y - n, e.z - n), s, ni.empty()), t.addQuad($.create(e.x + n, e.y + n, e.z + n), $.create(e.x + n, e.y - n, e.z + n), $.create(e.x + n, e.y + n, e.z - n), $.create(e.x + n, e.y - n, e.z - n), s, ni.empty()), t.addQuad($.create(e.x + n, e.y + n, e.z + n), $.create(e.x - n, e.y + n, e.z + n), $.create(e.x + n, e.y - n, e.z + n), $.create(e.x - n, e.y - n, e.z + n), l, ni.empty()), t.addQuad($.create(e.x + n, e.y + n, e.z - n), $.create(e.x + n, e.y - n, e.z - n), $.create(e.x - n, e.y + n, e.z - n), $.create(e.x - n, e.y - n, e.z - n), l, ni.empty());
+          t.addQuad(R.create(e.x + n, e.y + n, e.z + n), R.create(e.x + n, e.y + n, e.z - n), R.create(e.x - n, e.y + n, e.z + n), R.create(e.x - n, e.y + n, e.z - n), a, ni.empty()), t.addQuad(R.create(e.x + n, e.y - n, e.z + n), R.create(e.x - n, e.y - n, e.z + n), R.create(e.x + n, e.y - n, e.z - n), R.create(e.x - n, e.y - n, e.z - n), a, ni.empty()), t.addQuad(R.create(e.x - n, e.y + n, e.z + n), R.create(e.x - n, e.y + n, e.z - n), R.create(e.x - n, e.y - n, e.z + n), R.create(e.x - n, e.y - n, e.z - n), s, ni.empty()), t.addQuad(R.create(e.x + n, e.y + n, e.z + n), R.create(e.x + n, e.y - n, e.z + n), R.create(e.x + n, e.y + n, e.z - n), R.create(e.x + n, e.y - n, e.z - n), s, ni.empty()), t.addQuad(R.create(e.x + n, e.y + n, e.z + n), R.create(e.x - n, e.y + n, e.z + n), R.create(e.x + n, e.y - n, e.z + n), R.create(e.x - n, e.y - n, e.z + n), l, ni.empty()), t.addQuad(R.create(e.x + n, e.y + n, e.z - n), R.create(e.x + n, e.y - n, e.z - n), R.create(e.x - n, e.y + n, e.z - n), R.create(e.x - n, e.y - n, e.z - n), l, ni.empty());
         }, Ne._initRotateUI$1 = function() {
           Ne._rotateUi$1 = new In(), Ne._rotateUi$1.depthBuffered = !1, Ne._rotateUi$1.timeSeries = !1, Ne._rotateUi$1.writeZbuffer = !1;
           for (var t = Math.PI * 2, e = t / 40, n = 0.05, a = 0, s = 0; s < t; s += e) {
-            var l = !(a % 10), g = !((a + 1) % 10), _ = $.create(n * (l ? 0 : g ? 1.5 : 1), Math.cos(s), Math.sin(s)), m = $.create(-n * (l ? 0 : g ? 1.5 : 1), Math.cos(s), Math.sin(s)), b = $.create(n * (l ? 1.5 : g ? 0 : 1), Math.cos(s + e), Math.sin(s + e)), y = $.create(-n * (l ? 1.5 : g ? 0 : 1), Math.cos(s + e), Math.sin(s + e));
+            var l = !(a % 10), g = !((a + 1) % 10), _ = R.create(n * (l ? 0 : g ? 1.5 : 1), Math.cos(s), Math.sin(s)), m = R.create(-n * (l ? 0 : g ? 1.5 : 1), Math.cos(s), Math.sin(s)), b = R.create(n * (l ? 1.5 : g ? 0 : 1), Math.cos(s + e), Math.sin(s + e)), y = R.create(-n * (l ? 1.5 : g ? 0 : 1), Math.cos(s + e), Math.sin(s + e));
             Ne._rotateUi$1.addQuad(_, b, m, y, j._fromArgbColor(192, Pt.get_red()), ni.empty()), a++;
           }
           a = 0;
           for (var s = 0; s < t; s += e) {
-            var l = !(a % 10), g = !((a + 1) % 10), _ = $.create(Math.cos(s), Math.sin(s), n * (l ? 0 : g ? 1.5 : 1)), m = $.create(Math.cos(s), Math.sin(s), -n * (l ? 0 : g ? 1.5 : 1)), b = $.create(Math.cos(s + e), Math.sin(s + e), n * (l ? 1.5 : g ? 0 : 1)), y = $.create(Math.cos(s + e), Math.sin(s + e), -n * (l ? 1.5 : g ? 0 : 1));
+            var l = !(a % 10), g = !((a + 1) % 10), _ = R.create(Math.cos(s), Math.sin(s), n * (l ? 0 : g ? 1.5 : 1)), m = R.create(Math.cos(s), Math.sin(s), -n * (l ? 0 : g ? 1.5 : 1)), b = R.create(Math.cos(s + e), Math.sin(s + e), n * (l ? 1.5 : g ? 0 : 1)), y = R.create(Math.cos(s + e), Math.sin(s + e), -n * (l ? 1.5 : g ? 0 : 1));
             Ne._rotateUi$1.addQuad(_, b, m, y, j._fromArgbColor(192, Pt.get_blue()), ni.empty()), a++;
           }
           a = 0;
           for (var s = 0; s < t; s += e) {
-            var l = !(a % 10), g = !((a + 1) % 10), _ = $.create(Math.cos(s), n * (l ? 0 : g ? 1.5 : 1), Math.sin(s)), m = $.create(Math.cos(s), -n * (l ? 0 : g ? 1.5 : 1), Math.sin(s)), b = $.create(Math.cos(s + e), n * (l ? 1.5 : g ? 0 : 1), Math.sin(s + e)), y = $.create(Math.cos(s + e), -n * (l ? 1.5 : g ? 0 : 1), Math.sin(s + e));
+            var l = !(a % 10), g = !((a + 1) % 10), _ = R.create(Math.cos(s), n * (l ? 0 : g ? 1.5 : 1), Math.sin(s)), m = R.create(Math.cos(s), -n * (l ? 0 : g ? 1.5 : 1), Math.sin(s)), b = R.create(Math.cos(s + e), n * (l ? 1.5 : g ? 0 : 1), Math.sin(s + e)), y = R.create(Math.cos(s + e), -n * (l ? 1.5 : g ? 0 : 1), Math.sin(s + e));
             Ne._rotateUi$1.addQuad(_, m, b, y, j._fromArgbColor(192, Pt.get_green()), ni.empty()), a++;
           }
           a = 0;
           for (var s = 0; s < t; s += e) {
-            var l = !(a % 10), g = !((a + 1) % 10), _ = $.create(-n * (l ? 0 : g ? 1.5 : 1), Math.cos(s), Math.sin(s)), m = $.create(n * (l ? 0 : g ? 1.5 : 1), Math.cos(s), Math.sin(s)), b = $.create(-n * (l ? 1.5 : g ? 0 : 1), Math.cos(s + e), Math.sin(s + e)), y = $.create(n * (l ? 1.5 : g ? 0 : 1), Math.cos(s + e), Math.sin(s + e));
+            var l = !(a % 10), g = !((a + 1) % 10), _ = R.create(-n * (l ? 0 : g ? 1.5 : 1), Math.cos(s), Math.sin(s)), m = R.create(n * (l ? 0 : g ? 1.5 : 1), Math.cos(s), Math.sin(s)), b = R.create(-n * (l ? 1.5 : g ? 0 : 1), Math.cos(s + e), Math.sin(s + e)), y = R.create(n * (l ? 1.5 : g ? 0 : 1), Math.cos(s + e), Math.sin(s + e));
             Ne._rotateUi$1.addQuad(_, b, m, y, Pt.get_red(), ni.empty()), a++;
           }
           a = 0;
           for (var s = 0; s < t; s += e) {
-            var l = !(a % 10), g = !((a + 1) % 10), _ = $.create(Math.cos(s), Math.sin(s), -n * (l ? 0 : g ? 1.5 : 1)), m = $.create(Math.cos(s), Math.sin(s), n * (l ? 0 : g ? 1.5 : 1)), b = $.create(Math.cos(s + e), Math.sin(s + e), -n * (l ? 1.5 : g ? 0 : 1)), y = $.create(Math.cos(s + e), Math.sin(s + e), n * (l ? 1.5 : g ? 0 : 1));
+            var l = !(a % 10), g = !((a + 1) % 10), _ = R.create(Math.cos(s), Math.sin(s), -n * (l ? 0 : g ? 1.5 : 1)), m = R.create(Math.cos(s), Math.sin(s), n * (l ? 0 : g ? 1.5 : 1)), b = R.create(Math.cos(s + e), Math.sin(s + e), -n * (l ? 1.5 : g ? 0 : 1)), y = R.create(Math.cos(s + e), Math.sin(s + e), n * (l ? 1.5 : g ? 0 : 1));
             Ne._rotateUi$1.addQuad(_, b, m, y, Pt.get_blue(), ni.empty()), a++;
           }
           a = 0;
           for (var s = 0; s < t; s += e) {
-            var l = !(a % 10), g = !((a + 1) % 10), _ = $.create(Math.cos(s), -n * (l ? 0 : g ? 1.5 : 1), Math.sin(s)), m = $.create(Math.cos(s), n * (l ? 0 : g ? 1.5 : 1), Math.sin(s)), b = $.create(Math.cos(s + e), -n * (l ? 1.5 : g ? 0 : 1), Math.sin(s + e)), y = $.create(Math.cos(s + e), n * (l ? 1.5 : g ? 0 : 1), Math.sin(s + e));
+            var l = !(a % 10), g = !((a + 1) % 10), _ = R.create(Math.cos(s), -n * (l ? 0 : g ? 1.5 : 1), Math.sin(s)), m = R.create(Math.cos(s), n * (l ? 0 : g ? 1.5 : 1), Math.sin(s)), b = R.create(Math.cos(s + e), -n * (l ? 1.5 : g ? 0 : 1), Math.sin(s + e)), y = R.create(Math.cos(s + e), n * (l ? 1.5 : g ? 0 : 1), Math.sin(s + e));
             Ne._rotateUi$1.addQuad(_, m, b, y, Pt.get_green(), ni.empty()), a++;
           }
         };
@@ -26267,11 +26267,11 @@ function requireSrc() {
             return r.safeCast(this, ht);
           },
           initializeFromXml: function(t) {
-            this.set_flipV(r.boolean(t.attributes.getNamedItem("FlipV").nodeValue)), t.attributes.getNamedItem("FlipHandedness") != null ? this.set_flipHandedness(r.boolean(t.attributes.getNamedItem("FlipHandedness").nodeValue)) : this.set_flipHandedness(!1), t.attributes.getNamedItem("Smooth") != null ? this.set_smooth(r.boolean(t.attributes.getNamedItem("Smooth").nodeValue)) : this.set_smooth(!0), t.attributes.getNamedItem("TwoSidedGeometry") != null ? this.set_twoSidedGeometry(r.boolean(t.attributes.getNamedItem("TwoSidedGeometry").nodeValue)) : this.set_twoSidedGeometry(!1), t.attributes.getNamedItem("Obj") != null ? this.objType = r.boolean(t.attributes.getNamedItem("Obj").nodeValue) : this.objType = !1, this.set_heading(parseFloat(t.attributes.getNamedItem("Heading").nodeValue)), this.set_pitch(parseFloat(t.attributes.getNamedItem("Pitch").nodeValue)), this.set_roll(parseFloat(t.attributes.getNamedItem("Roll").nodeValue)), this.set_scale($.parse(t.attributes.getNamedItem("Scale").nodeValue)), this.set_translate($.parse(t.attributes.getNamedItem("Translate").nodeValue)), t.attributes.getNamedItem("LightID") != null && this.set_lightID(parseInt(t.attributes.getNamedItem("LightID").nodeValue));
+            this.set_flipV(r.boolean(t.attributes.getNamedItem("FlipV").nodeValue)), t.attributes.getNamedItem("FlipHandedness") != null ? this.set_flipHandedness(r.boolean(t.attributes.getNamedItem("FlipHandedness").nodeValue)) : this.set_flipHandedness(!1), t.attributes.getNamedItem("Smooth") != null ? this.set_smooth(r.boolean(t.attributes.getNamedItem("Smooth").nodeValue)) : this.set_smooth(!0), t.attributes.getNamedItem("TwoSidedGeometry") != null ? this.set_twoSidedGeometry(r.boolean(t.attributes.getNamedItem("TwoSidedGeometry").nodeValue)) : this.set_twoSidedGeometry(!1), t.attributes.getNamedItem("Obj") != null ? this.objType = r.boolean(t.attributes.getNamedItem("Obj").nodeValue) : this.objType = !1, this.set_heading(parseFloat(t.attributes.getNamedItem("Heading").nodeValue)), this.set_pitch(parseFloat(t.attributes.getNamedItem("Pitch").nodeValue)), this.set_roll(parseFloat(t.attributes.getNamedItem("Roll").nodeValue)), this.set_scale(R.parse(t.attributes.getNamedItem("Scale").nodeValue)), this.set_translate(R.parse(t.attributes.getNamedItem("Translate").nodeValue)), t.attributes.getNamedItem("LightID") != null && this.set_lightID(parseInt(t.attributes.getNamedItem("LightID").nodeValue));
           },
           draw: function(t, e, n) {
             var a = t.get_world(), s = tt.multiplyMatrix(tt.multiplyMatrix(tt._rotationZ(-this._roll$1 / 180 * Math.PI), tt._rotationX(-this._pitch$1 / 180 * Math.PI)), tt._rotationY(this._heading$1 / 180 * Math.PI));
-            return t.set_world(tt.multiplyMatrix(tt.multiplyMatrix(tt.multiplyMatrix(s, tt._scaling(this._scale$1.x, this._scale$1.y, this._scale$1.z)), tt.translation(this._translate$1)), a)), t.set_twoSidedLighting(this.get_twoSidedGeometry()), D.drawPointPlanet(t, new $(), 1, Pt.get_red(), !1), this._lightID$1 > 0 || this.object3d != null && (this.object3d.color = this.get_color(), this.object3d.render(t, e * this.get_opacity())), t.set_twoSidedLighting(!1), t.set_world(a), !0;
+            return t.set_world(tt.multiplyMatrix(tt.multiplyMatrix(tt.multiplyMatrix(s, tt._scaling(this._scale$1.x, this._scale$1.y, this._scale$1.z)), tt.translation(this._translate$1)), a)), t.set_twoSidedLighting(this.get_twoSidedGeometry()), D.drawPointPlanet(t, new R(), 1, Pt.get_red(), !1), this._lightID$1 > 0 || this.object3d != null && (this.object3d.color = this.get_color(), this.object3d.render(t, e * this.get_opacity())), t.set_twoSidedLighting(!1), t.set_world(a), !0;
           },
           addFilesToCabinet: function(t) {
           },
@@ -26486,7 +26486,7 @@ function requireSrc() {
             t.set_world(t.get_worldBaseNonRotating());
             for (var s = r.enumerate(this._frames$1); s.moveNext(); ) {
               var l = s.current;
-              l.showOrbitPath && (l.get_orbit() == null && l.set_orbit(new ga(l.get_elements(), 360, this.get_color(), 1, t.get_nominalRadius())), l.get_orbit().draw3D(t, e * this.get_opacity(), new $()));
+              l.showOrbitPath && (l.get_orbit() == null && l.set_orbit(new ga(l.get_elements(), 360, this.get_color(), 1, t.get_nominalRadius())), l.get_orbit().draw3D(t, e * this.get_opacity(), new R()));
             }
             return t.set_world(a), !0;
           },
@@ -26555,7 +26555,7 @@ function requireSrc() {
           }
         };
         function Ui() {
-          this._dataDirty$1 = !1, this._lastNormalizeSizeColumnIndex$1 = -1, this._lastDynamicColorColumnIndex$1 = -1, this._table_backcompat$1 = null, this._barChartBitmask$1 = 0, this._barScaleFactor$1 = 20, this._meanRadius$1 = 6371e3, this._table$1 = new $a(), this.isLongIndex = !1, this.shapeVertexCount = 0, this.lines = !1, this.latColumn = -1, this.fixedSize = 1, this.decay = 16, this.timeSeries = !1, this._dynamicData$1 = !1, this._autoUpdate$1 = !1, this._dataSourceUrl$1 = "", this._beginRange$1 = /* @__PURE__ */ new Date("1/1/2100"), this._endRange$1 = /* @__PURE__ */ new Date("01/01/1800"), this.markerDomainValues = {}, this.colorDomainValues = {}, this._coordinatesType$1 = 0, this.lngColumn = -1, this.geometryColumn = -1, this._xAxisColumn$1 = -1, this._yAxisColumn$1 = -1, this._zAxisColumn$1 = -1, this._xAxisReverse$1 = !1, this._yAxisReverse$1 = !1, this._zAxisReverse$1 = !1, this._altType$1 = 3, this._markerMix$1 = 0, this._raUnits$1 = 0, this.colorMap = 3, this.colorMapperName = "Greys", this._dynamicColorColumnName$1 = "2efc32e3-b9d9-47ff-8036-8cc344c585bd", this.dynamicColor = !1, this.normalizeColorMap = !1, this.normalizeColorMapMin = 0, this.normalizeColorMapMax = 1, this._markerColumn$1 = -1, this.colorMapColumn = -1, this._plotType$1 = 0, this._markerIndex$1 = 0, this._showFarSide$1 = !1, this._markerScale$1 = 1, this._altUnit$1 = 1, this._cartesianScale$1 = 1, this._cartesianCustomScale$1 = 1, this.altColumn = -1, this.startDateColumn = -1, this.endDateColumn = -1, this.sizeColumn = -1, this._normalizeSizeColumnName$1 = "dfe78b4c-f972-4796-b04f-68c5efd4ecb0", this.normalizeSize = !1, this.normalizeSizeClip = !1, this.normalizeSizeMin = 0, this.normalizeSizeMax = 1, this.nameColumn = 0, this._hyperlinkFormat$1 = "", this._hyperlinkColumn$1 = -1, this.scaleFactor = 1, this.pointScaleType = 1, this.positions = [], this.bufferIsFlat = !1, this.baseDate = new Date(2010, 0, 1, 12, 0, 0), this.dirty = !0, this.lastVersion = 0, ai.call(this);
+          this._dataDirty$1 = !1, this._lastNormalizeSizeColumnIndex$1 = -1, this._lastDynamicColorColumnIndex$1 = -1, this._table_backcompat$1 = null, this._barChartBitmask$1 = 0, this._barScaleFactor$1 = 20, this._meanRadius$1 = 6371e3, this._table$1 = new Ra(), this.isLongIndex = !1, this.shapeVertexCount = 0, this.lines = !1, this.latColumn = -1, this.fixedSize = 1, this.decay = 16, this.timeSeries = !1, this._dynamicData$1 = !1, this._autoUpdate$1 = !1, this._dataSourceUrl$1 = "", this._beginRange$1 = /* @__PURE__ */ new Date("1/1/2100"), this._endRange$1 = /* @__PURE__ */ new Date("01/01/1800"), this.markerDomainValues = {}, this.colorDomainValues = {}, this._coordinatesType$1 = 0, this.lngColumn = -1, this.geometryColumn = -1, this._xAxisColumn$1 = -1, this._yAxisColumn$1 = -1, this._zAxisColumn$1 = -1, this._xAxisReverse$1 = !1, this._yAxisReverse$1 = !1, this._zAxisReverse$1 = !1, this._altType$1 = 3, this._markerMix$1 = 0, this._raUnits$1 = 0, this.colorMap = 3, this.colorMapperName = "Greys", this._dynamicColorColumnName$1 = "2efc32e3-b9d9-47ff-8036-8cc344c585bd", this.dynamicColor = !1, this.normalizeColorMap = !1, this.normalizeColorMapMin = 0, this.normalizeColorMapMax = 1, this._markerColumn$1 = -1, this.colorMapColumn = -1, this._plotType$1 = 0, this._markerIndex$1 = 0, this._showFarSide$1 = !1, this._markerScale$1 = 1, this._altUnit$1 = 1, this._cartesianScale$1 = 1, this._cartesianCustomScale$1 = 1, this.altColumn = -1, this.startDateColumn = -1, this.endDateColumn = -1, this.sizeColumn = -1, this._normalizeSizeColumnName$1 = "dfe78b4c-f972-4796-b04f-68c5efd4ecb0", this.normalizeSize = !1, this.normalizeSizeClip = !1, this.normalizeSizeMin = 0, this.normalizeSizeMax = 1, this.nameColumn = 0, this._hyperlinkFormat$1 = "", this._hyperlinkColumn$1 = -1, this.scaleFactor = 1, this.pointScaleType = 1, this.positions = [], this.bufferIsFlat = !1, this.baseDate = new Date(2010, 0, 1, 12, 0, 0), this.dirty = !0, this.lastVersion = 0, ai.call(this);
         }
         Ui._getDatafromFeed$1 = function(t) {
           return "";
@@ -26604,7 +26604,7 @@ function requireSrc() {
           },
           loadData: function(t, e) {
             var n = this;
-            this._table$1 = new $a();
+            this._table$1 = new Ra();
             var a = t.getFileBlob(e);
             this.getStringFromGzipBlob(a, function(s) {
               n._table$1.loadFromString(s, !1, !0, !0), n._table$1.header.indexOf(n._normalizeSizeColumnName$1) > -1 && n._table$1.removeColumn(n._normalizeSizeColumnName$1), n.computeDateDomainRange(-1, -1), n.get_dynamicData() && n.get_autoUpdate() && n.dynamicUpdate(), n._dataDirty$1 = !0, n.dirty = !0;
@@ -26753,11 +26753,11 @@ function requireSrc() {
             this._table$1.lock(), this.lineList != null && this.lineList.clear(), this.lineList2d != null && this.lineList2d.clear(), this.triangleList != null && this.triangleList.clear(), this.pointList != null && this.pointList.clear(), this.triangleList2d != null && this.triangleList2d.clear(), this.lineList == null && (this.lineList = new fa()), this.pointList == null && (this.pointList = new Xr(t)), this.lineList.timeSeries = this.timeSeries, this.lineList2d == null && (this.lineList2d = new fa(), this.lineList2d.set_depthBuffered(!1)), this.lineList.timeSeries = this.timeSeries, this.triangleList == null && (this.triangleList = new In()), this.triangleList2d == null && (this.triangleList2d = new In(), this.triangleList2d.depthBuffered = !1), this.positions.length = 0;
             var n = 0, a = this.get_color(), s = U.meanObliquityOfEcliptic(Q.get_jNow()) / 180 * Math.PI, l = P.get_allMaps()[this.get_referenceFrame()].frame.meanRadius;
             l && (this._meanRadius$1 = l);
-            for (var g = new $(), _ = 2e-4, m = Pt.get_white(), b = 0, y = 0, M = r.enumerate(this._table$1.rows); M.moveNext(); ) {
+            for (var g = new R(), _ = 2e-4, m = Pt.get_white(), b = 0, y = 0, M = r.enumerate(this._table$1.rows); M.moveNext(); ) {
               var A = M.current;
               try {
                 if (this.geometryColumn > -1 || !this.get_coordinatesType() && this.lngColumn > -1 && this.latColumn > -1 || this.get_coordinatesType() === 1 && this.get_xAxisColumn() > -1 && this.get_yAxisColumn() > -1) {
-                  var R = 0, F = 0, O = 0, B = 1, H = 0, K = 0, J = this.getScaleFactor(this.get_altUnit(), 1);
+                  var $ = 0, F = 0, O = 0, B = 1, H = 0, K = 0, J = this.getScaleFactor(this.get_altUnit(), 1);
                   if (this.altColumn === -1 || this.get_altType() === 3 || this.bufferIsFlat)
                     B = 1, (this.astronomical & !this.bufferIsFlat) === 1 && (B = 63239.6717 * 100);
                   else {
@@ -26769,12 +26769,12 @@ function requireSrc() {
                     this.astronomical ? (J = J / (1e3 * 149598e3), K = B * J / 206264.806, H = J * B, B = J * B) : this.get_altType() === 2 ? (H = J * B, B = J * B / this._meanRadius$1) : (H = J * B, B = 1 + J * B / this._meanRadius$1);
                   }
                   if (!this.get_coordinatesType() && this.lngColumn > -1 && this.latColumn > -1) {
-                    R = parseFloat(A[this.lngColumn]), F = parseFloat(A[this.latColumn]), this.astronomical ? (this.get_raUnits() || (R *= 15), this.bufferIsFlat) : R += 180;
-                    var it = U.geoTo3dRad(F, R, B);
+                    $ = parseFloat(A[this.lngColumn]), F = parseFloat(A[this.latColumn]), this.astronomical ? (this.get_raUnits() || ($ *= 15), this.bufferIsFlat) : $ += 180;
+                    var it = U.geoTo3dRad(F, $, B);
                     this.astronomical && !this.bufferIsFlat && it.rotateX(s), g = it, this.positions.push(g);
                   } else if (this.get_coordinatesType() === 1) {
                     var ot = this.getScaleFactor(this.get_cartesianScale(), this.get_cartesianCustomScale());
-                    this.astronomical ? ot /= 1e3 * 149598e3 : ot /= this._meanRadius$1, this.get_zAxisColumn() > -1 && (O = parseFloat(A[this.get_zAxisColumn()])), R = parseFloat(A[this.get_xAxisColumn()]), F = parseFloat(A[this.get_yAxisColumn()]), this.get_xAxisReverse() && (R = -R), this.get_yAxisReverse() && (F = -F), this.get_zAxisReverse() && (O = -O), g = $.create(R * ot, O * ot, F * ot), this.positions.push(g);
+                    this.astronomical ? ot /= 1e3 * 149598e3 : ot /= this._meanRadius$1, this.get_zAxisColumn() > -1 && (O = parseFloat(A[this.get_zAxisColumn()])), $ = parseFloat(A[this.get_xAxisColumn()]), F = parseFloat(A[this.get_yAxisColumn()]), this.get_xAxisReverse() && ($ = -$), this.get_yAxisReverse() && (F = -F), this.get_zAxisReverse() && (O = -O), g = R.create($ * ot, O * ot, F * ot), this.positions.push(g);
                   }
                   switch (this.get_colorMap()) {
                     case 0:
@@ -26852,7 +26852,7 @@ function requireSrc() {
                   break;
                 case "geometrycollection":
                   _ = _.substring(1, _.length - 2);
-                  for (var R = yi.splitString(_, ","), F = r.enumerate(R); F.moveNext(); ) {
+                  for (var $ = yi.splitString(_, ","), F = r.enumerate($); F.moveNext(); ) {
                     var O = F.current;
                     this._parseGeometry$1(O, e, n, a, s);
                   }
@@ -26954,7 +26954,7 @@ function requireSrc() {
             this.guessHeaderAssignmentsFromVoTable(t), t.getRAColumn() != null && t.getRAColumn().unit.toLowerCase() === "deg" && this.set_raUnits(1);
           },
           loadFromString: function(t, e, n, a, s) {
-            if (e || (this._table$1 = new $a()), this._table$1.lock(), this._table$1.loadFromString(t, e, a, s), !e && (this.guessHeaderAssignments(), this.astronomical && this.lngColumn > -1)) {
+            if (e || (this._table$1 = new Ra()), this._table$1.lock(), this._table$1.loadFromString(t, e, a, s), !e && (this.guessHeaderAssignments(), this.astronomical && this.lngColumn > -1)) {
               var l = this.getMaxValue(this.lngColumn);
               l > 24 && this.set_raUnits(1);
             }
@@ -28178,21 +28178,21 @@ function requireSrc() {
             var s = U.geoTo3dDouble(t.get_lat(), t.get_lng()), l;
             if (n != null) {
               var g = U.raDecTo3dAu(n.get_RA(), -n.get_dec(), -1);
-              l = $.subtractVectors(s, g), e = l.length();
+              l = R.subtractVectors(s, g), e = l.length();
             }
             for (var _ = -1, m = 0, b = r.enumerate(this.positions); b.moveNext(); ) {
               var y = b.current;
-              l = $.subtractVectors(s, y), l.length() < e && (e = l.length(), _ = m), m++;
+              l = R.subtractVectors(s, y), l.length() < e && (e = l.length(), _ = m), m++;
             }
             if (_ === -1)
               return n;
             var M = U.cartesianToSpherical2(this.positions[_]), A = this._table$1.rows[_].columnData[this.nameColumn].toString();
             (this.nameColumn === this.startDateColumn || this.nameColumn === this.endDateColumn) && (A = Ui.parseDate(A).toString()), r.emptyString(A) && (A = r.format("RA={0}, Dec={1}", U.formatHMS(M.get_RA()), U.formatDMS(M.get_dec())));
-            for (var R = fr.create(A, M.get_lat(), M.get_RA(), 268435456, "", 2, -1), F = {}, O = 0; O < r.keyCount(this._table$1.columns); O++) {
+            for (var $ = fr.create(A, M.get_lat(), M.get_RA(), 268435456, "", 2, -1), F = {}, O = 0; O < r.keyCount(this._table$1.columns); O++) {
               var B = this._table$1.rows[_].get_item(O).toString();
               (O === this.startDateColumn || O === this.endDateColumn) && (B = Ui.parseDate(B).toString()), !r.keyExists(F, this._table$1.column[O].name) && !r.emptyString(this._table$1.column[O].name) ? F[this._table$1.column[O].name] = B : F["Column" + O.toString()] = B;
             }
-            return R.set_tag(F), R;
+            return $.set_tag(F), $;
           },
           prepVertexBuffer: function(t, e) {
             var n = this._table$1.getColumnByUcd("meta.id");
@@ -28209,8 +28209,8 @@ function requireSrc() {
               var y = b.current;
               try {
                 if (this.lngColumn > -1 && this.latColumn > -1) {
-                  var M = parseFloat(y.get_item(this.get_lngColumn()).toString()), A = parseFloat(y.get_item(this.get_latColumn()).toString()), R = U.geoTo3dDouble(A, M);
-                  if (g.position = R, this.positions.push(g.position), g.set_color(m), this.sizeColumn > -1)
+                  var M = parseFloat(y.get_item(this.get_lngColumn()).toString()), A = parseFloat(y.get_item(this.get_latColumn()).toString()), $ = U.geoTo3dDouble(A, M);
+                  if (g.position = $, this.positions.push(g.position), g.set_color(m), this.sizeColumn > -1)
                     try {
                       if (!this.get_markerScale())
                         g.pointSize = 20;
@@ -28259,12 +28259,12 @@ function requireSrc() {
               for (var l = a.split(" "), g = l.length, _ = 0; _ < g; )
                 if (l[_] === "Polygon") {
                   _ += 2;
-                  for (var m = new $(), b = new $(), y = !0, M = _; M < g; M += 2) {
+                  for (var m = new R(), b = new R(), y = !0, M = _; M < g; M += 2) {
                     if (l[M] === "Polygon") {
                       y = !0;
                       break;
                     } else {
-                      var A = U.parseRA(l[M], !0) * 15 + 180, R = U.parseDec(l[M + 1]), F = U.geoTo3dDouble(R, A);
+                      var A = U.parseRA(l[M], !0) * 15 + 180, $ = U.parseDec(l[M + 1]), F = U.geoTo3dDouble($, A);
                       y ? (b = F, y = !1) : this.lineList2d.addLine(m, F, s, new ni(0, 0)), m = F;
                     }
                     _ += 2;
@@ -28337,7 +28337,7 @@ function requireSrc() {
           computeBoundingSphere: function() {
             this._tileDegrees$1 = 360 / Math.pow(2, this.level), this._latMin$1 = We.absoluteMetersToLatAtZoom(this.tileY * 256, this.level), this._latMax$1 = We.absoluteMetersToLatAtZoom((this.tileY + 1) * 256, this.level), this._lngMin$1 = this.tileX * this._tileDegrees$1 - 180, this._lngMax$1 = (this.tileX + 1) * this._tileDegrees$1 - 180;
             var t = (this._latMin$1 + this._latMax$1) / 2, e = (this._lngMin$1 + this._lngMax$1) / 2;
-            this.sphereCenter = this.geoTo3d(t, e, !1), this.topLeft = this.geoTo3d(this._latMin$1, this._lngMin$1, !1), this.bottomRight = this.geoTo3d(this._latMax$1, this._lngMax$1, !1), this.topRight = this.geoTo3d(this._latMin$1, this._lngMax$1, !1), this.bottomLeft = this.geoTo3d(this._latMax$1, this._lngMin$1, !1), this.tileY || (this.topLeft = $.create(0, 1, 0), this.topRight = $.create(0, 1, 0)), this.tileY === Math.pow(2, this.level) - 1 && (this.bottomRight = $.create(0, -1, 0), this.bottomLeft = $.create(0, -1, 0));
+            this.sphereCenter = this.geoTo3d(t, e, !1), this.topLeft = this.geoTo3d(this._latMin$1, this._lngMin$1, !1), this.bottomRight = this.geoTo3d(this._latMax$1, this._lngMax$1, !1), this.topRight = this.geoTo3d(this._latMin$1, this._lngMax$1, !1), this.bottomLeft = this.geoTo3d(this._latMax$1, this._lngMin$1, !1), this.tileY || (this.topLeft = R.create(0, 1, 0), this.topRight = R.create(0, 1, 0)), this.tileY === Math.pow(2, this.level) - 1 && (this.bottomRight = R.create(0, -1, 0), this.bottomLeft = R.create(0, -1, 0));
             var n = this.topLeft;
             n.subtract(this.sphereCenter), this.sphereRadius = n.length(), n = this.bottomRight, n.subtract(this.sphereCenter);
             var a = n.length();
@@ -28361,7 +28361,7 @@ function requireSrc() {
             return g;
           },
           _getAltitudeAtLatLng$1: function(t, e, n) {
-            var a = Math.abs(this._latMax$1 - this._latMin$1), s = Math.abs(this._lngMax$1 - this._lngMin$1), l = (t - Math.min(this._latMax$1, this._latMin$1)) / a * 32, g = (e - Math.min(this._lngMax$1, this._lngMin$1)) / s * 32, _ = Math.min(31, r.truncate(l)), m = Math.min(31, r.truncate(g)), b = g - m, y = l - _, M = this.demData[_ * 33 + m], A = this.demData[_ * 33 + (m + 1)], R = this.demData[(_ + 1) * 33 + m], F = this.demData[(_ + 1) * 33 + (m + 1)], O = M * (1 - b) + b * A, B = R * (1 - b) + b * F, H = O * (1 - y) + y * B;
+            var a = Math.abs(this._latMax$1 - this._latMin$1), s = Math.abs(this._lngMax$1 - this._lngMin$1), l = (t - Math.min(this._latMax$1, this._latMin$1)) / a * 32, g = (e - Math.min(this._lngMax$1, this._lngMin$1)) / s * 32, _ = Math.min(31, r.truncate(l)), m = Math.min(31, r.truncate(g)), b = g - m, y = l - _, M = this.demData[_ * 33 + m], A = this.demData[_ * 33 + (m + 1)], $ = this.demData[(_ + 1) * 33 + m], F = this.demData[(_ + 1) * 33 + (m + 1)], O = M * (1 - b) + b * A, B = $ * (1 - b) + b * F, H = O * (1 - y) + y * B;
             return H / n;
           },
           createGeometry: function(t) {
@@ -28385,12 +28385,12 @@ function requireSrc() {
                 m !== this._subDivisionLevel$1 ? a = this._lngMin$1 + y * l * m : a = this._lngMax$1, s = b * (this._subDivisionLevel$1 + 1) + m, _[s] = new Ht(), _[s].position = this.geoTo3dWithAlt(n, a, !1, !0), _[s].tu = m * y * G.uvMultiple, _[s].tv = (We.absoluteLatToMetersAtZoom(n, this.level) - this.tileY * 256) / 256 * G.uvMultiple, this.demIndex++;
             if (!this.tileY)
               for (b = this._subDivisionLevel$1, m = 0; m <= this._subDivisionLevel$1; m++)
-                s = b * (this._subDivisionLevel$1 + 1) + m, _[s].position = $.create(0, 1, 0);
+                s = b * (this._subDivisionLevel$1 + 1) + m, _[s].position = R.create(0, 1, 0);
             if (this.tileY === Math.pow(2, this.level) - 1)
               for (b = 0, m = 0; m <= this._subDivisionLevel$1; m++)
-                s = b * (this._subDivisionLevel$1 + 1) + m, _[s].position = $.create(0, -1, 0);
+                s = b * (this._subDivisionLevel$1 + 1) + m, _[s].position = R.create(0, -1, 0);
             this.triangleCount = this._subDivisionLevel$1 * this._subDivisionLevel$1 * 2;
-            var A = this._subDivisionLevel$1 / 2, R = 0;
+            var A = this._subDivisionLevel$1 / 2, $ = 0;
             if (t.gl == null)
               for (var F = 0; F < 2; F++)
                 for (var O = 0; O < 2; O++) {
@@ -28399,9 +28399,9 @@ function requireSrc() {
                       var B, H, K;
                       B = _[b * (this._subDivisionLevel$1 + 1) + m], H = _[(b + 1) * (this._subDivisionLevel$1 + 1) + m], K = _[b * (this._subDivisionLevel$1 + 1) + (m + 1)];
                       var J = Me.create(B, H, K, this.texture, this.level);
-                      this._renderTriangleLists[R].push(J), B = _[b * (this._subDivisionLevel$1 + 1) + (m + 1)], H = _[(b + 1) * (this._subDivisionLevel$1 + 1) + m], K = _[(b + 1) * (this._subDivisionLevel$1 + 1) + (m + 1)], J = Me.create(B, H, K, this.texture, this.level), this._renderTriangleLists[R].push(J);
+                      this._renderTriangleLists[$].push(J), B = _[b * (this._subDivisionLevel$1 + 1) + (m + 1)], H = _[(b + 1) * (this._subDivisionLevel$1 + 1) + m], K = _[(b + 1) * (this._subDivisionLevel$1 + 1) + (m + 1)], J = Me.create(B, H, K, this.texture, this.level), this._renderTriangleLists[$].push(J);
                     }
-                  R++;
+                  $++;
                 }
             else {
               this._vertexBuffer = G.prepDevice.createBuffer(), G.prepDevice.bindBuffer(34962, this._vertexBuffer);
@@ -28418,7 +28418,7 @@ function requireSrc() {
                   for (s = 0, b = A * F; b < A * (F + 1); b++)
                     for (m = A * O; m < A * (O + 1); m++)
                       St[s++] = b * (this._subDivisionLevel$1 + 1) + m, St[s++] = (b + 1) * (this._subDivisionLevel$1 + 1) + m, St[s++] = b * (this._subDivisionLevel$1 + 1) + (m + 1), St[s++] = b * (this._subDivisionLevel$1 + 1) + (m + 1), St[s++] = (b + 1) * (this._subDivisionLevel$1 + 1) + m, St[s++] = (b + 1) * (this._subDivisionLevel$1 + 1) + (m + 1);
-                  this._indexBuffers[R] = G.prepDevice.createBuffer(), G.prepDevice.bindBuffer(34963, this._indexBuffers[R]), G.prepDevice.bufferData(34963, ut, 35044), R++;
+                  this._indexBuffers[$] = G.prepDevice.createBuffer(), G.prepDevice.bindBuffer(34963, this._indexBuffers[$]), G.prepDevice.bufferData(34963, ut, 35044), $++;
                 }
             }
             return !0;
@@ -28496,7 +28496,7 @@ function requireSrc() {
           },
           _isLeftOfHalfSpace$1: function(t, e, n) {
             t.normalize(), e.normalize();
-            var a = $.cross(t, e), s = $.dot(a, n);
+            var a = R.cross(t, e), s = R.dot(a, n);
             return s < 0;
           },
           _initializeGrids$1: function() {
@@ -28508,7 +28508,7 @@ function requireSrc() {
               this.bounds[0 + 3 * 0] = Ht.create(0, -1, 0, 0, 0), this.bounds[1 + 3 * 0] = Ht.create(0, 0, 1, 0.5, 0), this.bounds[2 + 3 * 0] = Ht.create(0, -1, 0, 1, 0), this.bounds[0 + 3 * 1] = Ht.create(-1, 0, 0, 0, 0.5), this.bounds[1 + 3 * 1] = Ht.create(0, 1, 0, 0.5, 0.5), this.bounds[2 + 3 * 1] = Ht.create(1, 0, 0, 1, 0.5), this.bounds[0 + 3 * 2] = Ht.create(0, -1, 0, 0, 1), this.bounds[1 + 3 * 2] = Ht.create(0, 0, -1, 0.5, 1), this.bounds[2 + 3 * 2] = Ht.create(0, -1, 0, 1, 1);
           },
           _midpoint$1: function(t, e) {
-            var n = $.lerp(t.position, e.position, 0.5), a = Mt.lerp(Mt.create(t.tu, t.tv), Mt.create(e.tu, e.tv), 0.5);
+            var n = R.lerp(t.position, e.position, 0.5), a = Mt.lerp(Mt.create(t.tu, t.tv), Mt.create(e.tu, e.tv), 0.5);
             return n.normalize(), Ht.createPos(n, a.x, a.y);
           },
           createGeometry: function(t) {
@@ -28521,7 +28521,7 @@ function requireSrc() {
         function _s(t, e, n, a, s) {
           this._topDown$1 = !0, G.call(this), this.parent = s, this.level = t, this.tileX = e, this.tileY = n, this.dataset = a, this._topDown$1 = !a.get_bottomsUp(), this.computeBoundingSphere();
         }
-        var Rf = {
+        var $f = {
           computeBoundingSphere: function() {
             if (!this._topDown$1) {
               this.computeBoundingSphereBottomsUp();
@@ -28543,7 +28543,7 @@ function requireSrc() {
           geoTo3dTan: function(t, e) {
             e = -e;
             var n = this.dataset.get_baseTileDegrees() / 2, a = Math.tan(n * G.RC);
-            return this.dataset.get_matrix().transform($.create(1, t / n * a, e / n * a));
+            return this.dataset.get_matrix().transform(R.create(1, t / n * a, e / n * a));
           },
           requestImage: function() {
             this.fitsImage = r.safeCast(this.dataset.get_wcsImage(), ar), this.fitsImage != null ? (this.texReady = !0, this.downloading = !1, this.errored = this.fitsImage.errored, this.requestPending = !1, Ut.removeFromQueue(this.get_key(), !0), ti.useGlVersion2 ? (this.makeTexture(), this.readyToRender = !0) : (this.bmp = this.fitsImage.getBitmap(), this.texture2d = this.bmp.getTexture(), this.readyToRender = !0)) : G.prototype.requestImage.call(this);
@@ -28557,7 +28557,7 @@ function requireSrc() {
             this.globalCenter = this.geoTo3dTan(0, 0);
             var n = this.getLatLngEdges();
             this.topLeft = this.geoTo3dTan(n.latMin, n.lngMin).subtract(this.globalCenter), this.bottomRight = this.geoTo3dTan(n.latMax, n.lngMax).subtract(this.globalCenter), this.topRight = this.geoTo3dTan(n.latMin, n.lngMax).subtract(this.globalCenter), this.bottomLeft = this.geoTo3dTan(n.latMax, n.lngMin).subtract(this.globalCenter);
-            var a = $.midPoint(this.topLeft, this.bottomRight), s = $.midPoint(this.topLeft, this.bottomLeft), l = $.midPoint(this.topRight, this.bottomRight), g = $.midPoint(this.topLeft, this.topRight), _ = $.midPoint(this.bottomLeft, this.bottomRight);
+            var a = R.midPoint(this.topLeft, this.bottomRight), s = R.midPoint(this.topLeft, this.bottomLeft), l = R.midPoint(this.topRight, this.bottomRight), g = R.midPoint(this.topLeft, this.topRight), _ = R.midPoint(this.bottomLeft, this.bottomRight);
             if (t.gl == null)
               this._renderTriangleLists[0].push(Me.create(Ht.createPos(this.topLeft, 0, 0), Ht.createPos(s, 0, 0.5), Ht.createPos(g, 0.5, 0), this.texture, this.level)), this._renderTriangleLists[0].push(Me.create(Ht.createPos(s, 0, 0.5), Ht.createPos(a, 0.5, 0.5), Ht.createPos(g, 0.5, 0), this.texture, this.level)), this._renderTriangleLists[1].push(Me.create(Ht.createPos(g, 0.5, 0), Ht.createPos(l, 1, 0.5), Ht.createPos(this.topRight, 1, 0), this.texture, this.level)), this._renderTriangleLists[1].push(Me.create(Ht.createPos(g, 0.5, 0), Ht.createPos(a, 0.5, 0.5), Ht.createPos(l, 1, 0.5), this.texture, this.level)), this._renderTriangleLists[2].push(Me.create(Ht.createPos(s, 0, 0.5), Ht.createPos(_, 0.5, 1), Ht.createPos(a, 0.5, 0.5), this.texture, this.level)), this._renderTriangleLists[2].push(Me.create(Ht.createPos(s, 0, 0.5), Ht.createPos(this.bottomLeft, 0, 1), Ht.createPos(_, 0.5, 1), this.texture, this.level)), this._renderTriangleLists[3].push(Me.create(Ht.createPos(a, 0.5, 0.5), Ht.createPos(this.bottomRight, 1, 1), Ht.createPos(l, 1, 0.5), this.texture, this.level)), this._renderTriangleLists[3].push(Me.create(Ht.createPos(a, 0.5, 0.5), Ht.createPos(_, 0.5, 1), Ht.createPos(this.bottomRight, 1, 1), this.texture, this.level)), this.readyToRender = !0;
             else {
@@ -28598,7 +28598,7 @@ function requireSrc() {
           var l = new Pi();
           return l.parent = s, l.level = t, l.tileX = e, l.tileY = n, l.dataset = a, l._topDown$1 = !a.get_bottomsUp(), l.tileX !== e && alert("bad"), a.get_meanRadius() ? l.set__demScaleFactor(a.get_meanRadius()) : a.get_dataSetType() ? l.set__demScaleFactor(3396010) : l.set__demScaleFactor(6371e3), l.computeBoundingSphere(), l;
         };
-        var $f = {
+        var Rf = {
           computeBoundingSphere: function() {
             this._initializeGrids$1(), this.topLeft = this.bounds[0 + 3 * 0].position.copy(), this.bottomRight = this.bounds[2 + 3 * 2].position.copy(), this.topRight = this.bounds[2 + 3 * 0].position.copy(), this.bottomLeft = this.bounds[0 + 3 * 2].position.copy(), this.calcSphere();
           },
@@ -28623,23 +28623,23 @@ function requireSrc() {
             var y = 16;
             if ((e & 1) === 1)
               for (var M = 1; M < y; M += 2) {
-                var A = y, R = (A << 8) + M, F = (A << 8) + M + 1;
-                r.keyExists(a, R) && (n[a[R]] = a[F]);
+                var A = y, $ = (A << 8) + M, F = (A << 8) + M + 1;
+                r.keyExists(a, $) && (n[a[$]] = a[F]);
               }
             if ((e & 2) === 2)
               for (var A = 1; A < y; A += 2) {
-                var M = y, R = (A << 8) + M, F = (A + 1 << 8) + M;
-                r.keyExists(a, R) && (n[a[R]] = a[F]);
+                var M = y, $ = (A << 8) + M, F = (A + 1 << 8) + M;
+                r.keyExists(a, $) && (n[a[$]] = a[F]);
               }
             if ((e & 4) === 4)
               for (var M = 1; M < y; M += 2) {
-                var A = 0, R = (A << 8) + M, F = (A << 8) + M + 1;
-                r.keyExists(a, R) && (n[a[R]] = a[F]);
+                var A = 0, $ = (A << 8) + M, F = (A << 8) + M + 1;
+                r.keyExists(a, $) && (n[a[$]] = a[F]);
               }
             if ((e & 8) === 8)
               for (var A = 1; A < y; A += 2) {
-                var M = 0, R = (A << 8) + M, F = (A + 1 << 8) + M;
-                r.keyExists(a, R) && (n[a[R]] = a[F]);
+                var M = 0, $ = (A << 8) + M, F = (A + 1 << 8) + M;
+                r.keyExists(a, $) && (n[a[$]] = a[F]);
               }
             if (r.keyCount(n))
               for (var O = 0; O < t.length; O++)
@@ -28661,7 +28661,7 @@ function requireSrc() {
           },
           _isLeftOfHalfSpace$1: function(t, e, n) {
             t.normalize(), e.normalize();
-            var a = $.cross(t, e), s = $.dot(a, n);
+            var a = R.cross(t, e), s = R.dot(a, n);
             return s < 0;
           },
           getSurfacePointAltitude: function(t, e, n) {
@@ -28677,10 +28677,10 @@ function requireSrc() {
               }
             G.tileTargetLevel = this.level, G.tileTargetX = this.tileX, G.tileTargetY = this.tileY;
             var g = U.geoTo3dDouble(-t, e);
-            g = $.subtractVectors(new $(), g);
-            var _ = wn.getUVFromInnerPoint(this.topLeft.copy(), this.topRight.copy(), this.bottomLeft.copy(), this.bottomRight.copy(), g.copy()), m = Math.max(0, Math.min(16, _.x * 16)), b = Math.max(0, Math.min(16, _.y * 16)), y = Math.max(0, Math.min(15, r.truncate(_.x * 16))), M = Math.max(0, Math.min(15, r.truncate(_.y * 16))), A = m - y, R = b - M;
+            g = R.subtractVectors(new R(), g);
+            var _ = wn.getUVFromInnerPoint(this.topLeft.copy(), this.topRight.copy(), this.bottomLeft.copy(), this.bottomRight.copy(), g.copy()), m = Math.max(0, Math.min(16, _.x * 16)), b = Math.max(0, Math.min(16, _.y * 16)), y = Math.max(0, Math.min(15, r.truncate(_.x * 16))), M = Math.max(0, Math.min(15, r.truncate(_.y * 16))), A = m - y, $ = b - M;
             if (this.demArray != null) {
-              var F = this.demArray[y + 17 * M], O = this.demArray[y + 1 + 17 * M], B = this.demArray[y + 17 * (M + 1)], H = this.demArray[y + 1 + 17 * (M + 1)], K = F * (1 - A) + A * O, J = B * (1 - A) + A * H, it = K * (1 - R) + R * J;
+              var F = this.demArray[y + 17 * M], O = this.demArray[y + 1 + 17 * M], B = this.demArray[y + 17 * (M + 1)], H = this.demArray[y + 1 + 17 * (M + 1)], K = F * (1 - A) + A * O, J = B * (1 - A) + A * H, it = K * (1 - $) + $ * J;
               return it / this.get__demScaleFactor();
             }
             return this.demAverage / this.get__demScaleFactor();
@@ -28694,7 +28694,7 @@ function requireSrc() {
               this.bounds[0 + 3 * 0] = Ht.create(0, -1, 0, 0, 0), this.bounds[1 + 3 * 0] = Ht.create(0, 0, 1, 0.5, 0), this.bounds[2 + 3 * 0] = Ht.create(0, -1, 0, 1, 0), this.bounds[0 + 3 * 1] = Ht.create(-1, 0, 0, 0, 0.5), this.bounds[1 + 3 * 1] = Ht.create(0, 1, 0, 0.5, 0.5), this.bounds[2 + 3 * 1] = Ht.create(1, 0, 0, 1, 0.5), this.bounds[0 + 3 * 2] = Ht.create(0, -1, 0, 0, 1), this.bounds[1 + 3 * 2] = Ht.create(0, 0, -1, 0.5, 1), this.bounds[2 + 3 * 2] = Ht.create(0, -1, 0, 1, 1), this._vertexList$1.push(this.bounds[0 + 3 * 0]), this._vertexList$1.push(this.bounds[1 + 3 * 0]), this._vertexList$1.push(this.bounds[2 + 3 * 0]), this._vertexList$1.push(this.bounds[0 + 3 * 1]), this._vertexList$1.push(this.bounds[1 + 3 * 1]), this._vertexList$1.push(this.bounds[2 + 3 * 1]), this._vertexList$1.push(this.bounds[0 + 3 * 2]), this._vertexList$1.push(this.bounds[1 + 3 * 2]), this._vertexList$1.push(this.bounds[2 + 3 * 2]), this._childTriangleList$1[0].push(pi.create(3, 1, 0)), this._childTriangleList$1[0].push(pi.create(4, 1, 3)), this._childTriangleList$1[1].push(pi.create(5, 2, 1)), this._childTriangleList$1[1].push(pi.create(4, 5, 1)), this._childTriangleList$1[2].push(pi.create(7, 4, 3)), this._childTriangleList$1[2].push(pi.create(6, 7, 3)), this._childTriangleList$1[3].push(pi.create(7, 5, 4)), this._childTriangleList$1[3].push(pi.create(8, 5, 7));
           },
           _midpoint$1: function(t, e) {
-            var n = $.lerp(t.position, e.position, 0.5), a = Mt.lerp(Mt.create(t.tu, t.tv), Mt.create(e.tu, e.tv), 0.5);
+            var n = R.lerp(t.position, e.position, 0.5), a = Mt.lerp(Mt.create(t.tu, t.tv), Mt.create(e.tu, e.tv), 0.5);
             return n.normalize(), Ht.createPos(n, a.x, a.y);
           },
           createGeometry: function(t) {
@@ -28720,8 +28720,8 @@ function requireSrc() {
                 }
               else {
                 this._vertexBuffer = G.prepDevice.createBuffer(), G.prepDevice.bindBuffer(34962, this._vertexBuffer);
-                for (var y = new Float32Array(this._vertexList$1.length * 5), M = y, A = 0, R = r.enumerate(this._vertexList$1); R.moveNext(); ) {
-                  var F = R.current;
+                for (var y = new Float32Array(this._vertexList$1.length * 5), M = y, A = 0, $ = r.enumerate(this._vertexList$1); $.moveNext(); ) {
+                  var F = $.current;
                   this.demTile ? (A = this.addVertex(M, A, this._getMappedVertex(F)), this.demIndex++) : A = this.addVertex(M, A, F);
                 }
                 this.demTile && (this.backslash ? this._tempBackslashXIndex$1 != null && (Pi._backslashXIndex$1 = this._tempBackslashXIndex$1, Pi._backslashYIndex$1 = this._tempBackslashYIndex$1, this._tempBackslashXIndex$1 = null, this._tempBackslashYIndex$1 = null) : this._tempSlashYIndex$1 != null && (Pi._slashXIndex$1 = this._tempSlashXIndex$1, Pi._slashYIndex$1 = this._tempSlashYIndex$1, this._tempSlashYIndex$1 = null, this._tempSlashXIndex$1 = null)), G.prepDevice.bufferData(34962, y, 35044);
@@ -28897,7 +28897,7 @@ function requireSrc() {
           },
           initializeFromXml: function(t) {
             var e = xt.selectSingleNode(t, "Text");
-            this.textObject = Rn._fromXml(xt.selectSingleNode(e, "TextObject"));
+            this.textObject = $n._fromXml(xt.selectSingleNode(e, "TextObject"));
           },
           initializeGeometry: function() {
             ti.useGl && gi.prototype.initializeGeometry.call(this);
@@ -29291,7 +29291,7 @@ function requireSrc() {
           }
         };
         function sr() {
-          $t.call(this), this.name = "--------------------------------------";
+          Rt.call(this), this.name = "--------------------------------------";
         }
         var Of = {};
         function Go() {
@@ -29475,11 +29475,11 @@ function requireSrc() {
             for (var l = this._dataBuffer$2, g = this.axisSize[0], _ = this.axisSize[0] * this.axisSize[1] * a, m = ln.create(this.axisSize[0], this.axisSize[1]), b = 0; b < this.axisSize[1]; b++)
               for (var y = this.axisSize[1] - 1 - b, M = 0; M < this.axisSize[0]; M++)
                 if (this._color$2) {
-                  var A = l[M + y * g], R = l[M + y * g + _], F = l[M + y * g + _ * 2];
+                  var A = l[M + y * g], $ = l[M + y * g + _], F = l[M + y * g + _ * 2];
                   if (this.fitsProperties.containsBlanks && A === this.fitsProperties.blankValue)
                     m.setPixel(M, b, 0, 0, 0, 0);
                   else {
-                    var O = n.map(A), B = n.map(R), H = n.map(F);
+                    var O = n.map(A), B = n.map($), H = n.map(F);
                     m.setPixel(M, b, O, B, H, 255);
                   }
                 } else {
@@ -29497,11 +29497,11 @@ function requireSrc() {
             for (var l = this._dataBuffer$2, g = this.axisSize[0], _ = this.axisSize[0] * this.axisSize[1] * a, m = ln.create(this.axisSize[0], this.axisSize[1]), b = 0; b < this.axisSize[1]; b++)
               for (var y = this.axisSize[1] - 1 - b, M = 0; M < this.axisSize[0]; M++)
                 if (this._color$2) {
-                  var A = l[M + y * g], R = l[M + y * g + _], F = l[M + y * g + _ * 2];
+                  var A = l[M + y * g], $ = l[M + y * g + _], F = l[M + y * g + _ * 2];
                   if (this.fitsProperties.containsBlanks && A === this.fitsProperties.blankValue)
                     m.setPixel(M, b, 0, 0, 0, 0);
                   else {
-                    var O = n.map(A), B = n.map(R), H = n.map(F);
+                    var O = n.map(A), B = n.map($), H = n.map(F);
                     m.setPixel(M, b, O, B, H, 255);
                   }
                 } else {
@@ -29519,11 +29519,11 @@ function requireSrc() {
             for (var l = this._dataBuffer$2, g = this.axisSize[0], _ = this.axisSize[0] * this.axisSize[1] * a, m = ln.create(this.axisSize[0], this.axisSize[1]), b = 0; b < this.axisSize[1]; b++)
               for (var y = this.axisSize[1] - 1 - b, M = 0; M < this.axisSize[0]; M++)
                 if (this._color$2) {
-                  var A = l[M + y * g], R = l[M + y * g + _], F = l[M + y * g + _ * 2];
+                  var A = l[M + y * g], $ = l[M + y * g + _], F = l[M + y * g + _ * 2];
                   if (this.fitsProperties.containsBlanks && A === this.fitsProperties.blankValue)
                     m.setPixel(M, b, 0, 0, 0, 0);
                   else {
-                    var O = n.map(A), B = n.map(R), H = n.map(F);
+                    var O = n.map(A), B = n.map($), H = n.map(F);
                     m.setPixel(M, b, O, B, H, 255);
                   }
                 } else {
@@ -29541,11 +29541,11 @@ function requireSrc() {
             for (var l = this._dataBuffer$2, g = this.axisSize[0], _ = this.axisSize[0] * this.axisSize[1] * a, m = ln.create(this.axisSize[0], this.axisSize[1]), b = 0; b < this.axisSize[1]; b++)
               for (var y = this.axisSize[1] - 1 - b, M = 0; M < this.axisSize[0]; M++)
                 if (this._color$2) {
-                  var A = l[M + y * g], R = l[M + y * g + _], F = l[M + y * g + _ * 2];
+                  var A = l[M + y * g], $ = l[M + y * g + _], F = l[M + y * g + _ * 2];
                   if (this.fitsProperties.containsBlanks && A === this.fitsProperties.blankValue)
                     m.setPixel(M, b, 0, 0, 0, 0);
                   else {
-                    var O = n.map(A), B = n.map(R), H = n.map(F);
+                    var O = n.map(A), B = n.map($), H = n.map(F);
                     m.setPixel(M, b, O, B, H, 255);
                   }
                 } else {
@@ -29563,11 +29563,11 @@ function requireSrc() {
             for (var l = this._dataBuffer$2, g = this.axisSize[0], _ = this.axisSize[0] * this.axisSize[1] * a, m = ln.create(this.axisSize[0], this.axisSize[1]), b = 0; b < this.axisSize[1]; b++)
               for (var y = this.axisSize[1] - 1 - b, M = 0; M < this.axisSize[0]; M++)
                 if (this._color$2) {
-                  var A = l[M + y * g], R = l[M + y * g + _], F = l[M + y * g + _ * 2];
+                  var A = l[M + y * g], $ = l[M + y * g + _], F = l[M + y * g + _ * 2];
                   if (this.fitsProperties.containsBlanks && A === this.fitsProperties.blankValue)
                     m.setPixel(M, b, 0, 0, 0, 0);
                   else {
-                    var O = n.map(A), B = n.map(R), H = n.map(F);
+                    var O = n.map(A), B = n.map($), H = n.map(F);
                     m.setPixel(M, b, O, B, H, 255);
                   }
                 } else {
@@ -29653,7 +29653,7 @@ function requireSrc() {
         var Yf = {
           draw: function(t, e, n) {
             if (this.object3d == null && ir._issmodel$2 == null && !ir._loading$2) {
-              var a = tt.multiplyMatrix(t.get_world(), t.get_view()), s = a.transform($.get_empty()), l = Math.sqrt(a.get_m11() * a.get_m11() + a.get_m22() * a.get_m22() + a.get_m33() * a.get_m33()), g = s.length(), _ = l, m = r.truncate(t.height), b = t.get_projection().get_m11(), y = t.get_projection().get_m34(), M = t.get_projection().get_m44(), A = Math.abs(y) * g + M, R = b / A * m, F = _ * R;
+              var a = tt.multiplyMatrix(t.get_world(), t.get_view()), s = a.transform(R.get_empty()), l = Math.sqrt(a.get_m11() * a.get_m11() + a.get_m22() * a.get_m22() + a.get_m33() * a.get_m33()), g = s.length(), _ = l, m = r.truncate(t.height), b = t.get_projection().get_m11(), y = t.get_projection().get_m34(), M = t.get_projection().get_m44(), A = Math.abs(y) * g + M, $ = b / A * m, F = _ * $;
               F > 0.5 && ir.loadBackground();
             }
             return this.object3d = ir._issmodel$2, Ne.prototype.draw.call(this, t, e, n);
@@ -29819,12 +29819,12 @@ function requireSrc() {
             MarkerMixes: ie,
             ColorMaps: Yt,
             PlotTypes: ae,
-            MarkerScales: Re,
+            MarkerScales: $e,
             RAUnits: me,
             Primitives: Fi,
             Alignment: ei,
             StockSkyOverlayTypes: si,
-            OverlayAnchor: $e,
+            OverlayAnchor: Re,
             AudioType: Ai,
             ShapeType: ki,
             LoopTypes: Hr,
@@ -29832,11 +29832,11 @@ function requireSrc() {
             TextBorderStyle: Fn,
             UserLevel: Ca,
             TransitionType: la,
-            Keys: Rr,
+            Keys: $r,
             DialogResult: Mn,
             Formatting: Bn,
             StateType: Or,
-            IThumbnail: [$r],
+            IThumbnail: [Rr],
             IPlace: [rt],
             IUiController: [ht],
             IViewMover: [It],
@@ -29849,7 +29849,7 @@ function requireSrc() {
             ACFT: [Kt, be, null],
             ASEP: [Te, Ue, null],
             COR: [Le, Ci, null],
-            C3D: [pe, Ri, null],
+            C3D: [pe, $i, null],
             CT: [x, Vr, null],
             CalD: [dn, Jr, null],
             DT: [ui, mr, null],
@@ -29867,13 +29867,13 @@ function requireSrc() {
             CAAFK5: [tr, Hn, null],
             GMD: [Gn, Ss, null],
             GMDS: [La, Ka, null],
-            GM: [$i, Cs, null],
+            GM: [Ri, Cs, null],
             CAAGlobe: [Dr, Ts, null],
             IFR: [Bi, T, null],
             INTP: [k, I, null],
             CAAJupiter: [Y, at, null],
             CAAKepler: [nt, Tt, null],
-            CAAMars: [Rt, Ae, null],
+            CAAMars: [$t, Ae, null],
             CAAMercury: [Wt, Fe, null],
             CAAMoon: [Se, vr, null],
             MoonCoefficient1: [Lt, Gr, null],
@@ -29919,22 +29919,22 @@ function requireSrc() {
             Pointing: [Es, Il, null],
             URLHelpers: [ze, Pl, null],
             Annotation: [ve, El, null],
-            AstroRaDec: [Zn, Rl, null],
-            RiseSetDetails: [fo, $l, null],
+            AstroRaDec: [Zn, $l, null],
+            RiseSetDetails: [fo, Rl, null],
             AstroCalc: [ge, Dl, null],
             BlendState: [mn, Nl, null],
             CameraParameters: [_i, Fl, null],
             Color: [j, Bl, null],
             Colors: [Pt, zl, null],
             Constellations: [jt, Ol, null],
-            Lineset: [Rs, Vl, null],
+            Lineset: [$s, Vl, null],
             Linepoint: [_o, Ul, null],
             ConstellationFilter: [ke, Hl, null],
             PositionTexture: [Ht, Gl, null],
             PositionColoredTextured: [Ye, ql, null],
             PositionColored: [Ja, Xl, null],
             PositionNormalTexturedTangent: [go, Yl, null],
-            Vector3d: [$, jl, null],
+            Vector3d: [R, jl, null],
             Vector2d: [Mt, Zl, null],
             Matrix3d: [tt, Kl, null],
             Matrix2d: [Ti, Wl, null],
@@ -29945,9 +29945,9 @@ function requireSrc() {
             PositionNormalTextured: [Cr, eu, null],
             SphereHull: [ha, iu, null],
             ConvexHull: [kn, ru, null],
-            Folder: [pn, nu, null, $r],
+            Folder: [pn, nu, null, Rr],
             FolderBrowser: [De, au, null],
-            FolderUp: [$s, su, null, $r],
+            FolderUp: [Rs, su, null, Rr],
             ShortIndexBuffer: [ou, lu, null],
             IndexBuffer: [po, uu, null, r.IDisposable],
             VertexBufferBase: [rr, cu, null, r.IDisposable],
@@ -29973,13 +29973,13 @@ function requireSrc() {
             FitsShader: [zt, Iu, null],
             ImageShader: [Oe, Pu, null],
             ImageShader2: [He, Eu, null],
-            SpriteShader: [Ve, Ru, null],
-            ShapeSpriteShader: [Ze, $u, null],
+            SpriteShader: [Ve, $u, null],
+            ShapeSpriteShader: [Ze, Ru, null],
             TextShader: [Ke, Du, null],
             Tessellator: [da, Fu, null],
             Texture: [di, Bu, null, r.IDisposable],
             Grids: [W, zu, null],
-            Imageset: [Mi, Ou, null, $r],
+            Imageset: [Mi, Ou, null, Rr],
             ViewMoverKenBurnsStyle: [Ds, Vu, null, It],
             KeplerVertex: [ur, Hu, null],
             ScaleMap: [Yr, Gu, null],
@@ -29994,7 +29994,7 @@ function requireSrc() {
             LayerUI: [Pn, ec, null],
             LayerUIMenuItem: [ic, rc, null],
             LayerUITreeNode: [ts, nc, null],
-            Group: [Ra, ac, null],
+            Group: [$a, ac, null],
             Mesh: [En, sc, null, r.IDisposable],
             Object3d: [cr, lc, null],
             ObjectNode: [Wn, uc, null],
@@ -30004,12 +30004,12 @@ function requireSrc() {
             KmlCoordinate: [Fs, _c, null],
             KmlLineList: [Bs, dc, null],
             PushPin: [hr, gc, null],
-            Table: [$a, mc, null],
+            Table: [Ra, mc, null],
             VoTable: [Jn, pc, null],
             VoRow: [So, vc, null],
             VoColumn: [es, wc, null],
             WcsImage: [is, bc, null],
-            Place: [fr, Sc, null, $r, rt],
+            Place: [fr, Sc, null, Rr, rt],
             KeplerianElements: [To, Cc, null],
             BodyAngles: [Wi, Tc, null],
             Planets: [D, Mc, null],
@@ -30020,21 +30020,21 @@ function requireSrc() {
             ScriptInterface: [on, Ic, null],
             Settings: [X, Pc, null, Nt],
             Text3dBatch: [vn, Ec, null],
-            GlyphItem: [ta, Rc, null],
-            GlyphCache: [Tr, $c, null, r.IDisposable],
+            GlyphItem: [ta, $c, null],
+            GlyphCache: [Tr, Rc, null, r.IDisposable],
             Text3d: [nr, Dc, null],
             SpaceTimeController: [Q, Nc, null],
             Star: [Os, Fc, null],
             Galaxy: [ma, Bc, null],
             LatLngEdges: [Vs, zc, null],
             Tile: [G, Oc, null],
-            Tour: [Da, Hc, null, $r],
+            Tour: [Da, Hc, null, Rr],
             FileEntry: [Us, Gc, null],
             FileCabinet: [pa, qc, null],
             SettingParameter: [Na, Xc, null],
             Overlay: [gi, Yc, null],
             Selection: [mi, jc, null],
-            TextObject: [Rn, Zc, null],
+            TextObject: [$n, Zc, null],
             TourDocument: [jr, Kc, null],
             TourEditTab: [Mo, Wc, null],
             TourEditor: [Oi, Jc, null, ht],
@@ -30069,10 +30069,10 @@ function requireSrc() {
             Bitmap: [ln, Ih, null],
             ColorPicker: [Xs, Ph, null],
             ContextMenuStrip: [un, Eh, null],
-            ToolStripMenuItem: [$t, Rh, null],
-            TagMe: [$h, Dh, null],
+            ToolStripMenuItem: [Rt, $h, null],
+            TagMe: [Rh, Dh, null],
             Dialog: [bn, Nh, null],
-            Histogram: [$n, Fh, null],
+            Histogram: [Rn, Fh, null],
             SimpleInput: [Ba, Bh, null],
             XmlTextWriter: [ra, zh, null],
             VizLayer: [Io, Oh, null],
@@ -30088,8 +30088,8 @@ function requireSrc() {
             HealpixTile: [rs, Wh, G],
             FitsImage: [ar, Jh, is],
             Circle: [Eo, Qh, ve],
-            Poly: [Ro, tf, ve],
-            PolyLine: [$o, ef, ve],
+            Poly: [$o, tf, ve],
+            PolyLine: [Ro, ef, ve],
             EquirectangularTile: [ns, rf, G],
             PositionVertexBuffer: [as, nf, rr],
             PositionNormalTexturedVertexBuffer: [os, sf, rr],
@@ -30111,14 +30111,14 @@ function requireSrc() {
             VoTableLayer: [kr, If, ai],
             MercatorTile: [We, Pf, G],
             PlotTile: [fs, Ef, G],
-            TangentTile: [_s, Rf, G],
-            ToastTile: [Pi, $f, G],
+            TangentTile: [_s, $f, G],
+            ToastTile: [Pi, Rf, G],
             BitmapOverlay: [na, Df, gi],
             TextOverlay: [Zr, Nf, gi],
             ShapeOverlay: [aa, Ff, gi],
             AudioOverlay: [Oa, Bf, gi],
             FlipbookOverlay: [ba, zf, gi],
-            ToolStripSeparator: [sr, Of, $t],
+            ToolStripSeparator: [sr, Of, Rt],
             FrameWizard: [Go, Vf, bn],
             ReferenceFrameProps: [qo, Uf, bn],
             GreatCircleDialog: [Xo, Hf, bn],
@@ -30135,13 +30135,13 @@ function requireSrc() {
           }
         );
         let Qs;
-        typeof window < "u" && "pako" in window ? Qs = window.pako : Promise.resolve().then(() => index$2).then(function(t) {
+        typeof window < "u" && "pako" in window ? Qs = window.pako : Promise.resolve().then(() => index$1).then(function(t) {
           Qs = t;
         });
         let to;
-        return typeof window < "u" && "uuid" in window ? to = window.uuid : Promise.resolve().then(() => index).then(function(t) {
+        return typeof window < "u" && "uuid" in window ? to = window.uuid : Promise.resolve().then(() => index$2).then(function(t) {
           to = t;
-        }), S.g_ACft = [new Kt(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1719914, -2, -25, 0, 25, -13, 1578089, 156, 10, 32, 684185, -358), new Kt(0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6434, 141, 28007, -107, 25697, -95, -5904, -130, 11141, -48, -2559, -55), new Kt(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 715, 0, 0, 0, 6, 0, -657, 0, -15, 0, -282, 0), new Kt(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 715, 0, 0, 0, 0, 0, -656, 0, 0, 0, -285, 0), new Kt(0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 486, -5, -236, -4, -216, -4, -446, 5, -94, 0, -193, 0), new Kt(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 159, 0, 0, 0, 2, 0, -147, 0, -6, 0, -61, 0), new Kt(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 26, 0, 0, 0, -59, 0), new Kt(0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 39, 0, 0, 0, 0, 0, -36, 0, 0, 0, -16, 0), new Kt(0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 33, 0, -10, 0, -9, 0, -30, 0, -5, 0, -13, 0), new Kt(0, 2, 0, -1, 0, 0, 0, 0, 0, 0, 0, 31, 0, 1, 0, 1, 0, -28, 0, 0, 0, -12, 0), new Kt(0, 3, -8, 3, 0, 0, 0, 0, 0, 0, 0, 8, 0, -28, 0, 25, 0, 8, 0, 11, 0, 3, 0), new Kt(0, 5, -8, 3, 0, 0, 0, 0, 0, 0, 0, 8, 0, -28, 0, -25, 0, -8, 0, -11, 0, -3, 0), new Kt(2, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 0, -19, 0, 0, 0, -8, 0), new Kt(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -19, 0, 0, 0, 0, 0, 17, 0, 0, 0, 8, 0), new Kt(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, -16, 0, 0, 0, -7, 0), new Kt(0, 1, 0, -2, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 15, 0, 1, 0, 7, 0), new Kt(0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 16, 0, 0, 0, 1, 0, -15, 0, -3, 0, -6, 0), new Kt(0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 11, 0, -1, 0, -1, 0, -10, 0, -1, 0, -5, 0), new Kt(2, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -11, 0, -10, 0, 0, 0, -4, 0, 0, 0), new Kt(0, 1, 0, -1, 0, 0, 0, 0, 0, 0, 0, -11, 0, -2, 0, -2, 0, 9, 0, -1, 0, 4, 0), new Kt(0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, -7, 0, -8, 0, -8, 0, 6, 0, -3, 0, 3, 0), new Kt(0, 3, 0, -2, 0, 0, 0, 0, 0, 0, 0, -10, 0, 0, 0, 0, 0, 9, 0, 0, 0, 4, 0), new Kt(1, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, -9, 0, 0, 0, 0, 0, -9, 0, 0, 0, -4, 0), new Kt(2, -3, 0, 0, 0, 0, 0, 0, 0, 0, 0, -9, 0, 0, 0, 0, 0, -8, 0, 0, 0, -4, 0), new Kt(0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, -9, 0, -8, 0, 0, 0, -3, 0, 0, 0), new Kt(2, -4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -9, 0, 8, 0, 0, 0, 3, 0, 0, 0), new Kt(0, 3, -2, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, -8, 0, 0, 0, -3, 0), new Kt(0, 0, 0, 0, 0, 0, 0, 1, 2, -1, 0, 8, 0, 0, 0, 0, 0, -7, 0, 0, 0, -3, 0), new Kt(8, -12, 0, 0, 0, 0, 0, 0, 0, 0, 0, -4, 0, -7, 0, -6, 0, 4, 0, -3, 0, 2, 0), new Kt(8, -14, 0, 0, 0, 0, 0, 0, 0, 0, 0, -4, 0, -7, 0, 6, 0, -4, 0, 3, 0, -2, 0), new Kt(0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, -6, 0, -5, 0, -4, 0, 5, 0, -2, 0, 2, 0), new Kt(3, -4, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, -1, 0, -2, 0, -7, 0, 1, 0, -4, 0), new Kt(0, 2, 0, -2, 0, 0, 0, 0, 0, 0, 0, 4, 0, -6, 0, -5, 0, -4, 0, -2, 0, -2, 0), new Kt(3, -3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -7, 0, -6, 0, 0, 0, -3, 0, 0, 0), new Kt(0, 2, -2, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, -5, 0, -4, 0, -5, 0, -2, 0, -2, 0), new Kt(0, 0, 0, 0, 0, 0, 0, 1, -2, 0, 0, 5, 0, 0, 0, 0, 0, -5, 0, 0, 0, -2, 0)], S.deltaTTable = [121, 112, 103, 95, 88, 82, 77, 72, 68, 63, 60, 56, 53, 51, 48, 46, 44, 42, 40, 38, 35, 33, 31, 29, 26, 24, 22, 20, 18, 16, 14, 12, 11, 10, 9, 8, 7, 7, 7, 7, 7, 7, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 12, 12, 12, 12, 13, 13, 13, 14, 14, 14, 14, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 15, 15, 14, 13, 13.1, 12.5, 12.2, 12, 12, 12, 12, 12, 12, 11.9, 11.6, 11, 10.2, 9.2, 8.2, 7.1, 6.2, 5.6, 5.4, 5.3, 5.4, 5.6, 5.9, 6.2, 6.5, 6.8, 7.1, 7.3, 7.5, 7.6, 7.7, 7.3, 6.2, 5.2, 2.7, 1.4, -1.2, -2.8, -3.8, -4.8, -5.5, -5.3, -5.6, -5.7, -5.9, -6, -6.3, -6.5, -6.2, -4.7, -2.8, -0.1, 2.6, 5.3, 7.7, 10.4, 13.3, 16, 18.2, 20.2, 21.2, 22.4, 23.5, 23.8, 24.3, 24, 23.9, 23.9, 23.7, 24, 24.3, 25.3, 26.2, 27.3, 28.2, 29.1, 30, 30.7, 31.4, 32.2, 33.1, 34, 35, 36.5, 38.3, 40.18, 42.2, 44.5, 46.5, 48.5, 50.54, 52.2, 53.8, 54.9, 55.8, 56.86, 58.31, 59.99, 61.63, 62.97], S.g_L0EarthCoefficients = [new o(175347046, 0, 0), new o(3341656, 4.6692568, 6283.07585), new o(34894, 4.6261, 12566.1517), new o(3497, 2.7441, 5753.3849), new o(3418, 2.8289, 3.5231), new o(3136, 3.6277, 77713.7715), new o(2676, 4.4181, 7860.4194), new o(2343, 6.1352, 3930.2097), new o(1324, 0.7425, 11506.7698), new o(1273, 2.0371, 529.691), new o(1199, 1.1096, 1577.3435), new o(990, 5.233, 5884.927), new o(902, 2.045, 26.298), new o(857, 3.508, 398.149), new o(780, 1.179, 5223.694), new o(753, 2.533, 5507.553), new o(505, 4.583, 18849.228), new o(492, 4.205, 775.523), new o(357, 2.92, 0.067), new o(317, 5.849, 11790.629), new o(284, 1.899, 796.288), new o(271, 0.315, 10977.079), new o(243, 0.345, 5486.778), new o(206, 4.806, 2544.314), new o(205, 1.869, 5573.143), new o(202, 2.458, 6069.777), new o(156, 0.833, 213.299), new o(132, 3.411, 2942.463), new o(126, 1.083, 20.775), new o(115, 0.645, 0.98), new o(103, 0.636, 4694.003), new o(102, 0.976, 15720.839), new o(102, 4.267, 7.114), new o(99, 6.21, 2146.17), new o(98, 0.68, 155.42), new o(86, 5.98, 161000.69), new o(85, 1.3, 6275.96), new o(85, 3.67, 71430.7), new o(80, 1.81, 17260.15), new o(79, 3.04, 12036.46), new o(75, 1.76, 5088.63), new o(74, 3.5, 3154.69), new o(74, 4.68, 801.82), new o(70, 0.83, 9437.76), new o(62, 3.98, 8827.39), new o(61, 1.82, 7084.9), new o(57, 2.78, 6286.6), new o(56, 4.39, 14143.5), new o(56, 3.47, 6279.55), new o(52, 0.19, 12139.55), new o(52, 1.33, 1748.02), new o(51, 0.28, 5856.48), new o(49, 0.49, 1194.45), new o(41, 5.37, 8429.24), new o(41, 2.4, 19651.05), new o(39, 6.17, 10447.39), new o(37, 6.04, 10213.29), new o(37, 2.57, 1059.38), new o(36, 1.71, 2352.87), new o(36, 1.78, 6812.77), new o(33, 0.59, 17789.85), new o(30, 0.44, 83996.85), new o(30, 2.74, 1349.87), new o(25, 3.16, 4690.48)], S.g_L1EarthCoefficients = [new o(628331966747, 0, 0), new o(206059, 2.678235, 6283.07585), new o(4303, 2.6351, 12566.1517), new o(425, 1.59, 3.523), new o(119, 5.796, 26.298), new o(109, 2.966, 1577.344), new o(93, 2.59, 18849.23), new o(72, 1.14, 529.69), new o(68, 1.87, 398.15), new o(67, 4.41, 5507.55), new o(59, 2.89, 5223.69), new o(56, 2.17, 155.42), new o(45, 0.4, 796.3), new o(36, 0.47, 775.52), new o(29, 2.65, 7.11), new o(21, 5.43, 0.98), new o(19, 1.85, 5486.78), new o(19, 4.97, 213.3), new o(17, 2.99, 6275.96), new o(16, 0.03, 2544.31), new o(16, 1.43, 2146.17), new o(15, 1.21, 10977.08), new o(12, 2.83, 1748.02), new o(12, 3.26, 5088.63), new o(12, 5.27, 1194.45), new o(12, 2.08, 4694), new o(11, 0.77, 553.57), new o(10, 1.3, 6286.6), new o(10, 4.24, 1349.87), new o(9, 2.7, 242.73), new o(9, 5.64, 951.72), new o(8, 5.3, 2352.87), new o(6, 2.65, 9437.76), new o(6, 4.67, 4690.48)], S.g_L2EarthCoefficients = [new o(52919, 0, 0), new o(8720, 1.0721, 6283.0758), new o(309, 0.867, 12566.152), new o(27, 0.05, 3.52), new o(16, 5.19, 26.3), new o(16, 3.68, 155.42), new o(10, 0.76, 18849.23), new o(9, 2.06, 77713.77), new o(7, 0.83, 775.52), new o(5, 4.66, 1577.34), new o(4, 1.03, 7.11), new o(4, 3.44, 5573.14), new o(3, 5.14, 796.3), new o(3, 6.05, 5507.55), new o(3, 1.19, 242.73), new o(3, 6.12, 529.69), new o(3, 0.31, 398.15), new o(3, 2.28, 553.57), new o(2, 4.38, 5223.69), new o(2, 3.75, 0.98)], S.g_L3EarthCoefficients = [new o(289, 5.844, 6283.076), new o(35, 0, 0), new o(17, 5.49, 12566.15), new o(3, 5.2, 155.42), new o(1, 4.72, 3.52), new o(1, 5.3, 18849.23), new o(1, 5.97, 242.73)], S.g_L4EarthCoefficients = [new o(114, 3.142, 0), new o(8, 4.13, 6283.08), new o(1, 3.84, 12566.15)], S.g_L5EarthCoefficients = [new o(1, 3.14, 0)], S.g_B0EarthCoefficients = [new o(280, 3.199, 84334.662), new o(102, 5.422, 5507.553), new o(80, 3.88, 5223.69), new o(44, 3.7, 2352.87), new o(32, 4, 1577.34)], S.g_B1EarthCoefficients = [new o(9, 3.9, 5507.55), new o(6, 1.73, 5223.69)], S.g_B2EarthCoefficients = [new o(22378, 3.38509, 10213.28555), new o(282, 0, 0), new o(173, 5.256, 20426.571), new o(27, 3.87, 30639.86)], S.g_B3EarthCoefficients = [new o(647, 4.992, 10213.286), new o(20, 3.14, 0), new o(6, 0.77, 20426.57), new o(3, 5.44, 30639.86)], S.g_B4EarthCoefficients = [new o(14, 0.32, 10213.29)], S.g_R0EarthCoefficients = [new o(100013989, 0, 0), new o(1670700, 3.0984635, 6283.07585), new o(13956, 3.05525, 12566.1517), new o(3084, 5.1985, 77713.7715), new o(1628, 1.1739, 5753.3849), new o(1576, 2.8469, 7860.4194), new o(925, 5.453, 11506.77), new o(542, 4.564, 3930.21), new o(472, 3.661, 5884.927), new o(346, 0.964, 5507.553), new o(329, 5.9, 5223.694), new o(307, 0.299, 5573.143), new o(243, 4.273, 11790.629), new o(212, 5.847, 1577.344), new o(186, 5.022, 10977.079), new o(175, 3.012, 18849.228), new o(110, 5.055, 5486.778), new o(98, 0.89, 6069.78), new o(86, 5.69, 15720.84), new o(86, 1.27, 161000.69), new o(65, 0.27, 17260.15), new o(63, 0.92, 529.69), new o(57, 2.01, 83996.85), new o(56, 5.24, 71430.7), new o(49, 3.25, 2544.31), new o(47, 2.58, 775.52), new o(45, 5.54, 9437.76), new o(43, 6.01, 6275.96), new o(39, 5.36, 4694), new o(38, 2.39, 8827.39), new o(37, 0.83, 19651.05), new o(37, 4.9, 12139.55), new o(36, 1.67, 12036.46), new o(35, 1.84, 2942.46), new o(33, 0.24, 7084.9), new o(32, 0.18, 5088.63), new o(32, 1.78, 398.15), new o(28, 1.21, 6286.6), new o(28, 1.9, 6279.55), new o(26, 4.59, 10447.39)], S.g_R1EarthCoefficients = [new o(103019, 1.10749, 6283.07585), new o(1721, 1.0644, 12566.1517), new o(702, 3.142, 0), new o(32, 1.02, 18849.23), new o(31, 2.84, 5507.55), new o(25, 1.32, 5223.69), new o(18, 1.42, 1577.34), new o(10, 5.91, 10977.08), new o(9, 1.42, 6275.96), new o(9, 0.27, 5486.78)], S.g_R2EarthCoefficients = [new o(4359, 5.7846, 6283.0758), new o(124, 5.579, 12566.152), new o(12, 3.14, 0), new o(9, 3.63, 77713.77), new o(6, 1.87, 5573.14), new o(3, 5.47, 18849.23)], S.g_R3EarthCoefficients = [new o(145, 4.273, 6283.076), new o(7, 3.92, 12566.15)], S.g_R4EarthCoefficients = [new o(4, 2.56, 6283.08)], S.g_L1EarthCoefficientsJ2000 = [new o(628307584999, 0, 0), new o(206059, 2.678235, 6283.07585), new o(4303, 2.6351, 12566.1517), new o(425, 1.59, 3.523), new o(119, 5.796, 26.298), new o(109, 2.966, 1577.344), new o(93, 2.59, 18849.23), new o(72, 1.14, 529.69), new o(68, 1.87, 398.15), new o(67, 4.41, 5507.55), new o(59, 2.89, 5223.69), new o(56, 2.17, 155.42), new o(45, 0.4, 796.3), new o(36, 0.47, 775.52), new o(29, 2.65, 7.11), new o(21, 5.43, 0.98), new o(19, 1.85, 5486.78), new o(19, 4.97, 213.3), new o(17, 2.99, 6275.96), new o(16, 0.03, 2544.31), new o(16, 1.43, 2146.17), new o(15, 1.21, 10977.08), new o(12, 2.83, 1748.02), new o(12, 3.26, 5088.63), new o(12, 5.27, 1194.45), new o(12, 2.08, 4694), new o(11, 0.77, 553.57), new o(10, 1.3, 6286.6), new o(10, 4.24, 1349.87), new o(9, 2.7, 242.73), new o(9, 5.64, 951.72), new o(8, 5.3, 2352.87), new o(6, 2.65, 9437.76), new o(6, 4.67, 4690.48)], S.g_L2EarthCoefficientsJ2000 = [new o(8722, 1.0725, 6283.0758), new o(991, 3.1416, 0), new o(295, 0.437, 12566.152), new o(27, 0.05, 3.52), new o(16, 5.19, 26.3), new o(16, 3.69, 155.42), new o(9, 0.3, 18849.23), new o(9, 2.06, 77713.77), new o(7, 0.83, 775.52), new o(5, 4.66, 1577.34), new o(4, 1.03, 7.11), new o(4, 3.44, 5573.14), new o(3, 5.14, 796.3), new o(3, 6.05, 5507.55), new o(3, 1.19, 242.73), new o(3, 6.12, 529.69), new o(3, 0.3, 398.15), new o(3, 2.28, 553.57), new o(2, 4.38, 5223.69), new o(2, 3.75, 0.98)], S.g_L3EarthCoefficientsJ2000 = [new o(289, 5.842, 6283.076), new o(21, 6.05, 12566.15), new o(3, 5.2, 155.42), new o(3, 3.14, 0), new o(1, 4.72, 3.52), new o(1, 5.97, 242.73), new o(1, 5.54, 18849.23)], S.g_L4EarthCoefficientsJ2000 = [new o(8, 4.14, 6283.08), new o(1, 3.28, 12566.15)], S.g_B1EarthCoefficientsJ2000 = [new o(227778, 3.413766, 6283.07585), new o(3806, 3.3706, 12566.1517), new o(3620, 0, 0), new o(72, 3.33, 18849.23), new o(8, 3.89, 5507.55), new o(8, 1.79, 5223.69), new o(6, 5.2, 2352.87)], S.g_B2EarthCoefficientsJ2000 = [new o(9721, 5.1519, 6283.07585), new o(233, 3.1416, 0), new o(134, 0.644, 12566.152), new o(7, 1.07, 18849.23)], S.g_B3EarthCoefficientsJ2000 = [new o(276, 0.595, 6283.076), new o(17, 3.14, 0), new o(4, 0.12, 12566.15)], S.g_B4EarthCoefficientsJ2000 = [new o(6, 2.27, 6283.08), new o(1, 0, 0)], S.g_L0JupiterCoefficients = [new o(59954691, 0, 0), new o(9695899, 5.0619179, 529.6909651), new o(573610, 1.444062, 7.113547), new o(306389, 5.417347, 1059.38193), new o(97178, 4.14265, 632.78374), new o(72903, 3.64043, 522.57742), new o(64264, 3.41145, 103.09277), new o(39806, 2.29377, 419.48464), new o(38858, 1.27232, 316.39187), new o(27965, 1.78455, 536.80451), new o(13590, 5.77481, 1589.0729), new o(8769, 3.63, 949.1756), new o(8246, 3.5823, 206.1855), new o(7368, 5.081, 735.8765), new o(6263, 0.025, 213.2991), new o(6114, 4.5132, 1162.4747), new o(5305, 4.1863, 1052.2684), new o(5305, 1.3067, 14.2271), new o(4905, 1.3208, 110.2063), new o(4647, 4.6996, 3.9322), new o(3045, 4.3168, 426.5982), new o(2610, 1.5667, 846.0828), new o(2028, 1.0638, 3.1814), new o(1921, 0.9717, 639.8973), new o(1765, 2.1415, 1066.4955), new o(1723, 3.8804, 1265.5675), new o(1633, 3.582, 515.4639), new o(1432, 4.2968, 625.6702), new o(973, 4.098, 95.979), new o(884, 2.437, 412.371), new o(733, 6.085, 838.969), new o(731, 3.806, 1581.959), new o(709, 1.293, 742.99), new o(692, 6.134, 2118.764), new o(614, 4.109, 1478.867), new o(582, 4.54, 309.278), new o(495, 3.756, 323.505), new o(441, 2.958, 454.909), new o(417, 1.036, 2.488), new o(390, 4.897, 1692.166), new o(376, 4.703, 1368.66), new o(341, 5.715, 533.623), new o(330, 4.74, 0.048), new o(262, 1.877, 0.963), new o(261, 0.82, 380.128), new o(257, 3.724, 199.072), new o(244, 5.22, 728.763), new o(235, 1.227, 909.819), new o(220, 1.651, 543.918), new o(207, 1.855, 525.759), new o(202, 1.807, 1375.774), new o(197, 5.293, 1155.361), new o(175, 3.73, 942.062), new o(175, 3.226, 1898.351), new o(175, 5.91, 956.289), new o(158, 4.365, 1795.258), new o(151, 3.906, 74.782), new o(149, 4.377, 1685.052), new o(141, 3.136, 491.558), new o(138, 1.318, 1169.588), new o(131, 4.169, 1045.155), new o(117, 2.5, 1596.186), new o(117, 3.389, 0.521), new o(106, 4.554, 526.51)], S.g_L1JupiterCoefficients = [new o(52993480757, 0, 0), new o(489741, 4.220667, 529.690965), new o(228919, 6.026475, 7.113547), new o(27655, 4.57266, 1059.38193), new o(20721, 5.45939, 522.57742), new o(12106, 0.16986, 536.80451), new o(6068, 4.4242, 103.0928), new o(5434, 3.9848, 419.4846), new o(4238, 5.8901, 14.2271), new o(2212, 5.2677, 206.1855), new o(1746, 4.9267, 1589.0729), new o(1296, 5.5513, 3.1814), new o(1173, 5.8565, 1052.2684), new o(1163, 0.5145, 3.9322), new o(1099, 5.307, 515.4639), new o(1007, 0.4648, 735.8765), new o(1004, 3.1504, 426.5982), new o(848, 5.758, 110.206), new o(827, 4.803, 213.299), new o(816, 0.586, 1066.495), new o(725, 5.518, 639.897), new o(568, 5.989, 625.67), new o(474, 4.132, 412.371), new o(413, 5.737, 95.979), new o(345, 4.242, 632.784), new o(336, 3.732, 1162.475), new o(234, 4.035, 949.176), new o(234, 6.243, 309.278), new o(199, 1.505, 838.969), new o(195, 2.219, 323.505), new o(187, 6.086, 742.99), new o(184, 6.28, 543.918), new o(171, 5.417, 199.072), new o(131, 0.626, 728.763), new o(115, 0.68, 846.083), new o(115, 5.286, 2118.764), new o(108, 4.493, 956.289), new o(80, 5.82, 1045.15), new o(72, 5.34, 942.06), new o(70, 5.97, 532.87), new o(67, 5.73, 21.34), new o(66, 0.13, 526.51), new o(65, 6.09, 1581.96), new o(59, 0.59, 1155.36), new o(58, 0.99, 1596.19), new o(57, 5.97, 1169.59), new o(57, 1.41, 533.62), new o(55, 5.43, 10.29), new o(52, 5.73, 117.32), new o(52, 0.23, 1368.66), new o(50, 6.08, 525.76), new o(47, 3.63, 1478.87), new o(47, 0.51, 1265.57), new o(40, 4.16, 1692.17), new o(34, 0.1, 302.16), new o(33, 5.04, 220.41), new o(32, 5.37, 508.35), new o(29, 5.42, 1272.68), new o(29, 3.36, 4.67), new o(29, 0.76, 88.87), new o(25, 1.61, 831.86)], S.g_L2JupiterCoefficients = [new o(47234, 4.32148, 7.11355), new o(38966, 0, 0), new o(30629, 2.93021, 529.69097), new o(3189, 1.055, 522.5774), new o(2729, 4.8455, 536.8045), new o(2723, 3.4141, 1059.3819), new o(1721, 4.1873, 14.2271), new o(383, 5.768, 419.485), new o(378, 0.76, 515.464), new o(367, 6.055, 103.093), new o(337, 3.786, 3.181), new o(308, 0.694, 206.186), new o(218, 3.814, 1589.073), new o(199, 5.34, 1066.495), new o(197, 2.484, 3.932), new o(156, 1.406, 1052.268), new o(146, 3.814, 639.897), new o(142, 1.634, 426.598), new o(130, 5.837, 412.371), new o(117, 1.414, 625.67), new o(97, 4.03, 110.21), new o(91, 1.11, 95.98), new o(87, 2.52, 632.78), new o(79, 4.64, 543.92), new o(72, 2.22, 735.88), new o(58, 0.83, 199.07), new o(57, 3.12, 213.3), new o(49, 1.67, 309.28), new o(40, 4.02, 21.34), new o(40, 0.62, 323.51), new o(36, 2.33, 728.76), new o(29, 3.61, 10.29), new o(28, 3.24, 838.97), new o(26, 4.5, 742.99), new o(26, 2.51, 1162.47), new o(25, 1.22, 1045.15), new o(24, 3.01, 956.29), new o(19, 4.29, 532.87), new o(18, 0.81, 508.35), new o(17, 4.2, 2118.76), new o(17, 1.83, 526.51), new o(15, 5.81, 1596.19), new o(15, 0.68, 942.06), new o(15, 4, 117.32), new o(14, 5.95, 316.39), new o(14, 1.8, 302.16), new o(13, 2.52, 88.87), new o(13, 4.37, 1169.59), new o(11, 4.44, 525.76), new o(10, 1.72, 1581.96), new o(9, 2.18, 1155.36), new o(9, 3.29, 220.41), new o(9, 3.32, 831.86), new o(8, 5.76, 846.08), new o(8, 2.71, 533.62), new o(7, 2.18, 1265.57), new o(6, 0.5, 949.18)], S.g_L3JupiterCoefficients = [new o(6502, 2.5986, 7.1135), new o(1357, 1.3464, 529.691), new o(471, 2.475, 14.227), new o(417, 3.245, 536.805), new o(353, 2.974, 522.577), new o(155, 2.076, 1059.382), new o(87, 2.51, 515.46), new o(44, 0, 0), new o(34, 3.83, 1066.5), new o(28, 2.45, 206.19), new o(24, 1.28, 412.37), new o(23, 2.98, 543.92), new o(20, 2.1, 639.9), new o(20, 1.4, 419.48), new o(19, 1.59, 103.09), new o(17, 2.3, 21.34), new o(17, 2.6, 1589.07), new o(16, 3.15, 625.67), new o(16, 3.36, 1052.27), new o(13, 2.76, 95.98), new o(13, 2.54, 199.07), new o(13, 6.27, 426.6), new o(9, 1.76, 10.29), new o(9, 2.27, 110.21), new o(7, 3.43, 309.28), new o(7, 4.04, 728.76), new o(6, 2.52, 508.35), new o(5, 2.91, 1045.15), new o(5, 5.25, 323.51), new o(4, 4.3, 88.87), new o(4, 3.52, 302.16), new o(4, 4.09, 735.88), new o(3, 1.43, 956.29), new o(3, 4.36, 1596.19), new o(3, 1.25, 213.3), new o(3, 5.02, 838.97), new o(3, 2.24, 117.32), new o(2, 2.9, 742.99), new o(2, 2.36, 942.06)], S.g_L4JupiterCoefficients = [new o(669, 0.853, 7.114), new o(114, 3.142, 0), new o(100, 0.743, 14.227), new o(50, 1.65, 536.8), new o(44, 5.82, 529.69), new o(32, 4.86, 522.58), new o(15, 4.29, 515.46), new o(9, 0.71, 1059.38), new o(5, 1.3, 543.92), new o(4, 2.32, 1066.5), new o(4, 0.48, 21.34), new o(3, 3, 412.37), new o(2, 0.4, 639.9), new o(2, 4.26, 199.07), new o(2, 4.91, 625.67), new o(2, 4.26, 206.19), new o(1, 5.26, 1052.27), new o(1, 4.72, 95.98), new o(1, 1.29, 1589.07)], S.g_L5JupiterCoefficients = [new o(50, 5.26, 7.11), new o(16, 5.25, 14.23), new o(4, 0.01, 536.8), new o(2, 1.1, 522.58), new o(1, 3.14, 0)], S.g_B0JupiterCoefficients = [new o(2268616, 3.5585261, 529.6909651), new o(110090, 0, 0), new o(109972, 3.908093, 1059.38193), new o(8101, 3.6051, 522.5774), new o(6438, 0.3063, 536.8045), new o(6044, 4.2588, 1589.0729), new o(1107, 2.9853, 1162.4747), new o(944, 1.675, 426.598), new o(942, 2.936, 1052.268), new o(894, 1.754, 7.114), new o(836, 5.179, 103.093), new o(767, 2.155, 632.784), new o(684, 3.678, 213.299), new o(629, 0.643, 1066.495), new o(559, 0.014, 846.083), new o(532, 2.703, 110.206), new o(464, 1.173, 949.176), new o(431, 2.608, 419.485), new o(351, 4.611, 2118.764), new o(132, 4.778, 742.99), new o(123, 3.35, 1692.166), new o(116, 1.387, 323.505), new o(115, 5.049, 316.392), new o(104, 3.701, 515.464), new o(103, 2.319, 1478.867), new o(102, 3.153, 1581.959)], S.g_B1JupiterCoefficients = [new o(177352, 5.701665, 529.690965), new o(3230, 5.7794, 1059.3819), new o(3081, 5.4746, 522.5774), new o(2212, 4.7348, 536.8045), new o(1694, 3.1416, 0), new o(346, 4.746, 1052.268), new o(234, 5.189, 1066.495), new o(196, 6.186, 7.114), new o(150, 3.927, 1589.073), new o(114, 3.439, 632.784), new o(97, 2.91, 949.18), new o(82, 5.08, 1162.47), new o(77, 2.51, 103.09), new o(77, 0.61, 419.48), new o(74, 5.5, 515.46), new o(61, 5.45, 213.3), new o(50, 3.95, 735.88), new o(46, 0.54, 110.21), new o(45, 1.9, 846.08), new o(37, 4.7, 543.92), new o(36, 6.11, 316.39), new o(32, 4.92, 1581.96)], S.g_B2JupiterCoefficients = [new o(8094, 1.4632, 529.691), new o(813, 3.1416, 0), new o(742, 0.957, 522.577), new o(399, 2.899, 536.805), new o(342, 1.447, 1059.382), new o(74, 0.41, 1052.27), new o(46, 3.48, 1066.5), new o(30, 1.93, 1589.07), new o(29, 0.99, 515.46), new o(23, 4.27, 7.11), new o(14, 2.92, 543.92), new o(12, 5.22, 632.78), new o(11, 4.88, 949.18), new o(6, 6.21, 1045.15)], S.g_B3JupiterCoefficients = [new o(252, 3.381, 529.691), new o(122, 2.733, 522.577), new o(49, 1.04, 536.8), new o(11, 2.31, 1052.27), new o(8, 2.77, 515.46), new o(7, 4.25, 1059.38), new o(6, 1.78, 1066.5), new o(4, 1.13, 543.92), new o(3, 3.14, 0)], S.g_B4JupiterCoefficients = [new o(15, 4.53, 522.58), new o(5, 4.47, 529.69), new o(4, 5.44, 536.8), new o(3, 0, 0), new o(2, 4.52, 515.46), new o(1, 4.2, 1052.27)], S.g_B5JupiterCoefficients = [new o(1, 0.09, 522.58)], S.g_R0JupiterCoefficients = [new o(520887429, 0, 0), new o(25209327, 3.4910864, 529.69096509), new o(610600, 3.841154, 1059.38193), new o(282029, 2.574199, 632.783739), new o(187647, 2.075904, 522.577418), new o(86793, 0.71001, 419.48464), new o(72063, 0.21466, 536.80451), new o(65517, 5.97996, 316.39187), new o(30135, 2.16132, 949.17561), new o(29135, 1.67759, 103.09277), new o(23947, 0.27458, 7.11355), new o(23453, 3.54023, 735.87651), new o(22284, 4.19363, 1589.0729), new o(13033, 2.96043, 1162.4747), new o(12749, 2.7155, 1052.26838), new o(9703, 1.9067, 206.1855), new o(9161, 4.4135, 213.2991), new o(7895, 2.4791, 426.5982), new o(7058, 2.1818, 1265.5675), new o(6138, 6.2642, 846.0828), new o(5477, 5.6573, 639.8973), new o(4170, 2.0161, 515.4639), new o(4137, 2.7222, 625.6702), new o(3503, 0.5653, 1066.4955), new o(2617, 2.0099, 1581.9593), new o(2500, 4.5518, 838.9693), new o(2128, 6.1275, 742.9901), new o(1912, 0.8562, 412.3711), new o(1611, 3.0887, 1368.6603), new o(1479, 2.6803, 1478.8666), new o(1231, 1.8904, 323.5054), new o(1217, 1.8017, 110.2063), new o(1015, 1.3867, 454.9094), new o(999, 2.872, 309.278), new o(961, 4.549, 2118.764), new o(886, 4.148, 533.623), new o(821, 1.593, 1898.351), new o(812, 5.941, 909.819), new o(777, 3.677, 728.763), new o(727, 3.988, 1155.361), new o(655, 2.791, 1685.052), new o(654, 3.382, 1692.166), new o(621, 4.823, 956.289), new o(615, 2.276, 942.062), new o(562, 0.081, 543.918), new o(542, 0.284, 525.759)], S.g_R1JupiterCoefficients = [new o(1271802, 2.6493751, 529.6909651), new o(61662, 3.00076, 1059.38193), new o(53444, 3.89718, 522.57742), new o(41390, 0, 0), new o(31185, 4.88277, 536.80451), new o(11847, 2.4133, 419.48464), new o(9166, 4.7598, 7.1135), new o(3404, 3.3469, 1589.0729), new o(3203, 5.2108, 735.8765), new o(3176, 2.793, 103.0928), new o(2806, 3.7422, 515.4639), new o(2677, 4.3305, 1052.2684), new o(2600, 3.6344, 206.1855), new o(2412, 1.4695, 426.5982), new o(2101, 3.9276, 639.8973), new o(1646, 4.4163, 1066.4955), new o(1641, 4.4163, 625.6702), new o(1050, 3.1611, 213.2991), new o(1025, 2.5543, 412.3711), new o(806, 2.678, 632.784), new o(741, 2.171, 1162.475), new o(677, 6.25, 838.969), new o(567, 4.577, 742.99), new o(485, 2.469, 949.176), new o(469, 4.71, 543.918), new o(445, 0.403, 323.505), new o(416, 5.368, 728.763), new o(402, 4.605, 309.278), new o(347, 4.681, 14.227), new o(338, 3.168, 956.289), new o(261, 5.343, 846.083), new o(247, 3.923, 942.062), new o(220, 4.842, 1368.66), new o(203, 5.6, 1155.361), new o(200, 4.439, 1045.155), new o(197, 3.706, 2118.764), new o(196, 3.759, 199.072), new o(184, 4.265, 95.979), new o(180, 4.402, 532.872), new o(170, 4.846, 526.51), new o(146, 6.13, 533.623), new o(133, 1.322, 110.206), new o(132, 4.512, 525.759)], S.g_R2JupiterCoefficients = [new o(79645, 1.35866, 529.69097), new o(8252, 5.7777, 522.5774), new o(7030, 3.2748, 536.8045), new o(5314, 1.8384, 1059.3819), new o(1861, 2.9768, 7.1135), new o(964, 5.48, 515.464), new o(836, 4.199, 419.485), new o(498, 3.142, 0), new o(427, 2.228, 639.897), new o(406, 3.783, 1066.495), new o(377, 2.242, 1589.073), new o(363, 5.368, 206.186), new o(342, 6.099, 1052.268), new o(339, 6.127, 625.67), new o(333, 3e-3, 426.598), new o(280, 4.262, 412.371), new o(257, 0.963, 632.784), new o(230, 0.705, 735.877), new o(201, 3.069, 543.918), new o(200, 4.429, 103.093), new o(139, 2.932, 14.227), new o(114, 0.787, 728.763), new o(95, 1.7, 838.97), new o(86, 5.14, 323.51), new o(83, 0.06, 309.28), new o(80, 2.98, 742.99), new o(75, 1.6, 956.29), new o(70, 1.51, 213.3), new o(67, 5.47, 199.07), new o(62, 6.1, 1045.15), new o(56, 0.96, 1162.47), new o(52, 5.58, 942.06), new o(50, 2.72, 532.87), new o(45, 5.52, 508.35), new o(44, 0.27, 526.51), new o(40, 5.95, 95.98)], S.g_R3JupiterCoefficients = [new o(3519, 6.058, 529.691), new o(1073, 1.6732, 536.8045), new o(916, 1.413, 522.577), new o(342, 0.523, 1059.382), new o(255, 1.196, 7.114), new o(222, 0.952, 515.464), new o(90, 3.14, 0), new o(69, 2.27, 1066.5), new o(58, 1.41, 543.92), new o(58, 0.53, 639.9), new o(51, 5.98, 412.37), new o(47, 1.58, 625.67), new o(43, 6.12, 419.48), new o(37, 1.18, 14.23), new o(34, 1.67, 1052.27), new o(34, 0.85, 206.19), new o(31, 1.04, 1589.07), new o(30, 4.63, 426.6), new o(21, 2.5, 728.76), new o(15, 0.89, 199.07), new o(14, 0.96, 508.35), new o(13, 1.5, 1045.15), new o(12, 2.61, 735.88), new o(12, 3.56, 323.51), new o(11, 1.79, 309.28), new o(11, 6.28, 956.29), new o(10, 6.26, 103.09), new o(9, 3.45, 838.97)], S.g_R4JupiterCoefficients = [new o(129, 0.084, 536.805), new o(113, 4.249, 529.691), new o(83, 3.3, 522.58), new o(38, 2.73, 515.46), new o(27, 5.69, 7.11), new o(18, 5.4, 1059.38), new o(13, 6.02, 543.92), new o(9, 0.77, 1066.5), new o(8, 5.68, 14.23), new o(7, 1.43, 412.37), new o(6, 5.12, 639.9), new o(5, 3.34, 625.67), new o(3, 3.4, 1052.27), new o(3, 4.16, 728.76), new o(3, 2.9, 426.6)], S.g_R5JupiterCoefficients = [new o(11, 4.75, 536.8), new o(4, 5.92, 522.58), new o(2, 5.57, 515.46), new o(2, 4.3, 543.92), new o(2, 3.69, 7.11), new o(2, 4.13, 1059.38), new o(2, 5.49, 1066.5)], S.g_L0MarsCoefficients = [new o(620347712, 0, 0), new o(18656368, 5.050371, 3340.6124267), new o(1108217, 5.4009984, 6681.2248534), new o(91798, 5.75479, 10021.83728), new o(27745, 5.9705, 3.52312), new o(12316, 0.84956, 2810.92146), new o(10610, 2.93959, 2281.2305), new o(8927, 4.157, 0.0173), new o(8716, 6.1101, 13362.4497), new o(7775, 3.3397, 5621.8429), new o(6798, 0.3646, 398.149), new o(4161, 0.2281, 2942.4634), new o(3575, 1.6619, 2544.3144), new o(3075, 0.857, 191.4483), new o(2938, 6.0789, 0.0673), new o(2628, 0.6481, 3337.0893), new o(2580, 0.03, 3344.1355), new o(2389, 5.039, 796.298), new o(1799, 0.6563, 529.691), new o(1546, 2.9158, 1751.5395), new o(1528, 1.1498, 6151.5339), new o(1286, 3.068, 2146.1654), new o(1264, 3.6228, 5092.152), new o(1025, 3.6933, 8962.4553), new o(892, 0.183, 16703.062), new o(859, 2.401, 2914.014), new o(833, 4.495, 3340.63), new o(833, 2.464, 3340.595), new o(749, 3.822, 155.42), new o(724, 0.675, 3738.761), new o(713, 3.663, 1059.382), new o(655, 0.489, 3127.313), new o(636, 2.922, 8432.764), new o(553, 4.475, 1748.016), new o(550, 3.81, 0.98), new o(472, 3.625, 1194.447), new o(426, 0.554, 6283.076), new o(415, 0.497, 213.299), new o(312, 0.999, 6677.702), new o(307, 0.381, 6684.748), new o(302, 4.486, 3532.061), new o(299, 2.783, 6254.627), new o(293, 4.221, 20.775), new o(284, 5.769, 3149.164), new o(281, 5.882, 1349.867), new o(274, 0.542, 3340.545), new o(274, 0.134, 3340.68), new o(239, 5.372, 4136.91), new o(236, 5.755, 3333.499), new o(231, 1.282, 3870.303), new o(221, 3.505, 382.897), new o(204, 2.821, 1221.849), new o(193, 3.357, 3.59), new o(189, 1.491, 9492.146), new o(179, 1.006, 951.718), new o(174, 2.414, 553.569), new o(172, 0.439, 5486.778), new o(160, 3.949, 4562.461), new o(144, 1.419, 135.065), new o(140, 3.326, 2700.715), new o(138, 4.301, 7.114), new o(131, 4.045, 12303.068), new o(128, 2.208, 1592.596), new o(128, 1.807, 5088.629), new o(117, 3.128, 7903.073), new o(113, 3.701, 1589.073), new o(110, 1.052, 242.729), new o(105, 0.785, 8827.39), new o(100, 3.243, 11773.377)], S.g_L1MarsCoefficients = [new o(334085627474, 0, 0), new o(1458227, 3.6042605, 3340.6124267), new o(164901, 3.926313, 6681.224853), new o(19963, 4.26594, 10021.83728), new o(3452, 4.7321, 3.5231), new o(2485, 4.6128, 13362.4497), new o(842, 4.459, 2281.23), new o(538, 5.016, 398.149), new o(521, 4.994, 3344.136), new o(433, 2.561, 191.448), new o(430, 5.316, 155.42), new o(382, 3.539, 796.298), new o(314, 4.963, 16703.062), new o(283, 3.16, 2544.314), new o(206, 4.569, 2146.165), new o(169, 1.329, 3337.089), new o(158, 4.185, 1751.54), new o(134, 2.233, 0.98), new o(134, 5.974, 1748.016), new o(118, 6.024, 6151.534), new o(117, 2.213, 1059.382), new o(114, 2.129, 1194.447), new o(114, 5.428, 3738.761), new o(91, 1.1, 1349.87), new o(85, 3.91, 553.57), new o(83, 5.3, 6684.75), new o(81, 4.43, 529.69), new o(80, 2.25, 8962.46), new o(73, 2.5, 951.72), new o(73, 5.84, 242.73), new o(71, 3.86, 2914.01), new o(68, 5.02, 382.9), new o(65, 1.02, 3340.6), new o(65, 3.05, 3340.63), new o(62, 4.15, 3149.16), new o(57, 3.89, 4136.91), new o(48, 4.87, 213.3), new o(48, 1.18, 3333.5), new o(47, 1.31, 3185.19), new o(41, 0.71, 1592.6), new o(40, 2.73, 7.11), new o(40, 5.32, 20043.67), new o(33, 5.41, 6283.08), new o(28, 0.05, 9492.15), new o(27, 3.89, 1221.85), new o(27, 5.11, 2700.72)], S.g_L2MarsCoefficients = [new o(58016, 2.04979, 3340.61243), new o(54188, 0, 0), new o(13908, 2.45742, 6681.22485), new o(2465, 2.8, 10021.8373), new o(398, 3.141, 13362.45), new o(222, 3.194, 3.523), new o(121, 0.543, 155.42), new o(62, 3.49, 16703.06), new o(54, 3.54, 3344.14), new o(34, 6, 2281.23), new o(32, 4.14, 191.45), new o(30, 2, 796.3), new o(23, 4.33, 242.73), new o(22, 3.45, 398.15), new o(20, 5.42, 553.57), new o(16, 0.66, 0.98), new o(16, 6.11, 2146.17), new o(16, 1.22, 1748.02), new o(15, 6.1, 3185.19), new o(14, 4.02, 951.72), new o(14, 2.62, 1349.87), new o(13, 0.6, 1194.45), new o(12, 3.86, 6684.75), new o(11, 4.72, 2544.31), new o(10, 0.25, 382.9), new o(9, 0.68, 1059.38), new o(9, 3.83, 20043.67), new o(9, 3.88, 3738.76), new o(8, 5.46, 1751.54), new o(7, 2.58, 3149.16), new o(7, 2.38, 4136.91), new o(6, 5.48, 1592.6), new o(6, 2.34, 3097.88)], S.g_L3MarsCoefficients = [new o(1482, 0.4443, 3340.6124), new o(662, 0.885, 6681.225), new o(188, 1.288, 10021.837), new o(41, 1.65, 13362.45), new o(26, 0, 0), new o(23, 2.05, 155.42), new o(10, 1.58, 3.52), new o(8, 2, 16703.06), new o(5, 2.82, 242.73), new o(4, 2.02, 3344.14), new o(3, 4.59, 3185.19), new o(3, 0.65, 553.57)], S.g_L4MarsCoefficients = [new o(114, 3.1416, 0), new o(29, 5.64, 6681.22), new o(24, 5.14, 3340.61), new o(11, 6.03, 10021.84), new o(3, 0.13, 13362.45), new o(3, 3.56, 155.42), new o(1, 0.49, 16703.06), new o(1, 1.32, 242.73)], S.g_L5MarsCoefficients = [new o(1, 3.14, 0), new o(1, 4.04, 6681.22)], S.g_B0MarsCoefficients = [new o(3197135, 3.7683204, 3340.6124267), new o(298033, 4.10617, 6681.224853), new o(289105, 0, 0), new o(31366, 4.44651, 10021.83728), new o(3484, 4.7881, 13362.4497), new o(443, 5.026, 3344.136), new o(443, 5.652, 3337.089), new o(399, 5.131, 16703.062), new o(293, 3.793, 2281.23), new o(182, 6.136, 6151.534), new o(163, 4.264, 529.691), new o(160, 2.232, 1059.382), new o(149, 2.165, 5621.843), new o(143, 1.182, 3340.595), new o(143, 3.213, 3340.63), new o(139, 2.418, 8962.455)], S.g_B1MarsCoefficients = [new o(350069, 5.368478, 3340.612427), new o(14116, 3.14159, 0), new o(9671, 5.4788, 6681.2249), new o(1472, 3.2021, 10021.8373), new o(426, 3.408, 13362.45), new o(102, 0.776, 3337.089), new o(79, 3.72, 16703.06), new o(33, 3.46, 5621.84), new o(26, 2.48, 2281.23)], S.g_B2MarsCoefficients = [new o(16727, 0.60221, 3340.61243), new o(4987, 4.1416, 0), new o(302, 3.559, 6681.225), new o(26, 1.9, 13362.45), new o(21, 0.92, 10021.84), new o(12, 2.24, 3337.09), new o(8, 2.25, 16703.06)], S.g_B3MarsCoefficients = [new o(607, 1.981, 3340.612), new o(43, 0, 0), new o(14, 1.8, 6681.22), new o(3, 3.45, 10021.84)], S.g_B4MarsCoefficients = [new o(13, 0, 0), new o(11, 3.46, 3340.61), new o(1, 0.5, 6681.22)], S.g_R0MarsCoefficients = [new o(153033488, 0, 0), new o(14184953, 3.47971284, 3340.6124267), new o(660776, 3.817834, 6681.224853), new o(46179, 4.15595, 10021.83728), new o(8110, 5.5596, 2810.9215), new o(7485, 1.7724, 5621.8429), new o(5523, 1.3644, 2281.2305), new o(3825, 4.4941, 13362.4497), new o(2484, 4.9255, 2942.4634), new o(2307, 0.0908, 2544.3144), new o(1999, 5.3606, 3337.0893), new o(1960, 4.7425, 3344.1355), new o(1167, 2.1126, 5092.152), new o(1103, 5.0091, 398.149), new o(992, 5.839, 6151.534), new o(899, 4.408, 529.691), new o(807, 2.102, 1059.382), new o(798, 3.448, 796.298), new o(741, 1.499, 2146.165), new o(726, 1.245, 8432.764), new o(692, 2.134, 8962.455), new o(633, 0.894, 3340.595), new o(633, 2.924, 3340.63), new o(630, 1.287, 1751.54), new o(574, 0.829, 2914.014), new o(526, 5.383, 3738.761), new o(473, 5.199, 3127.313), new o(348, 4.832, 16703.062), new o(284, 2.907, 3532.061), new o(280, 5.257, 6283.076), new o(276, 1.218, 6254.627), new o(275, 2.908, 1748.016), new o(270, 3.764, 5884.927), new o(239, 2.037, 1194.447), new o(234, 5.105, 5486.778), new o(228, 3.255, 6872.673), new o(223, 4.199, 3149.164), new o(219, 5.583, 191.448), new o(208, 5.255, 3340.545), new o(208, 4.846, 3340.68), new o(186, 5.699, 6677.702), new o(183, 5.081, 6684.748), new o(179, 4.184, 3333.499), new o(176, 5.953, 3870.303), new o(164, 3.799, 4136.91)], S.g_R1MarsCoefficients = [new o(1107433, 2.0325052, 3340.6124267), new o(103176, 2.370718, 6681.224853), new o(12877, 0, 0), new o(10816, 2.70888, 10021.83728), new o(1195, 3.047, 13362.4497), new o(439, 2.888, 2281.23), new o(396, 3.423, 3344.136), new o(183, 1.584, 2544.314), new o(136, 3.385, 16703.062), new o(128, 6.043, 3337.089), new o(128, 0.63, 1059.382), new o(127, 1.954, 796.298), new o(118, 2.998, 2146.165), new o(88, 3.42, 398.15), new o(83, 3.86, 3738.76), new o(76, 4.45, 6151.53), new o(72, 2.76, 529.69), new o(67, 2.55, 1751.54), new o(66, 4.41, 1748.02), new o(58, 0.54, 1194.45), new o(54, 0.68, 8962.46), new o(51, 3.73, 6684.75), new o(49, 5.73, 3340.6), new o(49, 1.48, 3340.63), new o(48, 2.58, 3149.16), new o(48, 2.29, 2914.01), new o(39, 2.32, 4136.91)], S.g_R2MarsCoefficients = [new o(44242, 0.47931, 3340.61243), new o(8138, 0.87, 6681.2249), new o(1275, 1.2259, 10021.8373), new o(187, 1.573, 13362.45), new o(52, 3.14, 0), new o(41, 1.97, 3344.14), new o(27, 1.92, 16703.06), new o(18, 4.43, 2281.23), new o(12, 4.53, 3185.19), new o(10, 5.39, 1059.38), new o(10, 0.42, 796.3)], S.g_R3MarsCoefficients = [new o(1113, 5.1499, 3340.6124), new o(424, 5.613, 6681.225), new o(100, 5.997, 10021.837), new o(20, 0.08, 13362.45), new o(5, 3.14, 0), new o(3, 0.43, 16703.06)], S.g_R4MarsCoefficients = [new o(20, 3.58, 3340.61), new o(16, 4.05, 6681.22), new o(6, 4.46, 10021.84), new o(2, 4.84, 13362.45)], S.g_L0MercuryCoefficients = [new o(440250710, 0, 0), new o(40989415, 1.48302034, 26087.90314157), new o(5046294, 4.47785449, 52175.8062831), new o(855347, 1.165203, 78263.709425), new o(165590, 4.119692, 104351.612566), new o(34562, 0.77931, 130439.51571), new o(7583, 3.7135, 156527.4188), new o(3560, 1.512, 1109.3786), new o(1803, 4.1033, 5661.332), new o(1726, 0.3583, 182615.322), new o(1590, 2.9951, 25028.5212), new o(1365, 4.5992, 27197.2817), new o(1017, 0.8803, 31749.2352), new o(714, 1.541, 24978.525), new o(644, 5.303, 21535.95), new o(451, 6.05, 51116.424), new o(404, 3.282, 208703.225), new o(352, 5.242, 20426.571), new o(345, 2.792, 15874.618), new o(343, 5.765, 955.6), new o(339, 5.863, 25558.212), new o(325, 1.337, 53285.185), new o(273, 2.495, 529.691), new o(264, 3.917, 57837.138), new o(260, 0.987, 4551.953), new o(239, 0.113, 1059.382), new o(235, 0.267, 11322.664), new o(217, 0.66, 13521.751), new o(209, 2.092, 47623.853), new o(183, 2.629, 27043.503), new o(182, 2.434, 25661.305), new o(176, 4.536, 51066.428), new o(173, 2.452, 24498.83), new o(142, 3.36, 37410.567), new o(138, 0.291, 10213.286), new o(125, 3.721, 39609.655), new o(118, 2.781, 77204.327), new o(106, 4.206, 19804.827)], S.g_L1MercuryCoefficients = [new o(2608814706223, 0, 0), new o(1126008, 6.2170397, 26087.9031416), new o(303471, 3.055655, 52175.806283), new o(80538, 6.10455, 78263.70942), new o(21245, 2.83532, 104351.61257), new o(5592, 5.8268, 130439.5157), new o(1472, 2.5185, 156527.4188), new o(388, 5.48, 182615.322), new o(352, 3.052, 1109.379), new o(103, 2.149, 208703.225), new o(94, 6.12, 27197.28), new o(91, 0, 24978.52), new o(52, 5.62, 5661.33), new o(44, 4.57, 25028.52), new o(28, 3.04, 51066.43), new o(27, 5.09, 234791.13)], S.g_L2MercuryCoefficients = [new o(53050, 0, 0), new o(16904, 4.69072, 26087.90314), new o(7397, 1.3474, 52175.8063), new o(3018, 4.4564, 78263.7094), new o(1107, 1.264, 104351.6126), new o(378, 4.32, 130439.516), new o(123, 1.069, 156527.419), new o(39, 4.08, 182615.32), new o(15, 4.63, 1109.38), new o(12, 0.79, 208703.23)], S.g_L3MercuryCoefficients = [new o(188, 0.035, 52175.806), new o(142, 3.125, 26087.903), new o(97, 3, 78263.71), new o(44, 6.02, 104351.61), new o(35, 0, 0), new o(18, 2.78, 130439.52), new o(7, 5.82, 156527.42), new o(3, 2.57, 182615.32)], S.g_L4MercuryCoefficients = [new o(114, 3.1416, 0), new o(2, 2.03, 26087.9), new o(2, 1.42, 78263.71), new o(2, 4.5, 52175.81), new o(1, 4.5, 104351.61), new o(1, 1.27, 130439.52)], S.g_L5MercuryCoefficients = [new o(1, 3.14, 0)], S.g_B0MercuryCoefficients = [new o(11737529, 1.98357499, 26087.90314157), new o(2388077, 5.0373896, 52175.8062831), new o(1222840, 3.1415927, 0), new o(543252, 1.796444, 78263.709425), new o(129779, 4.832325, 104351.612566), new o(31867, 1.58088, 130439.51571), new o(7963, 4.6097, 156527.4188), new o(2014, 1.3532, 182615.322), new o(514, 4.378, 208703.325), new o(209, 2.02, 24978.525), new o(208, 4.918, 27197.282), new o(132, 1.119, 234791.128), new o(121, 1.813, 53285.185), new o(100, 5.657, 20426.571)], S.g_B1MercuryCoefficients = [new o(429151, 3.501698, 26087.903142), new o(146234, 3.141593, 0), new o(22675, 0.01515, 52175.80628), new o(10895, 0.4854, 78263.70942), new o(6353, 3.4294, 104351.6126), new o(2496, 0.1605, 130439.5157), new o(860, 3.185, 156527.419), new o(278, 6.21, 182615.322), new o(86, 2.95, 208703.23), new o(28, 0.29, 27197.28), new o(26, 5.98, 234791.13)], S.g_B2MercuryCoefficients = [new o(11831, 4.79066, 26087.90314), new o(1914, 0, 0), new o(1045, 1.2122, 52175.8063), new o(266, 4.434, 78263.709), new o(170, 1.623, 104351.613), new o(96, 4.8, 130439.52), new o(45, 1.61, 156527.42), new o(18, 4.67, 182615.32), new o(7, 1.43, 208703.23)], S.g_B3MercuryCoefficients = [new o(235, 0.354, 26087.903), new o(161, 0, 0), new o(19, 4.36, 52175.81), new o(6, 2.51, 78263.71), new o(5, 6.14, 104351.61), new o(3, 3.12, 130439.52), new o(2, 6.27, 156527.42)], S.g_B4MercuryCoefficients = [new o(4, 1.75, 26087.9), new o(1, 3.14, 0)], S.g_R0MercuryCoefficients = [new o(39528272, 0, 0), new o(7834132, 6.1923372, 26087.9031416), new o(795526, 2.959897, 52175.806283), new o(121282, 6.010642, 78263.709425), new o(21922, 2.7782, 104351.61257), new o(4354, 5.8289, 130439.5157), new o(918, 2.597, 156527.419), new o(290, 1.424, 25028.521), new o(260, 3.028, 27197.282), new o(202, 5.647, 182615.322), new o(201, 5.592, 31749.235), new o(142, 6.253, 24978.525), new o(100, 3.734, 21535.95)], S.g_R1MercuryCoefficients = [new o(217348, 4.656172, 26087.903142), new o(44142, 1.42386, 52175.80628), new o(10094, 4.47466, 78263.70942), new o(2433, 1.2423, 104351.6126), new o(1624, 0, 0), new o(604, 4.293, 130439.516), new o(153, 1.061, 156527.419), new o(39, 4.11, 182615.32)], S.g_R2MercuryCoefficients = [new o(3118, 3.0823, 26087.9031), new o(1245, 6.1518, 52175.8063), new o(425, 2.926, 78263.709), new o(136, 5.98, 104351.613), new o(42, 2.75, 130439.52), new o(22, 3.14, 0), new o(13, 5.8, 156527.42)], S.g_R3MercuryCoefficients = [new o(33, 1.68, 26087.9), new o(24, 4.63, 52175.81), new o(12, 1.39, 78263.71), new o(5, 4.44, 104351.61), new o(2, 1.21, 130439.52)], S.g_MoonCoefficients1 = [new Lt(0, 0, 1, 0), new Lt(2, 0, -1, 0), new Lt(2, 0, 0, 0), new Lt(0, 0, 2, 0), new Lt(0, 1, 0, 0), new Lt(0, 0, 0, 2), new Lt(2, 0, -2, 0), new Lt(2, -1, -1, 0), new Lt(2, 0, 1, 0), new Lt(2, -1, 0, 0), new Lt(0, 1, -1, 0), new Lt(1, 0, 0, 0), new Lt(0, 1, 1, 0), new Lt(2, 0, 0, -2), new Lt(0, 0, 1, 2), new Lt(0, 0, 1, -2), new Lt(4, 0, -1, 0), new Lt(0, 0, 3, 0), new Lt(4, 0, -2, 0), new Lt(2, 1, -1, 0), new Lt(2, 1, 0, 0), new Lt(1, 0, -1, 0), new Lt(1, 1, 0, 0), new Lt(2, -1, 1, 0), new Lt(2, 0, 2, 0), new Lt(4, 0, 0, 0), new Lt(2, 0, -3, 0), new Lt(0, 1, -2, 0), new Lt(2, 0, -1, 2), new Lt(2, -1, -2, 0), new Lt(1, 0, 1, 0), new Lt(2, -2, 0, 0), new Lt(0, 1, 2, 0), new Lt(0, 2, 0, 0), new Lt(2, -2, -1, 0), new Lt(2, 0, 1, -2), new Lt(2, 0, 0, 2), new Lt(4, -1, -1, 0), new Lt(0, 0, 2, 2), new Lt(3, 0, -1, 0), new Lt(2, 1, 1, 0), new Lt(4, -1, -2, 0), new Lt(0, 2, -1, 0), new Lt(2, 2, -1, 0), new Lt(2, 1, -2, 0), new Lt(2, -1, 0, -2), new Lt(4, 0, 1, 0), new Lt(0, 0, 4, 0), new Lt(4, -1, 0, 0), new Lt(1, 0, -2, 0), new Lt(2, 1, 0, -2), new Lt(0, 0, 2, -2), new Lt(1, 1, 1, 0), new Lt(3, 0, -2, 0), new Lt(4, 0, -3, 0), new Lt(2, -1, 2, 0), new Lt(0, 2, 1, 0), new Lt(1, 1, -1, 0), new Lt(2, 0, 3, 0), new Lt(2, 0, -1, -2)], S.g_MoonCoefficients2 = [new ye(6288774, -20905355), new ye(1274027, -3699111), new ye(658314, -2955968), new ye(213618, -569925), new ye(-185116, 48888), new ye(-114332, -3149), new ye(58793, 246158), new ye(57066, -152138), new ye(53322, -170733), new ye(45758, -204586), new ye(-40923, -129620), new ye(-34720, 108743), new ye(-30383, 104755), new ye(15327, 10321), new ye(-12528, 0), new ye(10980, 79661), new ye(10675, -34782), new ye(10034, -23210), new ye(8548, -21636), new ye(-7888, 24208), new ye(-6766, 30824), new ye(-5163, -8379), new ye(4987, -16675), new ye(4036, -12831), new ye(3994, -10445), new ye(3861, -11650), new ye(3665, 14403), new ye(-2689, -7003), new ye(-2602, 0), new ye(2390, 10056), new ye(-2348, 6322), new ye(2236, -9884), new ye(-2120, 5751), new ye(-2069, 0), new ye(2048, -4950), new ye(-1773, 4130), new ye(-1595, 0), new ye(1215, -3958), new ye(-1110, 0), new ye(-892, 3258), new ye(-810, 2616), new ye(759, -1897), new ye(-713, -2117), new ye(-700, 2354), new ye(691, 0), new ye(596, 0), new ye(549, -1423), new ye(537, -1117), new ye(520, -1571), new ye(-487, -1739), new ye(-399, 0), new ye(-381, -4421), new ye(351, 0), new ye(-340, 0), new ye(330, 0), new ye(327, 0), new ye(-323, 1165), new ye(299, 0), new ye(294, 0), new ye(0, 8752)], S.g_MoonCoefficients3 = [new Lt(0, 0, 0, 1), new Lt(0, 0, 1, 1), new Lt(0, 0, 1, -1), new Lt(2, 0, 0, -1), new Lt(2, 0, -1, 1), new Lt(2, 0, -1, -1), new Lt(2, 0, 0, 1), new Lt(0, 0, 2, 1), new Lt(2, 0, 1, -1), new Lt(0, 0, 2, -1), new Lt(2, -1, 0, -1), new Lt(2, 0, -2, -1), new Lt(2, 0, 1, 1), new Lt(2, 1, 0, -1), new Lt(2, -1, -1, 1), new Lt(2, -1, 0, 1), new Lt(2, -1, -1, -1), new Lt(0, 1, -1, -1), new Lt(4, 0, -1, -1), new Lt(0, 1, 0, 1), new Lt(0, 0, 0, 3), new Lt(0, 1, -1, 1), new Lt(1, 0, 0, 1), new Lt(0, 1, 1, 1), new Lt(0, 1, 1, -1), new Lt(0, 1, 0, -1), new Lt(1, 0, 0, -1), new Lt(0, 0, 3, 1), new Lt(4, 0, 0, -1), new Lt(4, 0, -1, 1), new Lt(0, 0, 1, -3), new Lt(4, 0, -2, 1), new Lt(2, 0, 0, -3), new Lt(2, 0, 2, -1), new Lt(2, -1, 1, -1), new Lt(2, 0, -2, 1), new Lt(0, 0, 3, -1), new Lt(2, 0, 2, 1), new Lt(2, 0, -3, -1), new Lt(2, 1, -1, 1), new Lt(2, 1, 0, 1), new Lt(4, 0, 0, 1), new Lt(2, -1, 1, 1), new Lt(2, -2, 0, -1), new Lt(0, 0, 1, 3), new Lt(2, 1, 1, -1), new Lt(1, 1, 0, -1), new Lt(1, 1, 0, 1), new Lt(0, 1, -2, -1), new Lt(2, 1, -1, -1), new Lt(1, 0, 1, 1), new Lt(2, -1, -2, -1), new Lt(0, 1, 2, 1), new Lt(4, 0, -2, -1), new Lt(4, -1, -1, -1), new Lt(1, 0, 1, -1), new Lt(4, 0, 1, -1), new Lt(1, 0, -1, -1), new Lt(4, -1, 0, -1), new Lt(2, -2, 0, 1)], S.g_MoonCoefficients4 = [5128122, 280602, 277693, 173237, 55413, 46271, 32573, 17198, 9266, 8822, 8216, 4324, 4200, -3359, 2463, 2211, 2065, -1870, 1828, -1794, -1749, -1565, -1491, -1475, -1410, -1344, -1335, 1107, 1021, 833, 777, 671, 607, 596, 491, -451, 439, 422, 421, -366, -351, 331, 315, 302, -283, -229, 223, 223, -220, -220, -185, 181, -177, 176, 166, -164, 132, -119, 115, 107], S.g_MoonPerigeeApogeeCoefficients1 = [new dt(2, 0, 0, -1.6769, 0), new dt(4, 0, 0, 0.4589, 0), new dt(6, 0, 0, -0.1856, 0), new dt(8, 0, 0, 0.0883, 0), new dt(2, -1, 0, -0.0773, 19e-5), new dt(0, 1, 0, 0.0502, -13e-5), new dt(10, 0, 0, -0.046, 0), new dt(4, -1, 0, 0.0422, -11e-5), new dt(6, -1, 0, -0.0256, 0), new dt(12, 0, 0, 0.0253, 0), new dt(1, 0, 0, 0.0237, 0), new dt(8, -1, 0, 0.0162, 0), new dt(14, 0, 0, -0.0145, 0), new dt(0, 0, 2, 0.0129, 0), new dt(3, 0, 0, -0.0112, 0), new dt(10, -1, 0, -0.0104, 0), new dt(16, 0, 0, 86e-4, 0), new dt(12, -1, 0, 69e-4, 0), new dt(5, 0, 0, 66e-4, 0), new dt(2, 0, 2, -53e-4, 0), new dt(18, 0, 0, -52e-4, 0), new dt(14, -1, 0, -46e-4, 0), new dt(7, 0, 0, -41e-4, 0), new dt(2, 1, 0, 4e-3, 0), new dt(20, 0, 0, 32e-4, 0), new dt(1, 1, 0, -32e-4, 0), new dt(16, -1, 0, 31e-4, 0), new dt(4, 1, 0, -29e-4, 0), new dt(9, 0, 0, 27e-4, 0), new dt(4, 0, 2, 27e-4, 0), new dt(2, -2, 0, -27e-4, 0), new dt(4, -2, 0, 24e-4, 0), new dt(6, -2, 0, -21e-4, 0), new dt(22, 0, 0, -21e-4, 0), new dt(18, -1, 0, -21e-4, 0), new dt(6, 1, 0, 19e-4, 0), new dt(11, 0, 0, -18e-4, 0), new dt(8, 1, 0, -14e-4, 0), new dt(4, 0, -2, -14e-4, 0), new dt(6, 0, 2, -14e-4, 0), new dt(3, 1, 0, 14e-4, 0), new dt(5, 1, 0, -14e-4, 0), new dt(13, 0, 0, 13e-4, 0), new dt(20, -1, 0, 13e-4, 0), new dt(3, 2, 0, 11e-4, 0), new dt(4, -2, 2, -11e-4, 0), new dt(1, 2, 0, -11e-4, 0), new dt(22, -1, 0, -9e-4, 0), new dt(0, 0, 4, -8e-4, 0), new dt(6, 0, -2, 8e-4, 0), new dt(2, 1, -2, 8e-4, 0), new dt(0, 2, 0, 7e-4, 0), new dt(0, -1, 2, 7e-4, 0), new dt(2, 0, 4, 7e-4, 0), new dt(0, -2, 2, -6e-4, 0), new dt(2, 2, -2, -6e-4, 0), new dt(24, 0, 0, 6e-4, 0), new dt(4, 0, -4, 5e-4, 0), new dt(2, 2, 0, 5e-4, 0), new dt(1, -1, 0, -4e-4, 0)], S.g_MoonPerigeeApogeeCoefficients2 = [new dt(2, 0, 0, 0.4392, 0), new dt(4, 0, 0, 0.0684, 0), new dt(0, 1, 0, 0.0456, -11e-5), new dt(2, -1, 0, 0.0426, -11e-5), new dt(0, 0, 2, 0.0212, 0), new dt(1, 0, 0, -0.0189, 0), new dt(6, 0, 0, 0.0144, 0), new dt(4, -1, 0, 0.0113, 0), new dt(2, 0, 2, 47e-4, 0), new dt(1, 1, 0, 36e-4, 0), new dt(8, 0, 0, 35e-4, 0), new dt(6, -1, 0, 34e-4, 0), new dt(2, 0, -2, -34e-4, 0), new dt(2, -2, 0, 22e-4, 0), new dt(3, 0, 0, -17e-4, 0), new dt(4, 0, 2, 13e-4, 0), new dt(8, -1, 0, 11e-4, 0), new dt(4, -2, 0, 1e-3, 0), new dt(10, 0, 0, 9e-4, 0), new dt(3, 1, 0, 7e-4, 0), new dt(0, 2, 0, 6e-4, 0), new dt(2, 1, 0, 5e-4, 0), new dt(2, 2, 0, 5e-4, 0), new dt(6, 0, 2, 4e-4, 0), new dt(6, -2, 0, 4e-4, 0), new dt(10, -1, 0, 4e-4, 0), new dt(5, 0, 0, -4e-4, 0), new dt(4, 0, -2, -4e-4, 0), new dt(0, 1, 2, 3e-4, 0), new dt(12, 0, 0, 3e-4, 0), new dt(2, -1, 2, 3e-4, 0), new dt(1, -1, 0, -3e-4, 0)], S.g_MoonPerigeeApogeeCoefficients3 = [new dt(2, 0, 0, 63.224, 0), new dt(4, 0, 0, -6.99, 0), new dt(2, -1, 0, 2.834, 0), new dt(2, -1, 0, 0, -71e-4), new dt(6, 0, 0, 1.927, 0), new dt(1, 0, 0, -1.263, 0), new dt(8, 0, 0, -0.702, 0), new dt(0, 1, 0, 0.696, 0), new dt(0, 1, 0, 0, -17e-4), new dt(0, 0, 2, -0.69, 0), new dt(4, -1, 0, -0.629, 0), new dt(4, -1, 0, 0, 16e-4), new dt(2, 0, -2, -0.392, 0), new dt(10, 0, 0, 0.297, 0), new dt(6, -1, 0, 0.26, 0), new dt(3, 0, 0, 0.201, 0), new dt(2, 1, 0, -0.161, 0), new dt(1, 1, 0, 0.157, 0), new dt(12, 0, 0, -0.138, 0), new dt(8, -1, 0, -0.127, 0), new dt(2, 0, 2, 0.104, 0), new dt(2, -2, 0, 0.104, 0), new dt(5, 0, 0, -0.079, 0), new dt(14, 0, 0, 0.068, 0), new dt(10, -1, 0, 0.067, 0), new dt(4, 1, 0, 0.054, 0), new dt(12, -1, 0, -0.038, 0), new dt(4, -2, 0, -0.038, 0), new dt(7, 0, 0, 0.037, 0), new dt(4, 0, 2, -0.037, 0), new dt(16, 0, 0, -0.035, 0), new dt(3, 1, 0, -0.03, 0), new dt(1, -1, 0, 0.029, 0), new dt(6, 1, 0, -0.025, 0), new dt(0, 2, 0, 0.023, 0), new dt(14, -1, 0, 0.023, 0), new dt(2, 2, 0, -0.023, 0), new dt(6, -2, 0, 0.022, 0), new dt(2, -1, -2, -0.021, 0), new dt(9, 0, 0, -0.02, 0), new dt(18, 0, 0, 0.019, 0), new dt(6, 0, 2, 0.017, 0), new dt(0, -1, 2, 0.014, 0), new dt(16, -1, 0, -0.014, 0), new dt(4, 0, -20, 0.013, 0), new dt(8, 1, 0, 0.012, 0), new dt(11, 0, 0, 0.011, 0), new dt(5, 1, 0, 0.01, 0), new dt(20, 0, 0, -0.01, 0)], S.g_MoonPerigeeApogeeCoefficients4 = [new dt(2, 0, 0, -9.147, 0), new dt(1, 0, 0, -0.841, 0), new dt(0, 0, 2, 0.697, 0), new dt(0, 1, 0, -0.656, 16e-4), new dt(4, 0, 0, 0.355, 0), new dt(2, -1, 0, 0.159, 0), new dt(1, 1, 0, 0.127, 0), new dt(4, -1, 0, 0.065, 0), new dt(6, 0, 0, 0.052, 0), new dt(2, 1, 0, 0.043, 0), new dt(2, 0, 2, 0.031, 0), new dt(2, 0, -2, -0.023, 0), new dt(2, -2, 0, 0.022, 0), new dt(2, 2, 0, 0.019, 0), new dt(0, 2, 0, -0.016, 0), new dt(6, -1, 0, 0.014, 0), new dt(8, 0, 0, 0.01, 0)], S.g_L0NC = [new o(531188633, 0, 0), new o(1798476, 2.9010127, 38.1330356), new o(1019728, 0.4858092, 1.4844727), new o(124532, 4.830081, 36.648563), new o(42064, 5.41055, 2.96895), new o(37715, 6.09222, 35.16409), new o(33785, 1.24489, 76.26607), new o(16483, 8e-5, 491.55793), new o(9199, 4.9375, 39.6175), new o(8994, 0.2746, 175.1661), new o(4216, 1.9871, 73.2971), new o(3365, 1.0359, 33.6796), new o(2285, 4.2061, 4.4534), new o(1434, 2.7834, 74.7816), new o(900, 2.076, 109.946), new o(745, 3.19, 71.813), new o(506, 5.748, 114.399), new o(400, 0.35, 1021.249), new o(345, 3.462, 41.102), new o(340, 3.304, 77.751), new o(323, 2.248, 32.195), new o(306, 0.497, 0.521), new o(287, 4.505, 0.048), new o(282, 2.246, 146.594), new o(267, 4.889, 0.963), new o(252, 5.782, 388.465), new o(245, 1.247, 9.561), new o(233, 2.505, 137.033), new o(227, 1.797, 453.425), new o(170, 3.324, 108.461), new o(151, 2.192, 33.94), new o(150, 2.997, 5.938), new o(148, 0.859, 111.43), new o(119, 3.677, 2.448), new o(109, 2.416, 183.243), new o(103, 0.041, 0.261), new o(103, 4.404, 70.328), new o(102, 5.705, 0.112)], S.g_L1NC = [new o(3837687717, 0, 0), new o(16604, 4.86319, 1.48447), new o(15807, 2.27923, 38.13304), new o(3335, 3.682, 76.2661), new o(1306, 3.6732, 2.9689), new o(605, 1.505, 35.164), new o(179, 3.453, 39.618), new o(107, 2.451, 4.453), new o(106, 2.755, 33.68), new o(73, 5.49, 36.65), new o(57, 1.86, 114.4), new o(57, 5.22, 0.52), new o(35, 4.52, 74.78), new o(32, 5.9, 77.75), new o(30, 3.67, 388.47), new o(29, 5.17, 9.56), new o(29, 5.17, 2.45), new o(26, 5.25, 168.05)], S.g_L2NC = [new o(53893, 0, 0), new o(296, 1.855, 1.484), new o(281, 1.191, 38.133), new o(270, 5.721, 76.266), new o(23, 1.21, 2.97), new o(9, 4.43, 35.16), new o(7, 0.54, 2.45)], S.g_L3NC = [new o(31, 0, 0), new o(15, 1.35, 76.27), new o(12, 6.04, 1.48), new o(12, 6.11, 38.13)], S.g_L4NC = [new o(114, 3.142, 0)], S.g_B0NC = [new o(3088623, 1.4410437, 38.1330356), new o(27789, 5.91272, 76.26607), new o(27624, 0, 0), new o(15448, 3.50877, 39.61751), new o(15355, 2.52124, 36.64856), new o(2e3, 1.51, 74.7816), new o(1968, 4.3778, 1.4845), new o(1015, 3.2156, 35.1641), new o(606, 2.802, 73.297), new o(595, 2.129, 41.102), new o(589, 3.187, 2.969), new o(402, 4.169, 114.399), new o(280, 1.682, 77.751), new o(262, 3.767, 213.299), new o(254, 3.271, 453.425), new o(206, 4.257, 529.691), new o(140, 3.53, 137.033)], S.g_B1NC = [new o(227279, 3.807931, 38.133036), new o(1803, 1.9758, 76.2661), new o(1433, 3.1416, 0), new o(1386, 4.8256, 36.6486), new o(1073, 6.0805, 39.6175), new o(148, 3.858, 74.782), new o(136, 0.478, 1.484), new o(70, 6.19, 35.16), new o(52, 5.05, 73.3), new o(43, 0.31, 114.4), new o(37, 4.89, 41.1), new o(37, 5.76, 2.97), new o(26, 5.22, 213.3)], S.g_B2NC = [new o(9691, 5.5712, 38.133), new o(79, 3.63, 76.27), new o(72, 0.45, 36.65), new o(59, 3.14, 0), new o(30, 1.61, 39.62), new o(6, 5.61, 74.78)], S.g_B3NC = [new o(273, 1.017, 38.133), new o(2, 0, 0), new o(2, 2.37, 36.65), new o(2, 5.33, 76.27)], S.g_B4NC = [new o(6, 2.67, 38.13)], S.g_R0NC = [new o(3007013206, 0, 0), new o(27062259, 1.32999459, 38.13303564), new o(1691764, 3.2518614, 36.6485629), new o(807831, 5.185928, 1.484473), new o(537761, 4.521139, 35.16409), new o(495726, 1.571057, 491.557929), new o(274572, 1.845523, 175.16606), new o(135134, 3.372206, 39.617508), new o(121802, 5.797544, 76.266071), new o(100895, 0.377027, 73.297126), new o(69792, 3.79617, 2.96895), new o(46688, 5.74938, 33.67962), new o(24594, 0.50802, 109.94569), new o(16939, 1.59422, 71.81265), new o(14230, 1.07786, 74.7816), new o(12012, 1.92062, 1021.24889), new o(8395, 0.6782, 146.5943), new o(7572, 1.0715, 388.4652), new o(5721, 2.5906, 4.4534), new o(4840, 1.9069, 41.102), new o(4483, 2.9057, 529.691), new o(4421, 1.7499, 108.4612), new o(4354, 0.6799, 32.1951), new o(4270, 3.4134, 453.4249), new o(3381, 0.8481, 183.2428), new o(2881, 1.986, 137.033), new o(2879, 3.6742, 350.3321), new o(2636, 3.0976, 213.2991), new o(2530, 5.7984, 490.0735), new o(2523, 0.4863, 493.0424), new o(2306, 2.8096, 70.3282), new o(2087, 0.6186, 33.9402)], S.g_R1NC = [new o(236339, 0.70498, 38.133036), new o(13220, 3.32015, 1.48447), new o(8622, 6.2163, 35.1641), new o(2702, 1.8814, 39.6175), new o(2155, 2.0943, 2.9689), new o(2153, 5.1687, 76.2661), new o(1603, 0, 0), new o(1464, 1.1842, 33.6796), new o(1136, 3.9189, 36.6486), new o(898, 5.241, 388.465), new o(790, 0.533, 168.053), new o(760, 0.021, 182.28), new o(607, 1.077, 1021.249), new o(572, 3.401, 484.444), new o(561, 2.887, 498.671)], S.g_R2NC = [new o(4247, 5.8991, 38.133), new o(218, 0.346, 1.484), new o(163, 2.239, 168.053), new o(156, 4.594, 182.28), new o(127, 2.848, 35.164)], S.g_R3NC = [new o(166, 4.552, 38.133)], S.g_NuC = [new fe(0, 0, 0, 0, 1, -171996, -174.2, 92025, 8.9), new fe(-2, 0, 0, 2, 2, -13187, -1.6, 5736, -3.1), new fe(0, 0, 0, 2, 2, -2274, -0.2, 977, -0.5), new fe(0, 0, 0, 0, 2, 2062, 0.2, -895, 0.5), new fe(0, 1, 0, 0, 0, 1426, -3.4, 54, -0.1), new fe(0, 0, 1, 0, 0, 712, 0.1, -7, 0), new fe(-2, 1, 0, 2, 2, -517, 1.2, 224, -0.6), new fe(0, 0, 0, 2, 1, -386, -0.4, 200, 0), new fe(0, 0, 1, 2, 2, -301, 0, 129, -0.1), new fe(-2, -1, 0, 2, 2, 217, -0.5, -95, 0.3), new fe(-2, 0, 1, 0, 0, -158, 0, 0, 0), new fe(-2, 0, 0, 2, 1, 129, 0.1, -70, 0), new fe(0, 0, -1, 2, 2, 123, 0, -53, 0), new fe(2, 0, 0, 0, 0, 63, 0, 0, 0), new fe(0, 0, 1, 0, 1, 63, 0.1, -33, 0), new fe(2, 0, -1, 2, 2, -59, 0, 26, 0), new fe(0, 0, -1, 0, 1, -58, -0.1, 32, 0), new fe(0, 0, 1, 2, 1, -51, 0, 27, 0), new fe(-2, 0, 2, 0, 0, 48, 0, 0, 0), new fe(0, 0, -2, 2, 1, 46, 0, -24, 0), new fe(2, 0, 0, 2, 2, -38, 0, 16, 0), new fe(0, 0, 2, 2, 2, -31, 0, 13, 0), new fe(0, 0, 2, 0, 0, 29, 0, 0, 0), new fe(-2, 0, 1, 2, 2, 29, 0, -12, 0), new fe(0, 0, 0, 2, 0, 26, 0, 0, 0), new fe(-2, 0, 0, 2, 0, -22, 0, 0, 0), new fe(0, 0, -1, 2, 1, 21, 0, -10, 0), new fe(0, 2, 0, 0, 0, 17, -0.1, 0, 0), new fe(2, 0, -1, 0, 1, 16, 0, -8, 0), new fe(-2, 2, 0, 2, 2, -16, 0.1, 7, 0), new fe(0, 1, 0, 0, 1, -15, 0, 9, 0), new fe(-2, 0, 1, 0, 1, -13, 0, 7, 0), new fe(0, -1, 0, 0, 1, -12, 0, 6, 0), new fe(0, 0, 2, -2, 0, 11, 0, 0, 0), new fe(2, 0, -1, 2, 1, -10, 0, 5, 0), new fe(2, 0, 1, 2, 2, -8, 0, 3, 0), new fe(0, 1, 0, 2, 2, 7, 0, -3, 0), new fe(-2, 1, 1, 0, 0, -7, 0, 0, 0), new fe(0, -1, 0, 2, 2, -7, 0, 3, 0), new fe(2, 0, 0, 2, 1, -7, 0, 3, 0), new fe(2, 0, 1, 0, 0, 6, 0, 0, 0), new fe(-2, 0, 2, 2, 2, 6, 0, -3, 0), new fe(-2, 0, 1, 2, 1, 6, 0, -3, 0), new fe(2, 0, -2, 0, 1, -6, 0, 3, 0), new fe(2, 0, 0, 0, 1, -6, 0, 3, 0), new fe(0, -1, 1, 0, 0, 5, 0, 0, 0), new fe(-2, -1, 0, 2, 1, -5, 0, 3, 0), new fe(-2, 0, 0, 0, 1, -5, 0, 3, 0), new fe(0, 0, 2, 2, 1, -5, 0, 3, 0), new fe(-2, 0, 2, 0, 1, 4, 0, 0, 0), new fe(-2, 1, 0, 2, 1, 4, 0, 0, 0), new fe(0, 0, 1, -2, 0, 4, 0, 0, 0), new fe(-1, 0, 1, 0, 0, -4, 0, 0, 0), new fe(-2, 1, 0, 0, 0, -4, 0, 0, 0), new fe(1, 0, 0, 0, 0, -4, 0, 0, 0), new fe(0, 0, 1, 2, 0, 3, 0, 0, 0), new fe(0, 0, -2, 2, 2, -3, 0, 0, 0), new fe(-1, -1, 1, 0, 0, -3, 0, 0, 0), new fe(0, 1, 1, 0, 0, -3, 0, 0, 0), new fe(0, -1, 1, 2, 2, -3, 0, 0, 0), new fe(2, -1, -1, 2, 2, -3, 0, 0, 0), new fe(0, 0, 3, 2, 2, -3, 0, 0, 0), new fe(2, -1, 0, 2, 2, -3, 0, 0, 0)], S.g_AAParallax_C1 = Math.sin(x.d2R(x.dmS2D(0, 0, 8.794))), S.g_PlutoArgumentCoefficients = [new Qe(0, 0, 1), new Qe(0, 0, 2), new Qe(0, 0, 3), new Qe(0, 0, 4), new Qe(0, 0, 5), new Qe(0, 0, 6), new Qe(0, 1, -1), new Qe(0, 1, 0), new Qe(0, 1, 1), new Qe(0, 1, 2), new Qe(0, 1, 3), new Qe(0, 2, -2), new Qe(0, 2, -1), new Qe(0, 2, 0), new Qe(1, -1, 0), new Qe(1, -1, 1), new Qe(1, 0, -3), new Qe(1, 0, -2), new Qe(1, 0, -1), new Qe(1, 0, 0), new Qe(1, 0, 1), new Qe(1, 0, 2), new Qe(1, 0, 3), new Qe(1, 0, 4), new Qe(1, 1, -3), new Qe(1, 1, -2), new Qe(1, 1, -1), new Qe(1, 1, 0), new Qe(1, 1, 1), new Qe(1, 1, 3), new Qe(2, 0, -6), new Qe(2, 0, -5), new Qe(2, 0, -4), new Qe(2, 0, -3), new Qe(2, 0, -2), new Qe(2, 0, -1), new Qe(2, 0, 0), new Qe(2, 0, 1), new Qe(2, 0, 2), new Qe(2, 0, 3), new Qe(3, 0, -2), new Qe(3, 0, -1), new Qe(3, 0, 0)], S.g_PlutoLongitudeCoefficients = [new kt(-19799805, 19850055), new kt(897144, -4954829), new kt(611149, 1211027), new kt(-341243, -189585), new kt(129287, -34992), new kt(-38164, 30893), new kt(20442, -9987), new kt(-4063, -5071), new kt(-6016, -3336), new kt(-3956, 3039), new kt(-667, 3572), new kt(1276, 501), new kt(1152, -917), new kt(630, -1277), new kt(2571, -459), new kt(899, -1449), new kt(-1016, 1043), new kt(-2343, -1012), new kt(7042, 788), new kt(1199, -338), new kt(418, -67), new kt(120, -274), new kt(-60, -159), new kt(-82, -29), new kt(-36, -29), new kt(-40, 7), new kt(-14, 22), new kt(4, 13), new kt(5, 2), new kt(-1, 0), new kt(2, 0), new kt(-4, 5), new kt(4, -7), new kt(14, 24), new kt(-49, -34), new kt(163, -48), new kt(9, -24), new kt(-4, 1), new kt(-3, 1), new kt(1, 3), new kt(-3, -1), new kt(5, -3), new kt(0, 0)], S.g_PlutoLatitudeCoefficients = [new kt(-5452852, -14974862), new kt(3527812, 1672790), new kt(-1050748, 327647), new kt(178690, -292153), new kt(18650, 100340), new kt(-30697, -25823), new kt(4878, 11248), new kt(226, -64), new kt(2030, -836), new kt(69, -604), new kt(-247, -567), new kt(-57, 1), new kt(-122, 175), new kt(-49, -164), new kt(-197, 199), new kt(-25, 217), new kt(589, -248), new kt(-269, 711), new kt(185, 193), new kt(315, 807), new kt(-130, -43), new kt(5, 3), new kt(2, 17), new kt(2, 5), new kt(2, 3), new kt(3, 1), new kt(2, -1), new kt(1, -1), new kt(0, -1), new kt(0, 0), new kt(0, -2), new kt(2, 2), new kt(-7, 0), new kt(10, -8), new kt(-3, 20), new kt(6, 5), new kt(14, 17), new kt(-2, 0), new kt(0, 0), new kt(0, 0), new kt(0, 1), new kt(0, 0), new kt(1, 0)], S.g_PlutoRadiusCoefficients = [new kt(66865439, 68951812), new kt(-11827535, -332538), new kt(1593179, -1438890), new kt(-18444, 483220), new kt(-65977, -85431), new kt(31174, -6032), new kt(-5794, 22161), new kt(4601, 4032), new kt(-1729, 234), new kt(-415, 702), new kt(239, 723), new kt(67, -67), new kt(1034, -451), new kt(-129, 504), new kt(480, -231), new kt(2, -441), new kt(-3359, 265), new kt(7856, -7832), new kt(36, 45763), new kt(8663, 8547), new kt(-809, -769), new kt(263, -144), new kt(-126, 32), new kt(-35, -16), new kt(-19, -4), new kt(-15, 8), new kt(-4, 12), new kt(5, 6), new kt(3, 1), new kt(6, -2), new kt(2, 2), new kt(-2, -2), new kt(14, 13), new kt(-63, 13), new kt(136, -236), new kt(273, 1065), new kt(251, 149), new kt(-25, -9), new kt(9, -2), new kt(-8, 7), new kt(2, -10), new kt(19, 35), new kt(10, 3)], S.g_L0SaturnCoefficients = [new o(87401354, 0, 0), new o(11107660, 3.9620509, 213.29909544), new o(1414151, 4.5858152, 7.113547), new o(398379, 0.52112, 206.185548), new o(350769, 3.303299, 426.598191), new o(206816, 0.246584, 103.092774), new o(79271, 3.84007, 220.41264), new o(23990, 4.66977, 110.20632), new o(16574, 0.43719, 419.48464), new o(15820, 0.93809, 632.78374), new o(15054, 2.7167, 639.89729), new o(14907, 5.76903, 316.39187), new o(14610, 1.56519, 3.93215), new o(13160, 4.44891, 14.22709), new o(13005, 5.98119, 11.0457), new o(10725, 3.1294, 202.2534), new o(6126, 1.7633, 277.035), new o(5863, 0.2366, 529.691), new o(5228, 4.2078, 3.1814), new o(5020, 3.1779, 433.7117), new o(4593, 0.6198, 199.072), new o(4006, 2.2448, 63.7359), new o(3874, 3.2228, 138.5175), new o(3269, 0.7749, 949.1756), new o(2954, 0.9828, 95.9792), new o(2461, 2.0316, 735.8765), new o(1758, 3.2658, 522.5774), new o(1640, 5.505, 846.0828), new o(1581, 4.3727, 309.2783), new o(1391, 4.0233, 323.5054), new o(1124, 2.8373, 415.5525), new o(1087, 4.1834, 2.4477), new o(1017, 3.717, 227.5262), new o(957, 0.507, 1265.567), new o(853, 3.421, 175.166), new o(849, 3.191, 209.367), new o(789, 5.007, 0.963), new o(749, 2.144, 853.196), new o(744, 5.253, 224.345), new o(687, 1.747, 1052.268), new o(654, 1.599, 0.048), new o(634, 2.299, 412.371), new o(625, 0.97, 210.118), new o(580, 3.093, 74.782), new o(546, 2.127, 350.332), new o(543, 1.518, 9.561), new o(530, 4.449, 117.32), new o(478, 2.965, 137.033), new o(474, 5.475, 742.99), new o(452, 1.044, 490.334), new o(449, 1.29, 127.472), new o(372, 2.278, 217.231), new o(355, 3.013, 838.969), new o(347, 1.539, 340.771), new o(343, 0.246, 0.521), new o(330, 0.247, 1581.959), new o(322, 0.961, 203.738), new o(322, 2.572, 647.011), new o(309, 3.495, 216.48), new o(287, 2.37, 351.817), new o(278, 0.4, 211.815), new o(249, 1.47, 1368.66), new o(227, 4.91, 12.53), new o(220, 4.204, 200.769), new o(209, 1.345, 625.67), new o(208, 0.483, 1162.475), new o(208, 1.283, 39.357), new o(204, 6.011, 265.989), new o(185, 3.503, 149.563), new o(184, 0.973, 4.193), new o(182, 5.491, 2.921), new o(174, 1.863, 0.751), new o(165, 0.44, 5.417), new o(149, 5.736, 52.69), new o(148, 1.535, 5.629), new o(146, 6.231, 195.14), new o(140, 4.295, 21.341), new o(131, 4.068, 10.295), new o(125, 6.277, 1898.351), new o(122, 1.976, 4.666), new o(118, 5.341, 554.07), new o(117, 2.679, 1155.361), new o(114, 5.594, 1059.382), new o(112, 1.105, 191.208), new o(110, 0.166, 1.484), new o(109, 3.438, 536.805), new o(107, 4.012, 956.289), new o(104, 2.192, 88.866), new o(103, 1.197, 1685.052), new o(101, 4.965, 269.921)], S.g_L1SaturnCoefficients = [new o(21354295596, 0, 0), new o(1296855, 1.8282054, 213.2990954), new o(564348, 2.885001, 7.113547), new o(107679, 2.277699, 206.185548), new o(98323, 1.0807, 426.59819), new o(40255, 2.04128, 220.41264), new o(19942, 1.27955, 103.09277), new o(10512, 2.7488, 14.22709), new o(6939, 0.4049, 639.8973), new o(4803, 2.4419, 419.4846), new o(4056, 2.9217, 110.2063), new o(3769, 3.6497, 3.9322), new o(3385, 2.4169, 3.1814), new o(3302, 1.2626, 433.7117), new o(3071, 2.3274, 199.072), new o(1953, 3.5639, 11.0457), new o(1249, 2.628, 95.9792), new o(922, 1.961, 227.526), new o(706, 4.417, 529.691), new o(650, 6.174, 202.253), new o(628, 6.111, 309.278), new o(487, 6.04, 853.196), new o(479, 4.988, 522.577), new o(468, 4.617, 63.736), new o(417, 2.117, 323.505), new o(408, 1.299, 209.367), new o(352, 2.317, 632.784), new o(344, 3.959, 412.371), new o(340, 3.634, 316.392), new o(336, 3.772, 735.877), new o(332, 2.861, 210.118), new o(289, 2.733, 117.32), new o(281, 5.744, 2.448), new o(266, 0.543, 647.011), new o(230, 1.644, 216.48), new o(192, 2.965, 224.345), new o(173, 4.077, 846.083), new o(167, 2.597, 21.341), new o(136, 2.286, 10.295), new o(131, 3.441, 742.99), new o(128, 4.095, 217.231), new o(109, 6.161, 415.552), new o(98, 4.73, 838.97), new o(94, 3.48, 1052.27), new o(92, 3.95, 88.87), new o(87, 1.22, 440.83), new o(83, 3.11, 625.67), new o(78, 6.24, 302.16), new o(67, 0.29, 4.67), new o(66, 5.65, 9.56), new o(62, 4.29, 127.47), new o(62, 1.83, 195.14), new o(58, 2.48, 191.96), new o(57, 5.02, 137.03), new o(55, 0.28, 74.78), new o(54, 5.13, 490.33), new o(51, 1.46, 536.8), new o(47, 1.18, 149.56), new o(47, 5.15, 515.46), new o(46, 2.23, 956.29), new o(44, 2.71, 5.42), new o(40, 0.41, 269.92), new o(40, 3.89, 728.76), new o(38, 0.65, 422.67), new o(38, 2.53, 12.53), new o(37, 3.78, 2.92), new o(35, 6.08, 5.63), new o(34, 3.21, 1368.66), new o(33, 4.64, 277.03), new o(33, 5.43, 1066.5), new o(33, 0.3, 351.82), new o(32, 4.39, 1155.36), new o(31, 2.43, 52.69), new o(30, 2.84, 203), new o(30, 6.19, 284.15), new o(30, 3.39, 1059.38), new o(29, 2.03, 330.62), new o(28, 2.74, 265.99), new o(26, 4.51, 340.77)], S.g_L2SaturnCoefficients = [new o(116441, 1.179879, 7.113547), new o(91921, 0.07425, 213.2991), new o(90592, 0, 0), new o(15277, 4.06492, 206.18555), new o(10631, 0.25778, 220.41264), new o(10605, 5.40964, 426.59819), new o(4265, 1.046, 14.2271), new o(1216, 2.9186, 103.0928), new o(1165, 4.6094, 639.8973), new o(1082, 5.6913, 433.7117), new o(1045, 4.0421, 199.072), new o(1020, 0.6337, 3.1814), new o(634, 4.388, 419.485), new o(549, 5.573, 3.932), new o(457, 1.268, 110.206), new o(425, 0.209, 227.526), new o(274, 4.288, 95.979), new o(162, 1.381, 11.046), new o(129, 1.566, 309.278), new o(117, 3.881, 853.196), new o(105, 4.9, 647.011), new o(101, 0.893, 21.341), new o(96, 2.91, 316.39), new o(95, 5.63, 412.37), new o(85, 5.73, 209.37), new o(83, 6.05, 216.48), new o(82, 1.02, 117.32), new o(75, 4.76, 210.12), new o(67, 0.46, 522.58), new o(66, 0.48, 10.29), new o(64, 0.35, 323.51), new o(61, 4.88, 632.78), new o(53, 2.75, 529.69), new o(46, 5.69, 440.83), new o(45, 1.67, 202.25), new o(42, 5.71, 88.87), new o(32, 0.07, 63.74), new o(32, 1.67, 302.16), new o(31, 4.16, 191.96), new o(27, 0.83, 224.34), new o(25, 5.66, 735.88), new o(20, 5.94, 217.23), new o(18, 4.9, 625.67), new o(17, 1.63, 742.99), new o(16, 0.58, 515.46), new o(14, 0.21, 838.97), new o(14, 3.76, 195.14), new o(12, 4.72, 203), new o(12, 0.13, 234.64), new o(12, 3.12, 846.08), new o(11, 5.92, 536.8), new o(11, 5.6, 728.76), new o(11, 3.2, 1066.5), new o(10, 4.99, 422.67), new o(10, 0.26, 330.62), new o(10, 4.15, 860.31), new o(9, 0.46, 956.29), new o(8, 2.14, 269.92), new o(8, 5.25, 429.78), new o(8, 4.03, 9.56), new o(7, 5.4, 1052.27), new o(6, 4.46, 284.15), new o(6, 5.93, 405.26)], S.g_L3SaturnCoefficients = [new o(16039, 5.73945, 7.11355), new o(4250, 4.5854, 213.2991), new o(1907, 4.7608, 220.4126), new o(1466, 5.9133, 206.1855), new o(1162, 5.6197, 14.2271), new o(1067, 3.6082, 426.5982), new o(239, 3.861, 433.712), new o(237, 5.768, 199.072), new o(166, 5.116, 3.181), new o(151, 2.736, 639.897), new o(131, 4.743, 227.526), new o(63, 0.23, 419.48), new o(62, 4.74, 103.09), new o(40, 5.47, 21.34), new o(40, 5.96, 95.98), new o(39, 5.83, 110.21), new o(28, 3.01, 647.01), new o(25, 0.99, 3.93), new o(19, 1.92, 853.2), new o(18, 4.97, 10.29), new o(18, 1.03, 412.37), new o(18, 4.2, 216.48), new o(18, 3.32, 309.28), new o(16, 3.9, 440.83), new o(16, 5.62, 117.32), new o(13, 1.18, 88.87), new o(11, 5.58, 11.05), new o(11, 5.93, 191.96), new o(10, 3.95, 209.37), new o(9, 3.39, 302.16), new o(8, 4.88, 323.51), new o(7, 0.38, 632.78), new o(6, 2.25, 522.58), new o(6, 1.06, 210.12), new o(5, 4.64, 234.64), new o(4, 3.14, 0), new o(4, 2.31, 515.46), new o(3, 2.2, 860.31), new o(3, 0.59, 529.69), new o(3, 4.93, 224.34), new o(3, 0.42, 625.67), new o(2, 4.77, 330.62), new o(2, 3.35, 429.78), new o(2, 3.2, 202.25), new o(2, 1.19, 1066.5), new o(2, 1.35, 405.26), new o(2, 4.16, 223.59), new o(2, 3.07, 654.12)], S.g_L4SaturnCoefficients = [new o(1662, 3.9983, 7.1135), new o(257, 2.984, 220.413), new o(236, 3.902, 14.227), new o(149, 2.741, 213.299), new o(114, 3.142, 0), new o(110, 1.515, 206.186), new o(68, 1.72, 426.6), new o(40, 2.05, 433.71), new o(38, 1.24, 199.07), new o(31, 3.01, 227.53), new o(15, 0.83, 639.9), new o(9, 3.71, 21.34), new o(6, 2.42, 419.48), new o(6, 1.16, 647.01), new o(4, 1.45, 95.98), new o(4, 2.12, 440.83), new o(3, 4.09, 110.21), new o(3, 2.77, 412.37), new o(3, 3.01, 88.87), new o(3, 0, 853.2), new o(3, 0.39, 103.09), new o(2, 3.78, 117.32), new o(2, 2.83, 234.64), new o(2, 5.08, 309.28), new o(2, 2.24, 216.48), new o(2, 5.19, 302.16), new o(1, 1.55, 191.96)], S.g_L5SaturnCoefficients = [new o(124, 2.259, 7.114), new o(34, 2.16, 14.23), new o(28, 1.2, 220.41), new o(6, 1.22, 227.53), new o(5, 0.24, 433.71), new o(4, 6.23, 426.6), new o(3, 2.97, 199.07), new o(3, 4.29, 206.19), new o(2, 6.25, 213.3), new o(1, 5.28, 639.9), new o(1, 0.24, 440.83), new o(1, 3.14, 0)], S.g_B0SaturnCoefficients = [new o(4330678, 3.6028443, 213.2990954), new o(240348, 2.852385, 426.598191), new o(84746, 0, 0), new o(34116, 0.57297, 206.18555), new o(30863, 3.48442, 220.41264), new o(14734, 2.11847, 639.89729), new o(9917, 5.79, 419.4846), new o(6994, 4.736, 7.1135), new o(4808, 5.4331, 316.3919), new o(4788, 4.9651, 110.2063), new o(3432, 2.7326, 433.7117), new o(1506, 6.013, 103.0928), new o(1060, 5.631, 529.691), new o(969, 5.204, 632.784), new o(942, 1.396, 853.196), new o(708, 3.803, 323.505), new o(552, 5.131, 202.253), new o(400, 3.359, 227.526), new o(319, 3.626, 209.367), new o(316, 1.997, 647.011), new o(314, 0.465, 217.231), new o(284, 4.886, 224.345), new o(236, 2.139, 11.046), new o(215, 5.95, 846.083), new o(209, 2.12, 415.552), new o(207, 0.73, 199.072), new o(179, 2.954, 63.736), new o(141, 0.644, 490.334), new o(139, 4.595, 14.227), new o(139, 1.998, 735.877), new o(135, 5.245, 742.99), new o(122, 3.115, 522.577), new o(116, 3.109, 216.48), new o(114, 0.963, 210.118)], S.g_B1SaturnCoefficients = [new o(397555, 5.3329, 213.299095), new o(49479, 3.14159, 0), new o(18572, 6.09919, 426.59819), new o(14801, 2.30586, 206.18555), new o(9644, 1.6967, 220.4126), new o(3757, 1.2543, 419.4846), new o(2717, 5.9117, 639.8973), new o(1455, 0.8516, 433.7117), new o(1291, 2.9177, 7.1135), new o(853, 0.436, 316.392), new o(298, 0.919, 632.784), new o(292, 5.316, 853.196), new o(284, 1.619, 227.526), new o(275, 3.889, 103.093), new o(172, 0.052, 647.011), new o(166, 2.444, 199.072), new o(158, 5.209, 110.206), new o(128, 1.207, 529.691), new o(110, 2.457, 217.231), new o(82, 2.76, 210.12), new o(81, 2.86, 14.23), new o(69, 1.66, 202.25), new o(65, 1.26, 216.48), new o(61, 1.25, 209.37), new o(59, 1.82, 323.51), new o(46, 0.82, 440.83), new o(36, 1.82, 224.34), new o(34, 2.84, 117.32), new o(33, 1.31, 412.37), new o(32, 1.19, 846.08), new o(27, 4.65, 1066.5), new o(27, 4.44, 11.05)], S.g_B2SaturnCoefficients = [new o(20630, 0.50482, 213.2991), new o(3720, 3.9983, 206.1855), new o(1627, 6.1819, 220.4126), new o(1346, 0, 0), new o(706, 3.039, 419.485), new o(365, 5.099, 426.598), new o(330, 5.279, 433.712), new o(219, 3.828, 639.897), new o(139, 1.043, 7.114), new o(104, 6.157, 227.526), new o(93, 1.98, 316.39), new o(71, 4.15, 199.07), new o(52, 2.88, 632.78), new o(49, 4.43, 647.01), new o(41, 3.16, 853.2), new o(29, 4.53, 210.12), new o(24, 1.12, 14.23), new o(21, 4.35, 217.23), new o(20, 5.31, 440.83), new o(18, 0.85, 110.21), new o(17, 5.68, 216.48), new o(16, 4.26, 103.09), new o(14, 3, 412.37), new o(12, 2.53, 529.69), new o(8, 3.32, 202.25), new o(7, 5.56, 209.37), new o(7, 0.29, 323.51), new o(6, 1.16, 117.32), new o(6, 3.61, 869.31)], S.g_B3SaturnCoefficients = [new o(666, 1.99, 213.299), new o(632, 5.698, 206.186), new o(398, 0, 0), new o(188, 4.338, 220.413), new o(92, 4.84, 419.48), new o(52, 3.42, 433.71), new o(42, 2.38, 426.6), new o(26, 4.4, 227.53), new o(21, 5.85, 199.07), new o(18, 1.99, 639.9), new o(11, 5.37, 7.11), new o(10, 2.55, 647.01), new o(7, 3.46, 316.39), new o(6, 4.8, 632.78), new o(6, 0.02, 210.12), new o(6, 3.52, 440.83), new o(5, 5.64, 14.23), new o(5, 1.22, 853.2), new o(4, 4.71, 412.37), new o(3, 0.63, 103.09), new o(2, 3.72, 216.48)], S.g_B4SaturnCoefficients = [new o(80, 1.12, 206.19), new o(32, 3.12, 213.3), new o(17, 2.48, 220.41), new o(12, 3.14, 0), new o(9, 0.38, 419.48), new o(6, 1.56, 433.71), new o(5, 2.63, 227.53), new o(5, 1.28, 199.07), new o(1, 1.43, 426.6), new o(1, 0.67, 647.01), new o(1, 1.72, 440.83), new o(1, 6.18, 639.9)], S.g_B5SaturnCoefficients = [new o(8, 2.82, 206.19), new o(1, 0.51, 220.41)], S.g_R0SaturnCoefficients = [new o(955758136, 0, 0), new o(52921382, 2.3922622, 213.29909544), new o(1873680, 5.2354961, 206.1855484), new o(1464664, 1.6476305, 426.5981909), new o(821891, 5.9352, 316.39187), new o(547507, 5.015326, 103.092774), new o(371684, 2.271148, 220.412642), new o(361778, 3.139043, 7.113547), new o(140618, 5.704067, 632.783739), new o(108975, 3.293136, 110.206321), new o(69007, 5.941, 419.48464), new o(61053, 0.94038, 639.89729), new o(48913, 1.55733, 202.2534), new o(34144, 0.19519, 277.03499), new o(32402, 5.47085, 949.17561), new o(20937, 0.46349, 735.87651), new o(20839, 1.52103, 433.71174), new o(20747, 5.33256, 199.072), new o(15298, 3.05944, 529.69097), new o(14296, 2.60434, 323.50542), new o(12884, 1.64892, 138.5175), new o(11993, 5.98051, 846.08283), new o(11380, 1.73106, 522.57742), new o(9796, 5.2048, 1265.5675), new o(7753, 5.8519, 95.9792), new o(6771, 3.0043, 14.2271), new o(6466, 0.1773, 1052.2684), new o(5850, 1.4552, 415.5525), new o(5307, 0.5974, 63.7359), new o(4696, 2.1492, 227.5262), new o(4044, 1.6401, 209.3669), new o(3688, 0.7802, 412.3711), new o(3461, 1.8509, 175.1661), new o(3420, 4.9455, 1581.9593), new o(3401, 0.5539, 350.3321), new o(3376, 3.6953, 224.3448), new o(2976, 5.6847, 210.1177), new o(2885, 1.3876, 838.9693), new o(2881, 0.1796, 853.1964), new o(2508, 3.5385, 742.9901), new o(2448, 6.1841, 1368.6603), new o(2406, 2.9656, 117.3199), new o(2174, 0.0151, 340.7709), new o(2024, 5.0541, 11.0457)], S.g_R1SaturnCoefficients = [new o(6182981, 0.2584352, 213.2990954), new o(506578, 0.711147, 206.185548), new o(341394, 5.796358, 426.598191), new o(188491, 0.472157, 220.412642), new o(186262, 3.141593, 0), new o(143891, 1.407449, 7.113547), new o(49621, 6.01744, 103.09277), new o(20928, 5.09246, 639.89729), new o(19953, 1.1756, 419.48464), new o(18840, 1.6082, 110.20632), new o(13877, 0.75886, 199.072), new o(12893, 5.9433, 433.71174), new o(5397, 1.2885, 14.2271), new o(4869, 0.8679, 323.5054), new o(4247, 0.393, 227.5262), new o(3252, 1.2585, 95.9792), new o(3081, 3.4366, 522.5774), new o(2909, 4.6068, 202.2534), new o(2856, 2.1673, 735.8765), new o(1988, 2.4505, 412.3711), new o(1941, 6.0239, 209.3669), new o(1581, 1.2919, 210.1177), new o(1340, 4.308, 853.1964), new o(1316, 1.253, 117.3199), new o(1203, 1.8665, 316.3919), new o(1091, 0.0753, 216.4805), new o(966, 0.48, 632.784), new o(954, 5.152, 647.011), new o(898, 0.983, 529.691), new o(882, 1.885, 1052.268), new o(874, 1.402, 224.345), new o(785, 3.064, 838.969), new o(740, 1.382, 625.67), new o(658, 4.144, 309.278), new o(650, 1.725, 742.99), new o(613, 3.033, 63.736), new o(599, 2.549, 217.231), new o(503, 2.13, 3.932)], S.g_R2SaturnCoefficients = [new o(436902, 4.786717, 213.299095), new o(71923, 2.5007, 206.18555), new o(49767, 4.97168, 220.41264), new o(43221, 3.8694, 426.59819), new o(29646, 5.9631, 7.11355), new o(4721, 2.4753, 199.072), new o(4142, 4.1067, 433.7117), new o(3789, 3.0977, 639.8973), new o(2964, 1.3721, 103.0928), new o(2556, 2.8507, 419.4846), new o(2327, 0, 0), new o(2208, 6.2759, 110.2063), new o(2188, 5.8555, 14.2271), new o(1957, 4.9245, 227.5262), new o(924, 5.464, 323.505), new o(706, 2.971, 95.979), new o(546, 4.129, 412.371), new o(431, 5.178, 522.577), new o(405, 4.173, 209.367), new o(391, 4.481, 216.48), new o(374, 5.834, 117.32), new o(361, 3.277, 647.011), new o(356, 3.192, 210.118), new o(326, 2.269, 853.196), new o(207, 4.022, 735.877), new o(204, 0.088, 202.253), new o(180, 3.597, 632.784), new o(178, 4.097, 440.825), new o(154, 3.135, 625.67), new o(148, 0.136, 302.165), new o(133, 2.594, 191.958), new o(132, 5.933, 309.278)], S.g_R3SaturnCoefficients = [new o(20315, 3.02187, 213.2991), new o(8924, 3.1914, 220.4126), new o(6909, 4.3517, 206.1855), new o(4087, 4.2241, 7.1135), new o(3879, 2.0106, 426.5982), new o(1071, 4.2036, 199.072), new o(907, 2.283, 433.712), new o(606, 3.175, 227.526), new o(597, 4.135, 14.227), new o(483, 1.173, 639.897), new o(393, 0, 0), new o(229, 4.698, 419.485), new o(188, 4.59, 110.206), new o(150, 3.202, 103.093), new o(121, 3.768, 323.505), new o(102, 4.71, 95.979), new o(101, 5.819, 412.371), new o(93, 1.44, 647.01), new o(84, 2.63, 216.48), new o(73, 4.15, 117.32), new o(62, 2.31, 440.83), new o(55, 0.31, 853.2), new o(50, 2.39, 209.37), new o(45, 4.37, 191.96), new o(41, 0.69, 522.58), new o(40, 1.84, 302.16), new o(38, 5.94, 88.87), new o(32, 4.01, 21.34)], S.g_R4SaturnCoefficients = [new o(1202, 1.415, 220.4126), new o(708, 1.162, 213.299), new o(516, 6.24, 206.186), new o(427, 2.469, 7.114), new o(268, 0.187, 426.598), new o(170, 5.959, 199.072), new o(150, 0.48, 433.712), new o(145, 1.442, 227.526), new o(121, 2.405, 14.227), new o(47, 5.57, 639.9), new o(19, 5.86, 647.01), new o(17, 0.53, 440.83), new o(16, 2.9, 110.21), new o(15, 0.3, 419.48), new o(14, 1.3, 412.37), new o(13, 2.09, 323.51), new o(11, 0.22, 95.98), new o(11, 2.46, 117.32), new o(10, 3.14, 0), new o(9, 1.56, 88.87), new o(9, 2.28, 21.34), new o(9, 0.68, 216.48), new o(8, 1.27, 234.64)], S.g_R5SaturnCoefficients = [new o(129, 5.913, 220.413), new o(32, 0.69, 7.11), new o(27, 5.91, 227.53), new o(20, 4.95, 433.71), new o(20, 0.67, 14.23), new o(14, 2.67, 206.19), new o(14, 1.46, 199.07), new o(13, 4.59, 426.6), new o(7, 4.63, 213.3), new o(5, 3.61, 639.9), new o(4, 4.9, 440.83), new o(3, 4.07, 647.01), new o(3, 4.66, 191.96), new o(3, 0.49, 323.51), new o(3, 3.18, 419.48), new o(2, 3.7, 88.87), new o(2, 3.32, 95.98), new o(2, 0.56, 117.32)], S.g_L0UranusCoefficients = [new o(548129294, 0, 0), new o(9260408, 0.8910642, 74.7815986), new o(1504248, 3.6271926, 1.4844727), new o(365982, 1.899622, 73.297126), new o(272328, 3.358237, 149.563197), new o(70328, 5.39254, 63.7359), new o(68893, 6.09292, 76.26607), new o(61999, 2.26952, 2.96895), new o(61951, 2.85099, 11.0457), new o(26469, 3.14152, 71.81265), new o(25711, 6.1138, 454.90937), new o(21079, 4.36059, 148.07872), new o(17819, 1.74437, 36.64856), new o(14613, 4.73732, 3.93215), new o(11163, 5.82682, 224.3448), new o(10998, 0.48865, 138.5175), new o(9527, 2.9552, 35.1641), new o(7546, 5.2363, 109.9457), new o(4220, 3.2333, 70.8494), new o(4052, 2.2775, 151.0477), new o(3490, 5.4831, 146.5943), new o(3355, 1.0655, 4.4534), new o(3144, 4.752, 77.7505), new o(2927, 4.629, 9.5612), new o(2922, 5.3524, 85.8273), new o(2273, 4.366, 70.3282), new o(2149, 0.6075, 38.133), new o(2051, 1.5177, 0.1119), new o(1992, 4.9244, 277.035), new o(1667, 3.6274, 380.1278), new o(1533, 2.5859, 52.6902), new o(1376, 2.0428, 65.2204), new o(1372, 4.1964, 111.4302), new o(1284, 3.1135, 202.2534), new o(1282, 0.5427, 222.8603), new o(1244, 0.9161, 2.4477), new o(1221, 0.199, 108.4612), new o(1151, 4.179, 33.6796), new o(1150, 0.9334, 3.1814), new o(1090, 1.775, 12.5302), new o(1072, 0.2356, 62.2514), new o(946, 1.192, 127.472), new o(708, 5.183, 213.299), new o(653, 0.966, 78.714), new o(628, 0.182, 984.6), new o(607, 5.432, 529.691), new o(559, 3.358, 0.521), new o(524, 2.013, 299.126), new o(483, 2.106, 0.963), new o(471, 1.407, 184.727), new o(467, 0.415, 145.11), new o(434, 5.521, 183.243), new o(405, 5.987, 8.077), new o(399, 0.338, 415.552), new o(396, 5.87, 351.817), new o(379, 2.35, 56.622), new o(310, 5.833, 145.631), new o(300, 5.644, 22.091), new o(294, 5.839, 39.618), new o(252, 1.637, 221.376), new o(249, 4.746, 225.829), new o(239, 2.35, 137.033), new o(224, 0.516, 84.343), new o(223, 2.843, 0.261), new o(220, 1.922, 67.668), new o(217, 6.142, 5.938), new o(216, 4.778, 340.771), new o(208, 5.58, 68.844), new o(202, 1.297, 0.048), new o(199, 0.956, 152.532), new o(194, 1.888, 456.394), new o(193, 0.916, 453.425), new o(187, 1.319, 0.16), new o(182, 3.536, 79.235), new o(173, 1.539, 160.609), new o(172, 5.68, 219.891), new o(170, 3.677, 5.417), new o(169, 5.879, 18.159), new o(165, 1.424, 106.977), new o(163, 3.05, 112.915), new o(158, 0.738, 54.175), new o(147, 1.263, 59.804), new o(143, 1.3, 35.425), new o(139, 5.386, 32.195), new o(139, 4.26, 909.819), new o(124, 1.374, 7.114), new o(110, 2.027, 554.07), new o(109, 5.706, 77.963), new o(104, 5.028, 0.751), new o(104, 1.458, 24.379), new o(103, 0.681, 14.978)], S.g_L1UranusCoefficients = [new o(7502543122, 0, 0), new o(154458, 5.242017, 74.781599), new o(24456, 1.71256, 1.48447), new o(9258, 0.4284, 11.0457), new o(8266, 1.5022, 63.7359), new o(7842, 1.3198, 149.5632), new o(3899, 0.4648, 3.9322), new o(2284, 4.1737, 76.2661), new o(1927, 0.5301, 2.9689), new o(1233, 1.5863, 70.8494), new o(791, 5.436, 3.181), new o(767, 1.996, 73.297), new o(482, 2.984, 85.827), new o(450, 4.138, 138.517), new o(446, 3.723, 224.345), new o(427, 4.731, 71.813), new o(354, 2.583, 148.079), new o(348, 2.454, 9.561), new o(317, 5.579, 52.69), new o(206, 2.363, 2.448), new o(189, 4.202, 56.622), new o(184, 0.284, 151.048), new o(180, 5.684, 12.53), new o(171, 3.001, 78.714), new o(158, 2.909, 0.963), new o(155, 5.591, 4.453), new o(154, 4.652, 35.164), new o(152, 2.942, 77.751), new o(143, 2.59, 62.251), new o(121, 4.148, 127.472), new o(116, 3.732, 65.22), new o(102, 4.188, 145.631), new o(102, 6.034, 0.112), new o(88, 3.99, 18.16), new o(88, 6.16, 202.25), new o(81, 2.64, 22.09), new o(72, 6.05, 70.33), new o(69, 4.05, 77.96), new o(59, 3.7, 67.67), new o(47, 3.54, 351.82), new o(44, 5.91, 7.11), new o(43, 5.72, 5.42), new o(39, 4.92, 222.86), new o(36, 5.9, 33.68), new o(36, 3.29, 8.08), new o(36, 3.33, 71.6), new o(35, 5.08, 38.13), new o(31, 5.62, 984.6), new o(31, 5.5, 59.8), new o(31, 5.46, 160.61), new o(30, 1.66, 447.8), new o(29, 1.15, 462.02), new o(29, 4.52, 84.34), new o(27, 5.54, 131.4), new o(27, 6.15, 299.13), new o(26, 4.99, 137.03), new o(25, 5.74, 380.13)], S.g_L2UranusCoefficients = [new o(53033, 0, 0), new o(2358, 2.2601, 74.7816), new o(769, 4.526, 11.046), new o(552, 3.258, 63.736), new o(542, 2.276, 3.932), new o(529, 4.923, 1.484), new o(258, 3.691, 3.181), new o(239, 5.858, 149.563), new o(182, 6.218, 70.849), new o(54, 1.44, 76.27), new o(49, 6.03, 56.62), new o(45, 3.91, 2.45), new o(45, 0.81, 85.83), new o(38, 1.78, 52.69), new o(37, 4.46, 2.97), new o(33, 0.86, 9.56), new o(29, 5.1, 73.3), new o(24, 2.11, 18.16), new o(22, 5.99, 138.52), new o(22, 4.82, 78.71), new o(21, 2.4, 77.96), new o(21, 2.17, 224.34), new o(17, 2.54, 145.63), new o(17, 3.47, 12.53), new o(12, 0.02, 22.09), new o(11, 0.08, 127.47), new o(10, 5.16, 71.6), new o(10, 4.46, 62.25), new o(9, 4.26, 7.11), new o(8, 5.5, 67.67), new o(7, 1.25, 5.42), new o(6, 3.36, 447.8), new o(6, 5.45, 65.22), new o(6, 4.52, 151.05), new o(6, 5.73, 462.02)], S.g_L3UranusCoefficients = [new o(121, 0.024, 74.782), new o(68, 4.12, 3.93), new o(53, 2.39, 11.05), new o(46, 0, 0), new o(45, 2.04, 3.18), new o(44, 2.96, 1.48), new o(25, 4.89, 63.74), new o(21, 4.55, 70.85), new o(20, 2.31, 149.56), new o(9, 1.58, 56.62), new o(4, 0.23, 18.16), new o(4, 5.39, 76.27), new o(4, 0.95, 77.96), new o(3, 4.98, 85.83), new o(3, 4.13, 52.69), new o(3, 0.37, 78.71), new o(2, 0.86, 145.63), new o(2, 5.66, 9.56)], S.g_L4UranusCoefficients = [new o(114, 3.142, 0), new o(6, 4.58, 74.78), new o(3, 0.35, 11.05), new o(1, 3.42, 56.62)], S.g_B0UranusCoefficients = [new o(1346278, 2.6187781, 74.7815986), new o(62341, 5.08111, 149.5632), new o(61601, 3.14159, 0), new o(9964, 1.616, 76.2661), new o(9926, 0.5763, 73.2971), new o(3259, 1.2612, 224.3448), new o(2972, 2.2437, 1.4845), new o(2010, 6.0555, 148.0787), new o(1522, 0.2796, 63.7359), new o(924, 4.038, 151.048), new o(761, 6.14, 71.813), new o(522, 3.321, 138.517), new o(463, 0.743, 85.827), new o(437, 3.381, 529.691), new o(435, 0.341, 77.751), new o(431, 3.554, 213.299), new o(420, 5.213, 11.046), new o(245, 0.788, 2.969), new o(233, 2.257, 222.86), new o(216, 1.591, 38.133), new o(180, 3.725, 299.126), new o(175, 1.236, 146.594), new o(174, 1.937, 380.128), new o(160, 5.336, 111.43), new o(144, 5.962, 35.164), new o(116, 5.739, 70.849), new o(106, 0.941, 70.328), new o(102, 2.619, 78.714)], S.g_B1UranusCoefficients = [new o(206366, 4.123943, 74.781599), new o(8563, 0.3382, 149.5632), new o(1726, 2.1219, 73.2971), new o(1374, 0, 0), new o(1369, 3.0686, 76.2661), new o(451, 3.777, 1.484), new o(400, 2.848, 224.345), new o(307, 1.255, 148.079), new o(154, 3.786, 63.736), new o(112, 5.573, 151.048), new o(111, 5.329, 138.517), new o(83, 3.59, 71.81), new o(56, 3.4, 85.83), new o(54, 1.7, 77.75), new o(42, 1.21, 11.05), new o(41, 4.45, 78.71), new o(32, 3.77, 222.86), new o(30, 2.56, 2.97), new o(27, 5.34, 213.3), new o(26, 0.42, 380.13)], S.g_B2UranusCoefficients = [new o(9212, 5.8004, 74.7816), new o(557, 0, 0), new o(286, 2.177, 149.563), new o(95, 3.84, 73.3), new o(45, 4.88, 76.27), new o(20, 5.46, 1.48), new o(15, 0.88, 138.52), new o(14, 2.85, 148.08), new o(14, 5.07, 63.74), new o(10, 5, 224.34), new o(8, 6.27, 78.71)], S.g_B3UranusCoefficients = [new o(268, 1.251, 74.782), new o(11, 3.14, 0), new o(6, 4.01, 149.56), new o(3, 5.78, 73.3)], S.g_B4UranusCoefficients = [new o(6, 2.85, 74.78)], S.g_R0UranusCoefficients = [new o(1921264848, 0, 0), new o(88784984, 5.60377527, 74.78159857), new o(3440836, 0.328361, 73.2971259), new o(2055653, 1.7829517, 149.5631971), new o(649322, 4.522473, 76.266071), new o(602248, 3.860038, 63.735898), new o(496404, 1.401399, 454.909367), new o(338526, 1.580027, 138.517497), new o(243508, 1.570866, 71.812653), new o(190522, 1.998094, 1.484473), new o(161858, 2.791379, 148.078724), new o(143706, 1.383686, 11.0457), new o(93192, 0.17437, 36.64856), new o(89806, 3.66105, 109.94569), new o(71424, 4.24509, 224.3448), new o(46677, 1.39977, 35.16409), new o(39026, 3.36235, 277.03499), new o(39010, 1.66971, 70.84945), new o(36755, 3.88649, 146.59425), new o(30349, 0.701, 151.04767), new o(29156, 3.18056, 77.75054), new o(25786, 3.78538, 85.8273), new o(25620, 5.25656, 380.12777), new o(22637, 0.72519, 529.69097), new o(20473, 2.7964, 70.32818), new o(20472, 1.55589, 202.2534), new o(17901, 0.55455, 2.96895), new o(15503, 5.35405, 38.13304), new o(14702, 4.90434, 108.46122), new o(12897, 2.62154, 111.43016), new o(12328, 5.96039, 127.4718), new o(11959, 1.75044, 984.60033), new o(11853, 0.99343, 52.6902), new o(11696, 3.29826, 3.93215), new o(11495, 0.43774, 65.22037), new o(10793, 1.42105, 213.2991), new o(9111, 4.9964, 62.2514), new o(8421, 5.2535, 222.8603), new o(8402, 5.0388, 415.5525), new o(7449, 0.7949, 351.8166), new o(7329, 3.9728, 183.2428), new o(6046, 5.6796, 78.7138), new o(5524, 3.115, 9.5612), new o(5445, 5.1058, 145.1098), new o(5238, 2.6296, 33.6796), new o(4079, 3.2206, 340.7709), new o(3919, 4.2502, 39.6175), new o(3802, 6.1099, 184.7273), new o(3781, 3.4584, 456.3938), new o(3687, 2.4872, 453.4249), new o(3102, 4.1403, 219.8914), new o(2963, 0.8298, 56.6224), new o(2942, 0.4239, 299.1264), new o(2940, 2.1464, 137.033), new o(2938, 3.6766, 140.002), new o(2865, 0.31, 12.5302), new o(2538, 4.8546, 131.4039), new o(2364, 0.4425, 554.07), new o(2183, 2.9404, 305.3462)], S.g_R1UranusCoefficients = [new o(1479896, 3.6720571, 74.7815986), new o(71212, 6.22601, 63.7359), new o(68627, 6.13411, 149.5632), new o(24060, 3.14159, 0), new o(21468, 2.60177, 76.26607), new o(20857, 5.24625, 11.0457), new o(11405, 0.01848, 70.84945), new o(7497, 0.4236, 73.2971), new o(4244, 1.4169, 85.8273), new o(3927, 3.1551, 71.8127), new o(3578, 2.3116, 224.3448), new o(3506, 2.5835, 138.5175), new o(3229, 5.255, 3.9322), new o(3060, 0.1532, 1.4845), new o(2564, 0.9808, 148.0787), new o(2429, 3.9944, 52.6902), new o(1645, 2.6535, 127.4718), new o(1584, 1.4305, 78.7138), new o(1508, 5.06, 151.0477), new o(1490, 2.6756, 56.6224), new o(1413, 4.5746, 202.2534), new o(1403, 1.3699, 77.7505), new o(1228, 1.047, 62.2514), new o(1033, 0.2646, 131.4039), new o(992, 2.172, 65.22), new o(862, 5.055, 351.817), new o(744, 3.076, 35.164), new o(687, 2.499, 77.963), new o(647, 4.473, 70.328), new o(624, 0.863, 9.561), new o(604, 0.907, 984.6), new o(575, 3.231, 447.796), new o(562, 2.718, 462.023), new o(530, 5.917, 213.299), new o(528, 5.151, 2.969)], S.g_R2UranusCoefficients = [new o(22440, 0.69953, 74.7816), new o(4727, 1.699, 63.7359), new o(1682, 4.6483, 70.8494), new o(1650, 3.0966, 11.0457), new o(1434, 3.5212, 149.5632), new o(770, 0, 0), new o(500, 6.172, 76.266), new o(461, 0.767, 3.932), new o(390, 4.496, 56.622), new o(390, 5.527, 85.827), new o(292, 0.204, 52.69), new o(287, 3.534, 73.297), new o(273, 3.847, 138.517), new o(220, 1.964, 131.404), new o(216, 0.848, 77.963), new o(205, 3.248, 78.714), new o(149, 4.898, 127.472), new o(129, 2.081, 3.181)], S.g_R3UranusCoefficients = [new o(1164, 4.7345, 74.7816), new o(212, 3.343, 63.736), new o(196, 2.98, 70.849), new o(105, 0.958, 11.046), new o(73, 1, 149.56), new o(72, 0.03, 56.62), new o(55, 2.59, 3.93), new o(36, 5.65, 77.96), new o(34, 3.82, 76.27), new o(32, 3.6, 131.4)], S.g_R4UranusCoefficients = [new o(53, 3.01, 74.78), new o(10, 1.91, 56.62)], S.g_L0VenusCoefficients = [new o(317614667, 0, 0), new o(1353968, 5.5931332, 10213.2855462), new o(89892, 5.3065, 20426.57109), new o(5477, 4.4163, 7860.4194), new o(3456, 2.6996, 11790.6291), new o(2372, 2.9938, 3930.2097), new o(1664, 4.2502, 1577.3435), new o(1438, 4.1575, 9683.5946), new o(1317, 5.1867, 26.2983), new o(1201, 6.1536, 30639.8566), new o(769, 0.816, 9437.763), new o(761, 1.95, 529.691), new o(708, 1.065, 775.523), new o(585, 3.998, 191.448), new o(500, 4.123, 15720.839), new o(429, 3.586, 19367.189), new o(327, 5.677, 5507.553), new o(326, 4.591, 10404.734), new o(232, 3.163, 9153.904), new o(180, 4.653, 1109.379), new o(155, 5.57, 19651.048), new o(128, 4.226, 20.775), new o(128, 0.962, 5661.332), new o(106, 1.537, 801.821)], S.g_L1VenusCoefficients = [new o(1021352943053, 0, 0), new o(95708, 2.46424, 10213.28555), new o(14445, 0.51625, 20426.57109), new o(213, 1.795, 30639.857), new o(174, 2.655, 26.298), new o(152, 6.106, 1577.344), new o(82, 5.7, 191.45), new o(70, 2.68, 9437.76), new o(52, 3.6, 775.52), new o(38, 1.03, 529.69), new o(30, 1.25, 5507.55), new o(25, 6.11, 10404.73)], S.g_L2VenusCoefficients = [new o(54127, 0, 0), new o(3891, 0.3451, 10213.2855), new o(1338, 2.0201, 20426.5711), new o(24, 2.05, 26.3), new o(19, 3.54, 30639.86), new o(10, 3.97, 775.52), new o(7, 1.52, 1577.34), new o(6, 1, 191.45)], S.g_L3VenusCoefficients = [new o(136, 4.804, 10213.286), new o(78, 3.67, 20426.57), new o(26, 0, 0)], S.g_L4VenusCoefficients = [new o(114, 3.1416, 0), new o(3, 5.21, 20426.57), new o(2, 2.51, 10213.29)], S.g_L5VenusCoefficients = [new o(1, 3.14, 0)], S.g_B0VenusCoefficients = [new o(5923638, 0.2670278, 10213.2855462), new o(40108, 1.14737, 20426.57109), new o(32815, 3.14737, 0), new o(1011, 1.0895, 30639.8566), new o(149, 6.254, 18073.705), new o(138, 0.86, 1577.344), new o(130, 3.672, 9437.763), new o(120, 3.705, 2352.866), new o(108, 4.539, 22003.915)], S.g_B1VenusCoefficients = [new o(513348, 1.803643, 10213.285546), new o(4380, 3.3862, 20426.5711), new o(199, 0, 0), new o(197, 2.53, 30639.857)], S.g_B2VenusCoefficients = [new o(22378, 3.38509, 10213.28555), new o(282, 0, 0), new o(173, 5.256, 20426.571), new o(27, 3.87, 30639.86)], S.g_B3VenusCoefficients = [new o(647, 4.992, 10213.286), new o(20, 3.14, 0), new o(6, 0.77, 20426.57), new o(3, 5.44, 30639.86)], S.g_B4VenusCoefficients = [new o(14, 0.32, 10213.29)], S.g_R0VenusCoefficients = [new o(72334821, 0, 0), new o(489824, 4.021518, 10213.285546), new o(1658, 4.9021, 20426.5711), new o(1632, 2.8455, 7860.4194), new o(1378, 1.1285, 11790.6291), new o(498, 2.587, 9683.595), new o(374, 1.423, 3930.21), new o(264, 5.529, 9437.763), new o(237, 2.551, 15720.839), new o(222, 2.013, 19367.189), new o(126, 2.728, 1577.344), new o(119, 3.02, 10404.734)], S.g_R1VenusCoefficients = [new o(34551, 0.89199, 10213.28555), new o(234, 1.772, 20426.571), new o(234, 3.142, 0)], S.g_R2VenusCoefficients = [new o(1407, 5.0637, 10213.2855), new o(16, 5.47, 20426.57), new o(13, 0, 0)], S.g_R3VenusCoefficients = [new o(50, 3.22, 10213.29)], S.g_R4VenusCoefficients = [new o(1, 0.92, 10213.29)], Be._pI4_A = 0.785398155450821, Be._pI4_B = 794662735614793e-23, Be._pI4_C = 306161699786838e-31, Be._m_1_PI = 0.318309886183791, qr.ctab = [0, 1, 256, 257, 2, 3, 258, 259, 512, 513, 768, 769, 514, 515, 770, 771, 4, 5, 260, 261, 6, 7, 262, 263, 516, 517, 772, 773, 518, 519, 774, 775, 1024, 1025, 1280, 1281, 1026, 1027, 1282, 1283, 1536, 1537, 1792, 1793, 1538, 1539, 1794, 1795, 1028, 1029, 1284, 1285, 1030, 1031, 1286, 1287, 1540, 1541, 1796, 1797, 1542, 1543, 1798, 1799, 8, 9, 264, 265, 10, 11, 266, 267, 520, 521, 776, 777, 522, 523, 778, 779, 12, 13, 268, 269, 14, 15, 270, 271, 524, 525, 780, 781, 526, 527, 782, 783, 1032, 1033, 1288, 1289, 1034, 1035, 1290, 1291, 1544, 1545, 1800, 1801, 1546, 1547, 1802, 1803, 1036, 1037, 1292, 1293, 1038, 1039, 1294, 1295, 1548, 1549, 1804, 1805, 1550, 1551, 1806, 1807, 2048, 2049, 2304, 2305, 2050, 2051, 2306, 2307, 2560, 2561, 2816, 2817, 2562, 2563, 2818, 2819, 2052, 2053, 2308, 2309, 2054, 2055, 2310, 2311, 2564, 2565, 2820, 2821, 2566, 2567, 2822, 2823, 3072, 3073, 3328, 3329, 3074, 3075, 3330, 3331, 3584, 3585, 3840, 3841, 3586, 3587, 3842, 3843, 3076, 3077, 3332, 3333, 3078, 3079, 3334, 3335, 3588, 3589, 3844, 3845, 3590, 3591, 3846, 3847, 2056, 2057, 2312, 2313, 2058, 2059, 2314, 2315, 2568, 2569, 2824, 2825, 2570, 2571, 2826, 2827, 2060, 2061, 2316, 2317, 2062, 2063, 2318, 2319, 2572, 2573, 2828, 2829, 2574, 2575, 2830, 2831, 3080, 3081, 3336, 3337, 3082, 3083, 3338, 3339, 3592, 3593, 3848, 3849, 3594, 3595, 3850, 3851, 3084, 3085, 3340, 3341, 3086, 3087, 3342, 3343, 3596, 3597, 3852, 3853, 3598, 3599, 3854, 3855], qr.utab = [0, 1, 4, 5, 16, 17, 20, 21, 64, 65, 68, 69, 80, 81, 84, 85, 256, 257, 260, 261, 272, 273, 276, 277, 320, 321, 324, 325, 336, 337, 340, 341, 1024, 1025, 1028, 1029, 1040, 1041, 1044, 1045, 1088, 1089, 1092, 1093, 1104, 1105, 1108, 1109, 1280, 1281, 1284, 1285, 1296, 1297, 1300, 1301, 1344, 1345, 1348, 1349, 1360, 1361, 1364, 1365, 4096, 4097, 4100, 4101, 4112, 4113, 4116, 4117, 4160, 4161, 4164, 4165, 4176, 4177, 4180, 4181, 4352, 4353, 4356, 4357, 4368, 4369, 4372, 4373, 4416, 4417, 4420, 4421, 4432, 4433, 4436, 4437, 5120, 5121, 5124, 5125, 5136, 5137, 5140, 5141, 5184, 5185, 5188, 5189, 5200, 5201, 5204, 5205, 5376, 5377, 5380, 5381, 5392, 5393, 5396, 5397, 5440, 5441, 5444, 5445, 5456, 5457, 5460, 5461, 16384, 16385, 16388, 16389, 16400, 16401, 16404, 16405, 16448, 16449, 16452, 16453, 16464, 16465, 16468, 16469, 16640, 16641, 16644, 16645, 16656, 16657, 16660, 16661, 16704, 16705, 16708, 16709, 16720, 16721, 16724, 16725, 17408, 17409, 17412, 17413, 17424, 17425, 17428, 17429, 17472, 17473, 17476, 17477, 17488, 17489, 17492, 17493, 17664, 17665, 17668, 17669, 17680, 17681, 17684, 17685, 17728, 17729, 17732, 17733, 17744, 17745, 17748, 17749, 20480, 20481, 20484, 20485, 20496, 20497, 20500, 20501, 20544, 20545, 20548, 20549, 20560, 20561, 20564, 20565, 20736, 20737, 20740, 20741, 20752, 20753, 20756, 20757, 20800, 20801, 20804, 20805, 20816, 20817, 20820, 20821, 21504, 21505, 21508, 21509, 21520, 21521, 21524, 21525, 21568, 21569, 21572, 21573, 21584, 21585, 21588, 21589, 21760, 21761, 21764, 21765, 21776, 21777, 21780, 21781, 21824, 21825, 21828, 21829, 21840, 21841, 21844, 21845], qr.jrll = [2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4], qr.jpll = [1, 3, 5, 7, 0, 2, 4, 6, 1, 3, 5, 7], qr.xoffset = [-1, -1, 0, 1, 1, 1, 0, -1], qr.yoffset = [0, 1, 1, 1, 0, -1, -1, -1], ze.singleton = new ze(), ve.pointList = null, ve.lineList = null, ve.triangleFanPointList = null, ve.triangleList = null, ve.batchDirty = !0, ge._galDetails = new La(), ge._jupDetails = new Ma(), ge._jupPhisical = new As(), ge._jDateLast = 0, jt.RC = 0.017453292519943, jt._maxSeperation = 0.745, jt.containment = null, jt._constToDraw = "", jt.selectedSegment = null, jt._artFile = null, jt.artwork = null, jt.boundries = null, jt.pictureBlendStates = {}, ke.families = {}, $.zero = new $(), tt._s_identity = tt._createIdentity(), De._downloading = !1, De._imagesLoaded = !1, De._imageLoadCount = 0, Xr.starTexture = null, oi.vertLoc = 0, oi.initialized = !1, oi._prog = null, bi.vertLoc = 0, bi.initialized = !1, bi._prog = null, je.vertLoc = 0, je.colorLoc = 0, je.initialized = !1, je._prog = null, Ie.vertLoc = 0, Ie.colorLoc = 0, Ie.timeLoc = 0, Ie.initialized = !1, Ie._prog = null, se.vertLoc = 0, se.colorLoc = 0, se.pointSizeLoc = 0, se.timeLoc = 0, se.initialized = !1, se._prog = null, Gt.abcLoc = 0, Gt.abcLoc1 = 0, Gt.pointSizeLoc = 0, Gt.colorLoc = 0, Gt.weLoc = 0, Gt.nTLoc = 0, Gt.azLoc = 0, Gt.orbitLoc = 0, Gt.initialized = !1, Gt._prog = null, Pe.angleLoc = 0, Pe.initialized = !1, Pe._prog = null, ce.vertLoc = 0, ce.normalLoc = 0, ce.textureLoc = 0, ce.initialized = !1, ce._prog = null, ce.sunPosition = $.create(-1, -1, -1), ce.minLightingBrightness = 1, ce.atmosphereColor = j.fromArgb(0, 0, 0, 0), de.vertLoc = 0, de.normalLoc = 0, de.textureLoc = 0, de.initialized = !1, de._prog = null, de.sunPosition = $.create(-1, -1, -1), de.minLightingBrightness = 1, de.atmosphereColor = j.fromArgb(0, 0, 0, 0), ne.vertLoc = 0, ne.textureLoc = 0, ne.initialized = !1, ne._prog = null, ne.sunPosition = $.create(-1, -1, -1), ne.minLightingBrightness = 1, ne.atmosphereColor = j.fromArgb(0, 0, 0, 0), zt.vertLoc = 0, zt.textureLoc = 0, zt.initialized = !1, zt._prog = null, zt.blankValue = 0, zt.bScale = 1, zt.bZero = 0, zt.min = 0, zt.max = 0, zt.transparentBlack = !1, zt.containsBlanks = !1, zt.scaleType = 0, Oe.vertLoc = 0, Oe.textureLoc = 0, Oe.initialized = !1, Oe._prog = null, He.vertLoc = 0, He.textureLoc = 0, He.initialized = !1, He._prog = null, Ve.vertLoc = 0, Ve.textureLoc = 0, Ve.colorLoc = 0, Ve.initialized = !1, Ve._prog = null, Ze.vertLoc = 0, Ze.textureLoc = 0, Ze.colorLoc = 0, Ze.initialized = !1, Ze._prog = null, Ke.vertLoc = 0, Ke.textureLoc = 0, Ke.initialized = !1, Ke._prog = null, di.empty = null, W._galaxyImageIndexBuffer = null, W._galaxyImageTriangleCount = 0, W._milkyWayImage = null, W._starSprites = null, W._starCount = 0, W._starsDownloading = !1, W._stars = null, W._hipparcosIndex = {}, W._limitingMagnitude = 16, W._galaxyTextures = null, W._galaxyVertexCounts = null, W._largeSet = !0, W._cosmosReady = !1, W._cosmos = null, W._downloadingGalaxy = !1, W._eclipticCount = 0, W._eclipticYear = 0, W._monthDays = [31, 28.2421, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31], W._monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], W._eclipticTextYear = 0, ur._sine = 0, ur._cose = 1, ur._degrad = Math.PI / 180, ur.baseDate = r.truncate(Q.utcToJulian(r.now())), Ce.colorTextures = {}, Ce.viridis = Ce.fromStringList(["#440154", "#440256", "#450457", "#450559", "#46075a", "#46085c", "#460a5d", "#460b5e", "#470d60", "#470e61", "#471063", "#471164", "#471365", "#481467", "#481668", "#481769", "#48186a", "#481a6c", "#481b6d", "#481c6e", "#481d6f", "#481f70", "#482071", "#482173", "#482374", "#482475", "#482576", "#482677", "#482878", "#482979", "#472a7a", "#472c7a", "#472d7b", "#472e7c", "#472f7d", "#46307e", "#46327e", "#46337f", "#463480", "#453581", "#453781", "#453882", "#443983", "#443a83", "#443b84", "#433d84", "#433e85", "#423f85", "#424086", "#424186", "#414287", "#414487", "#404588", "#404688", "#3f4788", "#3f4889", "#3e4989", "#3e4a89", "#3e4c8a", "#3d4d8a", "#3d4e8a", "#3c4f8a", "#3c508b", "#3b518b", "#3b528b", "#3a538b", "#3a548c", "#39558c", "#39568c", "#38588c", "#38598c", "#375a8c", "#375b8d", "#365c8d", "#365d8d", "#355e8d", "#355f8d", "#34608d", "#34618d", "#33628d", "#33638d", "#32648e", "#32658e", "#31668e", "#31678e", "#31688e", "#30698e", "#306a8e", "#2f6b8e", "#2f6c8e", "#2e6d8e", "#2e6e8e", "#2e6f8e", "#2d708e", "#2d718e", "#2c718e", "#2c728e", "#2c738e", "#2b748e", "#2b758e", "#2a768e", "#2a778e", "#2a788e", "#29798e", "#297a8e", "#297b8e", "#287c8e", "#287d8e", "#277e8e", "#277f8e", "#27808e", "#26818e", "#26828e", "#26828e", "#25838e", "#25848e", "#25858e", "#24868e", "#24878e", "#23888e", "#23898e", "#238a8d", "#228b8d", "#228c8d", "#228d8d", "#218e8d", "#218f8d", "#21908d", "#21918c", "#20928c", "#20928c", "#20938c", "#1f948c", "#1f958b", "#1f968b", "#1f978b", "#1f988b", "#1f998a", "#1f9a8a", "#1e9b8a", "#1e9c89", "#1e9d89", "#1f9e89", "#1f9f88", "#1fa088", "#1fa188", "#1fa187", "#1fa287", "#20a386", "#20a486", "#21a585", "#21a685", "#22a785", "#22a884", "#23a983", "#24aa83", "#25ab82", "#25ac82", "#26ad81", "#27ad81", "#28ae80", "#29af7f", "#2ab07f", "#2cb17e", "#2db27d", "#2eb37c", "#2fb47c", "#31b57b", "#32b67a", "#34b679", "#35b779", "#37b878", "#38b977", "#3aba76", "#3bbb75", "#3dbc74", "#3fbc73", "#40bd72", "#42be71", "#44bf70", "#46c06f", "#48c16e", "#4ac16d", "#4cc26c", "#4ec36b", "#50c46a", "#52c569", "#54c568", "#56c667", "#58c765", "#5ac864", "#5cc863", "#5ec962", "#60ca60", "#63cb5f", "#65cb5e", "#67cc5c", "#69cd5b", "#6ccd5a", "#6ece58", "#70cf57", "#73d056", "#75d054", "#77d153", "#7ad151", "#7cd250", "#7fd34e", "#81d34d", "#84d44b", "#86d549", "#89d548", "#8bd646", "#8ed645", "#90d743", "#93d741", "#95d840", "#98d83e", "#9bd93c", "#9dd93b", "#a0da39", "#a2da37", "#a5db36", "#a8db34", "#aadc32", "#addc30", "#b0dd2f", "#b2dd2d", "#b5de2b", "#b8de29", "#bade28", "#bddf26", "#c0df25", "#c2df23", "#c5e021", "#c8e020", "#cae11f", "#cde11d", "#d0e11c", "#d2e21b", "#d5e21a", "#d8e219", "#dae319", "#dde318", "#dfe318", "#e2e418", "#e5e419", "#e7e419", "#eae51a", "#ece51b", "#efe51c", "#f1e51d", "#f4e61e", "#f6e620", "#f8e621", "#fbe723", "#fde725"]), Ce.plasma = Ce.fromStringList(["#0d0887", "#100788", "#130789", "#16078a", "#19068c", "#1b068d", "#1d068e", "#20068f", "#220690", "#240691", "#260591", "#280592", "#2a0593", "#2c0594", "#2e0595", "#2f0596", "#310597", "#330597", "#350498", "#370499", "#38049a", "#3a049a", "#3c049b", "#3e049c", "#3f049c", "#41049d", "#43039e", "#44039e", "#46039f", "#48039f", "#4903a0", "#4b03a1", "#4c02a1", "#4e02a2", "#5002a2", "#5102a3", "#5302a3", "#5502a4", "#5601a4", "#5801a4", "#5901a5", "#5b01a5", "#5c01a6", "#5e01a6", "#6001a6", "#6100a7", "#6300a7", "#6400a7", "#6600a7", "#6700a8", "#6900a8", "#6a00a8", "#6c00a8", "#6e00a8", "#6f00a8", "#7100a8", "#7201a8", "#7401a8", "#7501a8", "#7701a8", "#7801a8", "#7a02a8", "#7b02a8", "#7d03a8", "#7e03a8", "#8004a8", "#8104a7", "#8305a7", "#8405a7", "#8606a6", "#8707a6", "#8808a6", "#8a09a5", "#8b0aa5", "#8d0ba5", "#8e0ca4", "#8f0da4", "#910ea3", "#920fa3", "#9410a2", "#9511a1", "#9613a1", "#9814a0", "#99159f", "#9a169f", "#9c179e", "#9d189d", "#9e199d", "#a01a9c", "#a11b9b", "#a21d9a", "#a31e9a", "#a51f99", "#a62098", "#a72197", "#a82296", "#aa2395", "#ab2494", "#ac2694", "#ad2793", "#ae2892", "#b02991", "#b12a90", "#b22b8f", "#b32c8e", "#b42e8d", "#b52f8c", "#b6308b", "#b7318a", "#b83289", "#ba3388", "#bb3488", "#bc3587", "#bd3786", "#be3885", "#bf3984", "#c03a83", "#c13b82", "#c23c81", "#c33d80", "#c43e7f", "#c5407e", "#c6417d", "#c7427c", "#c8437b", "#c9447a", "#ca457a", "#cb4679", "#cc4778", "#cc4977", "#cd4a76", "#ce4b75", "#cf4c74", "#d04d73", "#d14e72", "#d24f71", "#d35171", "#d45270", "#d5536f", "#d5546e", "#d6556d", "#d7566c", "#d8576b", "#d9586a", "#da5a6a", "#da5b69", "#db5c68", "#dc5d67", "#dd5e66", "#de5f65", "#de6164", "#df6263", "#e06363", "#e16462", "#e26561", "#e26660", "#e3685f", "#e4695e", "#e56a5d", "#e56b5d", "#e66c5c", "#e76e5b", "#e76f5a", "#e87059", "#e97158", "#e97257", "#ea7457", "#eb7556", "#eb7655", "#ec7754", "#ed7953", "#ed7a52", "#ee7b51", "#ef7c51", "#ef7e50", "#f07f4f", "#f0804e", "#f1814d", "#f1834c", "#f2844b", "#f3854b", "#f3874a", "#f48849", "#f48948", "#f58b47", "#f58c46", "#f68d45", "#f68f44", "#f79044", "#f79143", "#f79342", "#f89441", "#f89540", "#f9973f", "#f9983e", "#f99a3e", "#fa9b3d", "#fa9c3c", "#fa9e3b", "#fb9f3a", "#fba139", "#fba238", "#fca338", "#fca537", "#fca636", "#fca835", "#fca934", "#fdab33", "#fdac33", "#fdae32", "#fdaf31", "#fdb130", "#fdb22f", "#fdb42f", "#fdb52e", "#feb72d", "#feb82c", "#feba2c", "#febb2b", "#febd2a", "#febe2a", "#fec029", "#fdc229", "#fdc328", "#fdc527", "#fdc627", "#fdc827", "#fdca26", "#fdcb26", "#fccd25", "#fcce25", "#fcd025", "#fcd225", "#fbd324", "#fbd524", "#fbd724", "#fad824", "#fada24", "#f9dc24", "#f9dd25", "#f8df25", "#f8e125", "#f7e225", "#f7e425", "#f6e626", "#f6e826", "#f5e926", "#f5eb27", "#f4ed27", "#f3ee27", "#f3f027", "#f2f227", "#f1f426", "#f1f525", "#f0f724", "#f0f921"]), Ce.inferno = Ce.fromStringList(["#000004", "#010005", "#010106", "#010108", "#02010a", "#02020c", "#02020e", "#030210", "#040312", "#040314", "#050417", "#060419", "#07051b", "#08051d", "#09061f", "#0a0722", "#0b0724", "#0c0826", "#0d0829", "#0e092b", "#10092d", "#110a30", "#120a32", "#140b34", "#150b37", "#160b39", "#180c3c", "#190c3e", "#1b0c41", "#1c0c43", "#1e0c45", "#1f0c48", "#210c4a", "#230c4c", "#240c4f", "#260c51", "#280b53", "#290b55", "#2b0b57", "#2d0b59", "#2f0a5b", "#310a5c", "#320a5e", "#340a5f", "#360961", "#380962", "#390963", "#3b0964", "#3d0965", "#3e0966", "#400a67", "#420a68", "#440a68", "#450a69", "#470b6a", "#490b6a", "#4a0c6b", "#4c0c6b", "#4d0d6c", "#4f0d6c", "#510e6c", "#520e6d", "#540f6d", "#550f6d", "#57106e", "#59106e", "#5a116e", "#5c126e", "#5d126e", "#5f136e", "#61136e", "#62146e", "#64156e", "#65156e", "#67166e", "#69166e", "#6a176e", "#6c186e", "#6d186e", "#6f196e", "#71196e", "#721a6e", "#741a6e", "#751b6e", "#771c6d", "#781c6d", "#7a1d6d", "#7c1d6d", "#7d1e6d", "#7f1e6c", "#801f6c", "#82206c", "#84206b", "#85216b", "#87216b", "#88226a", "#8a226a", "#8c2369", "#8d2369", "#8f2469", "#902568", "#922568", "#932667", "#952667", "#972766", "#982766", "#9a2865", "#9b2964", "#9d2964", "#9f2a63", "#a02a63", "#a22b62", "#a32c61", "#a52c60", "#a62d60", "#a82e5f", "#a92e5e", "#ab2f5e", "#ad305d", "#ae305c", "#b0315b", "#b1325a", "#b3325a", "#b43359", "#b63458", "#b73557", "#b93556", "#ba3655", "#bc3754", "#bd3853", "#bf3952", "#c03a51", "#c13a50", "#c33b4f", "#c43c4e", "#c63d4d", "#c73e4c", "#c83f4b", "#ca404a", "#cb4149", "#cc4248", "#ce4347", "#cf4446", "#d04545", "#d24644", "#d34743", "#d44842", "#d54a41", "#d74b3f", "#d84c3e", "#d94d3d", "#da4e3c", "#db503b", "#dd513a", "#de5238", "#df5337", "#e05536", "#e15635", "#e25734", "#e35933", "#e45a31", "#e55c30", "#e65d2f", "#e75e2e", "#e8602d", "#e9612b", "#ea632a", "#eb6429", "#eb6628", "#ec6726", "#ed6925", "#ee6a24", "#ef6c23", "#ef6e21", "#f06f20", "#f1711f", "#f1731d", "#f2741c", "#f3761b", "#f37819", "#f47918", "#f57b17", "#f57d15", "#f67e14", "#f68013", "#f78212", "#f78410", "#f8850f", "#f8870e", "#f8890c", "#f98b0b", "#f98c0a", "#f98e09", "#fa9008", "#fa9207", "#fa9407", "#fb9606", "#fb9706", "#fb9906", "#fb9b06", "#fb9d07", "#fc9f07", "#fca108", "#fca309", "#fca50a", "#fca60c", "#fca80d", "#fcaa0f", "#fcac11", "#fcae12", "#fcb014", "#fcb216", "#fcb418", "#fbb61a", "#fbb81d", "#fbba1f", "#fbbc21", "#fbbe23", "#fac026", "#fac228", "#fac42a", "#fac62d", "#f9c72f", "#f9c932", "#f9cb35", "#f8cd37", "#f8cf3a", "#f7d13d", "#f7d340", "#f6d543", "#f6d746", "#f5d949", "#f5db4c", "#f4dd4f", "#f4df53", "#f4e156", "#f3e35a", "#f3e55d", "#f2e661", "#f2e865", "#f2ea69", "#f1ec6d", "#f1ed71", "#f1ef75", "#f1f179", "#f2f27d", "#f2f482", "#f3f586", "#f3f68a", "#f4f88e", "#f5f992", "#f6fa96", "#f8fb9a", "#f9fc9d", "#fafda1", "#fcffa4"]), Ce.magma = Ce.fromStringList(["#000004", "#010005", "#010106", "#010108", "#020109", "#02020b", "#02020d", "#03030f", "#030312", "#040414", "#050416", "#060518", "#06051a", "#07061c", "#08071e", "#090720", "#0a0822", "#0b0924", "#0c0926", "#0d0a29", "#0e0b2b", "#100b2d", "#110c2f", "#120d31", "#130d34", "#140e36", "#150e38", "#160f3b", "#180f3d", "#19103f", "#1a1042", "#1c1044", "#1d1147", "#1e1149", "#20114b", "#21114e", "#221150", "#241253", "#251255", "#271258", "#29115a", "#2a115c", "#2c115f", "#2d1161", "#2f1163", "#311165", "#331067", "#341069", "#36106b", "#38106c", "#390f6e", "#3b0f70", "#3d0f71", "#3f0f72", "#400f74", "#420f75", "#440f76", "#451077", "#471078", "#491078", "#4a1079", "#4c117a", "#4e117b", "#4f127b", "#51127c", "#52137c", "#54137d", "#56147d", "#57157e", "#59157e", "#5a167e", "#5c167f", "#5d177f", "#5f187f", "#601880", "#621980", "#641a80", "#651a80", "#671b80", "#681c81", "#6a1c81", "#6b1d81", "#6d1d81", "#6e1e81", "#701f81", "#721f81", "#732081", "#752181", "#762181", "#782281", "#792282", "#7b2382", "#7c2382", "#7e2482", "#802582", "#812581", "#832681", "#842681", "#862781", "#882781", "#892881", "#8b2981", "#8c2981", "#8e2a81", "#902a81", "#912b81", "#932b80", "#942c80", "#962c80", "#982d80", "#992d80", "#9b2e7f", "#9c2e7f", "#9e2f7f", "#a02f7f", "#a1307e", "#a3307e", "#a5317e", "#a6317d", "#a8327d", "#aa337d", "#ab337c", "#ad347c", "#ae347b", "#b0357b", "#b2357b", "#b3367a", "#b5367a", "#b73779", "#b83779", "#ba3878", "#bc3978", "#bd3977", "#bf3a77", "#c03a76", "#c23b75", "#c43c75", "#c53c74", "#c73d73", "#c83e73", "#ca3e72", "#cc3f71", "#cd4071", "#cf4070", "#d0416f", "#d2426f", "#d3436e", "#d5446d", "#d6456c", "#d8456c", "#d9466b", "#db476a", "#dc4869", "#de4968", "#df4a68", "#e04c67", "#e24d66", "#e34e65", "#e44f64", "#e55064", "#e75263", "#e85362", "#e95462", "#ea5661", "#eb5760", "#ec5860", "#ed5a5f", "#ee5b5e", "#ef5d5e", "#f05f5e", "#f1605d", "#f2625d", "#f2645c", "#f3655c", "#f4675c", "#f4695c", "#f56b5c", "#f66c5c", "#f66e5c", "#f7705c", "#f7725c", "#f8745c", "#f8765c", "#f9785d", "#f9795d", "#f97b5d", "#fa7d5e", "#fa7f5e", "#fa815f", "#fb835f", "#fb8560", "#fb8761", "#fc8961", "#fc8a62", "#fc8c63", "#fc8e64", "#fc9065", "#fd9266", "#fd9467", "#fd9668", "#fd9869", "#fd9a6a", "#fd9b6b", "#fe9d6c", "#fe9f6d", "#fea16e", "#fea36f", "#fea571", "#fea772", "#fea973", "#feaa74", "#feac76", "#feae77", "#feb078", "#feb27a", "#feb47b", "#feb67c", "#feb77e", "#feb97f", "#febb81", "#febd82", "#febf84", "#fec185", "#fec287", "#fec488", "#fec68a", "#fec88c", "#feca8d", "#fecc8f", "#fecd90", "#fecf92", "#fed194", "#fed395", "#fed597", "#fed799", "#fed89a", "#fdda9c", "#fddc9e", "#fddea0", "#fde0a1", "#fde2a3", "#fde3a5", "#fde5a7", "#fde7a9", "#fde9aa", "#fdebac", "#fcecae", "#fceeb0", "#fcf0b2", "#fcf2b4", "#fcf4b6", "#fcf6b8", "#fcf7b9", "#fcf9bb", "#fcfbbd", "#fcfdbf"]), Ce.cividis = Ce.fromStringList(["#00224e", "#00234f", "#002451", "#002553", "#002554", "#002656", "#002758", "#002859", "#00285b", "#00295d", "#002a5f", "#002a61", "#002b62", "#002c64", "#002c66", "#002d68", "#002e6a", "#002e6c", "#002f6d", "#00306f", "#003070", "#003170", "#003171", "#013271", "#053371", "#083370", "#0c3470", "#0f3570", "#123570", "#143670", "#163770", "#18376f", "#1a386f", "#1c396f", "#1e3a6f", "#203a6f", "#213b6e", "#233c6e", "#243c6e", "#263d6e", "#273e6e", "#293f6e", "#2a3f6d", "#2b406d", "#2d416d", "#2e416d", "#2f426d", "#31436d", "#32436d", "#33446d", "#34456c", "#35456c", "#36466c", "#38476c", "#39486c", "#3a486c", "#3b496c", "#3c4a6c", "#3d4a6c", "#3e4b6c", "#3f4c6c", "#404c6c", "#414d6c", "#424e6c", "#434e6c", "#444f6c", "#45506c", "#46516c", "#47516c", "#48526c", "#49536c", "#4a536c", "#4b546c", "#4c556c", "#4d556c", "#4e566c", "#4f576c", "#50576c", "#51586d", "#52596d", "#535a6d", "#545a6d", "#555b6d", "#555c6d", "#565c6d", "#575d6d", "#585e6d", "#595e6e", "#5a5f6e", "#5b606e", "#5c616e", "#5d616e", "#5e626e", "#5e636f", "#5f636f", "#60646f", "#61656f", "#62656f", "#636670", "#646770", "#656870", "#656870", "#666970", "#676a71", "#686a71", "#696b71", "#6a6c71", "#6b6d72", "#6c6d72", "#6c6e72", "#6d6f72", "#6e6f73", "#6f7073", "#707173", "#717274", "#727274", "#727374", "#737475", "#747475", "#757575", "#767676", "#777776", "#777777", "#787877", "#797977", "#7a7a78", "#7b7a78", "#7c7b78", "#7d7c78", "#7e7c78", "#7e7d78", "#7f7e78", "#807f78", "#817f78", "#828079", "#838179", "#848279", "#858279", "#868379", "#878478", "#888578", "#898578", "#8a8678", "#8b8778", "#8c8878", "#8d8878", "#8e8978", "#8f8a78", "#908b78", "#918b78", "#928c78", "#928d78", "#938e78", "#948e77", "#958f77", "#969077", "#979177", "#989277", "#999277", "#9a9376", "#9b9476", "#9c9576", "#9d9576", "#9e9676", "#9f9775", "#a09875", "#a19975", "#a29975", "#a39a74", "#a49b74", "#a59c74", "#a69c74", "#a79d73", "#a89e73", "#a99f73", "#aaa073", "#aba072", "#aca172", "#ada272", "#aea371", "#afa471", "#b0a571", "#b1a570", "#b3a670", "#b4a76f", "#b5a86f", "#b6a96f", "#b7a96e", "#b8aa6e", "#b9ab6d", "#baac6d", "#bbad6d", "#bcae6c", "#bdae6c", "#beaf6b", "#bfb06b", "#c0b16a", "#c1b26a", "#c2b369", "#c3b369", "#c4b468", "#c5b568", "#c6b667", "#c7b767", "#c8b866", "#c9b965", "#cbb965", "#ccba64", "#cdbb63", "#cebc63", "#cfbd62", "#d0be62", "#d1bf61", "#d2c060", "#d3c05f", "#d4c15f", "#d5c25e", "#d6c35d", "#d7c45c", "#d9c55c", "#dac65b", "#dbc75a", "#dcc859", "#ddc858", "#dec958", "#dfca57", "#e0cb56", "#e1cc55", "#e2cd54", "#e4ce53", "#e5cf52", "#e6d051", "#e7d150", "#e8d24f", "#e9d34e", "#ead34c", "#ebd44b", "#edd54a", "#eed649", "#efd748", "#f0d846", "#f1d945", "#f2da44", "#f3db42", "#f5dc41", "#f6dd3f", "#f7de3e", "#f8df3c", "#f9e03a", "#fbe138", "#fce236", "#fde334", "#fee434", "#fee535", "#fee636", "#fee838"]), Ce.greys = Ce.fromStringList(["#ffffff", "#ffffff", "#fefefe", "#fefefe", "#fdfdfd", "#fdfdfd", "#fcfcfc", "#fcfcfc", "#fbfbfb", "#fbfbfb", "#fafafa", "#fafafa", "#f9f9f9", "#f9f9f9", "#f8f8f8", "#f8f8f8", "#f7f7f7", "#f7f7f7", "#f7f7f7", "#f6f6f6", "#f6f6f6", "#f5f5f5", "#f5f5f5", "#f4f4f4", "#f4f4f4", "#f3f3f3", "#f3f3f3", "#f2f2f2", "#f2f2f2", "#f1f1f1", "#f1f1f1", "#f0f0f0", "#f0f0f0", "#efefef", "#eeeeee", "#eeeeee", "#ededed", "#ececec", "#ececec", "#ebebeb", "#eaeaea", "#e9e9e9", "#e9e9e9", "#e8e8e8", "#e7e7e7", "#e7e7e7", "#e6e6e6", "#e5e5e5", "#e4e4e4", "#e4e4e4", "#e3e3e3", "#e2e2e2", "#e1e1e1", "#e1e1e1", "#e0e0e0", "#dfdfdf", "#dfdfdf", "#dedede", "#dddddd", "#dcdcdc", "#dcdcdc", "#dbdbdb", "#dadada", "#dadada", "#d9d9d9", "#d8d8d8", "#d7d7d7", "#d6d6d6", "#d5d5d5", "#d4d4d4", "#d4d4d4", "#d3d3d3", "#d2d2d2", "#d1d1d1", "#d0d0d0", "#cfcfcf", "#cecece", "#cdcdcd", "#cccccc", "#cccccc", "#cbcbcb", "#cacaca", "#c9c9c9", "#c8c8c8", "#c7c7c7", "#c6c6c6", "#c5c5c5", "#c5c5c5", "#c4c4c4", "#c3c3c3", "#c2c2c2", "#c1c1c1", "#c0c0c0", "#bfbfbf", "#bebebe", "#bebebe", "#bdbdbd", "#bbbbbb", "#bababa", "#b9b9b9", "#b8b8b8", "#b6b6b6", "#b5b5b5", "#b4b4b4", "#b3b3b3", "#b2b2b2", "#b0b0b0", "#afafaf", "#aeaeae", "#adadad", "#ababab", "#aaaaaa", "#a9a9a9", "#a8a8a8", "#a7a7a7", "#a5a5a5", "#a4a4a4", "#a3a3a3", "#a2a2a2", "#a0a0a0", "#9f9f9f", "#9e9e9e", "#9d9d9d", "#9c9c9c", "#9a9a9a", "#999999", "#989898", "#979797", "#959595", "#949494", "#939393", "#929292", "#919191", "#909090", "#8f8f8f", "#8e8e8e", "#8d8d8d", "#8c8c8c", "#8a8a8a", "#898989", "#888888", "#878787", "#868686", "#858585", "#848484", "#838383", "#828282", "#818181", "#7f7f7f", "#7e7e7e", "#7d7d7d", "#7c7c7c", "#7b7b7b", "#7a7a7a", "#797979", "#787878", "#777777", "#767676", "#757575", "#737373", "#727272", "#717171", "#707070", "#6f6f6f", "#6e6e6e", "#6d6d6d", "#6c6c6c", "#6b6b6b", "#6a6a6a", "#696969", "#686868", "#676767", "#666666", "#656565", "#646464", "#636363", "#626262", "#616161", "#606060", "#5f5f5f", "#5e5e5e", "#5d5d5d", "#5c5c5c", "#5b5b5b", "#5a5a5a", "#585858", "#575757", "#565656", "#555555", "#545454", "#535353", "#525252", "#515151", "#505050", "#4e4e4e", "#4d4d4d", "#4b4b4b", "#4a4a4a", "#484848", "#474747", "#464646", "#444444", "#434343", "#414141", "#404040", "#3f3f3f", "#3d3d3d", "#3c3c3c", "#3a3a3a", "#393939", "#383838", "#363636", "#353535", "#333333", "#323232", "#303030", "#2f2f2f", "#2e2e2e", "#2c2c2c", "#2b2b2b", "#292929", "#282828", "#272727", "#252525", "#242424", "#232323", "#222222", "#212121", "#1f1f1f", "#1e1e1e", "#1d1d1d", "#1c1c1c", "#1b1b1b", "#1a1a1a", "#181818", "#171717", "#161616", "#151515", "#141414", "#131313", "#111111", "#101010", "#0f0f0f", "#0e0e0e", "#0d0d0d", "#0c0c0c", "#0a0a0a", "#090909", "#080808", "#070707", "#060606", "#050505", "#030303", "#020202", "#010101", "#000000"]), Ce.gray = Ce.fromStringList(["#000000", "#010101", "#020202", "#030303", "#040404", "#050505", "#060606", "#070707", "#080808", "#090909", "#0a0a0a", "#0b0b0b", "#0c0c0c", "#0d0d0d", "#0e0e0e", "#0f0f0f", "#101010", "#111111", "#121212", "#131313", "#141414", "#151515", "#161616", "#171717", "#181818", "#191919", "#1a1a1a", "#1b1b1b", "#1c1c1c", "#1d1d1d", "#1e1e1e", "#1f1f1f", "#202020", "#212121", "#222222", "#232323", "#242424", "#252525", "#262626", "#272727", "#282828", "#292929", "#2a2a2a", "#2b2b2b", "#2c2c2c", "#2d2d2d", "#2e2e2e", "#2f2f2f", "#303030", "#313131", "#323232", "#333333", "#343434", "#353535", "#363636", "#373737", "#383838", "#393939", "#3a3a3a", "#3b3b3b", "#3c3c3c", "#3d3d3d", "#3e3e3e", "#3f3f3f", "#404040", "#414141", "#424242", "#434343", "#444444", "#454545", "#464646", "#474747", "#484848", "#494949", "#4a4a4a", "#4b4b4b", "#4c4c4c", "#4d4d4d", "#4e4e4e", "#4f4f4f", "#505050", "#515151", "#525252", "#535353", "#545454", "#555555", "#565656", "#575757", "#585858", "#595959", "#5a5a5a", "#5b5b5b", "#5c5c5c", "#5d5d5d", "#5e5e5e", "#5f5f5f", "#606060", "#616161", "#626262", "#636363", "#646464", "#656565", "#666666", "#676767", "#686868", "#696969", "#6a6a6a", "#6b6b6b", "#6c6c6c", "#6d6d6d", "#6e6e6e", "#6f6f6f", "#707070", "#717171", "#727272", "#737373", "#747474", "#757575", "#767676", "#777777", "#787878", "#797979", "#7a7a7a", "#7b7b7b", "#7c7c7c", "#7d7d7d", "#7e7e7e", "#7f7f7f", "#808080", "#818181", "#828282", "#838383", "#848484", "#858585", "#868686", "#878787", "#888888", "#898989", "#8a8a8a", "#8b8b8b", "#8c8c8c", "#8d8d8d", "#8e8e8e", "#8f8f8f", "#909090", "#919191", "#929292", "#939393", "#949494", "#959595", "#969696", "#979797", "#989898", "#999999", "#9a9a9a", "#9b9b9b", "#9c9c9c", "#9d9d9d", "#9e9e9e", "#9f9f9f", "#a0a0a0", "#a1a1a1", "#a2a2a2", "#a3a3a3", "#a4a4a4", "#a5a5a5", "#a6a6a6", "#a7a7a7", "#a8a8a8", "#a9a9a9", "#aaaaaa", "#ababab", "#acacac", "#adadad", "#aeaeae", "#afafaf", "#b0b0b0", "#b1b1b1", "#b2b2b2", "#b3b3b3", "#b4b4b4", "#b5b5b5", "#b6b6b6", "#b7b7b7", "#b8b8b8", "#b9b9b9", "#bababa", "#bbbbbb", "#bcbcbc", "#bdbdbd", "#bebebe", "#bfbfbf", "#c0c0c0", "#c1c1c1", "#c2c2c2", "#c3c3c3", "#c4c4c4", "#c5c5c5", "#c6c6c6", "#c7c7c7", "#c8c8c8", "#c9c9c9", "#cacaca", "#cbcbcb", "#cccccc", "#cdcdcd", "#cecece", "#cfcfcf", "#d0d0d0", "#d1d1d1", "#d2d2d2", "#d3d3d3", "#d4d4d4", "#d5d5d5", "#d6d6d6", "#d7d7d7", "#d8d8d8", "#d9d9d9", "#dadada", "#dbdbdb", "#dcdcdc", "#dddddd", "#dedede", "#dfdfdf", "#e0e0e0", "#e1e1e1", "#e2e2e2", "#e3e3e3", "#e4e4e4", "#e5e5e5", "#e6e6e6", "#e7e7e7", "#e8e8e8", "#e9e9e9", "#eaeaea", "#ebebeb", "#ececec", "#ededed", "#eeeeee", "#efefef", "#f0f0f0", "#f1f1f1", "#f2f2f2", "#f3f3f3", "#f4f4f4", "#f5f5f5", "#f6f6f6", "#f7f7f7", "#f8f8f8", "#f9f9f9", "#fafafa", "#fbfbfb", "#fcfcfc", "#fdfdfd", "#fefefe", "#ffffff"]), Ce.purples = Ce.fromStringList(["#fcfbfd", "#fcfbfd", "#fbfafc", "#fbfafc", "#faf9fc", "#faf9fc", "#faf8fb", "#f9f8fb", "#f9f7fb", "#f8f7fb", "#f8f7fa", "#f8f6fa", "#f7f6fa", "#f7f5fa", "#f6f5f9", "#f6f4f9", "#f5f4f9", "#f5f4f9", "#f5f3f8", "#f4f3f8", "#f4f2f8", "#f3f2f8", "#f3f1f7", "#f3f1f7", "#f2f0f7", "#f2f0f7", "#f1f0f6", "#f1eff6", "#f1eff6", "#f0eef6", "#f0eef5", "#efedf5", "#efedf5", "#eeecf5", "#eeecf4", "#edebf4", "#ecebf4", "#eceaf3", "#ebe9f3", "#eae9f3", "#eae8f2", "#e9e8f2", "#e8e7f2", "#e8e6f2", "#e7e6f1", "#e6e5f1", "#e6e5f1", "#e5e4f0", "#e4e3f0", "#e4e3f0", "#e3e2ef", "#e2e2ef", "#e2e1ef", "#e1e0ee", "#e0e0ee", "#e0dfee", "#dfdfed", "#dedeed", "#dedded", "#ddddec", "#dcdcec", "#dcdcec", "#dbdbec", "#dadaeb", "#dadaeb", "#d9d9ea", "#d8d8ea", "#d7d7e9", "#d6d6e9", "#d5d5e9", "#d4d4e8", "#d3d3e8", "#d2d2e7", "#d1d2e7", "#d0d1e6", "#cfd0e6", "#cecfe5", "#cecee5", "#cdcde4", "#cccce4", "#cbcbe3", "#cacae3", "#c9c9e2", "#c8c8e2", "#c7c8e1", "#c6c7e1", "#c5c6e1", "#c4c5e0", "#c3c4e0", "#c2c3df", "#c1c2df", "#c0c1de", "#bfc0de", "#bebfdd", "#bebedd", "#bdbedc", "#bcbddc", "#bbbbdb", "#babadb", "#b9b9da", "#b8b8d9", "#b7b7d9", "#b6b6d8", "#b5b5d7", "#b4b4d7", "#b3b3d6", "#b2b2d5", "#b1b1d5", "#b0afd4", "#afaed4", "#aeadd3", "#aeacd2", "#adabd2", "#acaad1", "#aba9d0", "#aaa8d0", "#a9a7cf", "#a8a6cf", "#a7a4ce", "#a6a3cd", "#a5a2cd", "#a4a1cc", "#a3a0cb", "#a29fcb", "#a19eca", "#a09dca", "#9f9cc9", "#9e9bc8", "#9e9ac8", "#9d99c7", "#9c98c7", "#9b97c6", "#9a96c6", "#9995c6", "#9894c5", "#9793c5", "#9692c4", "#9591c4", "#9490c3", "#9390c3", "#928fc3", "#918ec2", "#908dc2", "#8f8cc1", "#8e8bc1", "#8e8ac0", "#8d89c0", "#8c88bf", "#8b87bf", "#8a86bf", "#8986be", "#8885be", "#8784bd", "#8683bd", "#8582bc", "#8481bc", "#8380bb", "#827fbb", "#817ebb", "#807dba", "#807cba", "#7f7bb9", "#7e79b8", "#7d78b7", "#7d77b7", "#7c75b6", "#7b74b5", "#7b72b4", "#7a71b4", "#7970b3", "#796eb2", "#786db2", "#776cb1", "#776ab0", "#7669af", "#7567af", "#7566ae", "#7465ad", "#7363ad", "#7262ac", "#7261ab", "#715faa", "#705eaa", "#705ca9", "#6f5ba8", "#6e5aa8", "#6e58a7", "#6d57a6", "#6c55a5", "#6c54a5", "#6b53a4", "#6a51a3", "#6950a3", "#694fa2", "#684da1", "#674ca1", "#674ba0", "#66499f", "#65489f", "#65479e", "#64459e", "#63449d", "#63439c", "#62429c", "#61409b", "#613f9a", "#603e9a", "#5f3c99", "#5e3b98", "#5e3a98", "#5d3897", "#5c3797", "#5c3696", "#5b3495", "#5a3395", "#5a3294", "#593093", "#582f93", "#582e92", "#572c92", "#562b91", "#552a90", "#552890", "#54278f", "#53268f", "#53258e", "#52238d", "#51228d", "#51218c", "#50208c", "#4f1f8b", "#4f1d8b", "#4e1c8a", "#4d1b89", "#4d1a89", "#4c1888", "#4c1788", "#4b1687", "#4a1587", "#4a1486", "#491285", "#481185", "#481084", "#470f84", "#460d83", "#460c83", "#450b82", "#440a82", "#440981", "#430780", "#420680", "#42057f", "#41047f", "#40027e", "#40017e", "#3f007d"]), Ce.blues = Ce.fromStringList(["#f7fbff", "#f6faff", "#f5fafe", "#f5f9fe", "#f4f9fe", "#f3f8fe", "#f2f8fd", "#f2f7fd", "#f1f7fd", "#f0f6fd", "#eff6fc", "#eef5fc", "#eef5fc", "#edf4fc", "#ecf4fb", "#ebf3fb", "#eaf3fb", "#eaf2fb", "#e9f2fa", "#e8f1fa", "#e7f1fa", "#e7f0fa", "#e6f0f9", "#e5eff9", "#e4eff9", "#e3eef9", "#e3eef8", "#e2edf8", "#e1edf8", "#e0ecf8", "#dfecf7", "#dfebf7", "#deebf7", "#ddeaf7", "#dceaf6", "#dce9f6", "#dbe9f6", "#dae8f6", "#d9e8f5", "#d9e7f5", "#d8e7f5", "#d7e6f5", "#d6e6f4", "#d6e5f4", "#d5e5f4", "#d4e4f4", "#d3e4f3", "#d3e3f3", "#d2e3f3", "#d1e2f3", "#d0e2f2", "#d0e1f2", "#cfe1f2", "#cee0f2", "#cde0f1", "#cddff1", "#ccdff1", "#cbdef1", "#cadef0", "#caddf0", "#c9ddf0", "#c8dcf0", "#c7dcef", "#c7dbef", "#c6dbef", "#c4daee", "#c3daee", "#c2d9ee", "#c1d9ed", "#bfd8ed", "#bed8ec", "#bdd7ec", "#bcd7eb", "#bad6eb", "#b9d6ea", "#b8d5ea", "#b7d4ea", "#b5d4e9", "#b4d3e9", "#b3d3e8", "#b2d2e8", "#b0d2e7", "#afd1e7", "#aed1e7", "#add0e6", "#abd0e6", "#aacfe5", "#a9cfe5", "#a8cee4", "#a6cee4", "#a5cde3", "#a4cce3", "#a3cce3", "#a1cbe2", "#a0cbe2", "#9fcae1", "#9dcae1", "#9cc9e1", "#9ac8e0", "#99c7e0", "#97c6df", "#95c5df", "#94c4df", "#92c4de", "#91c3de", "#8fc2de", "#8dc1dd", "#8cc0dd", "#8abfdd", "#89bedc", "#87bddc", "#85bcdc", "#84bcdb", "#82bbdb", "#81badb", "#7fb9da", "#7db8da", "#7cb7da", "#7ab6d9", "#79b5d9", "#77b5d9", "#75b4d8", "#74b3d8", "#72b2d8", "#71b1d7", "#6fb0d7", "#6dafd7", "#6caed6", "#6aaed6", "#69add5", "#68acd5", "#66abd4", "#65aad4", "#64a9d3", "#63a8d3", "#61a7d2", "#60a7d2", "#5fa6d1", "#5da5d1", "#5ca4d0", "#5ba3d0", "#5aa2cf", "#58a1cf", "#57a0ce", "#56a0ce", "#549fcd", "#539ecd", "#529dcc", "#519ccc", "#4f9bcb", "#4e9acb", "#4d99ca", "#4b98ca", "#4a98c9", "#4997c9", "#4896c8", "#4695c8", "#4594c7", "#4493c7", "#4292c6", "#4191c6", "#4090c5", "#3f8fc5", "#3e8ec4", "#3d8dc4", "#3c8cc3", "#3b8bc2", "#3a8ac2", "#3989c1", "#3888c1", "#3787c0", "#3686c0", "#3585bf", "#3484bf", "#3383be", "#3282be", "#3181bd", "#3080bd", "#2f7fbc", "#2e7ebc", "#2d7dbb", "#2c7cba", "#2b7bba", "#2a7ab9", "#2979b9", "#2777b8", "#2676b8", "#2575b7", "#2474b7", "#2373b6", "#2272b6", "#2171b5", "#2070b4", "#206fb4", "#1f6eb3", "#1e6db2", "#1d6cb1", "#1c6bb0", "#1c6ab0", "#1b69af", "#1a68ae", "#1967ad", "#1966ad", "#1865ac", "#1764ab", "#1663aa", "#1562a9", "#1561a9", "#1460a8", "#135fa7", "#125ea6", "#125da6", "#115ca5", "#105ba4", "#0f5aa3", "#0e59a2", "#0e58a2", "#0d57a1", "#0c56a0", "#0b559f", "#0a549e", "#0a539e", "#09529d", "#08519c", "#08509b", "#084f99", "#084e98", "#084d96", "#084c95", "#084b93", "#084a91", "#084990", "#08488e", "#08478d", "#08468b", "#08458a", "#084488", "#084387", "#084285", "#084184", "#084082", "#083e81", "#083d7f", "#083c7d", "#083b7c", "#083a7a", "#083979", "#083877", "#083776", "#083674", "#083573", "#083471", "#083370", "#08326e", "#08316d", "#08306b"]), Ce.greens = Ce.fromStringList(["#f7fcf5", "#f6fcf4", "#f6fcf4", "#f5fbf3", "#f5fbf2", "#f4fbf2", "#f4fbf1", "#f3faf0", "#f2faf0", "#f2faef", "#f1faee", "#f1faee", "#f0f9ed", "#f0f9ec", "#eff9ec", "#eff9eb", "#eef8ea", "#edf8ea", "#edf8e9", "#ecf8e8", "#ecf8e8", "#ebf7e7", "#ebf7e7", "#eaf7e6", "#e9f7e5", "#e9f7e5", "#e8f6e4", "#e8f6e3", "#e7f6e3", "#e7f6e2", "#e6f5e1", "#e5f5e1", "#e5f5e0", "#e4f5df", "#e3f4de", "#e2f4dd", "#e1f3dc", "#e0f3db", "#dff3da", "#def2d9", "#ddf2d8", "#dcf2d7", "#dbf1d6", "#dbf1d5", "#daf0d4", "#d9f0d3", "#d8f0d2", "#d7efd1", "#d6efd0", "#d5efcf", "#d4eece", "#d3eecd", "#d2edcc", "#d1edcb", "#d0edca", "#cfecc9", "#ceecc8", "#cdecc7", "#ccebc6", "#cbebc5", "#cbeac4", "#caeac3", "#c9eac2", "#c8e9c1", "#c7e9c0", "#c6e8bf", "#c4e8bd", "#c3e7bc", "#c2e7bb", "#c1e6ba", "#c0e6b9", "#bee5b8", "#bde5b6", "#bce4b5", "#bbe4b4", "#bae3b3", "#b8e3b2", "#b7e2b1", "#b6e2af", "#b5e1ae", "#b4e1ad", "#b2e0ac", "#b1e0ab", "#b0dfaa", "#afdfa8", "#aedea7", "#acdea6", "#abdda5", "#aadda4", "#a9dca3", "#a8dca2", "#a7dba0", "#a5db9f", "#a4da9e", "#a3da9d", "#a2d99c", "#a0d99b", "#9fd899", "#9ed798", "#9cd797", "#9bd696", "#99d595", "#98d594", "#97d492", "#95d391", "#94d390", "#92d28f", "#91d28e", "#90d18d", "#8ed08b", "#8dd08a", "#8bcf89", "#8ace88", "#88ce87", "#87cd86", "#86cc85", "#84cc83", "#83cb82", "#81ca81", "#80ca80", "#7fc97f", "#7dc87e", "#7cc87c", "#7ac77b", "#79c67a", "#78c679", "#76c578", "#75c477", "#73c476", "#72c375", "#70c274", "#6ec173", "#6dc072", "#6bc072", "#6abf71", "#68be70", "#66bd6f", "#65bd6f", "#63bc6e", "#62bb6d", "#60ba6c", "#5eb96b", "#5db96b", "#5bb86a", "#5ab769", "#58b668", "#56b567", "#55b567", "#53b466", "#52b365", "#50b264", "#4eb264", "#4db163", "#4bb062", "#4aaf61", "#48ae60", "#46ae60", "#45ad5f", "#43ac5e", "#42ab5d", "#40aa5d", "#3fa95c", "#3fa85b", "#3ea75a", "#3da65a", "#3ca559", "#3ba458", "#3aa357", "#39a257", "#38a156", "#37a055", "#369f54", "#359e53", "#349d53", "#339c52", "#329b51", "#319a50", "#309950", "#2f984f", "#2f974e", "#2e964d", "#2d954d", "#2c944c", "#2b934b", "#2a924a", "#29914a", "#289049", "#278f48", "#268e47", "#258d47", "#248c46", "#238b45", "#228a44", "#218944", "#208843", "#1f8742", "#1e8741", "#1d8640", "#1c8540", "#1a843f", "#19833e", "#18823d", "#17813d", "#16803c", "#157f3b", "#147e3a", "#137d39", "#127c39", "#117b38", "#107a37", "#0e7936", "#0d7836", "#0c7735", "#0b7734", "#0a7633", "#097532", "#087432", "#077331", "#067230", "#05712f", "#03702e", "#026f2e", "#016e2d", "#006d2c", "#006c2c", "#006b2b", "#00692a", "#00682a", "#006729", "#006529", "#006428", "#006328", "#006227", "#006027", "#005f26", "#005e26", "#005c25", "#005b25", "#005a24", "#005924", "#005723", "#005622", "#005522", "#005321", "#005221", "#005120", "#005020", "#004e1f", "#004d1f", "#004c1e", "#004a1e", "#00491d", "#00481d", "#00471c", "#00451c", "#00441b"]), Ce.oranges = Ce.fromStringList(["#fff5eb", "#fff5ea", "#fff4e9", "#fff4e8", "#fff3e7", "#fff3e6", "#fff2e6", "#fff2e5", "#fff1e4", "#fff1e3", "#fff0e2", "#fff0e1", "#ffefe0", "#ffefdf", "#ffeede", "#ffeedd", "#feeddc", "#feeddc", "#feeddb", "#feecda", "#feecd9", "#feebd8", "#feebd7", "#feead6", "#feead5", "#fee9d4", "#fee9d3", "#fee8d2", "#fee8d2", "#fee7d1", "#fee7d0", "#fee6cf", "#fee6ce", "#fee5cc", "#fee5cb", "#fee4ca", "#fee3c8", "#fee2c7", "#fee2c6", "#fee1c4", "#fee0c3", "#fee0c1", "#fedfc0", "#fedebf", "#fedebd", "#feddbc", "#fedcbb", "#fedcb9", "#fddbb8", "#fddab6", "#fdd9b5", "#fdd9b4", "#fdd8b2", "#fdd7b1", "#fdd7af", "#fdd6ae", "#fdd5ad", "#fdd5ab", "#fdd4aa", "#fdd3a9", "#fdd3a7", "#fdd2a6", "#fdd1a4", "#fdd1a3", "#fdd0a2", "#fdcfa0", "#fdce9e", "#fdcd9c", "#fdcb9b", "#fdca99", "#fdc997", "#fdc895", "#fdc794", "#fdc692", "#fdc590", "#fdc48f", "#fdc38d", "#fdc28b", "#fdc189", "#fdc088", "#fdbf86", "#fdbe84", "#fdbd83", "#fdbb81", "#fdba7f", "#fdb97d", "#fdb87c", "#fdb77a", "#fdb678", "#fdb576", "#fdb475", "#fdb373", "#fdb271", "#fdb170", "#fdb06e", "#fdaf6c", "#fdae6a", "#fdad69", "#fdac67", "#fdab66", "#fda965", "#fda863", "#fda762", "#fda660", "#fda55f", "#fda45d", "#fda35c", "#fda25a", "#fda159", "#fda057", "#fd9f56", "#fd9e54", "#fd9d53", "#fd9c51", "#fd9b50", "#fd9a4e", "#fd994d", "#fd984b", "#fd974a", "#fd9649", "#fd9547", "#fd9446", "#fd9344", "#fd9243", "#fd9141", "#fd9040", "#fd8f3e", "#fd8e3d", "#fd8c3b", "#fc8b3a", "#fc8a39", "#fc8937", "#fb8836", "#fb8735", "#fb8634", "#fa8532", "#fa8331", "#f98230", "#f9812e", "#f9802d", "#f87f2c", "#f87e2b", "#f87d29", "#f77b28", "#f77a27", "#f67925", "#f67824", "#f67723", "#f57622", "#f57520", "#f5741f", "#f4721e", "#f4711c", "#f3701b", "#f36f1a", "#f36e19", "#f26d17", "#f26c16", "#f26b15", "#f16913", "#f16813", "#f06712", "#ef6612", "#ee6511", "#ee6410", "#ed6310", "#ec620f", "#eb610f", "#eb600e", "#ea5f0e", "#e95e0d", "#e85d0c", "#e75c0c", "#e75b0b", "#e65a0b", "#e5590a", "#e4580a", "#e45709", "#e35608", "#e25508", "#e15407", "#e15307", "#e05206", "#df5106", "#de5005", "#de4e05", "#dd4d04", "#dc4c03", "#db4b03", "#db4a02", "#da4902", "#d94801", "#d84801", "#d64701", "#d54601", "#d34601", "#d14501", "#d04501", "#ce4401", "#cd4401", "#cb4302", "#c94202", "#c84202", "#c64102", "#c54102", "#c34002", "#c14002", "#c03f02", "#be3f02", "#bd3e02", "#bb3d02", "#b93d02", "#b83c02", "#b63c02", "#b53b02", "#b33b02", "#b13a03", "#b03903", "#ae3903", "#ad3803", "#ab3803", "#a93703", "#a83703", "#a63603", "#a53603", "#a43503", "#a23503", "#a13403", "#a03403", "#9f3303", "#9e3303", "#9c3203", "#9b3203", "#9a3103", "#993103", "#973003", "#963003", "#952f03", "#942f03", "#932f03", "#912e04", "#902e04", "#8f2d04", "#8e2d04", "#8c2c04", "#8b2c04", "#8a2b04", "#892b04", "#882a04", "#862a04", "#852904", "#842904", "#832804", "#812804", "#802704", "#7f2704"]), Ce.reds = Ce.fromStringList(["#fff5f0", "#fff4ef", "#fff4ee", "#fff3ed", "#fff2ec", "#fff2eb", "#fff1ea", "#fff0e9", "#fff0e8", "#ffefe8", "#ffeee7", "#ffeee6", "#ffede5", "#ffece4", "#ffece3", "#ffebe2", "#feeae1", "#feeae0", "#fee9df", "#fee8de", "#fee8dd", "#fee7dc", "#fee7db", "#fee6da", "#fee5d9", "#fee5d8", "#fee4d8", "#fee3d7", "#fee3d6", "#fee2d5", "#fee1d4", "#fee1d3", "#fee0d2", "#fedfd0", "#fedecf", "#fedccd", "#fedbcc", "#fedaca", "#fed9c9", "#fed8c7", "#fdd7c6", "#fdd5c4", "#fdd4c2", "#fdd3c1", "#fdd2bf", "#fdd1be", "#fdd0bc", "#fdcebb", "#fdcdb9", "#fdccb8", "#fdcbb6", "#fdcab5", "#fdc9b3", "#fdc7b2", "#fdc6b0", "#fdc5ae", "#fcc4ad", "#fcc3ab", "#fcc2aa", "#fcc1a8", "#fcbfa7", "#fcbea5", "#fcbda4", "#fcbca2", "#fcbba1", "#fcb99f", "#fcb89e", "#fcb79c", "#fcb69b", "#fcb499", "#fcb398", "#fcb296", "#fcb095", "#fcaf93", "#fcae92", "#fcad90", "#fcab8f", "#fcaa8d", "#fca98c", "#fca78b", "#fca689", "#fca588", "#fca486", "#fca285", "#fca183", "#fca082", "#fc9e80", "#fc9d7f", "#fc9c7d", "#fc9b7c", "#fc997a", "#fc9879", "#fc9777", "#fc9576", "#fc9474", "#fc9373", "#fc9272", "#fc9070", "#fc8f6f", "#fc8e6e", "#fc8d6d", "#fc8b6b", "#fc8a6a", "#fc8969", "#fc8767", "#fc8666", "#fc8565", "#fc8464", "#fc8262", "#fc8161", "#fc8060", "#fc7f5f", "#fb7d5d", "#fb7c5c", "#fb7b5b", "#fb7a5a", "#fb7858", "#fb7757", "#fb7656", "#fb7555", "#fb7353", "#fb7252", "#fb7151", "#fb7050", "#fb6e4e", "#fb6d4d", "#fb6c4c", "#fb6b4b", "#fb694a", "#fa6849", "#fa6648", "#fa6547", "#f96346", "#f96245", "#f96044", "#f85f43", "#f85d42", "#f75c41", "#f75b40", "#f7593f", "#f6583e", "#f6563d", "#f6553c", "#f5533b", "#f5523a", "#f4503a", "#f44f39", "#f44d38", "#f34c37", "#f34a36", "#f34935", "#f24734", "#f24633", "#f14432", "#f14331", "#f14130", "#f0402f", "#f03f2e", "#f03d2d", "#ef3c2c", "#ee3a2c", "#ed392b", "#ec382b", "#eb372a", "#ea362a", "#e93529", "#e83429", "#e63328", "#e53228", "#e43027", "#e32f27", "#e22e27", "#e12d26", "#e02c26", "#de2b25", "#dd2a25", "#dc2924", "#db2824", "#da2723", "#d92523", "#d82422", "#d72322", "#d52221", "#d42121", "#d32020", "#d21f20", "#d11e1f", "#d01d1f", "#cf1c1f", "#ce1a1e", "#cc191e", "#cb181d", "#ca181d", "#c9181d", "#c8171c", "#c7171c", "#c5171c", "#c4161c", "#c3161b", "#c2161b", "#c1161b", "#bf151b", "#be151a", "#bd151a", "#bc141a", "#bb141a", "#b91419", "#b81419", "#b71319", "#b61319", "#b51318", "#b31218", "#b21218", "#b11218", "#b01217", "#af1117", "#ad1117", "#ac1117", "#ab1016", "#aa1016", "#a91016", "#a81016", "#a60f15", "#a50f15", "#a30f15", "#a10e15", "#9f0e14", "#9d0d14", "#9c0d14", "#9a0c14", "#980c13", "#960b13", "#940b13", "#920a13", "#900a12", "#8e0912", "#8c0912", "#8a0812", "#880811", "#860811", "#840711", "#820711", "#800610", "#7e0610", "#7c0510", "#7a0510", "#79040f", "#77040f", "#75030f", "#73030f", "#71020e", "#6f020e", "#6d010e", "#6b010e", "#69000d", "#67000d"]), Ce.rdYlBu = Ce.fromStringList(["#a50026", "#a70226", "#a90426", "#ab0626", "#ad0826", "#af0926", "#b10b26", "#b30d26", "#b50f26", "#b71126", "#b91326", "#bb1526", "#bd1726", "#be1827", "#c01a27", "#c21c27", "#c41e27", "#c62027", "#c82227", "#ca2427", "#cc2627", "#ce2827", "#d02927", "#d22b27", "#d42d27", "#d62f27", "#d83128", "#d93429", "#da362a", "#db382b", "#dc3b2c", "#dd3d2d", "#de402e", "#e0422f", "#e14430", "#e24731", "#e34933", "#e44c34", "#e54e35", "#e65036", "#e75337", "#e95538", "#ea5739", "#eb5a3a", "#ec5c3b", "#ed5f3c", "#ee613e", "#ef633f", "#f16640", "#f26841", "#f36b42", "#f46d43", "#f47044", "#f57245", "#f57547", "#f57748", "#f67a49", "#f67c4a", "#f67f4b", "#f7814c", "#f7844e", "#f8864f", "#f88950", "#f88c51", "#f98e52", "#f99153", "#f99355", "#fa9656", "#fa9857", "#fa9b58", "#fb9d59", "#fba05b", "#fba35c", "#fca55d", "#fca85e", "#fcaa5f", "#fdad60", "#fdaf62", "#fdb164", "#fdb366", "#fdb567", "#fdb769", "#fdb96b", "#fdbb6d", "#fdbd6f", "#fdbf71", "#fdc173", "#fdc374", "#fdc576", "#fdc778", "#fec87a", "#feca7c", "#fecc7e", "#fece7f", "#fed081", "#fed283", "#fed485", "#fed687", "#fed889", "#feda8a", "#fedc8c", "#fede8e", "#fee090", "#fee192", "#fee294", "#fee496", "#fee597", "#fee699", "#fee79b", "#fee99d", "#feea9f", "#feeba1", "#feeca2", "#feeda4", "#feefa6", "#fff0a8", "#fff1aa", "#fff2ac", "#fff3ad", "#fff5af", "#fff6b1", "#fff7b3", "#fff8b5", "#fffab7", "#fffbb9", "#fffcba", "#fffdbc", "#fffebe", "#feffc0", "#fdfec2", "#fcfec5", "#fbfdc7", "#fafdc9", "#f8fccb", "#f7fcce", "#f6fbd0", "#f5fbd2", "#f3fbd4", "#f2fad6", "#f1fad9", "#f0f9db", "#eff9dd", "#edf8df", "#ecf8e2", "#ebf7e4", "#eaf7e6", "#e9f6e8", "#e7f6eb", "#e6f5ed", "#e5f5ef", "#e4f4f1", "#e2f4f4", "#e1f3f6", "#e0f3f8", "#def2f7", "#dcf1f7", "#daf0f6", "#d8eff6", "#d6eef5", "#d4edf4", "#d1ecf4", "#cfebf3", "#cdeaf3", "#cbe9f2", "#c9e8f2", "#c7e7f1", "#c5e6f0", "#c3e5f0", "#c1e4ef", "#bfe3ef", "#bde2ee", "#bbe1ed", "#b9e0ed", "#b6dfec", "#b4deec", "#b2ddeb", "#b0dcea", "#aedbea", "#acdae9", "#aad8e9", "#a8d6e8", "#a6d5e7", "#a3d3e6", "#a1d1e5", "#9fd0e4", "#9dcee3", "#9bcce2", "#99cae1", "#97c9e0", "#94c7df", "#92c5de", "#90c3dd", "#8ec2dc", "#8cc0db", "#8abeda", "#87bdd9", "#85bbd9", "#83b9d8", "#81b7d7", "#7fb6d6", "#7db4d5", "#7ab2d4", "#78b0d3", "#76afd2", "#74add1", "#72abd0", "#70a9cf", "#6ea6ce", "#6da4cc", "#6ba2cb", "#69a0ca", "#679ec9", "#659bc8", "#6399c7", "#6297c6", "#6095c4", "#5e93c3", "#5c90c2", "#5a8ec1", "#588cc0", "#578abf", "#5588be", "#5385bd", "#5183bb", "#4f81ba", "#4d7fb9", "#4b7db8", "#4a7ab7", "#4878b6", "#4676b5", "#4574b3", "#4471b2", "#436fb1", "#426cb0", "#416aaf", "#4167ad", "#4065ac", "#3f62ab", "#3e60aa", "#3e5ea8", "#3d5ba7", "#3c59a6", "#3b56a5", "#3a54a4", "#3a51a2", "#394fa1", "#384ca0", "#374a9f", "#36479e", "#36459c", "#35429b", "#34409a", "#333d99", "#333b97", "#323896", "#313695"]), P._version = 0, P._frameWizardDialog = new Go(), P._dataVizWizardDialog = new Yo(), P._referenceFramePropsDialog = new qo(), P._greatCircleDialog = new Xo(), P._tourLayers = !1, P._layerMaps = {}, P._layerMapsTours = {}, P._allMaps = {}, P._allMapsTours = {}, P._currentMap = "Earth", P._layerList = {}, P._layerListTours = {}, P._moonfile = "", P._selectedLayer = null, P._lastMenuClick = new Mt(), Pn._type = null, cr.maX_VERTICES = 8e3, cr.maX_POLYGONS = 8e3, ga._orbitalToWwt = tt.create(1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1), ga._initBegun = !1, hr._pinTextureCache = {}, hr._pins = null, function() {
+        }), S.g_ACft = [new Kt(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1719914, -2, -25, 0, 25, -13, 1578089, 156, 10, 32, 684185, -358), new Kt(0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6434, 141, 28007, -107, 25697, -95, -5904, -130, 11141, -48, -2559, -55), new Kt(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 715, 0, 0, 0, 6, 0, -657, 0, -15, 0, -282, 0), new Kt(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 715, 0, 0, 0, 0, 0, -656, 0, 0, 0, -285, 0), new Kt(0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 486, -5, -236, -4, -216, -4, -446, 5, -94, 0, -193, 0), new Kt(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 159, 0, 0, 0, 2, 0, -147, 0, -6, 0, -61, 0), new Kt(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 26, 0, 0, 0, -59, 0), new Kt(0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 39, 0, 0, 0, 0, 0, -36, 0, 0, 0, -16, 0), new Kt(0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 33, 0, -10, 0, -9, 0, -30, 0, -5, 0, -13, 0), new Kt(0, 2, 0, -1, 0, 0, 0, 0, 0, 0, 0, 31, 0, 1, 0, 1, 0, -28, 0, 0, 0, -12, 0), new Kt(0, 3, -8, 3, 0, 0, 0, 0, 0, 0, 0, 8, 0, -28, 0, 25, 0, 8, 0, 11, 0, 3, 0), new Kt(0, 5, -8, 3, 0, 0, 0, 0, 0, 0, 0, 8, 0, -28, 0, -25, 0, -8, 0, -11, 0, -3, 0), new Kt(2, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 0, -19, 0, 0, 0, -8, 0), new Kt(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -19, 0, 0, 0, 0, 0, 17, 0, 0, 0, 8, 0), new Kt(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, -16, 0, 0, 0, -7, 0), new Kt(0, 1, 0, -2, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 15, 0, 1, 0, 7, 0), new Kt(0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 16, 0, 0, 0, 1, 0, -15, 0, -3, 0, -6, 0), new Kt(0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 11, 0, -1, 0, -1, 0, -10, 0, -1, 0, -5, 0), new Kt(2, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -11, 0, -10, 0, 0, 0, -4, 0, 0, 0), new Kt(0, 1, 0, -1, 0, 0, 0, 0, 0, 0, 0, -11, 0, -2, 0, -2, 0, 9, 0, -1, 0, 4, 0), new Kt(0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, -7, 0, -8, 0, -8, 0, 6, 0, -3, 0, 3, 0), new Kt(0, 3, 0, -2, 0, 0, 0, 0, 0, 0, 0, -10, 0, 0, 0, 0, 0, 9, 0, 0, 0, 4, 0), new Kt(1, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, -9, 0, 0, 0, 0, 0, -9, 0, 0, 0, -4, 0), new Kt(2, -3, 0, 0, 0, 0, 0, 0, 0, 0, 0, -9, 0, 0, 0, 0, 0, -8, 0, 0, 0, -4, 0), new Kt(0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, -9, 0, -8, 0, 0, 0, -3, 0, 0, 0), new Kt(2, -4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -9, 0, 8, 0, 0, 0, 3, 0, 0, 0), new Kt(0, 3, -2, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, -8, 0, 0, 0, -3, 0), new Kt(0, 0, 0, 0, 0, 0, 0, 1, 2, -1, 0, 8, 0, 0, 0, 0, 0, -7, 0, 0, 0, -3, 0), new Kt(8, -12, 0, 0, 0, 0, 0, 0, 0, 0, 0, -4, 0, -7, 0, -6, 0, 4, 0, -3, 0, 2, 0), new Kt(8, -14, 0, 0, 0, 0, 0, 0, 0, 0, 0, -4, 0, -7, 0, 6, 0, -4, 0, 3, 0, -2, 0), new Kt(0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, -6, 0, -5, 0, -4, 0, 5, 0, -2, 0, 2, 0), new Kt(3, -4, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, -1, 0, -2, 0, -7, 0, 1, 0, -4, 0), new Kt(0, 2, 0, -2, 0, 0, 0, 0, 0, 0, 0, 4, 0, -6, 0, -5, 0, -4, 0, -2, 0, -2, 0), new Kt(3, -3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -7, 0, -6, 0, 0, 0, -3, 0, 0, 0), new Kt(0, 2, -2, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, -5, 0, -4, 0, -5, 0, -2, 0, -2, 0), new Kt(0, 0, 0, 0, 0, 0, 0, 1, -2, 0, 0, 5, 0, 0, 0, 0, 0, -5, 0, 0, 0, -2, 0)], S.deltaTTable = [121, 112, 103, 95, 88, 82, 77, 72, 68, 63, 60, 56, 53, 51, 48, 46, 44, 42, 40, 38, 35, 33, 31, 29, 26, 24, 22, 20, 18, 16, 14, 12, 11, 10, 9, 8, 7, 7, 7, 7, 7, 7, 8, 8, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 12, 12, 12, 12, 13, 13, 13, 14, 14, 14, 14, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 15, 15, 14, 13, 13.1, 12.5, 12.2, 12, 12, 12, 12, 12, 12, 11.9, 11.6, 11, 10.2, 9.2, 8.2, 7.1, 6.2, 5.6, 5.4, 5.3, 5.4, 5.6, 5.9, 6.2, 6.5, 6.8, 7.1, 7.3, 7.5, 7.6, 7.7, 7.3, 6.2, 5.2, 2.7, 1.4, -1.2, -2.8, -3.8, -4.8, -5.5, -5.3, -5.6, -5.7, -5.9, -6, -6.3, -6.5, -6.2, -4.7, -2.8, -0.1, 2.6, 5.3, 7.7, 10.4, 13.3, 16, 18.2, 20.2, 21.2, 22.4, 23.5, 23.8, 24.3, 24, 23.9, 23.9, 23.7, 24, 24.3, 25.3, 26.2, 27.3, 28.2, 29.1, 30, 30.7, 31.4, 32.2, 33.1, 34, 35, 36.5, 38.3, 40.18, 42.2, 44.5, 46.5, 48.5, 50.54, 52.2, 53.8, 54.9, 55.8, 56.86, 58.31, 59.99, 61.63, 62.97], S.g_L0EarthCoefficients = [new o(175347046, 0, 0), new o(3341656, 4.6692568, 6283.07585), new o(34894, 4.6261, 12566.1517), new o(3497, 2.7441, 5753.3849), new o(3418, 2.8289, 3.5231), new o(3136, 3.6277, 77713.7715), new o(2676, 4.4181, 7860.4194), new o(2343, 6.1352, 3930.2097), new o(1324, 0.7425, 11506.7698), new o(1273, 2.0371, 529.691), new o(1199, 1.1096, 1577.3435), new o(990, 5.233, 5884.927), new o(902, 2.045, 26.298), new o(857, 3.508, 398.149), new o(780, 1.179, 5223.694), new o(753, 2.533, 5507.553), new o(505, 4.583, 18849.228), new o(492, 4.205, 775.523), new o(357, 2.92, 0.067), new o(317, 5.849, 11790.629), new o(284, 1.899, 796.288), new o(271, 0.315, 10977.079), new o(243, 0.345, 5486.778), new o(206, 4.806, 2544.314), new o(205, 1.869, 5573.143), new o(202, 2.458, 6069.777), new o(156, 0.833, 213.299), new o(132, 3.411, 2942.463), new o(126, 1.083, 20.775), new o(115, 0.645, 0.98), new o(103, 0.636, 4694.003), new o(102, 0.976, 15720.839), new o(102, 4.267, 7.114), new o(99, 6.21, 2146.17), new o(98, 0.68, 155.42), new o(86, 5.98, 161000.69), new o(85, 1.3, 6275.96), new o(85, 3.67, 71430.7), new o(80, 1.81, 17260.15), new o(79, 3.04, 12036.46), new o(75, 1.76, 5088.63), new o(74, 3.5, 3154.69), new o(74, 4.68, 801.82), new o(70, 0.83, 9437.76), new o(62, 3.98, 8827.39), new o(61, 1.82, 7084.9), new o(57, 2.78, 6286.6), new o(56, 4.39, 14143.5), new o(56, 3.47, 6279.55), new o(52, 0.19, 12139.55), new o(52, 1.33, 1748.02), new o(51, 0.28, 5856.48), new o(49, 0.49, 1194.45), new o(41, 5.37, 8429.24), new o(41, 2.4, 19651.05), new o(39, 6.17, 10447.39), new o(37, 6.04, 10213.29), new o(37, 2.57, 1059.38), new o(36, 1.71, 2352.87), new o(36, 1.78, 6812.77), new o(33, 0.59, 17789.85), new o(30, 0.44, 83996.85), new o(30, 2.74, 1349.87), new o(25, 3.16, 4690.48)], S.g_L1EarthCoefficients = [new o(628331966747, 0, 0), new o(206059, 2.678235, 6283.07585), new o(4303, 2.6351, 12566.1517), new o(425, 1.59, 3.523), new o(119, 5.796, 26.298), new o(109, 2.966, 1577.344), new o(93, 2.59, 18849.23), new o(72, 1.14, 529.69), new o(68, 1.87, 398.15), new o(67, 4.41, 5507.55), new o(59, 2.89, 5223.69), new o(56, 2.17, 155.42), new o(45, 0.4, 796.3), new o(36, 0.47, 775.52), new o(29, 2.65, 7.11), new o(21, 5.43, 0.98), new o(19, 1.85, 5486.78), new o(19, 4.97, 213.3), new o(17, 2.99, 6275.96), new o(16, 0.03, 2544.31), new o(16, 1.43, 2146.17), new o(15, 1.21, 10977.08), new o(12, 2.83, 1748.02), new o(12, 3.26, 5088.63), new o(12, 5.27, 1194.45), new o(12, 2.08, 4694), new o(11, 0.77, 553.57), new o(10, 1.3, 6286.6), new o(10, 4.24, 1349.87), new o(9, 2.7, 242.73), new o(9, 5.64, 951.72), new o(8, 5.3, 2352.87), new o(6, 2.65, 9437.76), new o(6, 4.67, 4690.48)], S.g_L2EarthCoefficients = [new o(52919, 0, 0), new o(8720, 1.0721, 6283.0758), new o(309, 0.867, 12566.152), new o(27, 0.05, 3.52), new o(16, 5.19, 26.3), new o(16, 3.68, 155.42), new o(10, 0.76, 18849.23), new o(9, 2.06, 77713.77), new o(7, 0.83, 775.52), new o(5, 4.66, 1577.34), new o(4, 1.03, 7.11), new o(4, 3.44, 5573.14), new o(3, 5.14, 796.3), new o(3, 6.05, 5507.55), new o(3, 1.19, 242.73), new o(3, 6.12, 529.69), new o(3, 0.31, 398.15), new o(3, 2.28, 553.57), new o(2, 4.38, 5223.69), new o(2, 3.75, 0.98)], S.g_L3EarthCoefficients = [new o(289, 5.844, 6283.076), new o(35, 0, 0), new o(17, 5.49, 12566.15), new o(3, 5.2, 155.42), new o(1, 4.72, 3.52), new o(1, 5.3, 18849.23), new o(1, 5.97, 242.73)], S.g_L4EarthCoefficients = [new o(114, 3.142, 0), new o(8, 4.13, 6283.08), new o(1, 3.84, 12566.15)], S.g_L5EarthCoefficients = [new o(1, 3.14, 0)], S.g_B0EarthCoefficients = [new o(280, 3.199, 84334.662), new o(102, 5.422, 5507.553), new o(80, 3.88, 5223.69), new o(44, 3.7, 2352.87), new o(32, 4, 1577.34)], S.g_B1EarthCoefficients = [new o(9, 3.9, 5507.55), new o(6, 1.73, 5223.69)], S.g_B2EarthCoefficients = [new o(22378, 3.38509, 10213.28555), new o(282, 0, 0), new o(173, 5.256, 20426.571), new o(27, 3.87, 30639.86)], S.g_B3EarthCoefficients = [new o(647, 4.992, 10213.286), new o(20, 3.14, 0), new o(6, 0.77, 20426.57), new o(3, 5.44, 30639.86)], S.g_B4EarthCoefficients = [new o(14, 0.32, 10213.29)], S.g_R0EarthCoefficients = [new o(100013989, 0, 0), new o(1670700, 3.0984635, 6283.07585), new o(13956, 3.05525, 12566.1517), new o(3084, 5.1985, 77713.7715), new o(1628, 1.1739, 5753.3849), new o(1576, 2.8469, 7860.4194), new o(925, 5.453, 11506.77), new o(542, 4.564, 3930.21), new o(472, 3.661, 5884.927), new o(346, 0.964, 5507.553), new o(329, 5.9, 5223.694), new o(307, 0.299, 5573.143), new o(243, 4.273, 11790.629), new o(212, 5.847, 1577.344), new o(186, 5.022, 10977.079), new o(175, 3.012, 18849.228), new o(110, 5.055, 5486.778), new o(98, 0.89, 6069.78), new o(86, 5.69, 15720.84), new o(86, 1.27, 161000.69), new o(65, 0.27, 17260.15), new o(63, 0.92, 529.69), new o(57, 2.01, 83996.85), new o(56, 5.24, 71430.7), new o(49, 3.25, 2544.31), new o(47, 2.58, 775.52), new o(45, 5.54, 9437.76), new o(43, 6.01, 6275.96), new o(39, 5.36, 4694), new o(38, 2.39, 8827.39), new o(37, 0.83, 19651.05), new o(37, 4.9, 12139.55), new o(36, 1.67, 12036.46), new o(35, 1.84, 2942.46), new o(33, 0.24, 7084.9), new o(32, 0.18, 5088.63), new o(32, 1.78, 398.15), new o(28, 1.21, 6286.6), new o(28, 1.9, 6279.55), new o(26, 4.59, 10447.39)], S.g_R1EarthCoefficients = [new o(103019, 1.10749, 6283.07585), new o(1721, 1.0644, 12566.1517), new o(702, 3.142, 0), new o(32, 1.02, 18849.23), new o(31, 2.84, 5507.55), new o(25, 1.32, 5223.69), new o(18, 1.42, 1577.34), new o(10, 5.91, 10977.08), new o(9, 1.42, 6275.96), new o(9, 0.27, 5486.78)], S.g_R2EarthCoefficients = [new o(4359, 5.7846, 6283.0758), new o(124, 5.579, 12566.152), new o(12, 3.14, 0), new o(9, 3.63, 77713.77), new o(6, 1.87, 5573.14), new o(3, 5.47, 18849.23)], S.g_R3EarthCoefficients = [new o(145, 4.273, 6283.076), new o(7, 3.92, 12566.15)], S.g_R4EarthCoefficients = [new o(4, 2.56, 6283.08)], S.g_L1EarthCoefficientsJ2000 = [new o(628307584999, 0, 0), new o(206059, 2.678235, 6283.07585), new o(4303, 2.6351, 12566.1517), new o(425, 1.59, 3.523), new o(119, 5.796, 26.298), new o(109, 2.966, 1577.344), new o(93, 2.59, 18849.23), new o(72, 1.14, 529.69), new o(68, 1.87, 398.15), new o(67, 4.41, 5507.55), new o(59, 2.89, 5223.69), new o(56, 2.17, 155.42), new o(45, 0.4, 796.3), new o(36, 0.47, 775.52), new o(29, 2.65, 7.11), new o(21, 5.43, 0.98), new o(19, 1.85, 5486.78), new o(19, 4.97, 213.3), new o(17, 2.99, 6275.96), new o(16, 0.03, 2544.31), new o(16, 1.43, 2146.17), new o(15, 1.21, 10977.08), new o(12, 2.83, 1748.02), new o(12, 3.26, 5088.63), new o(12, 5.27, 1194.45), new o(12, 2.08, 4694), new o(11, 0.77, 553.57), new o(10, 1.3, 6286.6), new o(10, 4.24, 1349.87), new o(9, 2.7, 242.73), new o(9, 5.64, 951.72), new o(8, 5.3, 2352.87), new o(6, 2.65, 9437.76), new o(6, 4.67, 4690.48)], S.g_L2EarthCoefficientsJ2000 = [new o(8722, 1.0725, 6283.0758), new o(991, 3.1416, 0), new o(295, 0.437, 12566.152), new o(27, 0.05, 3.52), new o(16, 5.19, 26.3), new o(16, 3.69, 155.42), new o(9, 0.3, 18849.23), new o(9, 2.06, 77713.77), new o(7, 0.83, 775.52), new o(5, 4.66, 1577.34), new o(4, 1.03, 7.11), new o(4, 3.44, 5573.14), new o(3, 5.14, 796.3), new o(3, 6.05, 5507.55), new o(3, 1.19, 242.73), new o(3, 6.12, 529.69), new o(3, 0.3, 398.15), new o(3, 2.28, 553.57), new o(2, 4.38, 5223.69), new o(2, 3.75, 0.98)], S.g_L3EarthCoefficientsJ2000 = [new o(289, 5.842, 6283.076), new o(21, 6.05, 12566.15), new o(3, 5.2, 155.42), new o(3, 3.14, 0), new o(1, 4.72, 3.52), new o(1, 5.97, 242.73), new o(1, 5.54, 18849.23)], S.g_L4EarthCoefficientsJ2000 = [new o(8, 4.14, 6283.08), new o(1, 3.28, 12566.15)], S.g_B1EarthCoefficientsJ2000 = [new o(227778, 3.413766, 6283.07585), new o(3806, 3.3706, 12566.1517), new o(3620, 0, 0), new o(72, 3.33, 18849.23), new o(8, 3.89, 5507.55), new o(8, 1.79, 5223.69), new o(6, 5.2, 2352.87)], S.g_B2EarthCoefficientsJ2000 = [new o(9721, 5.1519, 6283.07585), new o(233, 3.1416, 0), new o(134, 0.644, 12566.152), new o(7, 1.07, 18849.23)], S.g_B3EarthCoefficientsJ2000 = [new o(276, 0.595, 6283.076), new o(17, 3.14, 0), new o(4, 0.12, 12566.15)], S.g_B4EarthCoefficientsJ2000 = [new o(6, 2.27, 6283.08), new o(1, 0, 0)], S.g_L0JupiterCoefficients = [new o(59954691, 0, 0), new o(9695899, 5.0619179, 529.6909651), new o(573610, 1.444062, 7.113547), new o(306389, 5.417347, 1059.38193), new o(97178, 4.14265, 632.78374), new o(72903, 3.64043, 522.57742), new o(64264, 3.41145, 103.09277), new o(39806, 2.29377, 419.48464), new o(38858, 1.27232, 316.39187), new o(27965, 1.78455, 536.80451), new o(13590, 5.77481, 1589.0729), new o(8769, 3.63, 949.1756), new o(8246, 3.5823, 206.1855), new o(7368, 5.081, 735.8765), new o(6263, 0.025, 213.2991), new o(6114, 4.5132, 1162.4747), new o(5305, 4.1863, 1052.2684), new o(5305, 1.3067, 14.2271), new o(4905, 1.3208, 110.2063), new o(4647, 4.6996, 3.9322), new o(3045, 4.3168, 426.5982), new o(2610, 1.5667, 846.0828), new o(2028, 1.0638, 3.1814), new o(1921, 0.9717, 639.8973), new o(1765, 2.1415, 1066.4955), new o(1723, 3.8804, 1265.5675), new o(1633, 3.582, 515.4639), new o(1432, 4.2968, 625.6702), new o(973, 4.098, 95.979), new o(884, 2.437, 412.371), new o(733, 6.085, 838.969), new o(731, 3.806, 1581.959), new o(709, 1.293, 742.99), new o(692, 6.134, 2118.764), new o(614, 4.109, 1478.867), new o(582, 4.54, 309.278), new o(495, 3.756, 323.505), new o(441, 2.958, 454.909), new o(417, 1.036, 2.488), new o(390, 4.897, 1692.166), new o(376, 4.703, 1368.66), new o(341, 5.715, 533.623), new o(330, 4.74, 0.048), new o(262, 1.877, 0.963), new o(261, 0.82, 380.128), new o(257, 3.724, 199.072), new o(244, 5.22, 728.763), new o(235, 1.227, 909.819), new o(220, 1.651, 543.918), new o(207, 1.855, 525.759), new o(202, 1.807, 1375.774), new o(197, 5.293, 1155.361), new o(175, 3.73, 942.062), new o(175, 3.226, 1898.351), new o(175, 5.91, 956.289), new o(158, 4.365, 1795.258), new o(151, 3.906, 74.782), new o(149, 4.377, 1685.052), new o(141, 3.136, 491.558), new o(138, 1.318, 1169.588), new o(131, 4.169, 1045.155), new o(117, 2.5, 1596.186), new o(117, 3.389, 0.521), new o(106, 4.554, 526.51)], S.g_L1JupiterCoefficients = [new o(52993480757, 0, 0), new o(489741, 4.220667, 529.690965), new o(228919, 6.026475, 7.113547), new o(27655, 4.57266, 1059.38193), new o(20721, 5.45939, 522.57742), new o(12106, 0.16986, 536.80451), new o(6068, 4.4242, 103.0928), new o(5434, 3.9848, 419.4846), new o(4238, 5.8901, 14.2271), new o(2212, 5.2677, 206.1855), new o(1746, 4.9267, 1589.0729), new o(1296, 5.5513, 3.1814), new o(1173, 5.8565, 1052.2684), new o(1163, 0.5145, 3.9322), new o(1099, 5.307, 515.4639), new o(1007, 0.4648, 735.8765), new o(1004, 3.1504, 426.5982), new o(848, 5.758, 110.206), new o(827, 4.803, 213.299), new o(816, 0.586, 1066.495), new o(725, 5.518, 639.897), new o(568, 5.989, 625.67), new o(474, 4.132, 412.371), new o(413, 5.737, 95.979), new o(345, 4.242, 632.784), new o(336, 3.732, 1162.475), new o(234, 4.035, 949.176), new o(234, 6.243, 309.278), new o(199, 1.505, 838.969), new o(195, 2.219, 323.505), new o(187, 6.086, 742.99), new o(184, 6.28, 543.918), new o(171, 5.417, 199.072), new o(131, 0.626, 728.763), new o(115, 0.68, 846.083), new o(115, 5.286, 2118.764), new o(108, 4.493, 956.289), new o(80, 5.82, 1045.15), new o(72, 5.34, 942.06), new o(70, 5.97, 532.87), new o(67, 5.73, 21.34), new o(66, 0.13, 526.51), new o(65, 6.09, 1581.96), new o(59, 0.59, 1155.36), new o(58, 0.99, 1596.19), new o(57, 5.97, 1169.59), new o(57, 1.41, 533.62), new o(55, 5.43, 10.29), new o(52, 5.73, 117.32), new o(52, 0.23, 1368.66), new o(50, 6.08, 525.76), new o(47, 3.63, 1478.87), new o(47, 0.51, 1265.57), new o(40, 4.16, 1692.17), new o(34, 0.1, 302.16), new o(33, 5.04, 220.41), new o(32, 5.37, 508.35), new o(29, 5.42, 1272.68), new o(29, 3.36, 4.67), new o(29, 0.76, 88.87), new o(25, 1.61, 831.86)], S.g_L2JupiterCoefficients = [new o(47234, 4.32148, 7.11355), new o(38966, 0, 0), new o(30629, 2.93021, 529.69097), new o(3189, 1.055, 522.5774), new o(2729, 4.8455, 536.8045), new o(2723, 3.4141, 1059.3819), new o(1721, 4.1873, 14.2271), new o(383, 5.768, 419.485), new o(378, 0.76, 515.464), new o(367, 6.055, 103.093), new o(337, 3.786, 3.181), new o(308, 0.694, 206.186), new o(218, 3.814, 1589.073), new o(199, 5.34, 1066.495), new o(197, 2.484, 3.932), new o(156, 1.406, 1052.268), new o(146, 3.814, 639.897), new o(142, 1.634, 426.598), new o(130, 5.837, 412.371), new o(117, 1.414, 625.67), new o(97, 4.03, 110.21), new o(91, 1.11, 95.98), new o(87, 2.52, 632.78), new o(79, 4.64, 543.92), new o(72, 2.22, 735.88), new o(58, 0.83, 199.07), new o(57, 3.12, 213.3), new o(49, 1.67, 309.28), new o(40, 4.02, 21.34), new o(40, 0.62, 323.51), new o(36, 2.33, 728.76), new o(29, 3.61, 10.29), new o(28, 3.24, 838.97), new o(26, 4.5, 742.99), new o(26, 2.51, 1162.47), new o(25, 1.22, 1045.15), new o(24, 3.01, 956.29), new o(19, 4.29, 532.87), new o(18, 0.81, 508.35), new o(17, 4.2, 2118.76), new o(17, 1.83, 526.51), new o(15, 5.81, 1596.19), new o(15, 0.68, 942.06), new o(15, 4, 117.32), new o(14, 5.95, 316.39), new o(14, 1.8, 302.16), new o(13, 2.52, 88.87), new o(13, 4.37, 1169.59), new o(11, 4.44, 525.76), new o(10, 1.72, 1581.96), new o(9, 2.18, 1155.36), new o(9, 3.29, 220.41), new o(9, 3.32, 831.86), new o(8, 5.76, 846.08), new o(8, 2.71, 533.62), new o(7, 2.18, 1265.57), new o(6, 0.5, 949.18)], S.g_L3JupiterCoefficients = [new o(6502, 2.5986, 7.1135), new o(1357, 1.3464, 529.691), new o(471, 2.475, 14.227), new o(417, 3.245, 536.805), new o(353, 2.974, 522.577), new o(155, 2.076, 1059.382), new o(87, 2.51, 515.46), new o(44, 0, 0), new o(34, 3.83, 1066.5), new o(28, 2.45, 206.19), new o(24, 1.28, 412.37), new o(23, 2.98, 543.92), new o(20, 2.1, 639.9), new o(20, 1.4, 419.48), new o(19, 1.59, 103.09), new o(17, 2.3, 21.34), new o(17, 2.6, 1589.07), new o(16, 3.15, 625.67), new o(16, 3.36, 1052.27), new o(13, 2.76, 95.98), new o(13, 2.54, 199.07), new o(13, 6.27, 426.6), new o(9, 1.76, 10.29), new o(9, 2.27, 110.21), new o(7, 3.43, 309.28), new o(7, 4.04, 728.76), new o(6, 2.52, 508.35), new o(5, 2.91, 1045.15), new o(5, 5.25, 323.51), new o(4, 4.3, 88.87), new o(4, 3.52, 302.16), new o(4, 4.09, 735.88), new o(3, 1.43, 956.29), new o(3, 4.36, 1596.19), new o(3, 1.25, 213.3), new o(3, 5.02, 838.97), new o(3, 2.24, 117.32), new o(2, 2.9, 742.99), new o(2, 2.36, 942.06)], S.g_L4JupiterCoefficients = [new o(669, 0.853, 7.114), new o(114, 3.142, 0), new o(100, 0.743, 14.227), new o(50, 1.65, 536.8), new o(44, 5.82, 529.69), new o(32, 4.86, 522.58), new o(15, 4.29, 515.46), new o(9, 0.71, 1059.38), new o(5, 1.3, 543.92), new o(4, 2.32, 1066.5), new o(4, 0.48, 21.34), new o(3, 3, 412.37), new o(2, 0.4, 639.9), new o(2, 4.26, 199.07), new o(2, 4.91, 625.67), new o(2, 4.26, 206.19), new o(1, 5.26, 1052.27), new o(1, 4.72, 95.98), new o(1, 1.29, 1589.07)], S.g_L5JupiterCoefficients = [new o(50, 5.26, 7.11), new o(16, 5.25, 14.23), new o(4, 0.01, 536.8), new o(2, 1.1, 522.58), new o(1, 3.14, 0)], S.g_B0JupiterCoefficients = [new o(2268616, 3.5585261, 529.6909651), new o(110090, 0, 0), new o(109972, 3.908093, 1059.38193), new o(8101, 3.6051, 522.5774), new o(6438, 0.3063, 536.8045), new o(6044, 4.2588, 1589.0729), new o(1107, 2.9853, 1162.4747), new o(944, 1.675, 426.598), new o(942, 2.936, 1052.268), new o(894, 1.754, 7.114), new o(836, 5.179, 103.093), new o(767, 2.155, 632.784), new o(684, 3.678, 213.299), new o(629, 0.643, 1066.495), new o(559, 0.014, 846.083), new o(532, 2.703, 110.206), new o(464, 1.173, 949.176), new o(431, 2.608, 419.485), new o(351, 4.611, 2118.764), new o(132, 4.778, 742.99), new o(123, 3.35, 1692.166), new o(116, 1.387, 323.505), new o(115, 5.049, 316.392), new o(104, 3.701, 515.464), new o(103, 2.319, 1478.867), new o(102, 3.153, 1581.959)], S.g_B1JupiterCoefficients = [new o(177352, 5.701665, 529.690965), new o(3230, 5.7794, 1059.3819), new o(3081, 5.4746, 522.5774), new o(2212, 4.7348, 536.8045), new o(1694, 3.1416, 0), new o(346, 4.746, 1052.268), new o(234, 5.189, 1066.495), new o(196, 6.186, 7.114), new o(150, 3.927, 1589.073), new o(114, 3.439, 632.784), new o(97, 2.91, 949.18), new o(82, 5.08, 1162.47), new o(77, 2.51, 103.09), new o(77, 0.61, 419.48), new o(74, 5.5, 515.46), new o(61, 5.45, 213.3), new o(50, 3.95, 735.88), new o(46, 0.54, 110.21), new o(45, 1.9, 846.08), new o(37, 4.7, 543.92), new o(36, 6.11, 316.39), new o(32, 4.92, 1581.96)], S.g_B2JupiterCoefficients = [new o(8094, 1.4632, 529.691), new o(813, 3.1416, 0), new o(742, 0.957, 522.577), new o(399, 2.899, 536.805), new o(342, 1.447, 1059.382), new o(74, 0.41, 1052.27), new o(46, 3.48, 1066.5), new o(30, 1.93, 1589.07), new o(29, 0.99, 515.46), new o(23, 4.27, 7.11), new o(14, 2.92, 543.92), new o(12, 5.22, 632.78), new o(11, 4.88, 949.18), new o(6, 6.21, 1045.15)], S.g_B3JupiterCoefficients = [new o(252, 3.381, 529.691), new o(122, 2.733, 522.577), new o(49, 1.04, 536.8), new o(11, 2.31, 1052.27), new o(8, 2.77, 515.46), new o(7, 4.25, 1059.38), new o(6, 1.78, 1066.5), new o(4, 1.13, 543.92), new o(3, 3.14, 0)], S.g_B4JupiterCoefficients = [new o(15, 4.53, 522.58), new o(5, 4.47, 529.69), new o(4, 5.44, 536.8), new o(3, 0, 0), new o(2, 4.52, 515.46), new o(1, 4.2, 1052.27)], S.g_B5JupiterCoefficients = [new o(1, 0.09, 522.58)], S.g_R0JupiterCoefficients = [new o(520887429, 0, 0), new o(25209327, 3.4910864, 529.69096509), new o(610600, 3.841154, 1059.38193), new o(282029, 2.574199, 632.783739), new o(187647, 2.075904, 522.577418), new o(86793, 0.71001, 419.48464), new o(72063, 0.21466, 536.80451), new o(65517, 5.97996, 316.39187), new o(30135, 2.16132, 949.17561), new o(29135, 1.67759, 103.09277), new o(23947, 0.27458, 7.11355), new o(23453, 3.54023, 735.87651), new o(22284, 4.19363, 1589.0729), new o(13033, 2.96043, 1162.4747), new o(12749, 2.7155, 1052.26838), new o(9703, 1.9067, 206.1855), new o(9161, 4.4135, 213.2991), new o(7895, 2.4791, 426.5982), new o(7058, 2.1818, 1265.5675), new o(6138, 6.2642, 846.0828), new o(5477, 5.6573, 639.8973), new o(4170, 2.0161, 515.4639), new o(4137, 2.7222, 625.6702), new o(3503, 0.5653, 1066.4955), new o(2617, 2.0099, 1581.9593), new o(2500, 4.5518, 838.9693), new o(2128, 6.1275, 742.9901), new o(1912, 0.8562, 412.3711), new o(1611, 3.0887, 1368.6603), new o(1479, 2.6803, 1478.8666), new o(1231, 1.8904, 323.5054), new o(1217, 1.8017, 110.2063), new o(1015, 1.3867, 454.9094), new o(999, 2.872, 309.278), new o(961, 4.549, 2118.764), new o(886, 4.148, 533.623), new o(821, 1.593, 1898.351), new o(812, 5.941, 909.819), new o(777, 3.677, 728.763), new o(727, 3.988, 1155.361), new o(655, 2.791, 1685.052), new o(654, 3.382, 1692.166), new o(621, 4.823, 956.289), new o(615, 2.276, 942.062), new o(562, 0.081, 543.918), new o(542, 0.284, 525.759)], S.g_R1JupiterCoefficients = [new o(1271802, 2.6493751, 529.6909651), new o(61662, 3.00076, 1059.38193), new o(53444, 3.89718, 522.57742), new o(41390, 0, 0), new o(31185, 4.88277, 536.80451), new o(11847, 2.4133, 419.48464), new o(9166, 4.7598, 7.1135), new o(3404, 3.3469, 1589.0729), new o(3203, 5.2108, 735.8765), new o(3176, 2.793, 103.0928), new o(2806, 3.7422, 515.4639), new o(2677, 4.3305, 1052.2684), new o(2600, 3.6344, 206.1855), new o(2412, 1.4695, 426.5982), new o(2101, 3.9276, 639.8973), new o(1646, 4.4163, 1066.4955), new o(1641, 4.4163, 625.6702), new o(1050, 3.1611, 213.2991), new o(1025, 2.5543, 412.3711), new o(806, 2.678, 632.784), new o(741, 2.171, 1162.475), new o(677, 6.25, 838.969), new o(567, 4.577, 742.99), new o(485, 2.469, 949.176), new o(469, 4.71, 543.918), new o(445, 0.403, 323.505), new o(416, 5.368, 728.763), new o(402, 4.605, 309.278), new o(347, 4.681, 14.227), new o(338, 3.168, 956.289), new o(261, 5.343, 846.083), new o(247, 3.923, 942.062), new o(220, 4.842, 1368.66), new o(203, 5.6, 1155.361), new o(200, 4.439, 1045.155), new o(197, 3.706, 2118.764), new o(196, 3.759, 199.072), new o(184, 4.265, 95.979), new o(180, 4.402, 532.872), new o(170, 4.846, 526.51), new o(146, 6.13, 533.623), new o(133, 1.322, 110.206), new o(132, 4.512, 525.759)], S.g_R2JupiterCoefficients = [new o(79645, 1.35866, 529.69097), new o(8252, 5.7777, 522.5774), new o(7030, 3.2748, 536.8045), new o(5314, 1.8384, 1059.3819), new o(1861, 2.9768, 7.1135), new o(964, 5.48, 515.464), new o(836, 4.199, 419.485), new o(498, 3.142, 0), new o(427, 2.228, 639.897), new o(406, 3.783, 1066.495), new o(377, 2.242, 1589.073), new o(363, 5.368, 206.186), new o(342, 6.099, 1052.268), new o(339, 6.127, 625.67), new o(333, 3e-3, 426.598), new o(280, 4.262, 412.371), new o(257, 0.963, 632.784), new o(230, 0.705, 735.877), new o(201, 3.069, 543.918), new o(200, 4.429, 103.093), new o(139, 2.932, 14.227), new o(114, 0.787, 728.763), new o(95, 1.7, 838.97), new o(86, 5.14, 323.51), new o(83, 0.06, 309.28), new o(80, 2.98, 742.99), new o(75, 1.6, 956.29), new o(70, 1.51, 213.3), new o(67, 5.47, 199.07), new o(62, 6.1, 1045.15), new o(56, 0.96, 1162.47), new o(52, 5.58, 942.06), new o(50, 2.72, 532.87), new o(45, 5.52, 508.35), new o(44, 0.27, 526.51), new o(40, 5.95, 95.98)], S.g_R3JupiterCoefficients = [new o(3519, 6.058, 529.691), new o(1073, 1.6732, 536.8045), new o(916, 1.413, 522.577), new o(342, 0.523, 1059.382), new o(255, 1.196, 7.114), new o(222, 0.952, 515.464), new o(90, 3.14, 0), new o(69, 2.27, 1066.5), new o(58, 1.41, 543.92), new o(58, 0.53, 639.9), new o(51, 5.98, 412.37), new o(47, 1.58, 625.67), new o(43, 6.12, 419.48), new o(37, 1.18, 14.23), new o(34, 1.67, 1052.27), new o(34, 0.85, 206.19), new o(31, 1.04, 1589.07), new o(30, 4.63, 426.6), new o(21, 2.5, 728.76), new o(15, 0.89, 199.07), new o(14, 0.96, 508.35), new o(13, 1.5, 1045.15), new o(12, 2.61, 735.88), new o(12, 3.56, 323.51), new o(11, 1.79, 309.28), new o(11, 6.28, 956.29), new o(10, 6.26, 103.09), new o(9, 3.45, 838.97)], S.g_R4JupiterCoefficients = [new o(129, 0.084, 536.805), new o(113, 4.249, 529.691), new o(83, 3.3, 522.58), new o(38, 2.73, 515.46), new o(27, 5.69, 7.11), new o(18, 5.4, 1059.38), new o(13, 6.02, 543.92), new o(9, 0.77, 1066.5), new o(8, 5.68, 14.23), new o(7, 1.43, 412.37), new o(6, 5.12, 639.9), new o(5, 3.34, 625.67), new o(3, 3.4, 1052.27), new o(3, 4.16, 728.76), new o(3, 2.9, 426.6)], S.g_R5JupiterCoefficients = [new o(11, 4.75, 536.8), new o(4, 5.92, 522.58), new o(2, 5.57, 515.46), new o(2, 4.3, 543.92), new o(2, 3.69, 7.11), new o(2, 4.13, 1059.38), new o(2, 5.49, 1066.5)], S.g_L0MarsCoefficients = [new o(620347712, 0, 0), new o(18656368, 5.050371, 3340.6124267), new o(1108217, 5.4009984, 6681.2248534), new o(91798, 5.75479, 10021.83728), new o(27745, 5.9705, 3.52312), new o(12316, 0.84956, 2810.92146), new o(10610, 2.93959, 2281.2305), new o(8927, 4.157, 0.0173), new o(8716, 6.1101, 13362.4497), new o(7775, 3.3397, 5621.8429), new o(6798, 0.3646, 398.149), new o(4161, 0.2281, 2942.4634), new o(3575, 1.6619, 2544.3144), new o(3075, 0.857, 191.4483), new o(2938, 6.0789, 0.0673), new o(2628, 0.6481, 3337.0893), new o(2580, 0.03, 3344.1355), new o(2389, 5.039, 796.298), new o(1799, 0.6563, 529.691), new o(1546, 2.9158, 1751.5395), new o(1528, 1.1498, 6151.5339), new o(1286, 3.068, 2146.1654), new o(1264, 3.6228, 5092.152), new o(1025, 3.6933, 8962.4553), new o(892, 0.183, 16703.062), new o(859, 2.401, 2914.014), new o(833, 4.495, 3340.63), new o(833, 2.464, 3340.595), new o(749, 3.822, 155.42), new o(724, 0.675, 3738.761), new o(713, 3.663, 1059.382), new o(655, 0.489, 3127.313), new o(636, 2.922, 8432.764), new o(553, 4.475, 1748.016), new o(550, 3.81, 0.98), new o(472, 3.625, 1194.447), new o(426, 0.554, 6283.076), new o(415, 0.497, 213.299), new o(312, 0.999, 6677.702), new o(307, 0.381, 6684.748), new o(302, 4.486, 3532.061), new o(299, 2.783, 6254.627), new o(293, 4.221, 20.775), new o(284, 5.769, 3149.164), new o(281, 5.882, 1349.867), new o(274, 0.542, 3340.545), new o(274, 0.134, 3340.68), new o(239, 5.372, 4136.91), new o(236, 5.755, 3333.499), new o(231, 1.282, 3870.303), new o(221, 3.505, 382.897), new o(204, 2.821, 1221.849), new o(193, 3.357, 3.59), new o(189, 1.491, 9492.146), new o(179, 1.006, 951.718), new o(174, 2.414, 553.569), new o(172, 0.439, 5486.778), new o(160, 3.949, 4562.461), new o(144, 1.419, 135.065), new o(140, 3.326, 2700.715), new o(138, 4.301, 7.114), new o(131, 4.045, 12303.068), new o(128, 2.208, 1592.596), new o(128, 1.807, 5088.629), new o(117, 3.128, 7903.073), new o(113, 3.701, 1589.073), new o(110, 1.052, 242.729), new o(105, 0.785, 8827.39), new o(100, 3.243, 11773.377)], S.g_L1MarsCoefficients = [new o(334085627474, 0, 0), new o(1458227, 3.6042605, 3340.6124267), new o(164901, 3.926313, 6681.224853), new o(19963, 4.26594, 10021.83728), new o(3452, 4.7321, 3.5231), new o(2485, 4.6128, 13362.4497), new o(842, 4.459, 2281.23), new o(538, 5.016, 398.149), new o(521, 4.994, 3344.136), new o(433, 2.561, 191.448), new o(430, 5.316, 155.42), new o(382, 3.539, 796.298), new o(314, 4.963, 16703.062), new o(283, 3.16, 2544.314), new o(206, 4.569, 2146.165), new o(169, 1.329, 3337.089), new o(158, 4.185, 1751.54), new o(134, 2.233, 0.98), new o(134, 5.974, 1748.016), new o(118, 6.024, 6151.534), new o(117, 2.213, 1059.382), new o(114, 2.129, 1194.447), new o(114, 5.428, 3738.761), new o(91, 1.1, 1349.87), new o(85, 3.91, 553.57), new o(83, 5.3, 6684.75), new o(81, 4.43, 529.69), new o(80, 2.25, 8962.46), new o(73, 2.5, 951.72), new o(73, 5.84, 242.73), new o(71, 3.86, 2914.01), new o(68, 5.02, 382.9), new o(65, 1.02, 3340.6), new o(65, 3.05, 3340.63), new o(62, 4.15, 3149.16), new o(57, 3.89, 4136.91), new o(48, 4.87, 213.3), new o(48, 1.18, 3333.5), new o(47, 1.31, 3185.19), new o(41, 0.71, 1592.6), new o(40, 2.73, 7.11), new o(40, 5.32, 20043.67), new o(33, 5.41, 6283.08), new o(28, 0.05, 9492.15), new o(27, 3.89, 1221.85), new o(27, 5.11, 2700.72)], S.g_L2MarsCoefficients = [new o(58016, 2.04979, 3340.61243), new o(54188, 0, 0), new o(13908, 2.45742, 6681.22485), new o(2465, 2.8, 10021.8373), new o(398, 3.141, 13362.45), new o(222, 3.194, 3.523), new o(121, 0.543, 155.42), new o(62, 3.49, 16703.06), new o(54, 3.54, 3344.14), new o(34, 6, 2281.23), new o(32, 4.14, 191.45), new o(30, 2, 796.3), new o(23, 4.33, 242.73), new o(22, 3.45, 398.15), new o(20, 5.42, 553.57), new o(16, 0.66, 0.98), new o(16, 6.11, 2146.17), new o(16, 1.22, 1748.02), new o(15, 6.1, 3185.19), new o(14, 4.02, 951.72), new o(14, 2.62, 1349.87), new o(13, 0.6, 1194.45), new o(12, 3.86, 6684.75), new o(11, 4.72, 2544.31), new o(10, 0.25, 382.9), new o(9, 0.68, 1059.38), new o(9, 3.83, 20043.67), new o(9, 3.88, 3738.76), new o(8, 5.46, 1751.54), new o(7, 2.58, 3149.16), new o(7, 2.38, 4136.91), new o(6, 5.48, 1592.6), new o(6, 2.34, 3097.88)], S.g_L3MarsCoefficients = [new o(1482, 0.4443, 3340.6124), new o(662, 0.885, 6681.225), new o(188, 1.288, 10021.837), new o(41, 1.65, 13362.45), new o(26, 0, 0), new o(23, 2.05, 155.42), new o(10, 1.58, 3.52), new o(8, 2, 16703.06), new o(5, 2.82, 242.73), new o(4, 2.02, 3344.14), new o(3, 4.59, 3185.19), new o(3, 0.65, 553.57)], S.g_L4MarsCoefficients = [new o(114, 3.1416, 0), new o(29, 5.64, 6681.22), new o(24, 5.14, 3340.61), new o(11, 6.03, 10021.84), new o(3, 0.13, 13362.45), new o(3, 3.56, 155.42), new o(1, 0.49, 16703.06), new o(1, 1.32, 242.73)], S.g_L5MarsCoefficients = [new o(1, 3.14, 0), new o(1, 4.04, 6681.22)], S.g_B0MarsCoefficients = [new o(3197135, 3.7683204, 3340.6124267), new o(298033, 4.10617, 6681.224853), new o(289105, 0, 0), new o(31366, 4.44651, 10021.83728), new o(3484, 4.7881, 13362.4497), new o(443, 5.026, 3344.136), new o(443, 5.652, 3337.089), new o(399, 5.131, 16703.062), new o(293, 3.793, 2281.23), new o(182, 6.136, 6151.534), new o(163, 4.264, 529.691), new o(160, 2.232, 1059.382), new o(149, 2.165, 5621.843), new o(143, 1.182, 3340.595), new o(143, 3.213, 3340.63), new o(139, 2.418, 8962.455)], S.g_B1MarsCoefficients = [new o(350069, 5.368478, 3340.612427), new o(14116, 3.14159, 0), new o(9671, 5.4788, 6681.2249), new o(1472, 3.2021, 10021.8373), new o(426, 3.408, 13362.45), new o(102, 0.776, 3337.089), new o(79, 3.72, 16703.06), new o(33, 3.46, 5621.84), new o(26, 2.48, 2281.23)], S.g_B2MarsCoefficients = [new o(16727, 0.60221, 3340.61243), new o(4987, 4.1416, 0), new o(302, 3.559, 6681.225), new o(26, 1.9, 13362.45), new o(21, 0.92, 10021.84), new o(12, 2.24, 3337.09), new o(8, 2.25, 16703.06)], S.g_B3MarsCoefficients = [new o(607, 1.981, 3340.612), new o(43, 0, 0), new o(14, 1.8, 6681.22), new o(3, 3.45, 10021.84)], S.g_B4MarsCoefficients = [new o(13, 0, 0), new o(11, 3.46, 3340.61), new o(1, 0.5, 6681.22)], S.g_R0MarsCoefficients = [new o(153033488, 0, 0), new o(14184953, 3.47971284, 3340.6124267), new o(660776, 3.817834, 6681.224853), new o(46179, 4.15595, 10021.83728), new o(8110, 5.5596, 2810.9215), new o(7485, 1.7724, 5621.8429), new o(5523, 1.3644, 2281.2305), new o(3825, 4.4941, 13362.4497), new o(2484, 4.9255, 2942.4634), new o(2307, 0.0908, 2544.3144), new o(1999, 5.3606, 3337.0893), new o(1960, 4.7425, 3344.1355), new o(1167, 2.1126, 5092.152), new o(1103, 5.0091, 398.149), new o(992, 5.839, 6151.534), new o(899, 4.408, 529.691), new o(807, 2.102, 1059.382), new o(798, 3.448, 796.298), new o(741, 1.499, 2146.165), new o(726, 1.245, 8432.764), new o(692, 2.134, 8962.455), new o(633, 0.894, 3340.595), new o(633, 2.924, 3340.63), new o(630, 1.287, 1751.54), new o(574, 0.829, 2914.014), new o(526, 5.383, 3738.761), new o(473, 5.199, 3127.313), new o(348, 4.832, 16703.062), new o(284, 2.907, 3532.061), new o(280, 5.257, 6283.076), new o(276, 1.218, 6254.627), new o(275, 2.908, 1748.016), new o(270, 3.764, 5884.927), new o(239, 2.037, 1194.447), new o(234, 5.105, 5486.778), new o(228, 3.255, 6872.673), new o(223, 4.199, 3149.164), new o(219, 5.583, 191.448), new o(208, 5.255, 3340.545), new o(208, 4.846, 3340.68), new o(186, 5.699, 6677.702), new o(183, 5.081, 6684.748), new o(179, 4.184, 3333.499), new o(176, 5.953, 3870.303), new o(164, 3.799, 4136.91)], S.g_R1MarsCoefficients = [new o(1107433, 2.0325052, 3340.6124267), new o(103176, 2.370718, 6681.224853), new o(12877, 0, 0), new o(10816, 2.70888, 10021.83728), new o(1195, 3.047, 13362.4497), new o(439, 2.888, 2281.23), new o(396, 3.423, 3344.136), new o(183, 1.584, 2544.314), new o(136, 3.385, 16703.062), new o(128, 6.043, 3337.089), new o(128, 0.63, 1059.382), new o(127, 1.954, 796.298), new o(118, 2.998, 2146.165), new o(88, 3.42, 398.15), new o(83, 3.86, 3738.76), new o(76, 4.45, 6151.53), new o(72, 2.76, 529.69), new o(67, 2.55, 1751.54), new o(66, 4.41, 1748.02), new o(58, 0.54, 1194.45), new o(54, 0.68, 8962.46), new o(51, 3.73, 6684.75), new o(49, 5.73, 3340.6), new o(49, 1.48, 3340.63), new o(48, 2.58, 3149.16), new o(48, 2.29, 2914.01), new o(39, 2.32, 4136.91)], S.g_R2MarsCoefficients = [new o(44242, 0.47931, 3340.61243), new o(8138, 0.87, 6681.2249), new o(1275, 1.2259, 10021.8373), new o(187, 1.573, 13362.45), new o(52, 3.14, 0), new o(41, 1.97, 3344.14), new o(27, 1.92, 16703.06), new o(18, 4.43, 2281.23), new o(12, 4.53, 3185.19), new o(10, 5.39, 1059.38), new o(10, 0.42, 796.3)], S.g_R3MarsCoefficients = [new o(1113, 5.1499, 3340.6124), new o(424, 5.613, 6681.225), new o(100, 5.997, 10021.837), new o(20, 0.08, 13362.45), new o(5, 3.14, 0), new o(3, 0.43, 16703.06)], S.g_R4MarsCoefficients = [new o(20, 3.58, 3340.61), new o(16, 4.05, 6681.22), new o(6, 4.46, 10021.84), new o(2, 4.84, 13362.45)], S.g_L0MercuryCoefficients = [new o(440250710, 0, 0), new o(40989415, 1.48302034, 26087.90314157), new o(5046294, 4.47785449, 52175.8062831), new o(855347, 1.165203, 78263.709425), new o(165590, 4.119692, 104351.612566), new o(34562, 0.77931, 130439.51571), new o(7583, 3.7135, 156527.4188), new o(3560, 1.512, 1109.3786), new o(1803, 4.1033, 5661.332), new o(1726, 0.3583, 182615.322), new o(1590, 2.9951, 25028.5212), new o(1365, 4.5992, 27197.2817), new o(1017, 0.8803, 31749.2352), new o(714, 1.541, 24978.525), new o(644, 5.303, 21535.95), new o(451, 6.05, 51116.424), new o(404, 3.282, 208703.225), new o(352, 5.242, 20426.571), new o(345, 2.792, 15874.618), new o(343, 5.765, 955.6), new o(339, 5.863, 25558.212), new o(325, 1.337, 53285.185), new o(273, 2.495, 529.691), new o(264, 3.917, 57837.138), new o(260, 0.987, 4551.953), new o(239, 0.113, 1059.382), new o(235, 0.267, 11322.664), new o(217, 0.66, 13521.751), new o(209, 2.092, 47623.853), new o(183, 2.629, 27043.503), new o(182, 2.434, 25661.305), new o(176, 4.536, 51066.428), new o(173, 2.452, 24498.83), new o(142, 3.36, 37410.567), new o(138, 0.291, 10213.286), new o(125, 3.721, 39609.655), new o(118, 2.781, 77204.327), new o(106, 4.206, 19804.827)], S.g_L1MercuryCoefficients = [new o(2608814706223, 0, 0), new o(1126008, 6.2170397, 26087.9031416), new o(303471, 3.055655, 52175.806283), new o(80538, 6.10455, 78263.70942), new o(21245, 2.83532, 104351.61257), new o(5592, 5.8268, 130439.5157), new o(1472, 2.5185, 156527.4188), new o(388, 5.48, 182615.322), new o(352, 3.052, 1109.379), new o(103, 2.149, 208703.225), new o(94, 6.12, 27197.28), new o(91, 0, 24978.52), new o(52, 5.62, 5661.33), new o(44, 4.57, 25028.52), new o(28, 3.04, 51066.43), new o(27, 5.09, 234791.13)], S.g_L2MercuryCoefficients = [new o(53050, 0, 0), new o(16904, 4.69072, 26087.90314), new o(7397, 1.3474, 52175.8063), new o(3018, 4.4564, 78263.7094), new o(1107, 1.264, 104351.6126), new o(378, 4.32, 130439.516), new o(123, 1.069, 156527.419), new o(39, 4.08, 182615.32), new o(15, 4.63, 1109.38), new o(12, 0.79, 208703.23)], S.g_L3MercuryCoefficients = [new o(188, 0.035, 52175.806), new o(142, 3.125, 26087.903), new o(97, 3, 78263.71), new o(44, 6.02, 104351.61), new o(35, 0, 0), new o(18, 2.78, 130439.52), new o(7, 5.82, 156527.42), new o(3, 2.57, 182615.32)], S.g_L4MercuryCoefficients = [new o(114, 3.1416, 0), new o(2, 2.03, 26087.9), new o(2, 1.42, 78263.71), new o(2, 4.5, 52175.81), new o(1, 4.5, 104351.61), new o(1, 1.27, 130439.52)], S.g_L5MercuryCoefficients = [new o(1, 3.14, 0)], S.g_B0MercuryCoefficients = [new o(11737529, 1.98357499, 26087.90314157), new o(2388077, 5.0373896, 52175.8062831), new o(1222840, 3.1415927, 0), new o(543252, 1.796444, 78263.709425), new o(129779, 4.832325, 104351.612566), new o(31867, 1.58088, 130439.51571), new o(7963, 4.6097, 156527.4188), new o(2014, 1.3532, 182615.322), new o(514, 4.378, 208703.325), new o(209, 2.02, 24978.525), new o(208, 4.918, 27197.282), new o(132, 1.119, 234791.128), new o(121, 1.813, 53285.185), new o(100, 5.657, 20426.571)], S.g_B1MercuryCoefficients = [new o(429151, 3.501698, 26087.903142), new o(146234, 3.141593, 0), new o(22675, 0.01515, 52175.80628), new o(10895, 0.4854, 78263.70942), new o(6353, 3.4294, 104351.6126), new o(2496, 0.1605, 130439.5157), new o(860, 3.185, 156527.419), new o(278, 6.21, 182615.322), new o(86, 2.95, 208703.23), new o(28, 0.29, 27197.28), new o(26, 5.98, 234791.13)], S.g_B2MercuryCoefficients = [new o(11831, 4.79066, 26087.90314), new o(1914, 0, 0), new o(1045, 1.2122, 52175.8063), new o(266, 4.434, 78263.709), new o(170, 1.623, 104351.613), new o(96, 4.8, 130439.52), new o(45, 1.61, 156527.42), new o(18, 4.67, 182615.32), new o(7, 1.43, 208703.23)], S.g_B3MercuryCoefficients = [new o(235, 0.354, 26087.903), new o(161, 0, 0), new o(19, 4.36, 52175.81), new o(6, 2.51, 78263.71), new o(5, 6.14, 104351.61), new o(3, 3.12, 130439.52), new o(2, 6.27, 156527.42)], S.g_B4MercuryCoefficients = [new o(4, 1.75, 26087.9), new o(1, 3.14, 0)], S.g_R0MercuryCoefficients = [new o(39528272, 0, 0), new o(7834132, 6.1923372, 26087.9031416), new o(795526, 2.959897, 52175.806283), new o(121282, 6.010642, 78263.709425), new o(21922, 2.7782, 104351.61257), new o(4354, 5.8289, 130439.5157), new o(918, 2.597, 156527.419), new o(290, 1.424, 25028.521), new o(260, 3.028, 27197.282), new o(202, 5.647, 182615.322), new o(201, 5.592, 31749.235), new o(142, 6.253, 24978.525), new o(100, 3.734, 21535.95)], S.g_R1MercuryCoefficients = [new o(217348, 4.656172, 26087.903142), new o(44142, 1.42386, 52175.80628), new o(10094, 4.47466, 78263.70942), new o(2433, 1.2423, 104351.6126), new o(1624, 0, 0), new o(604, 4.293, 130439.516), new o(153, 1.061, 156527.419), new o(39, 4.11, 182615.32)], S.g_R2MercuryCoefficients = [new o(3118, 3.0823, 26087.9031), new o(1245, 6.1518, 52175.8063), new o(425, 2.926, 78263.709), new o(136, 5.98, 104351.613), new o(42, 2.75, 130439.52), new o(22, 3.14, 0), new o(13, 5.8, 156527.42)], S.g_R3MercuryCoefficients = [new o(33, 1.68, 26087.9), new o(24, 4.63, 52175.81), new o(12, 1.39, 78263.71), new o(5, 4.44, 104351.61), new o(2, 1.21, 130439.52)], S.g_MoonCoefficients1 = [new Lt(0, 0, 1, 0), new Lt(2, 0, -1, 0), new Lt(2, 0, 0, 0), new Lt(0, 0, 2, 0), new Lt(0, 1, 0, 0), new Lt(0, 0, 0, 2), new Lt(2, 0, -2, 0), new Lt(2, -1, -1, 0), new Lt(2, 0, 1, 0), new Lt(2, -1, 0, 0), new Lt(0, 1, -1, 0), new Lt(1, 0, 0, 0), new Lt(0, 1, 1, 0), new Lt(2, 0, 0, -2), new Lt(0, 0, 1, 2), new Lt(0, 0, 1, -2), new Lt(4, 0, -1, 0), new Lt(0, 0, 3, 0), new Lt(4, 0, -2, 0), new Lt(2, 1, -1, 0), new Lt(2, 1, 0, 0), new Lt(1, 0, -1, 0), new Lt(1, 1, 0, 0), new Lt(2, -1, 1, 0), new Lt(2, 0, 2, 0), new Lt(4, 0, 0, 0), new Lt(2, 0, -3, 0), new Lt(0, 1, -2, 0), new Lt(2, 0, -1, 2), new Lt(2, -1, -2, 0), new Lt(1, 0, 1, 0), new Lt(2, -2, 0, 0), new Lt(0, 1, 2, 0), new Lt(0, 2, 0, 0), new Lt(2, -2, -1, 0), new Lt(2, 0, 1, -2), new Lt(2, 0, 0, 2), new Lt(4, -1, -1, 0), new Lt(0, 0, 2, 2), new Lt(3, 0, -1, 0), new Lt(2, 1, 1, 0), new Lt(4, -1, -2, 0), new Lt(0, 2, -1, 0), new Lt(2, 2, -1, 0), new Lt(2, 1, -2, 0), new Lt(2, -1, 0, -2), new Lt(4, 0, 1, 0), new Lt(0, 0, 4, 0), new Lt(4, -1, 0, 0), new Lt(1, 0, -2, 0), new Lt(2, 1, 0, -2), new Lt(0, 0, 2, -2), new Lt(1, 1, 1, 0), new Lt(3, 0, -2, 0), new Lt(4, 0, -3, 0), new Lt(2, -1, 2, 0), new Lt(0, 2, 1, 0), new Lt(1, 1, -1, 0), new Lt(2, 0, 3, 0), new Lt(2, 0, -1, -2)], S.g_MoonCoefficients2 = [new ye(6288774, -20905355), new ye(1274027, -3699111), new ye(658314, -2955968), new ye(213618, -569925), new ye(-185116, 48888), new ye(-114332, -3149), new ye(58793, 246158), new ye(57066, -152138), new ye(53322, -170733), new ye(45758, -204586), new ye(-40923, -129620), new ye(-34720, 108743), new ye(-30383, 104755), new ye(15327, 10321), new ye(-12528, 0), new ye(10980, 79661), new ye(10675, -34782), new ye(10034, -23210), new ye(8548, -21636), new ye(-7888, 24208), new ye(-6766, 30824), new ye(-5163, -8379), new ye(4987, -16675), new ye(4036, -12831), new ye(3994, -10445), new ye(3861, -11650), new ye(3665, 14403), new ye(-2689, -7003), new ye(-2602, 0), new ye(2390, 10056), new ye(-2348, 6322), new ye(2236, -9884), new ye(-2120, 5751), new ye(-2069, 0), new ye(2048, -4950), new ye(-1773, 4130), new ye(-1595, 0), new ye(1215, -3958), new ye(-1110, 0), new ye(-892, 3258), new ye(-810, 2616), new ye(759, -1897), new ye(-713, -2117), new ye(-700, 2354), new ye(691, 0), new ye(596, 0), new ye(549, -1423), new ye(537, -1117), new ye(520, -1571), new ye(-487, -1739), new ye(-399, 0), new ye(-381, -4421), new ye(351, 0), new ye(-340, 0), new ye(330, 0), new ye(327, 0), new ye(-323, 1165), new ye(299, 0), new ye(294, 0), new ye(0, 8752)], S.g_MoonCoefficients3 = [new Lt(0, 0, 0, 1), new Lt(0, 0, 1, 1), new Lt(0, 0, 1, -1), new Lt(2, 0, 0, -1), new Lt(2, 0, -1, 1), new Lt(2, 0, -1, -1), new Lt(2, 0, 0, 1), new Lt(0, 0, 2, 1), new Lt(2, 0, 1, -1), new Lt(0, 0, 2, -1), new Lt(2, -1, 0, -1), new Lt(2, 0, -2, -1), new Lt(2, 0, 1, 1), new Lt(2, 1, 0, -1), new Lt(2, -1, -1, 1), new Lt(2, -1, 0, 1), new Lt(2, -1, -1, -1), new Lt(0, 1, -1, -1), new Lt(4, 0, -1, -1), new Lt(0, 1, 0, 1), new Lt(0, 0, 0, 3), new Lt(0, 1, -1, 1), new Lt(1, 0, 0, 1), new Lt(0, 1, 1, 1), new Lt(0, 1, 1, -1), new Lt(0, 1, 0, -1), new Lt(1, 0, 0, -1), new Lt(0, 0, 3, 1), new Lt(4, 0, 0, -1), new Lt(4, 0, -1, 1), new Lt(0, 0, 1, -3), new Lt(4, 0, -2, 1), new Lt(2, 0, 0, -3), new Lt(2, 0, 2, -1), new Lt(2, -1, 1, -1), new Lt(2, 0, -2, 1), new Lt(0, 0, 3, -1), new Lt(2, 0, 2, 1), new Lt(2, 0, -3, -1), new Lt(2, 1, -1, 1), new Lt(2, 1, 0, 1), new Lt(4, 0, 0, 1), new Lt(2, -1, 1, 1), new Lt(2, -2, 0, -1), new Lt(0, 0, 1, 3), new Lt(2, 1, 1, -1), new Lt(1, 1, 0, -1), new Lt(1, 1, 0, 1), new Lt(0, 1, -2, -1), new Lt(2, 1, -1, -1), new Lt(1, 0, 1, 1), new Lt(2, -1, -2, -1), new Lt(0, 1, 2, 1), new Lt(4, 0, -2, -1), new Lt(4, -1, -1, -1), new Lt(1, 0, 1, -1), new Lt(4, 0, 1, -1), new Lt(1, 0, -1, -1), new Lt(4, -1, 0, -1), new Lt(2, -2, 0, 1)], S.g_MoonCoefficients4 = [5128122, 280602, 277693, 173237, 55413, 46271, 32573, 17198, 9266, 8822, 8216, 4324, 4200, -3359, 2463, 2211, 2065, -1870, 1828, -1794, -1749, -1565, -1491, -1475, -1410, -1344, -1335, 1107, 1021, 833, 777, 671, 607, 596, 491, -451, 439, 422, 421, -366, -351, 331, 315, 302, -283, -229, 223, 223, -220, -220, -185, 181, -177, 176, 166, -164, 132, -119, 115, 107], S.g_MoonPerigeeApogeeCoefficients1 = [new dt(2, 0, 0, -1.6769, 0), new dt(4, 0, 0, 0.4589, 0), new dt(6, 0, 0, -0.1856, 0), new dt(8, 0, 0, 0.0883, 0), new dt(2, -1, 0, -0.0773, 19e-5), new dt(0, 1, 0, 0.0502, -13e-5), new dt(10, 0, 0, -0.046, 0), new dt(4, -1, 0, 0.0422, -11e-5), new dt(6, -1, 0, -0.0256, 0), new dt(12, 0, 0, 0.0253, 0), new dt(1, 0, 0, 0.0237, 0), new dt(8, -1, 0, 0.0162, 0), new dt(14, 0, 0, -0.0145, 0), new dt(0, 0, 2, 0.0129, 0), new dt(3, 0, 0, -0.0112, 0), new dt(10, -1, 0, -0.0104, 0), new dt(16, 0, 0, 86e-4, 0), new dt(12, -1, 0, 69e-4, 0), new dt(5, 0, 0, 66e-4, 0), new dt(2, 0, 2, -53e-4, 0), new dt(18, 0, 0, -52e-4, 0), new dt(14, -1, 0, -46e-4, 0), new dt(7, 0, 0, -41e-4, 0), new dt(2, 1, 0, 4e-3, 0), new dt(20, 0, 0, 32e-4, 0), new dt(1, 1, 0, -32e-4, 0), new dt(16, -1, 0, 31e-4, 0), new dt(4, 1, 0, -29e-4, 0), new dt(9, 0, 0, 27e-4, 0), new dt(4, 0, 2, 27e-4, 0), new dt(2, -2, 0, -27e-4, 0), new dt(4, -2, 0, 24e-4, 0), new dt(6, -2, 0, -21e-4, 0), new dt(22, 0, 0, -21e-4, 0), new dt(18, -1, 0, -21e-4, 0), new dt(6, 1, 0, 19e-4, 0), new dt(11, 0, 0, -18e-4, 0), new dt(8, 1, 0, -14e-4, 0), new dt(4, 0, -2, -14e-4, 0), new dt(6, 0, 2, -14e-4, 0), new dt(3, 1, 0, 14e-4, 0), new dt(5, 1, 0, -14e-4, 0), new dt(13, 0, 0, 13e-4, 0), new dt(20, -1, 0, 13e-4, 0), new dt(3, 2, 0, 11e-4, 0), new dt(4, -2, 2, -11e-4, 0), new dt(1, 2, 0, -11e-4, 0), new dt(22, -1, 0, -9e-4, 0), new dt(0, 0, 4, -8e-4, 0), new dt(6, 0, -2, 8e-4, 0), new dt(2, 1, -2, 8e-4, 0), new dt(0, 2, 0, 7e-4, 0), new dt(0, -1, 2, 7e-4, 0), new dt(2, 0, 4, 7e-4, 0), new dt(0, -2, 2, -6e-4, 0), new dt(2, 2, -2, -6e-4, 0), new dt(24, 0, 0, 6e-4, 0), new dt(4, 0, -4, 5e-4, 0), new dt(2, 2, 0, 5e-4, 0), new dt(1, -1, 0, -4e-4, 0)], S.g_MoonPerigeeApogeeCoefficients2 = [new dt(2, 0, 0, 0.4392, 0), new dt(4, 0, 0, 0.0684, 0), new dt(0, 1, 0, 0.0456, -11e-5), new dt(2, -1, 0, 0.0426, -11e-5), new dt(0, 0, 2, 0.0212, 0), new dt(1, 0, 0, -0.0189, 0), new dt(6, 0, 0, 0.0144, 0), new dt(4, -1, 0, 0.0113, 0), new dt(2, 0, 2, 47e-4, 0), new dt(1, 1, 0, 36e-4, 0), new dt(8, 0, 0, 35e-4, 0), new dt(6, -1, 0, 34e-4, 0), new dt(2, 0, -2, -34e-4, 0), new dt(2, -2, 0, 22e-4, 0), new dt(3, 0, 0, -17e-4, 0), new dt(4, 0, 2, 13e-4, 0), new dt(8, -1, 0, 11e-4, 0), new dt(4, -2, 0, 1e-3, 0), new dt(10, 0, 0, 9e-4, 0), new dt(3, 1, 0, 7e-4, 0), new dt(0, 2, 0, 6e-4, 0), new dt(2, 1, 0, 5e-4, 0), new dt(2, 2, 0, 5e-4, 0), new dt(6, 0, 2, 4e-4, 0), new dt(6, -2, 0, 4e-4, 0), new dt(10, -1, 0, 4e-4, 0), new dt(5, 0, 0, -4e-4, 0), new dt(4, 0, -2, -4e-4, 0), new dt(0, 1, 2, 3e-4, 0), new dt(12, 0, 0, 3e-4, 0), new dt(2, -1, 2, 3e-4, 0), new dt(1, -1, 0, -3e-4, 0)], S.g_MoonPerigeeApogeeCoefficients3 = [new dt(2, 0, 0, 63.224, 0), new dt(4, 0, 0, -6.99, 0), new dt(2, -1, 0, 2.834, 0), new dt(2, -1, 0, 0, -71e-4), new dt(6, 0, 0, 1.927, 0), new dt(1, 0, 0, -1.263, 0), new dt(8, 0, 0, -0.702, 0), new dt(0, 1, 0, 0.696, 0), new dt(0, 1, 0, 0, -17e-4), new dt(0, 0, 2, -0.69, 0), new dt(4, -1, 0, -0.629, 0), new dt(4, -1, 0, 0, 16e-4), new dt(2, 0, -2, -0.392, 0), new dt(10, 0, 0, 0.297, 0), new dt(6, -1, 0, 0.26, 0), new dt(3, 0, 0, 0.201, 0), new dt(2, 1, 0, -0.161, 0), new dt(1, 1, 0, 0.157, 0), new dt(12, 0, 0, -0.138, 0), new dt(8, -1, 0, -0.127, 0), new dt(2, 0, 2, 0.104, 0), new dt(2, -2, 0, 0.104, 0), new dt(5, 0, 0, -0.079, 0), new dt(14, 0, 0, 0.068, 0), new dt(10, -1, 0, 0.067, 0), new dt(4, 1, 0, 0.054, 0), new dt(12, -1, 0, -0.038, 0), new dt(4, -2, 0, -0.038, 0), new dt(7, 0, 0, 0.037, 0), new dt(4, 0, 2, -0.037, 0), new dt(16, 0, 0, -0.035, 0), new dt(3, 1, 0, -0.03, 0), new dt(1, -1, 0, 0.029, 0), new dt(6, 1, 0, -0.025, 0), new dt(0, 2, 0, 0.023, 0), new dt(14, -1, 0, 0.023, 0), new dt(2, 2, 0, -0.023, 0), new dt(6, -2, 0, 0.022, 0), new dt(2, -1, -2, -0.021, 0), new dt(9, 0, 0, -0.02, 0), new dt(18, 0, 0, 0.019, 0), new dt(6, 0, 2, 0.017, 0), new dt(0, -1, 2, 0.014, 0), new dt(16, -1, 0, -0.014, 0), new dt(4, 0, -20, 0.013, 0), new dt(8, 1, 0, 0.012, 0), new dt(11, 0, 0, 0.011, 0), new dt(5, 1, 0, 0.01, 0), new dt(20, 0, 0, -0.01, 0)], S.g_MoonPerigeeApogeeCoefficients4 = [new dt(2, 0, 0, -9.147, 0), new dt(1, 0, 0, -0.841, 0), new dt(0, 0, 2, 0.697, 0), new dt(0, 1, 0, -0.656, 16e-4), new dt(4, 0, 0, 0.355, 0), new dt(2, -1, 0, 0.159, 0), new dt(1, 1, 0, 0.127, 0), new dt(4, -1, 0, 0.065, 0), new dt(6, 0, 0, 0.052, 0), new dt(2, 1, 0, 0.043, 0), new dt(2, 0, 2, 0.031, 0), new dt(2, 0, -2, -0.023, 0), new dt(2, -2, 0, 0.022, 0), new dt(2, 2, 0, 0.019, 0), new dt(0, 2, 0, -0.016, 0), new dt(6, -1, 0, 0.014, 0), new dt(8, 0, 0, 0.01, 0)], S.g_L0NC = [new o(531188633, 0, 0), new o(1798476, 2.9010127, 38.1330356), new o(1019728, 0.4858092, 1.4844727), new o(124532, 4.830081, 36.648563), new o(42064, 5.41055, 2.96895), new o(37715, 6.09222, 35.16409), new o(33785, 1.24489, 76.26607), new o(16483, 8e-5, 491.55793), new o(9199, 4.9375, 39.6175), new o(8994, 0.2746, 175.1661), new o(4216, 1.9871, 73.2971), new o(3365, 1.0359, 33.6796), new o(2285, 4.2061, 4.4534), new o(1434, 2.7834, 74.7816), new o(900, 2.076, 109.946), new o(745, 3.19, 71.813), new o(506, 5.748, 114.399), new o(400, 0.35, 1021.249), new o(345, 3.462, 41.102), new o(340, 3.304, 77.751), new o(323, 2.248, 32.195), new o(306, 0.497, 0.521), new o(287, 4.505, 0.048), new o(282, 2.246, 146.594), new o(267, 4.889, 0.963), new o(252, 5.782, 388.465), new o(245, 1.247, 9.561), new o(233, 2.505, 137.033), new o(227, 1.797, 453.425), new o(170, 3.324, 108.461), new o(151, 2.192, 33.94), new o(150, 2.997, 5.938), new o(148, 0.859, 111.43), new o(119, 3.677, 2.448), new o(109, 2.416, 183.243), new o(103, 0.041, 0.261), new o(103, 4.404, 70.328), new o(102, 5.705, 0.112)], S.g_L1NC = [new o(3837687717, 0, 0), new o(16604, 4.86319, 1.48447), new o(15807, 2.27923, 38.13304), new o(3335, 3.682, 76.2661), new o(1306, 3.6732, 2.9689), new o(605, 1.505, 35.164), new o(179, 3.453, 39.618), new o(107, 2.451, 4.453), new o(106, 2.755, 33.68), new o(73, 5.49, 36.65), new o(57, 1.86, 114.4), new o(57, 5.22, 0.52), new o(35, 4.52, 74.78), new o(32, 5.9, 77.75), new o(30, 3.67, 388.47), new o(29, 5.17, 9.56), new o(29, 5.17, 2.45), new o(26, 5.25, 168.05)], S.g_L2NC = [new o(53893, 0, 0), new o(296, 1.855, 1.484), new o(281, 1.191, 38.133), new o(270, 5.721, 76.266), new o(23, 1.21, 2.97), new o(9, 4.43, 35.16), new o(7, 0.54, 2.45)], S.g_L3NC = [new o(31, 0, 0), new o(15, 1.35, 76.27), new o(12, 6.04, 1.48), new o(12, 6.11, 38.13)], S.g_L4NC = [new o(114, 3.142, 0)], S.g_B0NC = [new o(3088623, 1.4410437, 38.1330356), new o(27789, 5.91272, 76.26607), new o(27624, 0, 0), new o(15448, 3.50877, 39.61751), new o(15355, 2.52124, 36.64856), new o(2e3, 1.51, 74.7816), new o(1968, 4.3778, 1.4845), new o(1015, 3.2156, 35.1641), new o(606, 2.802, 73.297), new o(595, 2.129, 41.102), new o(589, 3.187, 2.969), new o(402, 4.169, 114.399), new o(280, 1.682, 77.751), new o(262, 3.767, 213.299), new o(254, 3.271, 453.425), new o(206, 4.257, 529.691), new o(140, 3.53, 137.033)], S.g_B1NC = [new o(227279, 3.807931, 38.133036), new o(1803, 1.9758, 76.2661), new o(1433, 3.1416, 0), new o(1386, 4.8256, 36.6486), new o(1073, 6.0805, 39.6175), new o(148, 3.858, 74.782), new o(136, 0.478, 1.484), new o(70, 6.19, 35.16), new o(52, 5.05, 73.3), new o(43, 0.31, 114.4), new o(37, 4.89, 41.1), new o(37, 5.76, 2.97), new o(26, 5.22, 213.3)], S.g_B2NC = [new o(9691, 5.5712, 38.133), new o(79, 3.63, 76.27), new o(72, 0.45, 36.65), new o(59, 3.14, 0), new o(30, 1.61, 39.62), new o(6, 5.61, 74.78)], S.g_B3NC = [new o(273, 1.017, 38.133), new o(2, 0, 0), new o(2, 2.37, 36.65), new o(2, 5.33, 76.27)], S.g_B4NC = [new o(6, 2.67, 38.13)], S.g_R0NC = [new o(3007013206, 0, 0), new o(27062259, 1.32999459, 38.13303564), new o(1691764, 3.2518614, 36.6485629), new o(807831, 5.185928, 1.484473), new o(537761, 4.521139, 35.16409), new o(495726, 1.571057, 491.557929), new o(274572, 1.845523, 175.16606), new o(135134, 3.372206, 39.617508), new o(121802, 5.797544, 76.266071), new o(100895, 0.377027, 73.297126), new o(69792, 3.79617, 2.96895), new o(46688, 5.74938, 33.67962), new o(24594, 0.50802, 109.94569), new o(16939, 1.59422, 71.81265), new o(14230, 1.07786, 74.7816), new o(12012, 1.92062, 1021.24889), new o(8395, 0.6782, 146.5943), new o(7572, 1.0715, 388.4652), new o(5721, 2.5906, 4.4534), new o(4840, 1.9069, 41.102), new o(4483, 2.9057, 529.691), new o(4421, 1.7499, 108.4612), new o(4354, 0.6799, 32.1951), new o(4270, 3.4134, 453.4249), new o(3381, 0.8481, 183.2428), new o(2881, 1.986, 137.033), new o(2879, 3.6742, 350.3321), new o(2636, 3.0976, 213.2991), new o(2530, 5.7984, 490.0735), new o(2523, 0.4863, 493.0424), new o(2306, 2.8096, 70.3282), new o(2087, 0.6186, 33.9402)], S.g_R1NC = [new o(236339, 0.70498, 38.133036), new o(13220, 3.32015, 1.48447), new o(8622, 6.2163, 35.1641), new o(2702, 1.8814, 39.6175), new o(2155, 2.0943, 2.9689), new o(2153, 5.1687, 76.2661), new o(1603, 0, 0), new o(1464, 1.1842, 33.6796), new o(1136, 3.9189, 36.6486), new o(898, 5.241, 388.465), new o(790, 0.533, 168.053), new o(760, 0.021, 182.28), new o(607, 1.077, 1021.249), new o(572, 3.401, 484.444), new o(561, 2.887, 498.671)], S.g_R2NC = [new o(4247, 5.8991, 38.133), new o(218, 0.346, 1.484), new o(163, 2.239, 168.053), new o(156, 4.594, 182.28), new o(127, 2.848, 35.164)], S.g_R3NC = [new o(166, 4.552, 38.133)], S.g_NuC = [new fe(0, 0, 0, 0, 1, -171996, -174.2, 92025, 8.9), new fe(-2, 0, 0, 2, 2, -13187, -1.6, 5736, -3.1), new fe(0, 0, 0, 2, 2, -2274, -0.2, 977, -0.5), new fe(0, 0, 0, 0, 2, 2062, 0.2, -895, 0.5), new fe(0, 1, 0, 0, 0, 1426, -3.4, 54, -0.1), new fe(0, 0, 1, 0, 0, 712, 0.1, -7, 0), new fe(-2, 1, 0, 2, 2, -517, 1.2, 224, -0.6), new fe(0, 0, 0, 2, 1, -386, -0.4, 200, 0), new fe(0, 0, 1, 2, 2, -301, 0, 129, -0.1), new fe(-2, -1, 0, 2, 2, 217, -0.5, -95, 0.3), new fe(-2, 0, 1, 0, 0, -158, 0, 0, 0), new fe(-2, 0, 0, 2, 1, 129, 0.1, -70, 0), new fe(0, 0, -1, 2, 2, 123, 0, -53, 0), new fe(2, 0, 0, 0, 0, 63, 0, 0, 0), new fe(0, 0, 1, 0, 1, 63, 0.1, -33, 0), new fe(2, 0, -1, 2, 2, -59, 0, 26, 0), new fe(0, 0, -1, 0, 1, -58, -0.1, 32, 0), new fe(0, 0, 1, 2, 1, -51, 0, 27, 0), new fe(-2, 0, 2, 0, 0, 48, 0, 0, 0), new fe(0, 0, -2, 2, 1, 46, 0, -24, 0), new fe(2, 0, 0, 2, 2, -38, 0, 16, 0), new fe(0, 0, 2, 2, 2, -31, 0, 13, 0), new fe(0, 0, 2, 0, 0, 29, 0, 0, 0), new fe(-2, 0, 1, 2, 2, 29, 0, -12, 0), new fe(0, 0, 0, 2, 0, 26, 0, 0, 0), new fe(-2, 0, 0, 2, 0, -22, 0, 0, 0), new fe(0, 0, -1, 2, 1, 21, 0, -10, 0), new fe(0, 2, 0, 0, 0, 17, -0.1, 0, 0), new fe(2, 0, -1, 0, 1, 16, 0, -8, 0), new fe(-2, 2, 0, 2, 2, -16, 0.1, 7, 0), new fe(0, 1, 0, 0, 1, -15, 0, 9, 0), new fe(-2, 0, 1, 0, 1, -13, 0, 7, 0), new fe(0, -1, 0, 0, 1, -12, 0, 6, 0), new fe(0, 0, 2, -2, 0, 11, 0, 0, 0), new fe(2, 0, -1, 2, 1, -10, 0, 5, 0), new fe(2, 0, 1, 2, 2, -8, 0, 3, 0), new fe(0, 1, 0, 2, 2, 7, 0, -3, 0), new fe(-2, 1, 1, 0, 0, -7, 0, 0, 0), new fe(0, -1, 0, 2, 2, -7, 0, 3, 0), new fe(2, 0, 0, 2, 1, -7, 0, 3, 0), new fe(2, 0, 1, 0, 0, 6, 0, 0, 0), new fe(-2, 0, 2, 2, 2, 6, 0, -3, 0), new fe(-2, 0, 1, 2, 1, 6, 0, -3, 0), new fe(2, 0, -2, 0, 1, -6, 0, 3, 0), new fe(2, 0, 0, 0, 1, -6, 0, 3, 0), new fe(0, -1, 1, 0, 0, 5, 0, 0, 0), new fe(-2, -1, 0, 2, 1, -5, 0, 3, 0), new fe(-2, 0, 0, 0, 1, -5, 0, 3, 0), new fe(0, 0, 2, 2, 1, -5, 0, 3, 0), new fe(-2, 0, 2, 0, 1, 4, 0, 0, 0), new fe(-2, 1, 0, 2, 1, 4, 0, 0, 0), new fe(0, 0, 1, -2, 0, 4, 0, 0, 0), new fe(-1, 0, 1, 0, 0, -4, 0, 0, 0), new fe(-2, 1, 0, 0, 0, -4, 0, 0, 0), new fe(1, 0, 0, 0, 0, -4, 0, 0, 0), new fe(0, 0, 1, 2, 0, 3, 0, 0, 0), new fe(0, 0, -2, 2, 2, -3, 0, 0, 0), new fe(-1, -1, 1, 0, 0, -3, 0, 0, 0), new fe(0, 1, 1, 0, 0, -3, 0, 0, 0), new fe(0, -1, 1, 2, 2, -3, 0, 0, 0), new fe(2, -1, -1, 2, 2, -3, 0, 0, 0), new fe(0, 0, 3, 2, 2, -3, 0, 0, 0), new fe(2, -1, 0, 2, 2, -3, 0, 0, 0)], S.g_AAParallax_C1 = Math.sin(x.d2R(x.dmS2D(0, 0, 8.794))), S.g_PlutoArgumentCoefficients = [new Qe(0, 0, 1), new Qe(0, 0, 2), new Qe(0, 0, 3), new Qe(0, 0, 4), new Qe(0, 0, 5), new Qe(0, 0, 6), new Qe(0, 1, -1), new Qe(0, 1, 0), new Qe(0, 1, 1), new Qe(0, 1, 2), new Qe(0, 1, 3), new Qe(0, 2, -2), new Qe(0, 2, -1), new Qe(0, 2, 0), new Qe(1, -1, 0), new Qe(1, -1, 1), new Qe(1, 0, -3), new Qe(1, 0, -2), new Qe(1, 0, -1), new Qe(1, 0, 0), new Qe(1, 0, 1), new Qe(1, 0, 2), new Qe(1, 0, 3), new Qe(1, 0, 4), new Qe(1, 1, -3), new Qe(1, 1, -2), new Qe(1, 1, -1), new Qe(1, 1, 0), new Qe(1, 1, 1), new Qe(1, 1, 3), new Qe(2, 0, -6), new Qe(2, 0, -5), new Qe(2, 0, -4), new Qe(2, 0, -3), new Qe(2, 0, -2), new Qe(2, 0, -1), new Qe(2, 0, 0), new Qe(2, 0, 1), new Qe(2, 0, 2), new Qe(2, 0, 3), new Qe(3, 0, -2), new Qe(3, 0, -1), new Qe(3, 0, 0)], S.g_PlutoLongitudeCoefficients = [new kt(-19799805, 19850055), new kt(897144, -4954829), new kt(611149, 1211027), new kt(-341243, -189585), new kt(129287, -34992), new kt(-38164, 30893), new kt(20442, -9987), new kt(-4063, -5071), new kt(-6016, -3336), new kt(-3956, 3039), new kt(-667, 3572), new kt(1276, 501), new kt(1152, -917), new kt(630, -1277), new kt(2571, -459), new kt(899, -1449), new kt(-1016, 1043), new kt(-2343, -1012), new kt(7042, 788), new kt(1199, -338), new kt(418, -67), new kt(120, -274), new kt(-60, -159), new kt(-82, -29), new kt(-36, -29), new kt(-40, 7), new kt(-14, 22), new kt(4, 13), new kt(5, 2), new kt(-1, 0), new kt(2, 0), new kt(-4, 5), new kt(4, -7), new kt(14, 24), new kt(-49, -34), new kt(163, -48), new kt(9, -24), new kt(-4, 1), new kt(-3, 1), new kt(1, 3), new kt(-3, -1), new kt(5, -3), new kt(0, 0)], S.g_PlutoLatitudeCoefficients = [new kt(-5452852, -14974862), new kt(3527812, 1672790), new kt(-1050748, 327647), new kt(178690, -292153), new kt(18650, 100340), new kt(-30697, -25823), new kt(4878, 11248), new kt(226, -64), new kt(2030, -836), new kt(69, -604), new kt(-247, -567), new kt(-57, 1), new kt(-122, 175), new kt(-49, -164), new kt(-197, 199), new kt(-25, 217), new kt(589, -248), new kt(-269, 711), new kt(185, 193), new kt(315, 807), new kt(-130, -43), new kt(5, 3), new kt(2, 17), new kt(2, 5), new kt(2, 3), new kt(3, 1), new kt(2, -1), new kt(1, -1), new kt(0, -1), new kt(0, 0), new kt(0, -2), new kt(2, 2), new kt(-7, 0), new kt(10, -8), new kt(-3, 20), new kt(6, 5), new kt(14, 17), new kt(-2, 0), new kt(0, 0), new kt(0, 0), new kt(0, 1), new kt(0, 0), new kt(1, 0)], S.g_PlutoRadiusCoefficients = [new kt(66865439, 68951812), new kt(-11827535, -332538), new kt(1593179, -1438890), new kt(-18444, 483220), new kt(-65977, -85431), new kt(31174, -6032), new kt(-5794, 22161), new kt(4601, 4032), new kt(-1729, 234), new kt(-415, 702), new kt(239, 723), new kt(67, -67), new kt(1034, -451), new kt(-129, 504), new kt(480, -231), new kt(2, -441), new kt(-3359, 265), new kt(7856, -7832), new kt(36, 45763), new kt(8663, 8547), new kt(-809, -769), new kt(263, -144), new kt(-126, 32), new kt(-35, -16), new kt(-19, -4), new kt(-15, 8), new kt(-4, 12), new kt(5, 6), new kt(3, 1), new kt(6, -2), new kt(2, 2), new kt(-2, -2), new kt(14, 13), new kt(-63, 13), new kt(136, -236), new kt(273, 1065), new kt(251, 149), new kt(-25, -9), new kt(9, -2), new kt(-8, 7), new kt(2, -10), new kt(19, 35), new kt(10, 3)], S.g_L0SaturnCoefficients = [new o(87401354, 0, 0), new o(11107660, 3.9620509, 213.29909544), new o(1414151, 4.5858152, 7.113547), new o(398379, 0.52112, 206.185548), new o(350769, 3.303299, 426.598191), new o(206816, 0.246584, 103.092774), new o(79271, 3.84007, 220.41264), new o(23990, 4.66977, 110.20632), new o(16574, 0.43719, 419.48464), new o(15820, 0.93809, 632.78374), new o(15054, 2.7167, 639.89729), new o(14907, 5.76903, 316.39187), new o(14610, 1.56519, 3.93215), new o(13160, 4.44891, 14.22709), new o(13005, 5.98119, 11.0457), new o(10725, 3.1294, 202.2534), new o(6126, 1.7633, 277.035), new o(5863, 0.2366, 529.691), new o(5228, 4.2078, 3.1814), new o(5020, 3.1779, 433.7117), new o(4593, 0.6198, 199.072), new o(4006, 2.2448, 63.7359), new o(3874, 3.2228, 138.5175), new o(3269, 0.7749, 949.1756), new o(2954, 0.9828, 95.9792), new o(2461, 2.0316, 735.8765), new o(1758, 3.2658, 522.5774), new o(1640, 5.505, 846.0828), new o(1581, 4.3727, 309.2783), new o(1391, 4.0233, 323.5054), new o(1124, 2.8373, 415.5525), new o(1087, 4.1834, 2.4477), new o(1017, 3.717, 227.5262), new o(957, 0.507, 1265.567), new o(853, 3.421, 175.166), new o(849, 3.191, 209.367), new o(789, 5.007, 0.963), new o(749, 2.144, 853.196), new o(744, 5.253, 224.345), new o(687, 1.747, 1052.268), new o(654, 1.599, 0.048), new o(634, 2.299, 412.371), new o(625, 0.97, 210.118), new o(580, 3.093, 74.782), new o(546, 2.127, 350.332), new o(543, 1.518, 9.561), new o(530, 4.449, 117.32), new o(478, 2.965, 137.033), new o(474, 5.475, 742.99), new o(452, 1.044, 490.334), new o(449, 1.29, 127.472), new o(372, 2.278, 217.231), new o(355, 3.013, 838.969), new o(347, 1.539, 340.771), new o(343, 0.246, 0.521), new o(330, 0.247, 1581.959), new o(322, 0.961, 203.738), new o(322, 2.572, 647.011), new o(309, 3.495, 216.48), new o(287, 2.37, 351.817), new o(278, 0.4, 211.815), new o(249, 1.47, 1368.66), new o(227, 4.91, 12.53), new o(220, 4.204, 200.769), new o(209, 1.345, 625.67), new o(208, 0.483, 1162.475), new o(208, 1.283, 39.357), new o(204, 6.011, 265.989), new o(185, 3.503, 149.563), new o(184, 0.973, 4.193), new o(182, 5.491, 2.921), new o(174, 1.863, 0.751), new o(165, 0.44, 5.417), new o(149, 5.736, 52.69), new o(148, 1.535, 5.629), new o(146, 6.231, 195.14), new o(140, 4.295, 21.341), new o(131, 4.068, 10.295), new o(125, 6.277, 1898.351), new o(122, 1.976, 4.666), new o(118, 5.341, 554.07), new o(117, 2.679, 1155.361), new o(114, 5.594, 1059.382), new o(112, 1.105, 191.208), new o(110, 0.166, 1.484), new o(109, 3.438, 536.805), new o(107, 4.012, 956.289), new o(104, 2.192, 88.866), new o(103, 1.197, 1685.052), new o(101, 4.965, 269.921)], S.g_L1SaturnCoefficients = [new o(21354295596, 0, 0), new o(1296855, 1.8282054, 213.2990954), new o(564348, 2.885001, 7.113547), new o(107679, 2.277699, 206.185548), new o(98323, 1.0807, 426.59819), new o(40255, 2.04128, 220.41264), new o(19942, 1.27955, 103.09277), new o(10512, 2.7488, 14.22709), new o(6939, 0.4049, 639.8973), new o(4803, 2.4419, 419.4846), new o(4056, 2.9217, 110.2063), new o(3769, 3.6497, 3.9322), new o(3385, 2.4169, 3.1814), new o(3302, 1.2626, 433.7117), new o(3071, 2.3274, 199.072), new o(1953, 3.5639, 11.0457), new o(1249, 2.628, 95.9792), new o(922, 1.961, 227.526), new o(706, 4.417, 529.691), new o(650, 6.174, 202.253), new o(628, 6.111, 309.278), new o(487, 6.04, 853.196), new o(479, 4.988, 522.577), new o(468, 4.617, 63.736), new o(417, 2.117, 323.505), new o(408, 1.299, 209.367), new o(352, 2.317, 632.784), new o(344, 3.959, 412.371), new o(340, 3.634, 316.392), new o(336, 3.772, 735.877), new o(332, 2.861, 210.118), new o(289, 2.733, 117.32), new o(281, 5.744, 2.448), new o(266, 0.543, 647.011), new o(230, 1.644, 216.48), new o(192, 2.965, 224.345), new o(173, 4.077, 846.083), new o(167, 2.597, 21.341), new o(136, 2.286, 10.295), new o(131, 3.441, 742.99), new o(128, 4.095, 217.231), new o(109, 6.161, 415.552), new o(98, 4.73, 838.97), new o(94, 3.48, 1052.27), new o(92, 3.95, 88.87), new o(87, 1.22, 440.83), new o(83, 3.11, 625.67), new o(78, 6.24, 302.16), new o(67, 0.29, 4.67), new o(66, 5.65, 9.56), new o(62, 4.29, 127.47), new o(62, 1.83, 195.14), new o(58, 2.48, 191.96), new o(57, 5.02, 137.03), new o(55, 0.28, 74.78), new o(54, 5.13, 490.33), new o(51, 1.46, 536.8), new o(47, 1.18, 149.56), new o(47, 5.15, 515.46), new o(46, 2.23, 956.29), new o(44, 2.71, 5.42), new o(40, 0.41, 269.92), new o(40, 3.89, 728.76), new o(38, 0.65, 422.67), new o(38, 2.53, 12.53), new o(37, 3.78, 2.92), new o(35, 6.08, 5.63), new o(34, 3.21, 1368.66), new o(33, 4.64, 277.03), new o(33, 5.43, 1066.5), new o(33, 0.3, 351.82), new o(32, 4.39, 1155.36), new o(31, 2.43, 52.69), new o(30, 2.84, 203), new o(30, 6.19, 284.15), new o(30, 3.39, 1059.38), new o(29, 2.03, 330.62), new o(28, 2.74, 265.99), new o(26, 4.51, 340.77)], S.g_L2SaturnCoefficients = [new o(116441, 1.179879, 7.113547), new o(91921, 0.07425, 213.2991), new o(90592, 0, 0), new o(15277, 4.06492, 206.18555), new o(10631, 0.25778, 220.41264), new o(10605, 5.40964, 426.59819), new o(4265, 1.046, 14.2271), new o(1216, 2.9186, 103.0928), new o(1165, 4.6094, 639.8973), new o(1082, 5.6913, 433.7117), new o(1045, 4.0421, 199.072), new o(1020, 0.6337, 3.1814), new o(634, 4.388, 419.485), new o(549, 5.573, 3.932), new o(457, 1.268, 110.206), new o(425, 0.209, 227.526), new o(274, 4.288, 95.979), new o(162, 1.381, 11.046), new o(129, 1.566, 309.278), new o(117, 3.881, 853.196), new o(105, 4.9, 647.011), new o(101, 0.893, 21.341), new o(96, 2.91, 316.39), new o(95, 5.63, 412.37), new o(85, 5.73, 209.37), new o(83, 6.05, 216.48), new o(82, 1.02, 117.32), new o(75, 4.76, 210.12), new o(67, 0.46, 522.58), new o(66, 0.48, 10.29), new o(64, 0.35, 323.51), new o(61, 4.88, 632.78), new o(53, 2.75, 529.69), new o(46, 5.69, 440.83), new o(45, 1.67, 202.25), new o(42, 5.71, 88.87), new o(32, 0.07, 63.74), new o(32, 1.67, 302.16), new o(31, 4.16, 191.96), new o(27, 0.83, 224.34), new o(25, 5.66, 735.88), new o(20, 5.94, 217.23), new o(18, 4.9, 625.67), new o(17, 1.63, 742.99), new o(16, 0.58, 515.46), new o(14, 0.21, 838.97), new o(14, 3.76, 195.14), new o(12, 4.72, 203), new o(12, 0.13, 234.64), new o(12, 3.12, 846.08), new o(11, 5.92, 536.8), new o(11, 5.6, 728.76), new o(11, 3.2, 1066.5), new o(10, 4.99, 422.67), new o(10, 0.26, 330.62), new o(10, 4.15, 860.31), new o(9, 0.46, 956.29), new o(8, 2.14, 269.92), new o(8, 5.25, 429.78), new o(8, 4.03, 9.56), new o(7, 5.4, 1052.27), new o(6, 4.46, 284.15), new o(6, 5.93, 405.26)], S.g_L3SaturnCoefficients = [new o(16039, 5.73945, 7.11355), new o(4250, 4.5854, 213.2991), new o(1907, 4.7608, 220.4126), new o(1466, 5.9133, 206.1855), new o(1162, 5.6197, 14.2271), new o(1067, 3.6082, 426.5982), new o(239, 3.861, 433.712), new o(237, 5.768, 199.072), new o(166, 5.116, 3.181), new o(151, 2.736, 639.897), new o(131, 4.743, 227.526), new o(63, 0.23, 419.48), new o(62, 4.74, 103.09), new o(40, 5.47, 21.34), new o(40, 5.96, 95.98), new o(39, 5.83, 110.21), new o(28, 3.01, 647.01), new o(25, 0.99, 3.93), new o(19, 1.92, 853.2), new o(18, 4.97, 10.29), new o(18, 1.03, 412.37), new o(18, 4.2, 216.48), new o(18, 3.32, 309.28), new o(16, 3.9, 440.83), new o(16, 5.62, 117.32), new o(13, 1.18, 88.87), new o(11, 5.58, 11.05), new o(11, 5.93, 191.96), new o(10, 3.95, 209.37), new o(9, 3.39, 302.16), new o(8, 4.88, 323.51), new o(7, 0.38, 632.78), new o(6, 2.25, 522.58), new o(6, 1.06, 210.12), new o(5, 4.64, 234.64), new o(4, 3.14, 0), new o(4, 2.31, 515.46), new o(3, 2.2, 860.31), new o(3, 0.59, 529.69), new o(3, 4.93, 224.34), new o(3, 0.42, 625.67), new o(2, 4.77, 330.62), new o(2, 3.35, 429.78), new o(2, 3.2, 202.25), new o(2, 1.19, 1066.5), new o(2, 1.35, 405.26), new o(2, 4.16, 223.59), new o(2, 3.07, 654.12)], S.g_L4SaturnCoefficients = [new o(1662, 3.9983, 7.1135), new o(257, 2.984, 220.413), new o(236, 3.902, 14.227), new o(149, 2.741, 213.299), new o(114, 3.142, 0), new o(110, 1.515, 206.186), new o(68, 1.72, 426.6), new o(40, 2.05, 433.71), new o(38, 1.24, 199.07), new o(31, 3.01, 227.53), new o(15, 0.83, 639.9), new o(9, 3.71, 21.34), new o(6, 2.42, 419.48), new o(6, 1.16, 647.01), new o(4, 1.45, 95.98), new o(4, 2.12, 440.83), new o(3, 4.09, 110.21), new o(3, 2.77, 412.37), new o(3, 3.01, 88.87), new o(3, 0, 853.2), new o(3, 0.39, 103.09), new o(2, 3.78, 117.32), new o(2, 2.83, 234.64), new o(2, 5.08, 309.28), new o(2, 2.24, 216.48), new o(2, 5.19, 302.16), new o(1, 1.55, 191.96)], S.g_L5SaturnCoefficients = [new o(124, 2.259, 7.114), new o(34, 2.16, 14.23), new o(28, 1.2, 220.41), new o(6, 1.22, 227.53), new o(5, 0.24, 433.71), new o(4, 6.23, 426.6), new o(3, 2.97, 199.07), new o(3, 4.29, 206.19), new o(2, 6.25, 213.3), new o(1, 5.28, 639.9), new o(1, 0.24, 440.83), new o(1, 3.14, 0)], S.g_B0SaturnCoefficients = [new o(4330678, 3.6028443, 213.2990954), new o(240348, 2.852385, 426.598191), new o(84746, 0, 0), new o(34116, 0.57297, 206.18555), new o(30863, 3.48442, 220.41264), new o(14734, 2.11847, 639.89729), new o(9917, 5.79, 419.4846), new o(6994, 4.736, 7.1135), new o(4808, 5.4331, 316.3919), new o(4788, 4.9651, 110.2063), new o(3432, 2.7326, 433.7117), new o(1506, 6.013, 103.0928), new o(1060, 5.631, 529.691), new o(969, 5.204, 632.784), new o(942, 1.396, 853.196), new o(708, 3.803, 323.505), new o(552, 5.131, 202.253), new o(400, 3.359, 227.526), new o(319, 3.626, 209.367), new o(316, 1.997, 647.011), new o(314, 0.465, 217.231), new o(284, 4.886, 224.345), new o(236, 2.139, 11.046), new o(215, 5.95, 846.083), new o(209, 2.12, 415.552), new o(207, 0.73, 199.072), new o(179, 2.954, 63.736), new o(141, 0.644, 490.334), new o(139, 4.595, 14.227), new o(139, 1.998, 735.877), new o(135, 5.245, 742.99), new o(122, 3.115, 522.577), new o(116, 3.109, 216.48), new o(114, 0.963, 210.118)], S.g_B1SaturnCoefficients = [new o(397555, 5.3329, 213.299095), new o(49479, 3.14159, 0), new o(18572, 6.09919, 426.59819), new o(14801, 2.30586, 206.18555), new o(9644, 1.6967, 220.4126), new o(3757, 1.2543, 419.4846), new o(2717, 5.9117, 639.8973), new o(1455, 0.8516, 433.7117), new o(1291, 2.9177, 7.1135), new o(853, 0.436, 316.392), new o(298, 0.919, 632.784), new o(292, 5.316, 853.196), new o(284, 1.619, 227.526), new o(275, 3.889, 103.093), new o(172, 0.052, 647.011), new o(166, 2.444, 199.072), new o(158, 5.209, 110.206), new o(128, 1.207, 529.691), new o(110, 2.457, 217.231), new o(82, 2.76, 210.12), new o(81, 2.86, 14.23), new o(69, 1.66, 202.25), new o(65, 1.26, 216.48), new o(61, 1.25, 209.37), new o(59, 1.82, 323.51), new o(46, 0.82, 440.83), new o(36, 1.82, 224.34), new o(34, 2.84, 117.32), new o(33, 1.31, 412.37), new o(32, 1.19, 846.08), new o(27, 4.65, 1066.5), new o(27, 4.44, 11.05)], S.g_B2SaturnCoefficients = [new o(20630, 0.50482, 213.2991), new o(3720, 3.9983, 206.1855), new o(1627, 6.1819, 220.4126), new o(1346, 0, 0), new o(706, 3.039, 419.485), new o(365, 5.099, 426.598), new o(330, 5.279, 433.712), new o(219, 3.828, 639.897), new o(139, 1.043, 7.114), new o(104, 6.157, 227.526), new o(93, 1.98, 316.39), new o(71, 4.15, 199.07), new o(52, 2.88, 632.78), new o(49, 4.43, 647.01), new o(41, 3.16, 853.2), new o(29, 4.53, 210.12), new o(24, 1.12, 14.23), new o(21, 4.35, 217.23), new o(20, 5.31, 440.83), new o(18, 0.85, 110.21), new o(17, 5.68, 216.48), new o(16, 4.26, 103.09), new o(14, 3, 412.37), new o(12, 2.53, 529.69), new o(8, 3.32, 202.25), new o(7, 5.56, 209.37), new o(7, 0.29, 323.51), new o(6, 1.16, 117.32), new o(6, 3.61, 869.31)], S.g_B3SaturnCoefficients = [new o(666, 1.99, 213.299), new o(632, 5.698, 206.186), new o(398, 0, 0), new o(188, 4.338, 220.413), new o(92, 4.84, 419.48), new o(52, 3.42, 433.71), new o(42, 2.38, 426.6), new o(26, 4.4, 227.53), new o(21, 5.85, 199.07), new o(18, 1.99, 639.9), new o(11, 5.37, 7.11), new o(10, 2.55, 647.01), new o(7, 3.46, 316.39), new o(6, 4.8, 632.78), new o(6, 0.02, 210.12), new o(6, 3.52, 440.83), new o(5, 5.64, 14.23), new o(5, 1.22, 853.2), new o(4, 4.71, 412.37), new o(3, 0.63, 103.09), new o(2, 3.72, 216.48)], S.g_B4SaturnCoefficients = [new o(80, 1.12, 206.19), new o(32, 3.12, 213.3), new o(17, 2.48, 220.41), new o(12, 3.14, 0), new o(9, 0.38, 419.48), new o(6, 1.56, 433.71), new o(5, 2.63, 227.53), new o(5, 1.28, 199.07), new o(1, 1.43, 426.6), new o(1, 0.67, 647.01), new o(1, 1.72, 440.83), new o(1, 6.18, 639.9)], S.g_B5SaturnCoefficients = [new o(8, 2.82, 206.19), new o(1, 0.51, 220.41)], S.g_R0SaturnCoefficients = [new o(955758136, 0, 0), new o(52921382, 2.3922622, 213.29909544), new o(1873680, 5.2354961, 206.1855484), new o(1464664, 1.6476305, 426.5981909), new o(821891, 5.9352, 316.39187), new o(547507, 5.015326, 103.092774), new o(371684, 2.271148, 220.412642), new o(361778, 3.139043, 7.113547), new o(140618, 5.704067, 632.783739), new o(108975, 3.293136, 110.206321), new o(69007, 5.941, 419.48464), new o(61053, 0.94038, 639.89729), new o(48913, 1.55733, 202.2534), new o(34144, 0.19519, 277.03499), new o(32402, 5.47085, 949.17561), new o(20937, 0.46349, 735.87651), new o(20839, 1.52103, 433.71174), new o(20747, 5.33256, 199.072), new o(15298, 3.05944, 529.69097), new o(14296, 2.60434, 323.50542), new o(12884, 1.64892, 138.5175), new o(11993, 5.98051, 846.08283), new o(11380, 1.73106, 522.57742), new o(9796, 5.2048, 1265.5675), new o(7753, 5.8519, 95.9792), new o(6771, 3.0043, 14.2271), new o(6466, 0.1773, 1052.2684), new o(5850, 1.4552, 415.5525), new o(5307, 0.5974, 63.7359), new o(4696, 2.1492, 227.5262), new o(4044, 1.6401, 209.3669), new o(3688, 0.7802, 412.3711), new o(3461, 1.8509, 175.1661), new o(3420, 4.9455, 1581.9593), new o(3401, 0.5539, 350.3321), new o(3376, 3.6953, 224.3448), new o(2976, 5.6847, 210.1177), new o(2885, 1.3876, 838.9693), new o(2881, 0.1796, 853.1964), new o(2508, 3.5385, 742.9901), new o(2448, 6.1841, 1368.6603), new o(2406, 2.9656, 117.3199), new o(2174, 0.0151, 340.7709), new o(2024, 5.0541, 11.0457)], S.g_R1SaturnCoefficients = [new o(6182981, 0.2584352, 213.2990954), new o(506578, 0.711147, 206.185548), new o(341394, 5.796358, 426.598191), new o(188491, 0.472157, 220.412642), new o(186262, 3.141593, 0), new o(143891, 1.407449, 7.113547), new o(49621, 6.01744, 103.09277), new o(20928, 5.09246, 639.89729), new o(19953, 1.1756, 419.48464), new o(18840, 1.6082, 110.20632), new o(13877, 0.75886, 199.072), new o(12893, 5.9433, 433.71174), new o(5397, 1.2885, 14.2271), new o(4869, 0.8679, 323.5054), new o(4247, 0.393, 227.5262), new o(3252, 1.2585, 95.9792), new o(3081, 3.4366, 522.5774), new o(2909, 4.6068, 202.2534), new o(2856, 2.1673, 735.8765), new o(1988, 2.4505, 412.3711), new o(1941, 6.0239, 209.3669), new o(1581, 1.2919, 210.1177), new o(1340, 4.308, 853.1964), new o(1316, 1.253, 117.3199), new o(1203, 1.8665, 316.3919), new o(1091, 0.0753, 216.4805), new o(966, 0.48, 632.784), new o(954, 5.152, 647.011), new o(898, 0.983, 529.691), new o(882, 1.885, 1052.268), new o(874, 1.402, 224.345), new o(785, 3.064, 838.969), new o(740, 1.382, 625.67), new o(658, 4.144, 309.278), new o(650, 1.725, 742.99), new o(613, 3.033, 63.736), new o(599, 2.549, 217.231), new o(503, 2.13, 3.932)], S.g_R2SaturnCoefficients = [new o(436902, 4.786717, 213.299095), new o(71923, 2.5007, 206.18555), new o(49767, 4.97168, 220.41264), new o(43221, 3.8694, 426.59819), new o(29646, 5.9631, 7.11355), new o(4721, 2.4753, 199.072), new o(4142, 4.1067, 433.7117), new o(3789, 3.0977, 639.8973), new o(2964, 1.3721, 103.0928), new o(2556, 2.8507, 419.4846), new o(2327, 0, 0), new o(2208, 6.2759, 110.2063), new o(2188, 5.8555, 14.2271), new o(1957, 4.9245, 227.5262), new o(924, 5.464, 323.505), new o(706, 2.971, 95.979), new o(546, 4.129, 412.371), new o(431, 5.178, 522.577), new o(405, 4.173, 209.367), new o(391, 4.481, 216.48), new o(374, 5.834, 117.32), new o(361, 3.277, 647.011), new o(356, 3.192, 210.118), new o(326, 2.269, 853.196), new o(207, 4.022, 735.877), new o(204, 0.088, 202.253), new o(180, 3.597, 632.784), new o(178, 4.097, 440.825), new o(154, 3.135, 625.67), new o(148, 0.136, 302.165), new o(133, 2.594, 191.958), new o(132, 5.933, 309.278)], S.g_R3SaturnCoefficients = [new o(20315, 3.02187, 213.2991), new o(8924, 3.1914, 220.4126), new o(6909, 4.3517, 206.1855), new o(4087, 4.2241, 7.1135), new o(3879, 2.0106, 426.5982), new o(1071, 4.2036, 199.072), new o(907, 2.283, 433.712), new o(606, 3.175, 227.526), new o(597, 4.135, 14.227), new o(483, 1.173, 639.897), new o(393, 0, 0), new o(229, 4.698, 419.485), new o(188, 4.59, 110.206), new o(150, 3.202, 103.093), new o(121, 3.768, 323.505), new o(102, 4.71, 95.979), new o(101, 5.819, 412.371), new o(93, 1.44, 647.01), new o(84, 2.63, 216.48), new o(73, 4.15, 117.32), new o(62, 2.31, 440.83), new o(55, 0.31, 853.2), new o(50, 2.39, 209.37), new o(45, 4.37, 191.96), new o(41, 0.69, 522.58), new o(40, 1.84, 302.16), new o(38, 5.94, 88.87), new o(32, 4.01, 21.34)], S.g_R4SaturnCoefficients = [new o(1202, 1.415, 220.4126), new o(708, 1.162, 213.299), new o(516, 6.24, 206.186), new o(427, 2.469, 7.114), new o(268, 0.187, 426.598), new o(170, 5.959, 199.072), new o(150, 0.48, 433.712), new o(145, 1.442, 227.526), new o(121, 2.405, 14.227), new o(47, 5.57, 639.9), new o(19, 5.86, 647.01), new o(17, 0.53, 440.83), new o(16, 2.9, 110.21), new o(15, 0.3, 419.48), new o(14, 1.3, 412.37), new o(13, 2.09, 323.51), new o(11, 0.22, 95.98), new o(11, 2.46, 117.32), new o(10, 3.14, 0), new o(9, 1.56, 88.87), new o(9, 2.28, 21.34), new o(9, 0.68, 216.48), new o(8, 1.27, 234.64)], S.g_R5SaturnCoefficients = [new o(129, 5.913, 220.413), new o(32, 0.69, 7.11), new o(27, 5.91, 227.53), new o(20, 4.95, 433.71), new o(20, 0.67, 14.23), new o(14, 2.67, 206.19), new o(14, 1.46, 199.07), new o(13, 4.59, 426.6), new o(7, 4.63, 213.3), new o(5, 3.61, 639.9), new o(4, 4.9, 440.83), new o(3, 4.07, 647.01), new o(3, 4.66, 191.96), new o(3, 0.49, 323.51), new o(3, 3.18, 419.48), new o(2, 3.7, 88.87), new o(2, 3.32, 95.98), new o(2, 0.56, 117.32)], S.g_L0UranusCoefficients = [new o(548129294, 0, 0), new o(9260408, 0.8910642, 74.7815986), new o(1504248, 3.6271926, 1.4844727), new o(365982, 1.899622, 73.297126), new o(272328, 3.358237, 149.563197), new o(70328, 5.39254, 63.7359), new o(68893, 6.09292, 76.26607), new o(61999, 2.26952, 2.96895), new o(61951, 2.85099, 11.0457), new o(26469, 3.14152, 71.81265), new o(25711, 6.1138, 454.90937), new o(21079, 4.36059, 148.07872), new o(17819, 1.74437, 36.64856), new o(14613, 4.73732, 3.93215), new o(11163, 5.82682, 224.3448), new o(10998, 0.48865, 138.5175), new o(9527, 2.9552, 35.1641), new o(7546, 5.2363, 109.9457), new o(4220, 3.2333, 70.8494), new o(4052, 2.2775, 151.0477), new o(3490, 5.4831, 146.5943), new o(3355, 1.0655, 4.4534), new o(3144, 4.752, 77.7505), new o(2927, 4.629, 9.5612), new o(2922, 5.3524, 85.8273), new o(2273, 4.366, 70.3282), new o(2149, 0.6075, 38.133), new o(2051, 1.5177, 0.1119), new o(1992, 4.9244, 277.035), new o(1667, 3.6274, 380.1278), new o(1533, 2.5859, 52.6902), new o(1376, 2.0428, 65.2204), new o(1372, 4.1964, 111.4302), new o(1284, 3.1135, 202.2534), new o(1282, 0.5427, 222.8603), new o(1244, 0.9161, 2.4477), new o(1221, 0.199, 108.4612), new o(1151, 4.179, 33.6796), new o(1150, 0.9334, 3.1814), new o(1090, 1.775, 12.5302), new o(1072, 0.2356, 62.2514), new o(946, 1.192, 127.472), new o(708, 5.183, 213.299), new o(653, 0.966, 78.714), new o(628, 0.182, 984.6), new o(607, 5.432, 529.691), new o(559, 3.358, 0.521), new o(524, 2.013, 299.126), new o(483, 2.106, 0.963), new o(471, 1.407, 184.727), new o(467, 0.415, 145.11), new o(434, 5.521, 183.243), new o(405, 5.987, 8.077), new o(399, 0.338, 415.552), new o(396, 5.87, 351.817), new o(379, 2.35, 56.622), new o(310, 5.833, 145.631), new o(300, 5.644, 22.091), new o(294, 5.839, 39.618), new o(252, 1.637, 221.376), new o(249, 4.746, 225.829), new o(239, 2.35, 137.033), new o(224, 0.516, 84.343), new o(223, 2.843, 0.261), new o(220, 1.922, 67.668), new o(217, 6.142, 5.938), new o(216, 4.778, 340.771), new o(208, 5.58, 68.844), new o(202, 1.297, 0.048), new o(199, 0.956, 152.532), new o(194, 1.888, 456.394), new o(193, 0.916, 453.425), new o(187, 1.319, 0.16), new o(182, 3.536, 79.235), new o(173, 1.539, 160.609), new o(172, 5.68, 219.891), new o(170, 3.677, 5.417), new o(169, 5.879, 18.159), new o(165, 1.424, 106.977), new o(163, 3.05, 112.915), new o(158, 0.738, 54.175), new o(147, 1.263, 59.804), new o(143, 1.3, 35.425), new o(139, 5.386, 32.195), new o(139, 4.26, 909.819), new o(124, 1.374, 7.114), new o(110, 2.027, 554.07), new o(109, 5.706, 77.963), new o(104, 5.028, 0.751), new o(104, 1.458, 24.379), new o(103, 0.681, 14.978)], S.g_L1UranusCoefficients = [new o(7502543122, 0, 0), new o(154458, 5.242017, 74.781599), new o(24456, 1.71256, 1.48447), new o(9258, 0.4284, 11.0457), new o(8266, 1.5022, 63.7359), new o(7842, 1.3198, 149.5632), new o(3899, 0.4648, 3.9322), new o(2284, 4.1737, 76.2661), new o(1927, 0.5301, 2.9689), new o(1233, 1.5863, 70.8494), new o(791, 5.436, 3.181), new o(767, 1.996, 73.297), new o(482, 2.984, 85.827), new o(450, 4.138, 138.517), new o(446, 3.723, 224.345), new o(427, 4.731, 71.813), new o(354, 2.583, 148.079), new o(348, 2.454, 9.561), new o(317, 5.579, 52.69), new o(206, 2.363, 2.448), new o(189, 4.202, 56.622), new o(184, 0.284, 151.048), new o(180, 5.684, 12.53), new o(171, 3.001, 78.714), new o(158, 2.909, 0.963), new o(155, 5.591, 4.453), new o(154, 4.652, 35.164), new o(152, 2.942, 77.751), new o(143, 2.59, 62.251), new o(121, 4.148, 127.472), new o(116, 3.732, 65.22), new o(102, 4.188, 145.631), new o(102, 6.034, 0.112), new o(88, 3.99, 18.16), new o(88, 6.16, 202.25), new o(81, 2.64, 22.09), new o(72, 6.05, 70.33), new o(69, 4.05, 77.96), new o(59, 3.7, 67.67), new o(47, 3.54, 351.82), new o(44, 5.91, 7.11), new o(43, 5.72, 5.42), new o(39, 4.92, 222.86), new o(36, 5.9, 33.68), new o(36, 3.29, 8.08), new o(36, 3.33, 71.6), new o(35, 5.08, 38.13), new o(31, 5.62, 984.6), new o(31, 5.5, 59.8), new o(31, 5.46, 160.61), new o(30, 1.66, 447.8), new o(29, 1.15, 462.02), new o(29, 4.52, 84.34), new o(27, 5.54, 131.4), new o(27, 6.15, 299.13), new o(26, 4.99, 137.03), new o(25, 5.74, 380.13)], S.g_L2UranusCoefficients = [new o(53033, 0, 0), new o(2358, 2.2601, 74.7816), new o(769, 4.526, 11.046), new o(552, 3.258, 63.736), new o(542, 2.276, 3.932), new o(529, 4.923, 1.484), new o(258, 3.691, 3.181), new o(239, 5.858, 149.563), new o(182, 6.218, 70.849), new o(54, 1.44, 76.27), new o(49, 6.03, 56.62), new o(45, 3.91, 2.45), new o(45, 0.81, 85.83), new o(38, 1.78, 52.69), new o(37, 4.46, 2.97), new o(33, 0.86, 9.56), new o(29, 5.1, 73.3), new o(24, 2.11, 18.16), new o(22, 5.99, 138.52), new o(22, 4.82, 78.71), new o(21, 2.4, 77.96), new o(21, 2.17, 224.34), new o(17, 2.54, 145.63), new o(17, 3.47, 12.53), new o(12, 0.02, 22.09), new o(11, 0.08, 127.47), new o(10, 5.16, 71.6), new o(10, 4.46, 62.25), new o(9, 4.26, 7.11), new o(8, 5.5, 67.67), new o(7, 1.25, 5.42), new o(6, 3.36, 447.8), new o(6, 5.45, 65.22), new o(6, 4.52, 151.05), new o(6, 5.73, 462.02)], S.g_L3UranusCoefficients = [new o(121, 0.024, 74.782), new o(68, 4.12, 3.93), new o(53, 2.39, 11.05), new o(46, 0, 0), new o(45, 2.04, 3.18), new o(44, 2.96, 1.48), new o(25, 4.89, 63.74), new o(21, 4.55, 70.85), new o(20, 2.31, 149.56), new o(9, 1.58, 56.62), new o(4, 0.23, 18.16), new o(4, 5.39, 76.27), new o(4, 0.95, 77.96), new o(3, 4.98, 85.83), new o(3, 4.13, 52.69), new o(3, 0.37, 78.71), new o(2, 0.86, 145.63), new o(2, 5.66, 9.56)], S.g_L4UranusCoefficients = [new o(114, 3.142, 0), new o(6, 4.58, 74.78), new o(3, 0.35, 11.05), new o(1, 3.42, 56.62)], S.g_B0UranusCoefficients = [new o(1346278, 2.6187781, 74.7815986), new o(62341, 5.08111, 149.5632), new o(61601, 3.14159, 0), new o(9964, 1.616, 76.2661), new o(9926, 0.5763, 73.2971), new o(3259, 1.2612, 224.3448), new o(2972, 2.2437, 1.4845), new o(2010, 6.0555, 148.0787), new o(1522, 0.2796, 63.7359), new o(924, 4.038, 151.048), new o(761, 6.14, 71.813), new o(522, 3.321, 138.517), new o(463, 0.743, 85.827), new o(437, 3.381, 529.691), new o(435, 0.341, 77.751), new o(431, 3.554, 213.299), new o(420, 5.213, 11.046), new o(245, 0.788, 2.969), new o(233, 2.257, 222.86), new o(216, 1.591, 38.133), new o(180, 3.725, 299.126), new o(175, 1.236, 146.594), new o(174, 1.937, 380.128), new o(160, 5.336, 111.43), new o(144, 5.962, 35.164), new o(116, 5.739, 70.849), new o(106, 0.941, 70.328), new o(102, 2.619, 78.714)], S.g_B1UranusCoefficients = [new o(206366, 4.123943, 74.781599), new o(8563, 0.3382, 149.5632), new o(1726, 2.1219, 73.2971), new o(1374, 0, 0), new o(1369, 3.0686, 76.2661), new o(451, 3.777, 1.484), new o(400, 2.848, 224.345), new o(307, 1.255, 148.079), new o(154, 3.786, 63.736), new o(112, 5.573, 151.048), new o(111, 5.329, 138.517), new o(83, 3.59, 71.81), new o(56, 3.4, 85.83), new o(54, 1.7, 77.75), new o(42, 1.21, 11.05), new o(41, 4.45, 78.71), new o(32, 3.77, 222.86), new o(30, 2.56, 2.97), new o(27, 5.34, 213.3), new o(26, 0.42, 380.13)], S.g_B2UranusCoefficients = [new o(9212, 5.8004, 74.7816), new o(557, 0, 0), new o(286, 2.177, 149.563), new o(95, 3.84, 73.3), new o(45, 4.88, 76.27), new o(20, 5.46, 1.48), new o(15, 0.88, 138.52), new o(14, 2.85, 148.08), new o(14, 5.07, 63.74), new o(10, 5, 224.34), new o(8, 6.27, 78.71)], S.g_B3UranusCoefficients = [new o(268, 1.251, 74.782), new o(11, 3.14, 0), new o(6, 4.01, 149.56), new o(3, 5.78, 73.3)], S.g_B4UranusCoefficients = [new o(6, 2.85, 74.78)], S.g_R0UranusCoefficients = [new o(1921264848, 0, 0), new o(88784984, 5.60377527, 74.78159857), new o(3440836, 0.328361, 73.2971259), new o(2055653, 1.7829517, 149.5631971), new o(649322, 4.522473, 76.266071), new o(602248, 3.860038, 63.735898), new o(496404, 1.401399, 454.909367), new o(338526, 1.580027, 138.517497), new o(243508, 1.570866, 71.812653), new o(190522, 1.998094, 1.484473), new o(161858, 2.791379, 148.078724), new o(143706, 1.383686, 11.0457), new o(93192, 0.17437, 36.64856), new o(89806, 3.66105, 109.94569), new o(71424, 4.24509, 224.3448), new o(46677, 1.39977, 35.16409), new o(39026, 3.36235, 277.03499), new o(39010, 1.66971, 70.84945), new o(36755, 3.88649, 146.59425), new o(30349, 0.701, 151.04767), new o(29156, 3.18056, 77.75054), new o(25786, 3.78538, 85.8273), new o(25620, 5.25656, 380.12777), new o(22637, 0.72519, 529.69097), new o(20473, 2.7964, 70.32818), new o(20472, 1.55589, 202.2534), new o(17901, 0.55455, 2.96895), new o(15503, 5.35405, 38.13304), new o(14702, 4.90434, 108.46122), new o(12897, 2.62154, 111.43016), new o(12328, 5.96039, 127.4718), new o(11959, 1.75044, 984.60033), new o(11853, 0.99343, 52.6902), new o(11696, 3.29826, 3.93215), new o(11495, 0.43774, 65.22037), new o(10793, 1.42105, 213.2991), new o(9111, 4.9964, 62.2514), new o(8421, 5.2535, 222.8603), new o(8402, 5.0388, 415.5525), new o(7449, 0.7949, 351.8166), new o(7329, 3.9728, 183.2428), new o(6046, 5.6796, 78.7138), new o(5524, 3.115, 9.5612), new o(5445, 5.1058, 145.1098), new o(5238, 2.6296, 33.6796), new o(4079, 3.2206, 340.7709), new o(3919, 4.2502, 39.6175), new o(3802, 6.1099, 184.7273), new o(3781, 3.4584, 456.3938), new o(3687, 2.4872, 453.4249), new o(3102, 4.1403, 219.8914), new o(2963, 0.8298, 56.6224), new o(2942, 0.4239, 299.1264), new o(2940, 2.1464, 137.033), new o(2938, 3.6766, 140.002), new o(2865, 0.31, 12.5302), new o(2538, 4.8546, 131.4039), new o(2364, 0.4425, 554.07), new o(2183, 2.9404, 305.3462)], S.g_R1UranusCoefficients = [new o(1479896, 3.6720571, 74.7815986), new o(71212, 6.22601, 63.7359), new o(68627, 6.13411, 149.5632), new o(24060, 3.14159, 0), new o(21468, 2.60177, 76.26607), new o(20857, 5.24625, 11.0457), new o(11405, 0.01848, 70.84945), new o(7497, 0.4236, 73.2971), new o(4244, 1.4169, 85.8273), new o(3927, 3.1551, 71.8127), new o(3578, 2.3116, 224.3448), new o(3506, 2.5835, 138.5175), new o(3229, 5.255, 3.9322), new o(3060, 0.1532, 1.4845), new o(2564, 0.9808, 148.0787), new o(2429, 3.9944, 52.6902), new o(1645, 2.6535, 127.4718), new o(1584, 1.4305, 78.7138), new o(1508, 5.06, 151.0477), new o(1490, 2.6756, 56.6224), new o(1413, 4.5746, 202.2534), new o(1403, 1.3699, 77.7505), new o(1228, 1.047, 62.2514), new o(1033, 0.2646, 131.4039), new o(992, 2.172, 65.22), new o(862, 5.055, 351.817), new o(744, 3.076, 35.164), new o(687, 2.499, 77.963), new o(647, 4.473, 70.328), new o(624, 0.863, 9.561), new o(604, 0.907, 984.6), new o(575, 3.231, 447.796), new o(562, 2.718, 462.023), new o(530, 5.917, 213.299), new o(528, 5.151, 2.969)], S.g_R2UranusCoefficients = [new o(22440, 0.69953, 74.7816), new o(4727, 1.699, 63.7359), new o(1682, 4.6483, 70.8494), new o(1650, 3.0966, 11.0457), new o(1434, 3.5212, 149.5632), new o(770, 0, 0), new o(500, 6.172, 76.266), new o(461, 0.767, 3.932), new o(390, 4.496, 56.622), new o(390, 5.527, 85.827), new o(292, 0.204, 52.69), new o(287, 3.534, 73.297), new o(273, 3.847, 138.517), new o(220, 1.964, 131.404), new o(216, 0.848, 77.963), new o(205, 3.248, 78.714), new o(149, 4.898, 127.472), new o(129, 2.081, 3.181)], S.g_R3UranusCoefficients = [new o(1164, 4.7345, 74.7816), new o(212, 3.343, 63.736), new o(196, 2.98, 70.849), new o(105, 0.958, 11.046), new o(73, 1, 149.56), new o(72, 0.03, 56.62), new o(55, 2.59, 3.93), new o(36, 5.65, 77.96), new o(34, 3.82, 76.27), new o(32, 3.6, 131.4)], S.g_R4UranusCoefficients = [new o(53, 3.01, 74.78), new o(10, 1.91, 56.62)], S.g_L0VenusCoefficients = [new o(317614667, 0, 0), new o(1353968, 5.5931332, 10213.2855462), new o(89892, 5.3065, 20426.57109), new o(5477, 4.4163, 7860.4194), new o(3456, 2.6996, 11790.6291), new o(2372, 2.9938, 3930.2097), new o(1664, 4.2502, 1577.3435), new o(1438, 4.1575, 9683.5946), new o(1317, 5.1867, 26.2983), new o(1201, 6.1536, 30639.8566), new o(769, 0.816, 9437.763), new o(761, 1.95, 529.691), new o(708, 1.065, 775.523), new o(585, 3.998, 191.448), new o(500, 4.123, 15720.839), new o(429, 3.586, 19367.189), new o(327, 5.677, 5507.553), new o(326, 4.591, 10404.734), new o(232, 3.163, 9153.904), new o(180, 4.653, 1109.379), new o(155, 5.57, 19651.048), new o(128, 4.226, 20.775), new o(128, 0.962, 5661.332), new o(106, 1.537, 801.821)], S.g_L1VenusCoefficients = [new o(1021352943053, 0, 0), new o(95708, 2.46424, 10213.28555), new o(14445, 0.51625, 20426.57109), new o(213, 1.795, 30639.857), new o(174, 2.655, 26.298), new o(152, 6.106, 1577.344), new o(82, 5.7, 191.45), new o(70, 2.68, 9437.76), new o(52, 3.6, 775.52), new o(38, 1.03, 529.69), new o(30, 1.25, 5507.55), new o(25, 6.11, 10404.73)], S.g_L2VenusCoefficients = [new o(54127, 0, 0), new o(3891, 0.3451, 10213.2855), new o(1338, 2.0201, 20426.5711), new o(24, 2.05, 26.3), new o(19, 3.54, 30639.86), new o(10, 3.97, 775.52), new o(7, 1.52, 1577.34), new o(6, 1, 191.45)], S.g_L3VenusCoefficients = [new o(136, 4.804, 10213.286), new o(78, 3.67, 20426.57), new o(26, 0, 0)], S.g_L4VenusCoefficients = [new o(114, 3.1416, 0), new o(3, 5.21, 20426.57), new o(2, 2.51, 10213.29)], S.g_L5VenusCoefficients = [new o(1, 3.14, 0)], S.g_B0VenusCoefficients = [new o(5923638, 0.2670278, 10213.2855462), new o(40108, 1.14737, 20426.57109), new o(32815, 3.14737, 0), new o(1011, 1.0895, 30639.8566), new o(149, 6.254, 18073.705), new o(138, 0.86, 1577.344), new o(130, 3.672, 9437.763), new o(120, 3.705, 2352.866), new o(108, 4.539, 22003.915)], S.g_B1VenusCoefficients = [new o(513348, 1.803643, 10213.285546), new o(4380, 3.3862, 20426.5711), new o(199, 0, 0), new o(197, 2.53, 30639.857)], S.g_B2VenusCoefficients = [new o(22378, 3.38509, 10213.28555), new o(282, 0, 0), new o(173, 5.256, 20426.571), new o(27, 3.87, 30639.86)], S.g_B3VenusCoefficients = [new o(647, 4.992, 10213.286), new o(20, 3.14, 0), new o(6, 0.77, 20426.57), new o(3, 5.44, 30639.86)], S.g_B4VenusCoefficients = [new o(14, 0.32, 10213.29)], S.g_R0VenusCoefficients = [new o(72334821, 0, 0), new o(489824, 4.021518, 10213.285546), new o(1658, 4.9021, 20426.5711), new o(1632, 2.8455, 7860.4194), new o(1378, 1.1285, 11790.6291), new o(498, 2.587, 9683.595), new o(374, 1.423, 3930.21), new o(264, 5.529, 9437.763), new o(237, 2.551, 15720.839), new o(222, 2.013, 19367.189), new o(126, 2.728, 1577.344), new o(119, 3.02, 10404.734)], S.g_R1VenusCoefficients = [new o(34551, 0.89199, 10213.28555), new o(234, 1.772, 20426.571), new o(234, 3.142, 0)], S.g_R2VenusCoefficients = [new o(1407, 5.0637, 10213.2855), new o(16, 5.47, 20426.57), new o(13, 0, 0)], S.g_R3VenusCoefficients = [new o(50, 3.22, 10213.29)], S.g_R4VenusCoefficients = [new o(1, 0.92, 10213.29)], Be._pI4_A = 0.785398155450821, Be._pI4_B = 794662735614793e-23, Be._pI4_C = 306161699786838e-31, Be._m_1_PI = 0.318309886183791, qr.ctab = [0, 1, 256, 257, 2, 3, 258, 259, 512, 513, 768, 769, 514, 515, 770, 771, 4, 5, 260, 261, 6, 7, 262, 263, 516, 517, 772, 773, 518, 519, 774, 775, 1024, 1025, 1280, 1281, 1026, 1027, 1282, 1283, 1536, 1537, 1792, 1793, 1538, 1539, 1794, 1795, 1028, 1029, 1284, 1285, 1030, 1031, 1286, 1287, 1540, 1541, 1796, 1797, 1542, 1543, 1798, 1799, 8, 9, 264, 265, 10, 11, 266, 267, 520, 521, 776, 777, 522, 523, 778, 779, 12, 13, 268, 269, 14, 15, 270, 271, 524, 525, 780, 781, 526, 527, 782, 783, 1032, 1033, 1288, 1289, 1034, 1035, 1290, 1291, 1544, 1545, 1800, 1801, 1546, 1547, 1802, 1803, 1036, 1037, 1292, 1293, 1038, 1039, 1294, 1295, 1548, 1549, 1804, 1805, 1550, 1551, 1806, 1807, 2048, 2049, 2304, 2305, 2050, 2051, 2306, 2307, 2560, 2561, 2816, 2817, 2562, 2563, 2818, 2819, 2052, 2053, 2308, 2309, 2054, 2055, 2310, 2311, 2564, 2565, 2820, 2821, 2566, 2567, 2822, 2823, 3072, 3073, 3328, 3329, 3074, 3075, 3330, 3331, 3584, 3585, 3840, 3841, 3586, 3587, 3842, 3843, 3076, 3077, 3332, 3333, 3078, 3079, 3334, 3335, 3588, 3589, 3844, 3845, 3590, 3591, 3846, 3847, 2056, 2057, 2312, 2313, 2058, 2059, 2314, 2315, 2568, 2569, 2824, 2825, 2570, 2571, 2826, 2827, 2060, 2061, 2316, 2317, 2062, 2063, 2318, 2319, 2572, 2573, 2828, 2829, 2574, 2575, 2830, 2831, 3080, 3081, 3336, 3337, 3082, 3083, 3338, 3339, 3592, 3593, 3848, 3849, 3594, 3595, 3850, 3851, 3084, 3085, 3340, 3341, 3086, 3087, 3342, 3343, 3596, 3597, 3852, 3853, 3598, 3599, 3854, 3855], qr.utab = [0, 1, 4, 5, 16, 17, 20, 21, 64, 65, 68, 69, 80, 81, 84, 85, 256, 257, 260, 261, 272, 273, 276, 277, 320, 321, 324, 325, 336, 337, 340, 341, 1024, 1025, 1028, 1029, 1040, 1041, 1044, 1045, 1088, 1089, 1092, 1093, 1104, 1105, 1108, 1109, 1280, 1281, 1284, 1285, 1296, 1297, 1300, 1301, 1344, 1345, 1348, 1349, 1360, 1361, 1364, 1365, 4096, 4097, 4100, 4101, 4112, 4113, 4116, 4117, 4160, 4161, 4164, 4165, 4176, 4177, 4180, 4181, 4352, 4353, 4356, 4357, 4368, 4369, 4372, 4373, 4416, 4417, 4420, 4421, 4432, 4433, 4436, 4437, 5120, 5121, 5124, 5125, 5136, 5137, 5140, 5141, 5184, 5185, 5188, 5189, 5200, 5201, 5204, 5205, 5376, 5377, 5380, 5381, 5392, 5393, 5396, 5397, 5440, 5441, 5444, 5445, 5456, 5457, 5460, 5461, 16384, 16385, 16388, 16389, 16400, 16401, 16404, 16405, 16448, 16449, 16452, 16453, 16464, 16465, 16468, 16469, 16640, 16641, 16644, 16645, 16656, 16657, 16660, 16661, 16704, 16705, 16708, 16709, 16720, 16721, 16724, 16725, 17408, 17409, 17412, 17413, 17424, 17425, 17428, 17429, 17472, 17473, 17476, 17477, 17488, 17489, 17492, 17493, 17664, 17665, 17668, 17669, 17680, 17681, 17684, 17685, 17728, 17729, 17732, 17733, 17744, 17745, 17748, 17749, 20480, 20481, 20484, 20485, 20496, 20497, 20500, 20501, 20544, 20545, 20548, 20549, 20560, 20561, 20564, 20565, 20736, 20737, 20740, 20741, 20752, 20753, 20756, 20757, 20800, 20801, 20804, 20805, 20816, 20817, 20820, 20821, 21504, 21505, 21508, 21509, 21520, 21521, 21524, 21525, 21568, 21569, 21572, 21573, 21584, 21585, 21588, 21589, 21760, 21761, 21764, 21765, 21776, 21777, 21780, 21781, 21824, 21825, 21828, 21829, 21840, 21841, 21844, 21845], qr.jrll = [2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4], qr.jpll = [1, 3, 5, 7, 0, 2, 4, 6, 1, 3, 5, 7], qr.xoffset = [-1, -1, 0, 1, 1, 1, 0, -1], qr.yoffset = [0, 1, 1, 1, 0, -1, -1, -1], ze.singleton = new ze(), ve.pointList = null, ve.lineList = null, ve.triangleFanPointList = null, ve.triangleList = null, ve.batchDirty = !0, ge._galDetails = new La(), ge._jupDetails = new Ma(), ge._jupPhisical = new As(), ge._jDateLast = 0, jt.RC = 0.017453292519943, jt._maxSeperation = 0.745, jt.containment = null, jt._constToDraw = "", jt.selectedSegment = null, jt._artFile = null, jt.artwork = null, jt.boundries = null, jt.pictureBlendStates = {}, ke.families = {}, R.zero = new R(), tt._s_identity = tt._createIdentity(), De._downloading = !1, De._imagesLoaded = !1, De._imageLoadCount = 0, Xr.starTexture = null, oi.vertLoc = 0, oi.initialized = !1, oi._prog = null, bi.vertLoc = 0, bi.initialized = !1, bi._prog = null, je.vertLoc = 0, je.colorLoc = 0, je.initialized = !1, je._prog = null, Ie.vertLoc = 0, Ie.colorLoc = 0, Ie.timeLoc = 0, Ie.initialized = !1, Ie._prog = null, se.vertLoc = 0, se.colorLoc = 0, se.pointSizeLoc = 0, se.timeLoc = 0, se.initialized = !1, se._prog = null, Gt.abcLoc = 0, Gt.abcLoc1 = 0, Gt.pointSizeLoc = 0, Gt.colorLoc = 0, Gt.weLoc = 0, Gt.nTLoc = 0, Gt.azLoc = 0, Gt.orbitLoc = 0, Gt.initialized = !1, Gt._prog = null, Pe.angleLoc = 0, Pe.initialized = !1, Pe._prog = null, ce.vertLoc = 0, ce.normalLoc = 0, ce.textureLoc = 0, ce.initialized = !1, ce._prog = null, ce.sunPosition = R.create(-1, -1, -1), ce.minLightingBrightness = 1, ce.atmosphereColor = j.fromArgb(0, 0, 0, 0), de.vertLoc = 0, de.normalLoc = 0, de.textureLoc = 0, de.initialized = !1, de._prog = null, de.sunPosition = R.create(-1, -1, -1), de.minLightingBrightness = 1, de.atmosphereColor = j.fromArgb(0, 0, 0, 0), ne.vertLoc = 0, ne.textureLoc = 0, ne.initialized = !1, ne._prog = null, ne.sunPosition = R.create(-1, -1, -1), ne.minLightingBrightness = 1, ne.atmosphereColor = j.fromArgb(0, 0, 0, 0), zt.vertLoc = 0, zt.textureLoc = 0, zt.initialized = !1, zt._prog = null, zt.blankValue = 0, zt.bScale = 1, zt.bZero = 0, zt.min = 0, zt.max = 0, zt.transparentBlack = !1, zt.containsBlanks = !1, zt.scaleType = 0, Oe.vertLoc = 0, Oe.textureLoc = 0, Oe.initialized = !1, Oe._prog = null, He.vertLoc = 0, He.textureLoc = 0, He.initialized = !1, He._prog = null, Ve.vertLoc = 0, Ve.textureLoc = 0, Ve.colorLoc = 0, Ve.initialized = !1, Ve._prog = null, Ze.vertLoc = 0, Ze.textureLoc = 0, Ze.colorLoc = 0, Ze.initialized = !1, Ze._prog = null, Ke.vertLoc = 0, Ke.textureLoc = 0, Ke.initialized = !1, Ke._prog = null, di.empty = null, W._galaxyImageIndexBuffer = null, W._galaxyImageTriangleCount = 0, W._milkyWayImage = null, W._starSprites = null, W._starCount = 0, W._starsDownloading = !1, W._stars = null, W._hipparcosIndex = {}, W._limitingMagnitude = 16, W._galaxyTextures = null, W._galaxyVertexCounts = null, W._largeSet = !0, W._cosmosReady = !1, W._cosmos = null, W._downloadingGalaxy = !1, W._eclipticCount = 0, W._eclipticYear = 0, W._monthDays = [31, 28.2421, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31], W._monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], W._eclipticTextYear = 0, ur._sine = 0, ur._cose = 1, ur._degrad = Math.PI / 180, ur.baseDate = r.truncate(Q.utcToJulian(r.now())), Ce.colorTextures = {}, Ce.viridis = Ce.fromStringList(["#440154", "#440256", "#450457", "#450559", "#46075a", "#46085c", "#460a5d", "#460b5e", "#470d60", "#470e61", "#471063", "#471164", "#471365", "#481467", "#481668", "#481769", "#48186a", "#481a6c", "#481b6d", "#481c6e", "#481d6f", "#481f70", "#482071", "#482173", "#482374", "#482475", "#482576", "#482677", "#482878", "#482979", "#472a7a", "#472c7a", "#472d7b", "#472e7c", "#472f7d", "#46307e", "#46327e", "#46337f", "#463480", "#453581", "#453781", "#453882", "#443983", "#443a83", "#443b84", "#433d84", "#433e85", "#423f85", "#424086", "#424186", "#414287", "#414487", "#404588", "#404688", "#3f4788", "#3f4889", "#3e4989", "#3e4a89", "#3e4c8a", "#3d4d8a", "#3d4e8a", "#3c4f8a", "#3c508b", "#3b518b", "#3b528b", "#3a538b", "#3a548c", "#39558c", "#39568c", "#38588c", "#38598c", "#375a8c", "#375b8d", "#365c8d", "#365d8d", "#355e8d", "#355f8d", "#34608d", "#34618d", "#33628d", "#33638d", "#32648e", "#32658e", "#31668e", "#31678e", "#31688e", "#30698e", "#306a8e", "#2f6b8e", "#2f6c8e", "#2e6d8e", "#2e6e8e", "#2e6f8e", "#2d708e", "#2d718e", "#2c718e", "#2c728e", "#2c738e", "#2b748e", "#2b758e", "#2a768e", "#2a778e", "#2a788e", "#29798e", "#297a8e", "#297b8e", "#287c8e", "#287d8e", "#277e8e", "#277f8e", "#27808e", "#26818e", "#26828e", "#26828e", "#25838e", "#25848e", "#25858e", "#24868e", "#24878e", "#23888e", "#23898e", "#238a8d", "#228b8d", "#228c8d", "#228d8d", "#218e8d", "#218f8d", "#21908d", "#21918c", "#20928c", "#20928c", "#20938c", "#1f948c", "#1f958b", "#1f968b", "#1f978b", "#1f988b", "#1f998a", "#1f9a8a", "#1e9b8a", "#1e9c89", "#1e9d89", "#1f9e89", "#1f9f88", "#1fa088", "#1fa188", "#1fa187", "#1fa287", "#20a386", "#20a486", "#21a585", "#21a685", "#22a785", "#22a884", "#23a983", "#24aa83", "#25ab82", "#25ac82", "#26ad81", "#27ad81", "#28ae80", "#29af7f", "#2ab07f", "#2cb17e", "#2db27d", "#2eb37c", "#2fb47c", "#31b57b", "#32b67a", "#34b679", "#35b779", "#37b878", "#38b977", "#3aba76", "#3bbb75", "#3dbc74", "#3fbc73", "#40bd72", "#42be71", "#44bf70", "#46c06f", "#48c16e", "#4ac16d", "#4cc26c", "#4ec36b", "#50c46a", "#52c569", "#54c568", "#56c667", "#58c765", "#5ac864", "#5cc863", "#5ec962", "#60ca60", "#63cb5f", "#65cb5e", "#67cc5c", "#69cd5b", "#6ccd5a", "#6ece58", "#70cf57", "#73d056", "#75d054", "#77d153", "#7ad151", "#7cd250", "#7fd34e", "#81d34d", "#84d44b", "#86d549", "#89d548", "#8bd646", "#8ed645", "#90d743", "#93d741", "#95d840", "#98d83e", "#9bd93c", "#9dd93b", "#a0da39", "#a2da37", "#a5db36", "#a8db34", "#aadc32", "#addc30", "#b0dd2f", "#b2dd2d", "#b5de2b", "#b8de29", "#bade28", "#bddf26", "#c0df25", "#c2df23", "#c5e021", "#c8e020", "#cae11f", "#cde11d", "#d0e11c", "#d2e21b", "#d5e21a", "#d8e219", "#dae319", "#dde318", "#dfe318", "#e2e418", "#e5e419", "#e7e419", "#eae51a", "#ece51b", "#efe51c", "#f1e51d", "#f4e61e", "#f6e620", "#f8e621", "#fbe723", "#fde725"]), Ce.plasma = Ce.fromStringList(["#0d0887", "#100788", "#130789", "#16078a", "#19068c", "#1b068d", "#1d068e", "#20068f", "#220690", "#240691", "#260591", "#280592", "#2a0593", "#2c0594", "#2e0595", "#2f0596", "#310597", "#330597", "#350498", "#370499", "#38049a", "#3a049a", "#3c049b", "#3e049c", "#3f049c", "#41049d", "#43039e", "#44039e", "#46039f", "#48039f", "#4903a0", "#4b03a1", "#4c02a1", "#4e02a2", "#5002a2", "#5102a3", "#5302a3", "#5502a4", "#5601a4", "#5801a4", "#5901a5", "#5b01a5", "#5c01a6", "#5e01a6", "#6001a6", "#6100a7", "#6300a7", "#6400a7", "#6600a7", "#6700a8", "#6900a8", "#6a00a8", "#6c00a8", "#6e00a8", "#6f00a8", "#7100a8", "#7201a8", "#7401a8", "#7501a8", "#7701a8", "#7801a8", "#7a02a8", "#7b02a8", "#7d03a8", "#7e03a8", "#8004a8", "#8104a7", "#8305a7", "#8405a7", "#8606a6", "#8707a6", "#8808a6", "#8a09a5", "#8b0aa5", "#8d0ba5", "#8e0ca4", "#8f0da4", "#910ea3", "#920fa3", "#9410a2", "#9511a1", "#9613a1", "#9814a0", "#99159f", "#9a169f", "#9c179e", "#9d189d", "#9e199d", "#a01a9c", "#a11b9b", "#a21d9a", "#a31e9a", "#a51f99", "#a62098", "#a72197", "#a82296", "#aa2395", "#ab2494", "#ac2694", "#ad2793", "#ae2892", "#b02991", "#b12a90", "#b22b8f", "#b32c8e", "#b42e8d", "#b52f8c", "#b6308b", "#b7318a", "#b83289", "#ba3388", "#bb3488", "#bc3587", "#bd3786", "#be3885", "#bf3984", "#c03a83", "#c13b82", "#c23c81", "#c33d80", "#c43e7f", "#c5407e", "#c6417d", "#c7427c", "#c8437b", "#c9447a", "#ca457a", "#cb4679", "#cc4778", "#cc4977", "#cd4a76", "#ce4b75", "#cf4c74", "#d04d73", "#d14e72", "#d24f71", "#d35171", "#d45270", "#d5536f", "#d5546e", "#d6556d", "#d7566c", "#d8576b", "#d9586a", "#da5a6a", "#da5b69", "#db5c68", "#dc5d67", "#dd5e66", "#de5f65", "#de6164", "#df6263", "#e06363", "#e16462", "#e26561", "#e26660", "#e3685f", "#e4695e", "#e56a5d", "#e56b5d", "#e66c5c", "#e76e5b", "#e76f5a", "#e87059", "#e97158", "#e97257", "#ea7457", "#eb7556", "#eb7655", "#ec7754", "#ed7953", "#ed7a52", "#ee7b51", "#ef7c51", "#ef7e50", "#f07f4f", "#f0804e", "#f1814d", "#f1834c", "#f2844b", "#f3854b", "#f3874a", "#f48849", "#f48948", "#f58b47", "#f58c46", "#f68d45", "#f68f44", "#f79044", "#f79143", "#f79342", "#f89441", "#f89540", "#f9973f", "#f9983e", "#f99a3e", "#fa9b3d", "#fa9c3c", "#fa9e3b", "#fb9f3a", "#fba139", "#fba238", "#fca338", "#fca537", "#fca636", "#fca835", "#fca934", "#fdab33", "#fdac33", "#fdae32", "#fdaf31", "#fdb130", "#fdb22f", "#fdb42f", "#fdb52e", "#feb72d", "#feb82c", "#feba2c", "#febb2b", "#febd2a", "#febe2a", "#fec029", "#fdc229", "#fdc328", "#fdc527", "#fdc627", "#fdc827", "#fdca26", "#fdcb26", "#fccd25", "#fcce25", "#fcd025", "#fcd225", "#fbd324", "#fbd524", "#fbd724", "#fad824", "#fada24", "#f9dc24", "#f9dd25", "#f8df25", "#f8e125", "#f7e225", "#f7e425", "#f6e626", "#f6e826", "#f5e926", "#f5eb27", "#f4ed27", "#f3ee27", "#f3f027", "#f2f227", "#f1f426", "#f1f525", "#f0f724", "#f0f921"]), Ce.inferno = Ce.fromStringList(["#000004", "#010005", "#010106", "#010108", "#02010a", "#02020c", "#02020e", "#030210", "#040312", "#040314", "#050417", "#060419", "#07051b", "#08051d", "#09061f", "#0a0722", "#0b0724", "#0c0826", "#0d0829", "#0e092b", "#10092d", "#110a30", "#120a32", "#140b34", "#150b37", "#160b39", "#180c3c", "#190c3e", "#1b0c41", "#1c0c43", "#1e0c45", "#1f0c48", "#210c4a", "#230c4c", "#240c4f", "#260c51", "#280b53", "#290b55", "#2b0b57", "#2d0b59", "#2f0a5b", "#310a5c", "#320a5e", "#340a5f", "#360961", "#380962", "#390963", "#3b0964", "#3d0965", "#3e0966", "#400a67", "#420a68", "#440a68", "#450a69", "#470b6a", "#490b6a", "#4a0c6b", "#4c0c6b", "#4d0d6c", "#4f0d6c", "#510e6c", "#520e6d", "#540f6d", "#550f6d", "#57106e", "#59106e", "#5a116e", "#5c126e", "#5d126e", "#5f136e", "#61136e", "#62146e", "#64156e", "#65156e", "#67166e", "#69166e", "#6a176e", "#6c186e", "#6d186e", "#6f196e", "#71196e", "#721a6e", "#741a6e", "#751b6e", "#771c6d", "#781c6d", "#7a1d6d", "#7c1d6d", "#7d1e6d", "#7f1e6c", "#801f6c", "#82206c", "#84206b", "#85216b", "#87216b", "#88226a", "#8a226a", "#8c2369", "#8d2369", "#8f2469", "#902568", "#922568", "#932667", "#952667", "#972766", "#982766", "#9a2865", "#9b2964", "#9d2964", "#9f2a63", "#a02a63", "#a22b62", "#a32c61", "#a52c60", "#a62d60", "#a82e5f", "#a92e5e", "#ab2f5e", "#ad305d", "#ae305c", "#b0315b", "#b1325a", "#b3325a", "#b43359", "#b63458", "#b73557", "#b93556", "#ba3655", "#bc3754", "#bd3853", "#bf3952", "#c03a51", "#c13a50", "#c33b4f", "#c43c4e", "#c63d4d", "#c73e4c", "#c83f4b", "#ca404a", "#cb4149", "#cc4248", "#ce4347", "#cf4446", "#d04545", "#d24644", "#d34743", "#d44842", "#d54a41", "#d74b3f", "#d84c3e", "#d94d3d", "#da4e3c", "#db503b", "#dd513a", "#de5238", "#df5337", "#e05536", "#e15635", "#e25734", "#e35933", "#e45a31", "#e55c30", "#e65d2f", "#e75e2e", "#e8602d", "#e9612b", "#ea632a", "#eb6429", "#eb6628", "#ec6726", "#ed6925", "#ee6a24", "#ef6c23", "#ef6e21", "#f06f20", "#f1711f", "#f1731d", "#f2741c", "#f3761b", "#f37819", "#f47918", "#f57b17", "#f57d15", "#f67e14", "#f68013", "#f78212", "#f78410", "#f8850f", "#f8870e", "#f8890c", "#f98b0b", "#f98c0a", "#f98e09", "#fa9008", "#fa9207", "#fa9407", "#fb9606", "#fb9706", "#fb9906", "#fb9b06", "#fb9d07", "#fc9f07", "#fca108", "#fca309", "#fca50a", "#fca60c", "#fca80d", "#fcaa0f", "#fcac11", "#fcae12", "#fcb014", "#fcb216", "#fcb418", "#fbb61a", "#fbb81d", "#fbba1f", "#fbbc21", "#fbbe23", "#fac026", "#fac228", "#fac42a", "#fac62d", "#f9c72f", "#f9c932", "#f9cb35", "#f8cd37", "#f8cf3a", "#f7d13d", "#f7d340", "#f6d543", "#f6d746", "#f5d949", "#f5db4c", "#f4dd4f", "#f4df53", "#f4e156", "#f3e35a", "#f3e55d", "#f2e661", "#f2e865", "#f2ea69", "#f1ec6d", "#f1ed71", "#f1ef75", "#f1f179", "#f2f27d", "#f2f482", "#f3f586", "#f3f68a", "#f4f88e", "#f5f992", "#f6fa96", "#f8fb9a", "#f9fc9d", "#fafda1", "#fcffa4"]), Ce.magma = Ce.fromStringList(["#000004", "#010005", "#010106", "#010108", "#020109", "#02020b", "#02020d", "#03030f", "#030312", "#040414", "#050416", "#060518", "#06051a", "#07061c", "#08071e", "#090720", "#0a0822", "#0b0924", "#0c0926", "#0d0a29", "#0e0b2b", "#100b2d", "#110c2f", "#120d31", "#130d34", "#140e36", "#150e38", "#160f3b", "#180f3d", "#19103f", "#1a1042", "#1c1044", "#1d1147", "#1e1149", "#20114b", "#21114e", "#221150", "#241253", "#251255", "#271258", "#29115a", "#2a115c", "#2c115f", "#2d1161", "#2f1163", "#311165", "#331067", "#341069", "#36106b", "#38106c", "#390f6e", "#3b0f70", "#3d0f71", "#3f0f72", "#400f74", "#420f75", "#440f76", "#451077", "#471078", "#491078", "#4a1079", "#4c117a", "#4e117b", "#4f127b", "#51127c", "#52137c", "#54137d", "#56147d", "#57157e", "#59157e", "#5a167e", "#5c167f", "#5d177f", "#5f187f", "#601880", "#621980", "#641a80", "#651a80", "#671b80", "#681c81", "#6a1c81", "#6b1d81", "#6d1d81", "#6e1e81", "#701f81", "#721f81", "#732081", "#752181", "#762181", "#782281", "#792282", "#7b2382", "#7c2382", "#7e2482", "#802582", "#812581", "#832681", "#842681", "#862781", "#882781", "#892881", "#8b2981", "#8c2981", "#8e2a81", "#902a81", "#912b81", "#932b80", "#942c80", "#962c80", "#982d80", "#992d80", "#9b2e7f", "#9c2e7f", "#9e2f7f", "#a02f7f", "#a1307e", "#a3307e", "#a5317e", "#a6317d", "#a8327d", "#aa337d", "#ab337c", "#ad347c", "#ae347b", "#b0357b", "#b2357b", "#b3367a", "#b5367a", "#b73779", "#b83779", "#ba3878", "#bc3978", "#bd3977", "#bf3a77", "#c03a76", "#c23b75", "#c43c75", "#c53c74", "#c73d73", "#c83e73", "#ca3e72", "#cc3f71", "#cd4071", "#cf4070", "#d0416f", "#d2426f", "#d3436e", "#d5446d", "#d6456c", "#d8456c", "#d9466b", "#db476a", "#dc4869", "#de4968", "#df4a68", "#e04c67", "#e24d66", "#e34e65", "#e44f64", "#e55064", "#e75263", "#e85362", "#e95462", "#ea5661", "#eb5760", "#ec5860", "#ed5a5f", "#ee5b5e", "#ef5d5e", "#f05f5e", "#f1605d", "#f2625d", "#f2645c", "#f3655c", "#f4675c", "#f4695c", "#f56b5c", "#f66c5c", "#f66e5c", "#f7705c", "#f7725c", "#f8745c", "#f8765c", "#f9785d", "#f9795d", "#f97b5d", "#fa7d5e", "#fa7f5e", "#fa815f", "#fb835f", "#fb8560", "#fb8761", "#fc8961", "#fc8a62", "#fc8c63", "#fc8e64", "#fc9065", "#fd9266", "#fd9467", "#fd9668", "#fd9869", "#fd9a6a", "#fd9b6b", "#fe9d6c", "#fe9f6d", "#fea16e", "#fea36f", "#fea571", "#fea772", "#fea973", "#feaa74", "#feac76", "#feae77", "#feb078", "#feb27a", "#feb47b", "#feb67c", "#feb77e", "#feb97f", "#febb81", "#febd82", "#febf84", "#fec185", "#fec287", "#fec488", "#fec68a", "#fec88c", "#feca8d", "#fecc8f", "#fecd90", "#fecf92", "#fed194", "#fed395", "#fed597", "#fed799", "#fed89a", "#fdda9c", "#fddc9e", "#fddea0", "#fde0a1", "#fde2a3", "#fde3a5", "#fde5a7", "#fde7a9", "#fde9aa", "#fdebac", "#fcecae", "#fceeb0", "#fcf0b2", "#fcf2b4", "#fcf4b6", "#fcf6b8", "#fcf7b9", "#fcf9bb", "#fcfbbd", "#fcfdbf"]), Ce.cividis = Ce.fromStringList(["#00224e", "#00234f", "#002451", "#002553", "#002554", "#002656", "#002758", "#002859", "#00285b", "#00295d", "#002a5f", "#002a61", "#002b62", "#002c64", "#002c66", "#002d68", "#002e6a", "#002e6c", "#002f6d", "#00306f", "#003070", "#003170", "#003171", "#013271", "#053371", "#083370", "#0c3470", "#0f3570", "#123570", "#143670", "#163770", "#18376f", "#1a386f", "#1c396f", "#1e3a6f", "#203a6f", "#213b6e", "#233c6e", "#243c6e", "#263d6e", "#273e6e", "#293f6e", "#2a3f6d", "#2b406d", "#2d416d", "#2e416d", "#2f426d", "#31436d", "#32436d", "#33446d", "#34456c", "#35456c", "#36466c", "#38476c", "#39486c", "#3a486c", "#3b496c", "#3c4a6c", "#3d4a6c", "#3e4b6c", "#3f4c6c", "#404c6c", "#414d6c", "#424e6c", "#434e6c", "#444f6c", "#45506c", "#46516c", "#47516c", "#48526c", "#49536c", "#4a536c", "#4b546c", "#4c556c", "#4d556c", "#4e566c", "#4f576c", "#50576c", "#51586d", "#52596d", "#535a6d", "#545a6d", "#555b6d", "#555c6d", "#565c6d", "#575d6d", "#585e6d", "#595e6e", "#5a5f6e", "#5b606e", "#5c616e", "#5d616e", "#5e626e", "#5e636f", "#5f636f", "#60646f", "#61656f", "#62656f", "#636670", "#646770", "#656870", "#656870", "#666970", "#676a71", "#686a71", "#696b71", "#6a6c71", "#6b6d72", "#6c6d72", "#6c6e72", "#6d6f72", "#6e6f73", "#6f7073", "#707173", "#717274", "#727274", "#727374", "#737475", "#747475", "#757575", "#767676", "#777776", "#777777", "#787877", "#797977", "#7a7a78", "#7b7a78", "#7c7b78", "#7d7c78", "#7e7c78", "#7e7d78", "#7f7e78", "#807f78", "#817f78", "#828079", "#838179", "#848279", "#858279", "#868379", "#878478", "#888578", "#898578", "#8a8678", "#8b8778", "#8c8878", "#8d8878", "#8e8978", "#8f8a78", "#908b78", "#918b78", "#928c78", "#928d78", "#938e78", "#948e77", "#958f77", "#969077", "#979177", "#989277", "#999277", "#9a9376", "#9b9476", "#9c9576", "#9d9576", "#9e9676", "#9f9775", "#a09875", "#a19975", "#a29975", "#a39a74", "#a49b74", "#a59c74", "#a69c74", "#a79d73", "#a89e73", "#a99f73", "#aaa073", "#aba072", "#aca172", "#ada272", "#aea371", "#afa471", "#b0a571", "#b1a570", "#b3a670", "#b4a76f", "#b5a86f", "#b6a96f", "#b7a96e", "#b8aa6e", "#b9ab6d", "#baac6d", "#bbad6d", "#bcae6c", "#bdae6c", "#beaf6b", "#bfb06b", "#c0b16a", "#c1b26a", "#c2b369", "#c3b369", "#c4b468", "#c5b568", "#c6b667", "#c7b767", "#c8b866", "#c9b965", "#cbb965", "#ccba64", "#cdbb63", "#cebc63", "#cfbd62", "#d0be62", "#d1bf61", "#d2c060", "#d3c05f", "#d4c15f", "#d5c25e", "#d6c35d", "#d7c45c", "#d9c55c", "#dac65b", "#dbc75a", "#dcc859", "#ddc858", "#dec958", "#dfca57", "#e0cb56", "#e1cc55", "#e2cd54", "#e4ce53", "#e5cf52", "#e6d051", "#e7d150", "#e8d24f", "#e9d34e", "#ead34c", "#ebd44b", "#edd54a", "#eed649", "#efd748", "#f0d846", "#f1d945", "#f2da44", "#f3db42", "#f5dc41", "#f6dd3f", "#f7de3e", "#f8df3c", "#f9e03a", "#fbe138", "#fce236", "#fde334", "#fee434", "#fee535", "#fee636", "#fee838"]), Ce.greys = Ce.fromStringList(["#ffffff", "#ffffff", "#fefefe", "#fefefe", "#fdfdfd", "#fdfdfd", "#fcfcfc", "#fcfcfc", "#fbfbfb", "#fbfbfb", "#fafafa", "#fafafa", "#f9f9f9", "#f9f9f9", "#f8f8f8", "#f8f8f8", "#f7f7f7", "#f7f7f7", "#f7f7f7", "#f6f6f6", "#f6f6f6", "#f5f5f5", "#f5f5f5", "#f4f4f4", "#f4f4f4", "#f3f3f3", "#f3f3f3", "#f2f2f2", "#f2f2f2", "#f1f1f1", "#f1f1f1", "#f0f0f0", "#f0f0f0", "#efefef", "#eeeeee", "#eeeeee", "#ededed", "#ececec", "#ececec", "#ebebeb", "#eaeaea", "#e9e9e9", "#e9e9e9", "#e8e8e8", "#e7e7e7", "#e7e7e7", "#e6e6e6", "#e5e5e5", "#e4e4e4", "#e4e4e4", "#e3e3e3", "#e2e2e2", "#e1e1e1", "#e1e1e1", "#e0e0e0", "#dfdfdf", "#dfdfdf", "#dedede", "#dddddd", "#dcdcdc", "#dcdcdc", "#dbdbdb", "#dadada", "#dadada", "#d9d9d9", "#d8d8d8", "#d7d7d7", "#d6d6d6", "#d5d5d5", "#d4d4d4", "#d4d4d4", "#d3d3d3", "#d2d2d2", "#d1d1d1", "#d0d0d0", "#cfcfcf", "#cecece", "#cdcdcd", "#cccccc", "#cccccc", "#cbcbcb", "#cacaca", "#c9c9c9", "#c8c8c8", "#c7c7c7", "#c6c6c6", "#c5c5c5", "#c5c5c5", "#c4c4c4", "#c3c3c3", "#c2c2c2", "#c1c1c1", "#c0c0c0", "#bfbfbf", "#bebebe", "#bebebe", "#bdbdbd", "#bbbbbb", "#bababa", "#b9b9b9", "#b8b8b8", "#b6b6b6", "#b5b5b5", "#b4b4b4", "#b3b3b3", "#b2b2b2", "#b0b0b0", "#afafaf", "#aeaeae", "#adadad", "#ababab", "#aaaaaa", "#a9a9a9", "#a8a8a8", "#a7a7a7", "#a5a5a5", "#a4a4a4", "#a3a3a3", "#a2a2a2", "#a0a0a0", "#9f9f9f", "#9e9e9e", "#9d9d9d", "#9c9c9c", "#9a9a9a", "#999999", "#989898", "#979797", "#959595", "#949494", "#939393", "#929292", "#919191", "#909090", "#8f8f8f", "#8e8e8e", "#8d8d8d", "#8c8c8c", "#8a8a8a", "#898989", "#888888", "#878787", "#868686", "#858585", "#848484", "#838383", "#828282", "#818181", "#7f7f7f", "#7e7e7e", "#7d7d7d", "#7c7c7c", "#7b7b7b", "#7a7a7a", "#797979", "#787878", "#777777", "#767676", "#757575", "#737373", "#727272", "#717171", "#707070", "#6f6f6f", "#6e6e6e", "#6d6d6d", "#6c6c6c", "#6b6b6b", "#6a6a6a", "#696969", "#686868", "#676767", "#666666", "#656565", "#646464", "#636363", "#626262", "#616161", "#606060", "#5f5f5f", "#5e5e5e", "#5d5d5d", "#5c5c5c", "#5b5b5b", "#5a5a5a", "#585858", "#575757", "#565656", "#555555", "#545454", "#535353", "#525252", "#515151", "#505050", "#4e4e4e", "#4d4d4d", "#4b4b4b", "#4a4a4a", "#484848", "#474747", "#464646", "#444444", "#434343", "#414141", "#404040", "#3f3f3f", "#3d3d3d", "#3c3c3c", "#3a3a3a", "#393939", "#383838", "#363636", "#353535", "#333333", "#323232", "#303030", "#2f2f2f", "#2e2e2e", "#2c2c2c", "#2b2b2b", "#292929", "#282828", "#272727", "#252525", "#242424", "#232323", "#222222", "#212121", "#1f1f1f", "#1e1e1e", "#1d1d1d", "#1c1c1c", "#1b1b1b", "#1a1a1a", "#181818", "#171717", "#161616", "#151515", "#141414", "#131313", "#111111", "#101010", "#0f0f0f", "#0e0e0e", "#0d0d0d", "#0c0c0c", "#0a0a0a", "#090909", "#080808", "#070707", "#060606", "#050505", "#030303", "#020202", "#010101", "#000000"]), Ce.gray = Ce.fromStringList(["#000000", "#010101", "#020202", "#030303", "#040404", "#050505", "#060606", "#070707", "#080808", "#090909", "#0a0a0a", "#0b0b0b", "#0c0c0c", "#0d0d0d", "#0e0e0e", "#0f0f0f", "#101010", "#111111", "#121212", "#131313", "#141414", "#151515", "#161616", "#171717", "#181818", "#191919", "#1a1a1a", "#1b1b1b", "#1c1c1c", "#1d1d1d", "#1e1e1e", "#1f1f1f", "#202020", "#212121", "#222222", "#232323", "#242424", "#252525", "#262626", "#272727", "#282828", "#292929", "#2a2a2a", "#2b2b2b", "#2c2c2c", "#2d2d2d", "#2e2e2e", "#2f2f2f", "#303030", "#313131", "#323232", "#333333", "#343434", "#353535", "#363636", "#373737", "#383838", "#393939", "#3a3a3a", "#3b3b3b", "#3c3c3c", "#3d3d3d", "#3e3e3e", "#3f3f3f", "#404040", "#414141", "#424242", "#434343", "#444444", "#454545", "#464646", "#474747", "#484848", "#494949", "#4a4a4a", "#4b4b4b", "#4c4c4c", "#4d4d4d", "#4e4e4e", "#4f4f4f", "#505050", "#515151", "#525252", "#535353", "#545454", "#555555", "#565656", "#575757", "#585858", "#595959", "#5a5a5a", "#5b5b5b", "#5c5c5c", "#5d5d5d", "#5e5e5e", "#5f5f5f", "#606060", "#616161", "#626262", "#636363", "#646464", "#656565", "#666666", "#676767", "#686868", "#696969", "#6a6a6a", "#6b6b6b", "#6c6c6c", "#6d6d6d", "#6e6e6e", "#6f6f6f", "#707070", "#717171", "#727272", "#737373", "#747474", "#757575", "#767676", "#777777", "#787878", "#797979", "#7a7a7a", "#7b7b7b", "#7c7c7c", "#7d7d7d", "#7e7e7e", "#7f7f7f", "#808080", "#818181", "#828282", "#838383", "#848484", "#858585", "#868686", "#878787", "#888888", "#898989", "#8a8a8a", "#8b8b8b", "#8c8c8c", "#8d8d8d", "#8e8e8e", "#8f8f8f", "#909090", "#919191", "#929292", "#939393", "#949494", "#959595", "#969696", "#979797", "#989898", "#999999", "#9a9a9a", "#9b9b9b", "#9c9c9c", "#9d9d9d", "#9e9e9e", "#9f9f9f", "#a0a0a0", "#a1a1a1", "#a2a2a2", "#a3a3a3", "#a4a4a4", "#a5a5a5", "#a6a6a6", "#a7a7a7", "#a8a8a8", "#a9a9a9", "#aaaaaa", "#ababab", "#acacac", "#adadad", "#aeaeae", "#afafaf", "#b0b0b0", "#b1b1b1", "#b2b2b2", "#b3b3b3", "#b4b4b4", "#b5b5b5", "#b6b6b6", "#b7b7b7", "#b8b8b8", "#b9b9b9", "#bababa", "#bbbbbb", "#bcbcbc", "#bdbdbd", "#bebebe", "#bfbfbf", "#c0c0c0", "#c1c1c1", "#c2c2c2", "#c3c3c3", "#c4c4c4", "#c5c5c5", "#c6c6c6", "#c7c7c7", "#c8c8c8", "#c9c9c9", "#cacaca", "#cbcbcb", "#cccccc", "#cdcdcd", "#cecece", "#cfcfcf", "#d0d0d0", "#d1d1d1", "#d2d2d2", "#d3d3d3", "#d4d4d4", "#d5d5d5", "#d6d6d6", "#d7d7d7", "#d8d8d8", "#d9d9d9", "#dadada", "#dbdbdb", "#dcdcdc", "#dddddd", "#dedede", "#dfdfdf", "#e0e0e0", "#e1e1e1", "#e2e2e2", "#e3e3e3", "#e4e4e4", "#e5e5e5", "#e6e6e6", "#e7e7e7", "#e8e8e8", "#e9e9e9", "#eaeaea", "#ebebeb", "#ececec", "#ededed", "#eeeeee", "#efefef", "#f0f0f0", "#f1f1f1", "#f2f2f2", "#f3f3f3", "#f4f4f4", "#f5f5f5", "#f6f6f6", "#f7f7f7", "#f8f8f8", "#f9f9f9", "#fafafa", "#fbfbfb", "#fcfcfc", "#fdfdfd", "#fefefe", "#ffffff"]), Ce.purples = Ce.fromStringList(["#fcfbfd", "#fcfbfd", "#fbfafc", "#fbfafc", "#faf9fc", "#faf9fc", "#faf8fb", "#f9f8fb", "#f9f7fb", "#f8f7fb", "#f8f7fa", "#f8f6fa", "#f7f6fa", "#f7f5fa", "#f6f5f9", "#f6f4f9", "#f5f4f9", "#f5f4f9", "#f5f3f8", "#f4f3f8", "#f4f2f8", "#f3f2f8", "#f3f1f7", "#f3f1f7", "#f2f0f7", "#f2f0f7", "#f1f0f6", "#f1eff6", "#f1eff6", "#f0eef6", "#f0eef5", "#efedf5", "#efedf5", "#eeecf5", "#eeecf4", "#edebf4", "#ecebf4", "#eceaf3", "#ebe9f3", "#eae9f3", "#eae8f2", "#e9e8f2", "#e8e7f2", "#e8e6f2", "#e7e6f1", "#e6e5f1", "#e6e5f1", "#e5e4f0", "#e4e3f0", "#e4e3f0", "#e3e2ef", "#e2e2ef", "#e2e1ef", "#e1e0ee", "#e0e0ee", "#e0dfee", "#dfdfed", "#dedeed", "#dedded", "#ddddec", "#dcdcec", "#dcdcec", "#dbdbec", "#dadaeb", "#dadaeb", "#d9d9ea", "#d8d8ea", "#d7d7e9", "#d6d6e9", "#d5d5e9", "#d4d4e8", "#d3d3e8", "#d2d2e7", "#d1d2e7", "#d0d1e6", "#cfd0e6", "#cecfe5", "#cecee5", "#cdcde4", "#cccce4", "#cbcbe3", "#cacae3", "#c9c9e2", "#c8c8e2", "#c7c8e1", "#c6c7e1", "#c5c6e1", "#c4c5e0", "#c3c4e0", "#c2c3df", "#c1c2df", "#c0c1de", "#bfc0de", "#bebfdd", "#bebedd", "#bdbedc", "#bcbddc", "#bbbbdb", "#babadb", "#b9b9da", "#b8b8d9", "#b7b7d9", "#b6b6d8", "#b5b5d7", "#b4b4d7", "#b3b3d6", "#b2b2d5", "#b1b1d5", "#b0afd4", "#afaed4", "#aeadd3", "#aeacd2", "#adabd2", "#acaad1", "#aba9d0", "#aaa8d0", "#a9a7cf", "#a8a6cf", "#a7a4ce", "#a6a3cd", "#a5a2cd", "#a4a1cc", "#a3a0cb", "#a29fcb", "#a19eca", "#a09dca", "#9f9cc9", "#9e9bc8", "#9e9ac8", "#9d99c7", "#9c98c7", "#9b97c6", "#9a96c6", "#9995c6", "#9894c5", "#9793c5", "#9692c4", "#9591c4", "#9490c3", "#9390c3", "#928fc3", "#918ec2", "#908dc2", "#8f8cc1", "#8e8bc1", "#8e8ac0", "#8d89c0", "#8c88bf", "#8b87bf", "#8a86bf", "#8986be", "#8885be", "#8784bd", "#8683bd", "#8582bc", "#8481bc", "#8380bb", "#827fbb", "#817ebb", "#807dba", "#807cba", "#7f7bb9", "#7e79b8", "#7d78b7", "#7d77b7", "#7c75b6", "#7b74b5", "#7b72b4", "#7a71b4", "#7970b3", "#796eb2", "#786db2", "#776cb1", "#776ab0", "#7669af", "#7567af", "#7566ae", "#7465ad", "#7363ad", "#7262ac", "#7261ab", "#715faa", "#705eaa", "#705ca9", "#6f5ba8", "#6e5aa8", "#6e58a7", "#6d57a6", "#6c55a5", "#6c54a5", "#6b53a4", "#6a51a3", "#6950a3", "#694fa2", "#684da1", "#674ca1", "#674ba0", "#66499f", "#65489f", "#65479e", "#64459e", "#63449d", "#63439c", "#62429c", "#61409b", "#613f9a", "#603e9a", "#5f3c99", "#5e3b98", "#5e3a98", "#5d3897", "#5c3797", "#5c3696", "#5b3495", "#5a3395", "#5a3294", "#593093", "#582f93", "#582e92", "#572c92", "#562b91", "#552a90", "#552890", "#54278f", "#53268f", "#53258e", "#52238d", "#51228d", "#51218c", "#50208c", "#4f1f8b", "#4f1d8b", "#4e1c8a", "#4d1b89", "#4d1a89", "#4c1888", "#4c1788", "#4b1687", "#4a1587", "#4a1486", "#491285", "#481185", "#481084", "#470f84", "#460d83", "#460c83", "#450b82", "#440a82", "#440981", "#430780", "#420680", "#42057f", "#41047f", "#40027e", "#40017e", "#3f007d"]), Ce.blues = Ce.fromStringList(["#f7fbff", "#f6faff", "#f5fafe", "#f5f9fe", "#f4f9fe", "#f3f8fe", "#f2f8fd", "#f2f7fd", "#f1f7fd", "#f0f6fd", "#eff6fc", "#eef5fc", "#eef5fc", "#edf4fc", "#ecf4fb", "#ebf3fb", "#eaf3fb", "#eaf2fb", "#e9f2fa", "#e8f1fa", "#e7f1fa", "#e7f0fa", "#e6f0f9", "#e5eff9", "#e4eff9", "#e3eef9", "#e3eef8", "#e2edf8", "#e1edf8", "#e0ecf8", "#dfecf7", "#dfebf7", "#deebf7", "#ddeaf7", "#dceaf6", "#dce9f6", "#dbe9f6", "#dae8f6", "#d9e8f5", "#d9e7f5", "#d8e7f5", "#d7e6f5", "#d6e6f4", "#d6e5f4", "#d5e5f4", "#d4e4f4", "#d3e4f3", "#d3e3f3", "#d2e3f3", "#d1e2f3", "#d0e2f2", "#d0e1f2", "#cfe1f2", "#cee0f2", "#cde0f1", "#cddff1", "#ccdff1", "#cbdef1", "#cadef0", "#caddf0", "#c9ddf0", "#c8dcf0", "#c7dcef", "#c7dbef", "#c6dbef", "#c4daee", "#c3daee", "#c2d9ee", "#c1d9ed", "#bfd8ed", "#bed8ec", "#bdd7ec", "#bcd7eb", "#bad6eb", "#b9d6ea", "#b8d5ea", "#b7d4ea", "#b5d4e9", "#b4d3e9", "#b3d3e8", "#b2d2e8", "#b0d2e7", "#afd1e7", "#aed1e7", "#add0e6", "#abd0e6", "#aacfe5", "#a9cfe5", "#a8cee4", "#a6cee4", "#a5cde3", "#a4cce3", "#a3cce3", "#a1cbe2", "#a0cbe2", "#9fcae1", "#9dcae1", "#9cc9e1", "#9ac8e0", "#99c7e0", "#97c6df", "#95c5df", "#94c4df", "#92c4de", "#91c3de", "#8fc2de", "#8dc1dd", "#8cc0dd", "#8abfdd", "#89bedc", "#87bddc", "#85bcdc", "#84bcdb", "#82bbdb", "#81badb", "#7fb9da", "#7db8da", "#7cb7da", "#7ab6d9", "#79b5d9", "#77b5d9", "#75b4d8", "#74b3d8", "#72b2d8", "#71b1d7", "#6fb0d7", "#6dafd7", "#6caed6", "#6aaed6", "#69add5", "#68acd5", "#66abd4", "#65aad4", "#64a9d3", "#63a8d3", "#61a7d2", "#60a7d2", "#5fa6d1", "#5da5d1", "#5ca4d0", "#5ba3d0", "#5aa2cf", "#58a1cf", "#57a0ce", "#56a0ce", "#549fcd", "#539ecd", "#529dcc", "#519ccc", "#4f9bcb", "#4e9acb", "#4d99ca", "#4b98ca", "#4a98c9", "#4997c9", "#4896c8", "#4695c8", "#4594c7", "#4493c7", "#4292c6", "#4191c6", "#4090c5", "#3f8fc5", "#3e8ec4", "#3d8dc4", "#3c8cc3", "#3b8bc2", "#3a8ac2", "#3989c1", "#3888c1", "#3787c0", "#3686c0", "#3585bf", "#3484bf", "#3383be", "#3282be", "#3181bd", "#3080bd", "#2f7fbc", "#2e7ebc", "#2d7dbb", "#2c7cba", "#2b7bba", "#2a7ab9", "#2979b9", "#2777b8", "#2676b8", "#2575b7", "#2474b7", "#2373b6", "#2272b6", "#2171b5", "#2070b4", "#206fb4", "#1f6eb3", "#1e6db2", "#1d6cb1", "#1c6bb0", "#1c6ab0", "#1b69af", "#1a68ae", "#1967ad", "#1966ad", "#1865ac", "#1764ab", "#1663aa", "#1562a9", "#1561a9", "#1460a8", "#135fa7", "#125ea6", "#125da6", "#115ca5", "#105ba4", "#0f5aa3", "#0e59a2", "#0e58a2", "#0d57a1", "#0c56a0", "#0b559f", "#0a549e", "#0a539e", "#09529d", "#08519c", "#08509b", "#084f99", "#084e98", "#084d96", "#084c95", "#084b93", "#084a91", "#084990", "#08488e", "#08478d", "#08468b", "#08458a", "#084488", "#084387", "#084285", "#084184", "#084082", "#083e81", "#083d7f", "#083c7d", "#083b7c", "#083a7a", "#083979", "#083877", "#083776", "#083674", "#083573", "#083471", "#083370", "#08326e", "#08316d", "#08306b"]), Ce.greens = Ce.fromStringList(["#f7fcf5", "#f6fcf4", "#f6fcf4", "#f5fbf3", "#f5fbf2", "#f4fbf2", "#f4fbf1", "#f3faf0", "#f2faf0", "#f2faef", "#f1faee", "#f1faee", "#f0f9ed", "#f0f9ec", "#eff9ec", "#eff9eb", "#eef8ea", "#edf8ea", "#edf8e9", "#ecf8e8", "#ecf8e8", "#ebf7e7", "#ebf7e7", "#eaf7e6", "#e9f7e5", "#e9f7e5", "#e8f6e4", "#e8f6e3", "#e7f6e3", "#e7f6e2", "#e6f5e1", "#e5f5e1", "#e5f5e0", "#e4f5df", "#e3f4de", "#e2f4dd", "#e1f3dc", "#e0f3db", "#dff3da", "#def2d9", "#ddf2d8", "#dcf2d7", "#dbf1d6", "#dbf1d5", "#daf0d4", "#d9f0d3", "#d8f0d2", "#d7efd1", "#d6efd0", "#d5efcf", "#d4eece", "#d3eecd", "#d2edcc", "#d1edcb", "#d0edca", "#cfecc9", "#ceecc8", "#cdecc7", "#ccebc6", "#cbebc5", "#cbeac4", "#caeac3", "#c9eac2", "#c8e9c1", "#c7e9c0", "#c6e8bf", "#c4e8bd", "#c3e7bc", "#c2e7bb", "#c1e6ba", "#c0e6b9", "#bee5b8", "#bde5b6", "#bce4b5", "#bbe4b4", "#bae3b3", "#b8e3b2", "#b7e2b1", "#b6e2af", "#b5e1ae", "#b4e1ad", "#b2e0ac", "#b1e0ab", "#b0dfaa", "#afdfa8", "#aedea7", "#acdea6", "#abdda5", "#aadda4", "#a9dca3", "#a8dca2", "#a7dba0", "#a5db9f", "#a4da9e", "#a3da9d", "#a2d99c", "#a0d99b", "#9fd899", "#9ed798", "#9cd797", "#9bd696", "#99d595", "#98d594", "#97d492", "#95d391", "#94d390", "#92d28f", "#91d28e", "#90d18d", "#8ed08b", "#8dd08a", "#8bcf89", "#8ace88", "#88ce87", "#87cd86", "#86cc85", "#84cc83", "#83cb82", "#81ca81", "#80ca80", "#7fc97f", "#7dc87e", "#7cc87c", "#7ac77b", "#79c67a", "#78c679", "#76c578", "#75c477", "#73c476", "#72c375", "#70c274", "#6ec173", "#6dc072", "#6bc072", "#6abf71", "#68be70", "#66bd6f", "#65bd6f", "#63bc6e", "#62bb6d", "#60ba6c", "#5eb96b", "#5db96b", "#5bb86a", "#5ab769", "#58b668", "#56b567", "#55b567", "#53b466", "#52b365", "#50b264", "#4eb264", "#4db163", "#4bb062", "#4aaf61", "#48ae60", "#46ae60", "#45ad5f", "#43ac5e", "#42ab5d", "#40aa5d", "#3fa95c", "#3fa85b", "#3ea75a", "#3da65a", "#3ca559", "#3ba458", "#3aa357", "#39a257", "#38a156", "#37a055", "#369f54", "#359e53", "#349d53", "#339c52", "#329b51", "#319a50", "#309950", "#2f984f", "#2f974e", "#2e964d", "#2d954d", "#2c944c", "#2b934b", "#2a924a", "#29914a", "#289049", "#278f48", "#268e47", "#258d47", "#248c46", "#238b45", "#228a44", "#218944", "#208843", "#1f8742", "#1e8741", "#1d8640", "#1c8540", "#1a843f", "#19833e", "#18823d", "#17813d", "#16803c", "#157f3b", "#147e3a", "#137d39", "#127c39", "#117b38", "#107a37", "#0e7936", "#0d7836", "#0c7735", "#0b7734", "#0a7633", "#097532", "#087432", "#077331", "#067230", "#05712f", "#03702e", "#026f2e", "#016e2d", "#006d2c", "#006c2c", "#006b2b", "#00692a", "#00682a", "#006729", "#006529", "#006428", "#006328", "#006227", "#006027", "#005f26", "#005e26", "#005c25", "#005b25", "#005a24", "#005924", "#005723", "#005622", "#005522", "#005321", "#005221", "#005120", "#005020", "#004e1f", "#004d1f", "#004c1e", "#004a1e", "#00491d", "#00481d", "#00471c", "#00451c", "#00441b"]), Ce.oranges = Ce.fromStringList(["#fff5eb", "#fff5ea", "#fff4e9", "#fff4e8", "#fff3e7", "#fff3e6", "#fff2e6", "#fff2e5", "#fff1e4", "#fff1e3", "#fff0e2", "#fff0e1", "#ffefe0", "#ffefdf", "#ffeede", "#ffeedd", "#feeddc", "#feeddc", "#feeddb", "#feecda", "#feecd9", "#feebd8", "#feebd7", "#feead6", "#feead5", "#fee9d4", "#fee9d3", "#fee8d2", "#fee8d2", "#fee7d1", "#fee7d0", "#fee6cf", "#fee6ce", "#fee5cc", "#fee5cb", "#fee4ca", "#fee3c8", "#fee2c7", "#fee2c6", "#fee1c4", "#fee0c3", "#fee0c1", "#fedfc0", "#fedebf", "#fedebd", "#feddbc", "#fedcbb", "#fedcb9", "#fddbb8", "#fddab6", "#fdd9b5", "#fdd9b4", "#fdd8b2", "#fdd7b1", "#fdd7af", "#fdd6ae", "#fdd5ad", "#fdd5ab", "#fdd4aa", "#fdd3a9", "#fdd3a7", "#fdd2a6", "#fdd1a4", "#fdd1a3", "#fdd0a2", "#fdcfa0", "#fdce9e", "#fdcd9c", "#fdcb9b", "#fdca99", "#fdc997", "#fdc895", "#fdc794", "#fdc692", "#fdc590", "#fdc48f", "#fdc38d", "#fdc28b", "#fdc189", "#fdc088", "#fdbf86", "#fdbe84", "#fdbd83", "#fdbb81", "#fdba7f", "#fdb97d", "#fdb87c", "#fdb77a", "#fdb678", "#fdb576", "#fdb475", "#fdb373", "#fdb271", "#fdb170", "#fdb06e", "#fdaf6c", "#fdae6a", "#fdad69", "#fdac67", "#fdab66", "#fda965", "#fda863", "#fda762", "#fda660", "#fda55f", "#fda45d", "#fda35c", "#fda25a", "#fda159", "#fda057", "#fd9f56", "#fd9e54", "#fd9d53", "#fd9c51", "#fd9b50", "#fd9a4e", "#fd994d", "#fd984b", "#fd974a", "#fd9649", "#fd9547", "#fd9446", "#fd9344", "#fd9243", "#fd9141", "#fd9040", "#fd8f3e", "#fd8e3d", "#fd8c3b", "#fc8b3a", "#fc8a39", "#fc8937", "#fb8836", "#fb8735", "#fb8634", "#fa8532", "#fa8331", "#f98230", "#f9812e", "#f9802d", "#f87f2c", "#f87e2b", "#f87d29", "#f77b28", "#f77a27", "#f67925", "#f67824", "#f67723", "#f57622", "#f57520", "#f5741f", "#f4721e", "#f4711c", "#f3701b", "#f36f1a", "#f36e19", "#f26d17", "#f26c16", "#f26b15", "#f16913", "#f16813", "#f06712", "#ef6612", "#ee6511", "#ee6410", "#ed6310", "#ec620f", "#eb610f", "#eb600e", "#ea5f0e", "#e95e0d", "#e85d0c", "#e75c0c", "#e75b0b", "#e65a0b", "#e5590a", "#e4580a", "#e45709", "#e35608", "#e25508", "#e15407", "#e15307", "#e05206", "#df5106", "#de5005", "#de4e05", "#dd4d04", "#dc4c03", "#db4b03", "#db4a02", "#da4902", "#d94801", "#d84801", "#d64701", "#d54601", "#d34601", "#d14501", "#d04501", "#ce4401", "#cd4401", "#cb4302", "#c94202", "#c84202", "#c64102", "#c54102", "#c34002", "#c14002", "#c03f02", "#be3f02", "#bd3e02", "#bb3d02", "#b93d02", "#b83c02", "#b63c02", "#b53b02", "#b33b02", "#b13a03", "#b03903", "#ae3903", "#ad3803", "#ab3803", "#a93703", "#a83703", "#a63603", "#a53603", "#a43503", "#a23503", "#a13403", "#a03403", "#9f3303", "#9e3303", "#9c3203", "#9b3203", "#9a3103", "#993103", "#973003", "#963003", "#952f03", "#942f03", "#932f03", "#912e04", "#902e04", "#8f2d04", "#8e2d04", "#8c2c04", "#8b2c04", "#8a2b04", "#892b04", "#882a04", "#862a04", "#852904", "#842904", "#832804", "#812804", "#802704", "#7f2704"]), Ce.reds = Ce.fromStringList(["#fff5f0", "#fff4ef", "#fff4ee", "#fff3ed", "#fff2ec", "#fff2eb", "#fff1ea", "#fff0e9", "#fff0e8", "#ffefe8", "#ffeee7", "#ffeee6", "#ffede5", "#ffece4", "#ffece3", "#ffebe2", "#feeae1", "#feeae0", "#fee9df", "#fee8de", "#fee8dd", "#fee7dc", "#fee7db", "#fee6da", "#fee5d9", "#fee5d8", "#fee4d8", "#fee3d7", "#fee3d6", "#fee2d5", "#fee1d4", "#fee1d3", "#fee0d2", "#fedfd0", "#fedecf", "#fedccd", "#fedbcc", "#fedaca", "#fed9c9", "#fed8c7", "#fdd7c6", "#fdd5c4", "#fdd4c2", "#fdd3c1", "#fdd2bf", "#fdd1be", "#fdd0bc", "#fdcebb", "#fdcdb9", "#fdccb8", "#fdcbb6", "#fdcab5", "#fdc9b3", "#fdc7b2", "#fdc6b0", "#fdc5ae", "#fcc4ad", "#fcc3ab", "#fcc2aa", "#fcc1a8", "#fcbfa7", "#fcbea5", "#fcbda4", "#fcbca2", "#fcbba1", "#fcb99f", "#fcb89e", "#fcb79c", "#fcb69b", "#fcb499", "#fcb398", "#fcb296", "#fcb095", "#fcaf93", "#fcae92", "#fcad90", "#fcab8f", "#fcaa8d", "#fca98c", "#fca78b", "#fca689", "#fca588", "#fca486", "#fca285", "#fca183", "#fca082", "#fc9e80", "#fc9d7f", "#fc9c7d", "#fc9b7c", "#fc997a", "#fc9879", "#fc9777", "#fc9576", "#fc9474", "#fc9373", "#fc9272", "#fc9070", "#fc8f6f", "#fc8e6e", "#fc8d6d", "#fc8b6b", "#fc8a6a", "#fc8969", "#fc8767", "#fc8666", "#fc8565", "#fc8464", "#fc8262", "#fc8161", "#fc8060", "#fc7f5f", "#fb7d5d", "#fb7c5c", "#fb7b5b", "#fb7a5a", "#fb7858", "#fb7757", "#fb7656", "#fb7555", "#fb7353", "#fb7252", "#fb7151", "#fb7050", "#fb6e4e", "#fb6d4d", "#fb6c4c", "#fb6b4b", "#fb694a", "#fa6849", "#fa6648", "#fa6547", "#f96346", "#f96245", "#f96044", "#f85f43", "#f85d42", "#f75c41", "#f75b40", "#f7593f", "#f6583e", "#f6563d", "#f6553c", "#f5533b", "#f5523a", "#f4503a", "#f44f39", "#f44d38", "#f34c37", "#f34a36", "#f34935", "#f24734", "#f24633", "#f14432", "#f14331", "#f14130", "#f0402f", "#f03f2e", "#f03d2d", "#ef3c2c", "#ee3a2c", "#ed392b", "#ec382b", "#eb372a", "#ea362a", "#e93529", "#e83429", "#e63328", "#e53228", "#e43027", "#e32f27", "#e22e27", "#e12d26", "#e02c26", "#de2b25", "#dd2a25", "#dc2924", "#db2824", "#da2723", "#d92523", "#d82422", "#d72322", "#d52221", "#d42121", "#d32020", "#d21f20", "#d11e1f", "#d01d1f", "#cf1c1f", "#ce1a1e", "#cc191e", "#cb181d", "#ca181d", "#c9181d", "#c8171c", "#c7171c", "#c5171c", "#c4161c", "#c3161b", "#c2161b", "#c1161b", "#bf151b", "#be151a", "#bd151a", "#bc141a", "#bb141a", "#b91419", "#b81419", "#b71319", "#b61319", "#b51318", "#b31218", "#b21218", "#b11218", "#b01217", "#af1117", "#ad1117", "#ac1117", "#ab1016", "#aa1016", "#a91016", "#a81016", "#a60f15", "#a50f15", "#a30f15", "#a10e15", "#9f0e14", "#9d0d14", "#9c0d14", "#9a0c14", "#980c13", "#960b13", "#940b13", "#920a13", "#900a12", "#8e0912", "#8c0912", "#8a0812", "#880811", "#860811", "#840711", "#820711", "#800610", "#7e0610", "#7c0510", "#7a0510", "#79040f", "#77040f", "#75030f", "#73030f", "#71020e", "#6f020e", "#6d010e", "#6b010e", "#69000d", "#67000d"]), Ce.rdYlBu = Ce.fromStringList(["#a50026", "#a70226", "#a90426", "#ab0626", "#ad0826", "#af0926", "#b10b26", "#b30d26", "#b50f26", "#b71126", "#b91326", "#bb1526", "#bd1726", "#be1827", "#c01a27", "#c21c27", "#c41e27", "#c62027", "#c82227", "#ca2427", "#cc2627", "#ce2827", "#d02927", "#d22b27", "#d42d27", "#d62f27", "#d83128", "#d93429", "#da362a", "#db382b", "#dc3b2c", "#dd3d2d", "#de402e", "#e0422f", "#e14430", "#e24731", "#e34933", "#e44c34", "#e54e35", "#e65036", "#e75337", "#e95538", "#ea5739", "#eb5a3a", "#ec5c3b", "#ed5f3c", "#ee613e", "#ef633f", "#f16640", "#f26841", "#f36b42", "#f46d43", "#f47044", "#f57245", "#f57547", "#f57748", "#f67a49", "#f67c4a", "#f67f4b", "#f7814c", "#f7844e", "#f8864f", "#f88950", "#f88c51", "#f98e52", "#f99153", "#f99355", "#fa9656", "#fa9857", "#fa9b58", "#fb9d59", "#fba05b", "#fba35c", "#fca55d", "#fca85e", "#fcaa5f", "#fdad60", "#fdaf62", "#fdb164", "#fdb366", "#fdb567", "#fdb769", "#fdb96b", "#fdbb6d", "#fdbd6f", "#fdbf71", "#fdc173", "#fdc374", "#fdc576", "#fdc778", "#fec87a", "#feca7c", "#fecc7e", "#fece7f", "#fed081", "#fed283", "#fed485", "#fed687", "#fed889", "#feda8a", "#fedc8c", "#fede8e", "#fee090", "#fee192", "#fee294", "#fee496", "#fee597", "#fee699", "#fee79b", "#fee99d", "#feea9f", "#feeba1", "#feeca2", "#feeda4", "#feefa6", "#fff0a8", "#fff1aa", "#fff2ac", "#fff3ad", "#fff5af", "#fff6b1", "#fff7b3", "#fff8b5", "#fffab7", "#fffbb9", "#fffcba", "#fffdbc", "#fffebe", "#feffc0", "#fdfec2", "#fcfec5", "#fbfdc7", "#fafdc9", "#f8fccb", "#f7fcce", "#f6fbd0", "#f5fbd2", "#f3fbd4", "#f2fad6", "#f1fad9", "#f0f9db", "#eff9dd", "#edf8df", "#ecf8e2", "#ebf7e4", "#eaf7e6", "#e9f6e8", "#e7f6eb", "#e6f5ed", "#e5f5ef", "#e4f4f1", "#e2f4f4", "#e1f3f6", "#e0f3f8", "#def2f7", "#dcf1f7", "#daf0f6", "#d8eff6", "#d6eef5", "#d4edf4", "#d1ecf4", "#cfebf3", "#cdeaf3", "#cbe9f2", "#c9e8f2", "#c7e7f1", "#c5e6f0", "#c3e5f0", "#c1e4ef", "#bfe3ef", "#bde2ee", "#bbe1ed", "#b9e0ed", "#b6dfec", "#b4deec", "#b2ddeb", "#b0dcea", "#aedbea", "#acdae9", "#aad8e9", "#a8d6e8", "#a6d5e7", "#a3d3e6", "#a1d1e5", "#9fd0e4", "#9dcee3", "#9bcce2", "#99cae1", "#97c9e0", "#94c7df", "#92c5de", "#90c3dd", "#8ec2dc", "#8cc0db", "#8abeda", "#87bdd9", "#85bbd9", "#83b9d8", "#81b7d7", "#7fb6d6", "#7db4d5", "#7ab2d4", "#78b0d3", "#76afd2", "#74add1", "#72abd0", "#70a9cf", "#6ea6ce", "#6da4cc", "#6ba2cb", "#69a0ca", "#679ec9", "#659bc8", "#6399c7", "#6297c6", "#6095c4", "#5e93c3", "#5c90c2", "#5a8ec1", "#588cc0", "#578abf", "#5588be", "#5385bd", "#5183bb", "#4f81ba", "#4d7fb9", "#4b7db8", "#4a7ab7", "#4878b6", "#4676b5", "#4574b3", "#4471b2", "#436fb1", "#426cb0", "#416aaf", "#4167ad", "#4065ac", "#3f62ab", "#3e60aa", "#3e5ea8", "#3d5ba7", "#3c59a6", "#3b56a5", "#3a54a4", "#3a51a2", "#394fa1", "#384ca0", "#374a9f", "#36479e", "#36459c", "#35429b", "#34409a", "#333d99", "#333b97", "#323896", "#313695"]), P._version = 0, P._frameWizardDialog = new Go(), P._dataVizWizardDialog = new Yo(), P._referenceFramePropsDialog = new qo(), P._greatCircleDialog = new Xo(), P._tourLayers = !1, P._layerMaps = {}, P._layerMapsTours = {}, P._allMaps = {}, P._allMapsTours = {}, P._currentMap = "Earth", P._layerList = {}, P._layerListTours = {}, P._moonfile = "", P._selectedLayer = null, P._lastMenuClick = new Mt(), Pn._type = null, cr.maX_VERTICES = 8e3, cr.maX_POLYGONS = 8e3, ga._orbitalToWwt = tt.create(1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1), ga._initBegun = !1, hr._pinTextureCache = {}, hr._pins = null, function() {
           typeof document > "u" || document.getElementById("canvas");
         }(), Ge.mpcList = [], Ge._initBegun = !1, Ge._mpcBlendStates = new Array(7), Ge.starTexture = null, Ge._mpcVertexBuffer = null, Ge._mpcCount = 0, D.highPercision = !0, D.showActualSize = X.get_active().get_actualPlanetScale(), D.RC = Math.PI / 180, D._jNow = 0, D._planetAngles = [new Wi(286.13, 63.87, 84.176, 14.1844), new Wi(281.0097, 61.4143, 329.548, 6.1385025), new Wi(272.76, 67.16, 160.2, -1.4813688), new Wi(317.68143, 52.8865, 176.63, 350.89198226), new Wi(268.056595, 64.495303, 284.95, 870.536), new Wi(40.589, 83.537, 38.9, 810.7939024), new Wi(257.311, -15.175, 203.81, 501.1600928), new Wi(299.36, 43.46, 253.18, 536.3128492), new Wi(132.993, -6.163, 302.695, 56.3625225), new Wi(269.9949, 66.5392, 38.3213, 13.17635815), new Wi(268.05, 64.5, 200.39, 203.4889538), new Wi(268.08, 64.51, 36.022, 101.3747235), new Wi(268.2, 64.57, 44.064, 50.3176081), new Wi(268.72, 64.83, 259.51, 21.5710715), new Wi(0, 0, 0, 0), new Wi(0, 0, 0, 0), new Wi(0, 0, 0, 0), new Wi(0, 0, 0, 0), new Wi(0, 0, 0, 0), new Wi(0, 90, 190.147, 360.9856235)], D._lastPlanetCenterID = -2, D._orbitalSampleRate = 256, D._obliquity = 23.5 * D.RC, D._drawOrder = {}, D.earthMatrix = new tt(), D.earthMatrixInv = new tt(), D._lastUpdate = /* @__PURE__ */ new Date(), D._ringsTriangleLists = new Array(2), D._ringImage = null, D._triangleCountRings = 192 + 1 * 2, D._ringsVertexBuffer = null, D._planetSprite = new Kn(), D._planetPoints = null, ti.useGl = !1, ti.useGlVersion2 = !1, ti.back = 0, Me.width = 1024, Me.height = 768, Me._contractionInPixels = -0.5, Me.trianglesRendered = 0, Me.trianglesCulled = 0, Me.renderingOn = !0, Me._factor = 1, Me.cullInside = !0, Me._hw = 0, Me._qw = 0, Me._hh = 0, Me._qh = 0, X._active = null, X.tourSettings = null, Tr._caches = {}, Tr._allGlyphs = "", Q.last = Q.get_metaNow(), Q.framesPerSecond = 30, Q.frameDumping = !1, Q.cancelFrameDump = !1, Q.currentFrameNumber = 0, Q.totalFrames = 0, Q._metaNow = r.now(), Q._offset = 0, Q._now = r.now(), Q._syncToClock = !0, Q._timeRate = 1, Q._altitude = 0, ma._eTypeBuckets = [-3, -0.186, -0.168, -0.158, -0.15, -0.143, -0.137, -0.13, -0.123, -0.115, -0.104, -0.089, -0.068, -0.042, -0.011, 0.024, 0.064, 0.111, 0.169, 0.252, 3], G.currentRenderGeneration = 0, G.tileTargetX = -1, G.tileTargetY = -1, G.tileTargetLevel = -1, G.tilesInView = 0, G.trianglesRendered = 0, G.tilesTouched = 0, G.frustumList = null, G.prepDevice = null, G.uvMultiple = 256, G.callCount = 0, G.useAccomidation = !0, G.demEnabled = !1, G.maxLevel = 20, G.meshComplexity = 50, G.imageQuality = 50, G.lastDeepestLevel = 0, G.deepestLevel = 0, G.RC = 3.1415927 / 180, Ut._queue = {}, Ut._tiles = {}, Ut.openThreads = 8, Ut.readyToRenderCount = 0, Ut.maxTileCacheSize = 800, Ut.maxReadyToRenderSize = 200, Ut.accessID = 0, Ut._maxTotalToPurge = 0, gi.defaultAnchor = 1, gi.clipboardFormat = "WorldWideTelescope.Overlay", gi.nextId = 11231, gi.RC = 3.1415927 / 180, mi._points = new Array(9 * 3 * 2), Oi.capturing = !1, Oi.currentEditor = null, qe._playing = !1, qe._switchedToFullScreen = !1, qe.noRestoreUIOnStop = !1, Mr.clipboardFormat = "WorldWideTelescope.Slide", oe._undoStack = new r.Stack(), oe._redoStack = new r.Stack(), yi.kilometersPerAu = 149598e3, yi.auPerParsec = 206264.806, yi.auPerLightYear = 63239.6717, yi.ssmUnitConversion = 370, ia.id = 1, Io.earthRadius = 6371e3, Z.imageSets = [], Z.exploreRoot = new pn(), Z.imageSetName = "", Z.showDataLayers = !1, Z._renderNeeded = !1, Z.constellationsFigures = null, Z.constellationsBoundries = null, Z.solarSystemObjectsNames = ["Sun", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "Moon", "Io", "Europa", "Ganymede", "Callisto", "IoShadow", "EuropaShadow", "GanymedeShadow", "CallistoShadow", "SunEclipsed", "Earth", "Custom", "Undefined"], Z.singleton = new Z(), Z.singleton.renderContext = new ti(), Q.last = r.now(), Q.updateClock(), U.RC = 3.1415927 / 180, U.RCRA = 3.1415927 / 12, U.radius = 1, U._rotationMatrix = null, Qi._halfpi$1 = Math.PI / 2, Qi._inv_halfpi$1 = 2 / Math.PI, Qi._twothird$1 = 2 / 3, rs._galacticMatrix$1 = tt.create(-0.0548755604024359, -0.483835015526738, -0.873437090247923, 0, -0.867666148981161, 0.455983776232537, -0.198076373464674, 0, 0.494109427943568, 0.746982244476371, -0.444829629919504, 0, 0, 0, 0, 1), ar.naN = 0 / 0, Ne._translateUI$1 = null, Ne._translateUILines$1 = null, Ne._scaleUI$1 = null, Ne._rotateUi$1 = null, Ui._circleTexture$1 = null, hs._circleTexture$1 = null, kr._circleTexture$1 = null, Pi.slashIndexBuffer = new Array(64), Pi.backSlashIndexBuffer = new Array(64), Pi.rootIndexBuffer = new Array(4), ir.issGuid = er.fromString("00000001-0002-0003-0405-060708090a0b"), ir._loading$2 = !1, ir._issmodel$2 = null, ir._doc$2 = null, t_;
       }), _exports_object;
@@ -30324,10 +30324,10 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
           return !!((0, z.isRef)(T) && T.effect);
         }
         function ie(T, k, I, Y) {
-          const { state: at, actions: nt, getters: Tt } = k, Rt = I.state.value[T];
+          const { state: at, actions: nt, getters: Tt } = k, $t = I.state.value[T];
           let Ae;
           function Wt() {
-            Rt || (I.state.value[T] = at ? at() : {});
+            $t || (I.state.value[T] = at ? at() : {});
             const Fe = (0, z.toRefs)(I.state.value[T]);
             return bt(Fe, nt, Object.keys(Tt || {}).reduce((Se, vr) => (Se[vr] = (0, z.markRaw)((0, z.computed)(() => {
               ct(I);
@@ -30344,7 +30344,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
         }
         function Yt(T, k, I = {}, Y, at, nt) {
           let Tt;
-          const Rt = bt({ actions: {} }, I), Ae = {
+          const $t = bt({ actions: {} }, I), Ae = {
             deep: !0
             // flush: 'post',
           };
@@ -30426,7 +30426,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               nt || (Gr && Ot(zi) && ((0, z.isRef)(zi) ? zi.value = Gr[dt] : wt(zi, Gr[dt])), Y.state.value[T][dt] = zi);
             else if (typeof zi == "function") {
               const Ar = Aa(dt, zi);
-              qn[dt] = Ar, Rt.actions[dt] = zi;
+              qn[dt] = Ar, $t.actions[dt] = zi;
             }
           }
           return bt(Gi, qn), bt((0, z.toRaw)(Gi), qn), Object.defineProperty(Gi, "$state", {
@@ -30441,7 +30441,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               store: Gi,
               app: Y._a,
               pinia: Y,
-              options: Rt
+              options: $t
             })));
           }), Gr && nt && I.hydrate && I.hydrate(Gi.$state, Gr), Wt = !0, Fe = !0, Gi;
         }
@@ -30449,15 +30449,15 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
           let Y, at;
           const nt = typeof k == "function";
           typeof T == "string" ? (Y = T, at = nt ? I : k) : (at = T, Y = T.id);
-          function Tt(Rt, Ae) {
+          function Tt($t, Ae) {
             const Wt = (0, z.getCurrentInstance)();
-            return Rt = // in test mode, ignore the argument provided as we can always retrieve a
+            return $t = // in test mode, ignore the argument provided as we can always retrieve a
             // pinia instance with getActivePinia()
-            Rt || Wt && (0, z.inject)(Ct, null), Rt && ct(Rt), Rt = et, Rt._s.has(Y) || (nt ? Yt(Y, k, at, Rt) : ie(Y, at, Rt)), Rt._s.get(Y);
+            $t || Wt && (0, z.inject)(Ct, null), $t && ct($t), $t = et, $t._s.has(Y) || (nt ? Yt(Y, k, at, $t) : ie(Y, at, $t)), $t._s.get(Y);
           }
           return Tt.$id = Y, Tt;
         }
-        function Re(T, k) {
+        function $e(T, k) {
           return Array.isArray(k) ? k.reduce((I, Y) => (I[Y] = function() {
             return T(this.$pinia)[Y];
           }, I), {}) : Object.keys(k).reduce((I, Y) => (I[Y] = function() {
@@ -30499,14 +30499,14 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
             return k;
           }, si.apply(this, arguments);
         };
-        function $e(T, k, I, Y) {
+        function Re(T, k, I, Y) {
           function at(nt) {
             return nt instanceof I ? nt : new I(function(Tt) {
               Tt(nt);
             });
           }
           return new (I || (I = Promise))(function(nt, Tt) {
-            function Rt(Fe) {
+            function $t(Fe) {
               try {
                 Wt(Y.next(Fe));
               } catch (Se) {
@@ -30521,7 +30521,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               }
             }
             function Wt(Fe) {
-              Fe.done ? nt(Fe.value) : at(Fe.value).then(Rt, Ae);
+              Fe.done ? nt(Fe.value) : at(Fe.value).then($t, Ae);
             }
             Wt((Y = Y.apply(T, k || [])).next());
           });
@@ -30532,10 +30532,10 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               throw nt[1];
             return nt[1];
           }, trys: [], ops: [] }, Y, at, nt, Tt;
-          return Tt = { next: Rt(0), throw: Rt(1), return: Rt(2) }, typeof Symbol == "function" && (Tt[Symbol.iterator] = function() {
+          return Tt = { next: $t(0), throw: $t(1), return: $t(2) }, typeof Symbol == "function" && (Tt[Symbol.iterator] = function() {
             return this;
           }), Tt;
-          function Rt(Wt) {
+          function $t(Wt) {
             return function(Fe) {
               return Ae([Wt, Fe]);
             };
@@ -30611,8 +30611,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
           try {
             for (; (k === void 0 || k-- > 0) && !(at = Y.next()).done; )
               nt.push(at.value);
-          } catch (Rt) {
-            Tt = { error: Rt };
+          } catch ($t) {
+            Tt = { error: $t };
           } finally {
             try {
               at && !at.done && (I = Y.return) && I.call(Y);
@@ -30623,7 +30623,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
           }
           return nt;
         }
-        var gr = 3.14159265358979, Fn = 180 / gr, Ca = gr / 180, la = 12 / gr, Rr = gr / 12, Mn = 12 / 180, Bn;
+        var gr = 3.14159265358979, Fn = 180 / gr, Ca = gr / 180, la = 12 / gr, $r = gr / 12, Mn = 12 / 180, Bn;
         (function(T) {
           T[T.depth = 0] = "depth", T[T.altitude = 1] = "altitude", T[T.distance = 2] = "distance", T[T.seaLevel = 3] = "seaLevel", T[T.terrain = 4] = "terrain";
         })(Bn || (Bn = {}));
@@ -30635,10 +30635,10 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
         (function(T) {
           T[T.gamma = 0] = "gamma", T[T.xRay = 1] = "xRay", T[T.ultraviolet = 2] = "ultraviolet", T[T.visible = 3] = "visible", T[T.hydrogenAlpha = 4] = "hydrogenAlpha", T[T.IR = 4] = "IR", T[T.microwave = 5] = "microwave", T[T.radio = 6] = "radio", T[T.visibleNight = 6] = "visibleNight";
         })(xn || (xn = {}));
-        var $r;
+        var Rr;
         (function(T) {
           T[T.star = 1] = "star", T[T.supernova = 2] = "supernova", T[T.blackHole = 4] = "blackHole", T[T.neutronStar = 8] = "neutronStar", T[T.doubleStar = 16] = "doubleStar", T[T.multipleStars = 32] = "multipleStars", T[T.asterism = 64] = "asterism", T[T.constellation = 128] = "constellation", T[T.openCluster = 256] = "openCluster", T[T.globularCluster = 512] = "globularCluster", T[T.nebulousCluster = 1024] = "nebulousCluster", T[T.nebula = 2048] = "nebula", T[T.emissionNebula = 4096] = "emissionNebula", T[T.planetaryNebula = 8192] = "planetaryNebula", T[T.reflectionNebula = 16384] = "reflectionNebula", T[T.darkNebula = 32768] = "darkNebula", T[T.giantMolecularCloud = 65536] = "giantMolecularCloud", T[T.supernovaRemnant = 131072] = "supernovaRemnant", T[T.interstellarDust = 262144] = "interstellarDust", T[T.quasar = 524288] = "quasar", T[T.galaxy = 1048576] = "galaxy", T[T.spiralGalaxy = 2097152] = "spiralGalaxy", T[T.irregularGalaxy = 4194304] = "irregularGalaxy", T[T.ellipticalGalaxy = 8388608] = "ellipticalGalaxy", T[T.knot = 16777216] = "knot", T[T.plateDefect = 33554432] = "plateDefect", T[T.clusterOfGalaxies = 67108864] = "clusterOfGalaxies", T[T.otherNGC = 134217728] = "otherNGC", T[T.unidentified = 268435456] = "unidentified", T[T.solarSystem = 536870912] = "solarSystem", T[T.unfiltered = 1073741823] = "unfiltered", T[T.stellar = 63] = "stellar", T[T.stellarGroupings = 2032] = "stellarGroupings", T[T.nebulae = 523264] = "nebulae", T[T.galactic = 133693440] = "galactic", T[T.other = 436207616] = "other";
-        })($r || ($r = {}));
+        })(Rr || (Rr = {}));
         var rt;
         (function(T) {
           T[T.spherical = 0] = "spherical", T[T.rectangular = 1] = "rectangular", T[T.orbital = 2] = "orbital";
@@ -30703,7 +30703,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
         (function(T) {
           T[T.sun = 0] = "sun", T[T.mercury = 1] = "mercury", T[T.venus = 2] = "venus", T[T.mars = 3] = "mars", T[T.jupiter = 4] = "jupiter", T[T.saturn = 5] = "saturn", T[T.uranus = 6] = "uranus", T[T.neptune = 7] = "neptune", T[T.pluto = 8] = "pluto", T[T.moon = 9] = "moon", T[T.io = 10] = "io", T[T.europa = 11] = "europa", T[T.ganymede = 12] = "ganymede", T[T.callisto = 13] = "callisto", T[T.ioShadow = 14] = "ioShadow", T[T.europaShadow = 15] = "europaShadow", T[T.ganymedeShadow = 16] = "ganymedeShadow", T[T.callistoShadow = 17] = "callistoShadow", T[T.sunEclipsed = 18] = "sunEclipsed", T[T.earth = 19] = "earth", T[T.custom = 20] = "custom", T[T.undefined = 65536] = "undefined";
         })(Ci || (Ci = {}));
-        var pe = L(415), Ri = [
+        var pe = L(415), $i = [
           "astronomical",
           "color",
           "enabled",
@@ -30717,12 +30717,12 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
         function x(T, k) {
           var I, Y;
           try {
-            for (var at = ki(Ri), nt = at.next(); !nt.done; nt = at.next()) {
+            for (var at = ki($i), nt = at.next(); !nt.done; nt = at.next()) {
               var Tt = nt.value;
               k["set_" + Tt](T["get_" + Tt]());
             }
-          } catch (Rt) {
-            I = { error: Rt };
+          } catch ($t) {
+            I = { error: $t };
           } finally {
             try {
               nt && !nt.done && (Y = at.return) && Y.call(at);
@@ -30792,7 +30792,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
           "colorMapperName",
           "overrideDefaultLayer"
         ];
-        Ri.concat(dn);
+        $i.concat(dn);
         function Jr(T, k) {
           var I = "set_" + k[0], Y = k[1];
           T[I](Y);
@@ -30805,8 +30805,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               var Tt = nt.value;
               k["set_" + Tt](T["get_" + Tt]());
             }
-          } catch (Rt) {
-            I = { error: Rt };
+          } catch ($t) {
+            I = { error: $t };
           } finally {
             try {
               nt && !nt.done && (Y = at.return) && Y.call(at);
@@ -30885,7 +30885,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
           "zAxisColumn",
           "zAxisReverse"
         ];
-        Ri.concat(pr);
+        $i.concat(pr);
         function zn(T, k) {
           var I = "set_" + k[0], Y = k[1];
           T[I](Y);
@@ -30898,8 +30898,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               var Tt = nt.value;
               k["set_" + Tt](T["get_" + Tt]());
             }
-          } catch (Rt) {
-            I = { error: Rt };
+          } catch ($t) {
+            I = { error: $t };
           } finally {
             try {
               nt && !nt.done && (Y = at.return) && Y.call(at);
@@ -31117,8 +31117,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               var Tt = nt.value;
               k["set_" + Tt](T["get_" + Tt]());
             }
-          } catch (Rt) {
-            I = { error: Rt };
+          } catch ($t) {
+            I = { error: $t };
           } finally {
             try {
               nt && !nt.done && (Y = at.return) && Y.call(at);
@@ -31173,8 +31173,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               var Tt = nt.value;
               k["set_" + Tt](T["get_" + Tt]());
             }
-          } catch (Rt) {
-            I = { error: Rt };
+          } catch ($t) {
+            I = { error: $t };
           } finally {
             try {
               nt && !nt.done && (Y = at.return) && Y.call(at);
@@ -31231,8 +31231,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               var Tt = nt.value;
               k["set_" + Tt](T["get_" + Tt]());
             }
-          } catch (Rt) {
-            I = { error: Rt };
+          } catch ($t) {
+            I = { error: $t };
           } finally {
             try {
               nt && !nt.done && (Y = at.return) && Y.call(at);
@@ -31279,8 +31279,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               var Tt = nt.value;
               k["set_" + Tt](T["get_" + Tt]());
             }
-          } catch (Rt) {
-            I = { error: Rt };
+          } catch ($t) {
+            I = { error: $t };
           } finally {
             try {
               nt && !nt.done && (Y = at.return) && Y.call(at);
@@ -31344,7 +31344,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
           "zAxisColumn",
           "zAxisReverse"
         ];
-        Ri.concat(ja);
+        $i.concat(ja);
         function Ma(T, k) {
           var I, Y;
           x(T, k);
@@ -31353,8 +31353,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               var Tt = nt.value;
               k["set_" + Tt](T["get_" + Tt]());
             }
-          } catch (Rt) {
-            I = { error: Rt };
+          } catch ($t) {
+            I = { error: $t };
           } finally {
             try {
               nt && !nt.done && (Y = at.return) && Y.call(at);
@@ -31541,7 +31541,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                 Y.initialView(k.startLatDeg, k.startLngDeg, at);
               }
               k.startMode !== void 0 && Y.initialMode(k.startMode), this.si = Y.create(), this.ctl = pe.WWTControl.singleton, this.lm = pe.LayerManager, this.stc = pe.SpaceTimeController, this.applySetting(["showConstellationBoundries", !1]), this.applySetting(["showConstellationFigures", !1]), this.applySetting(["showConstellationSelection", !1]), this.applySetting(["showCrosshairs", !1]), this.si.add_ready(function(nt) {
-                var Tt, Rt;
+                var Tt, $t;
                 try {
                   for (var Ae = ki(I.readyPromises), Wt = Ae.next(); !Wt.done; Wt = Ae.next()) {
                     var Fe = Wt.value;
@@ -31551,7 +31551,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                   Tt = { error: Se };
                 } finally {
                   try {
-                    Wt && !Wt.done && (Rt = Ae.return) && Rt.call(Ae);
+                    Wt && !Wt.done && ($t = Ae.return) && $t.call(Ae);
                   } finally {
                     if (Tt)
                       throw Tt.error;
@@ -31559,25 +31559,25 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                 }
                 I.readyFired = !0, I.readyPromises = [];
               }), this.si.add_arrived(function(nt, Tt) {
-                var Rt, Ae;
+                var $t, Ae;
                 try {
                   for (var Wt = ki(I.arrivePromises), Fe = Wt.next(); !Fe.done; Fe = Wt.next()) {
                     var Se = Fe.value;
                     Se.payload < I.arriveSeqnum ? Se.reject("superseded") : Se.resolve();
                   }
                 } catch (vr) {
-                  Rt = { error: vr };
+                  $t = { error: vr };
                 } finally {
                   try {
                     Fe && !Fe.done && (Ae = Wt.return) && Ae.call(Wt);
                   } finally {
-                    if (Rt)
-                      throw Rt.error;
+                    if ($t)
+                      throw $t.error;
                   }
                 }
                 I.arrivePromises = [];
               }), this.si.add_tourReady(function(nt) {
-                var Tt, Rt;
+                var Tt, $t;
                 try {
                   for (var Ae = ki(I.tourReadyPromises), Wt = Ae.next(); !Wt.done; Wt = Ae.next()) {
                     var Fe = Wt.value;
@@ -31587,7 +31587,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                   Tt = { error: Se };
                 } finally {
                   try {
-                    Wt && !Wt.done && (Rt = Ae.return) && Rt.call(Ae);
+                    Wt && !Wt.done && ($t = Ae.return) && $t.call(Ae);
                   } finally {
                     if (Tt)
                       throw Tt.error;
@@ -31600,7 +31600,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               });
             }
             return T.prototype.waitForReady = function() {
-              return $e(this, void 0, void 0, function() {
+              return Re(this, void 0, void 0, function() {
                 var k = this;
                 return Ai(this, function(I) {
                   return [2, new Promise(function(Y, at) {
@@ -31613,15 +31613,15 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               this.arriveSeqnum += 1;
               var nt = this.arriveSeqnum;
               try {
-                for (var Tt = ki(this.arrivePromises), Rt = Tt.next(); !Rt.done; Rt = Tt.next()) {
-                  var Ae = Rt.value;
+                for (var Tt = ki(this.arrivePromises), $t = Tt.next(); !$t.done; $t = Tt.next()) {
+                  var Ae = $t.value;
                   Ae.reject("superseded");
                 }
               } catch (Wt) {
                 I = { error: Wt };
               } finally {
                 try {
-                  Rt && !Rt.done && (Y = Tt.return) && Y.call(Tt);
+                  $t && !$t.done && (Y = Tt.return) && Y.call(Tt);
                 } finally {
                   if (I)
                     throw I.error;
@@ -31631,7 +31631,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                 at.arriveSeqnum > nt ? Fe("superseded") : k ? Wt() : at.arrivePromises.push(new Un(nt, Wt, Fe));
               });
             }, T.prototype.gotoRADecZoom = function(k, I, Y, at, nt) {
-              return $e(this, void 0, void 0, function() {
+              return Re(this, void 0, void 0, function() {
                 return Ai(this, function(Tt) {
                   return this.ctl.gotoRADecZoom(k * la, I * Fn, Y, at, nt), [2, this.makeArrivePromise(at)];
                 });
@@ -31640,7 +31640,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               var nt = this.ctl.timeToRADecZoom(k * la, I * Fn, Y, at);
               return nt;
             }, T.prototype.gotoTarget = function(k) {
-              return $e(this, void 0, void 0, function() {
+              return Re(this, void 0, void 0, function() {
                 return Ai(this, function(I) {
                   return this.ctl.gotoTarget(k.place, k.noZoom, k.instant, k.trackObject), [2, this.makeArrivePromise(k.instant)];
                 });
@@ -31648,22 +31648,22 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
             }, T.prototype.addImagesetToRepository = function(k) {
               return pe.WWTControl.addImageSetToRepository(k);
             }, T.prototype.loadImageCollection = function(k, I) {
-              return $e(this, void 0, void 0, function() {
+              return Re(this, void 0, void 0, function() {
                 var Y, at, nt = this;
                 return Ai(this, function(Tt) {
                   return Y = this.collectionRequests.get(k), Y != null ? [2, Promise.resolve(Y)] : (Y === void 0 && (this.collectionRequests.set(k, null), at = { f: null }, I === void 0 && (I = !1), at.f = pe.Wtml.getWtmlFile(k, function() {
-                    var Rt = at.f;
-                    nt.collectionRequests.set(k, Rt), nt.collectionLoadedPromises = nt.collectionLoadedPromises.filter(function(Ae) {
-                      return Ae.payload == k ? (Ae.resolve(Rt), !1) : !0;
+                    var $t = at.f;
+                    nt.collectionRequests.set(k, $t), nt.collectionLoadedPromises = nt.collectionLoadedPromises.filter(function(Ae) {
+                      return Ae.payload == k ? (Ae.resolve($t), !1) : !0;
                     });
-                  }, I)), [2, new Promise(function(Rt, Ae) {
+                  }, I)), [2, new Promise(function($t, Ae) {
                     var Wt = nt.collectionRequests.get(k);
-                    Wt != null ? Rt(Wt) : nt.collectionLoadedPromises.push(new Un(k, Rt, Ae));
+                    Wt != null ? $t(Wt) : nt.collectionLoadedPromises.push(new Un(k, $t, Ae));
                   })]);
                 });
               });
             }, T.prototype.addImageSetLayer = function(k) {
-              return $e(this, void 0, void 0, function() {
+              return Re(this, void 0, void 0, function() {
                 var I = this;
                 return Ai(this, function(Y) {
                   return [2, new Promise(function(at, nt) {
@@ -31690,8 +31690,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               if (at && at instanceof pe.ImageSetLayer)
                 try {
                   for (var nt = ki(k.settings), Tt = nt.next(); !Tt.done; Tt = nt.next()) {
-                    var Rt = Tt.value;
-                    Jr(at, Rt);
+                    var $t = Tt.value;
+                    Jr(at, $t);
                   }
                 } catch (Ae) {
                   I = { error: Ae };
@@ -31711,8 +31711,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               if (at && at instanceof pe.SpreadSheetLayer)
                 try {
                   for (var nt = ki(k.settings), Tt = nt.next(); !Tt.done; Tt = nt.next()) {
-                    var Rt = Tt.value;
-                    zn(at, Rt);
+                    var $t = Tt.value;
+                    zn(at, $t);
                   }
                 } catch (Ae) {
                   I = { error: Ae };
@@ -31725,7 +31725,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                   }
                 }
             }, T.prototype.addCatalogHipsByName = function(k) {
-              return $e(this, void 0, void 0, function() {
+              return Re(this, void 0, void 0, function() {
                 var I = this;
                 return Ai(this, function(Y) {
                   return [2, new Promise(function(at, nt) {
@@ -31737,7 +31737,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                 });
               });
             }, T.prototype.getCatalogHipsDataInView = function(k) {
-              return $e(this, void 0, void 0, function() {
+              return Re(this, void 0, void 0, function() {
                 var I = this;
                 return Ai(this, function(Y) {
                   return [2, new Promise(function(at, nt) {
@@ -31789,8 +31789,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
             }, T.prototype.getIsTourPlaying = function(k) {
               return pe.TourPlayer.get_playing();
             }, T.prototype.loadTour = function(k) {
-              return $e(this, void 0, void 0, function() {
-                var I, Y, at, nt, Tt, Rt, Ae = this;
+              return Re(this, void 0, void 0, function() {
+                var I, Y, at, nt, Tt, $t, Ae = this;
                 return Ai(this, function(Wt) {
                   this.ctl.loadTour(k), this.tourReadySeqnum += 1, I = this.tourReadySeqnum;
                   try {
@@ -31800,7 +31800,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                     Tt = { error: Fe };
                   } finally {
                     try {
-                      at && !at.done && (Rt = Y.return) && Rt.call(Y);
+                      at && !at.done && ($t = Y.return) && $t.call(Y);
                     } finally {
                       if (Tt)
                         throw Tt.error;
@@ -31812,8 +31812,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                 });
               });
             }, T.prototype.loadAndPlayTour = function(k) {
-              return $e(this, void 0, void 0, function() {
-                var I, Y, at, nt, Tt, Rt, Ae = this;
+              return Re(this, void 0, void 0, function() {
+                var I, Y, at, nt, Tt, $t, Ae = this;
                 return Ai(this, function(Wt) {
                   this.ctl.playTour(k), this.tourReadySeqnum += 1, I = this.tourReadySeqnum;
                   try {
@@ -31823,7 +31823,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                     Tt = { error: Fe };
                   } finally {
                     try {
-                      at && !at.done && (Rt = Y.return) && Rt.call(Y);
+                      at && !at.done && ($t = Y.return) && $t.call(Y);
                     } finally {
                       if (Tt)
                         throw Tt.error;
@@ -31844,19 +31844,19 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               var Y = I.get_currentTourstopIndex();
               if (Y < 0)
                 return 0;
-              var at = I.elapsedTimeTillTourstop(Y), nt = I.get_tourStops()[Y], Tt = nt.get_tweenPosition() * nt.get_duration() * 1e-3, Rt = at + Tt;
-              if (Rt < 0)
+              var at = I.elapsedTimeTillTourstop(Y), nt = I.get_tourStops()[Y], Tt = nt.get_tweenPosition() * nt.get_duration() * 1e-3, $t = at + Tt;
+              if ($t < 0)
                 return 0;
               var Ae = I.get_runTime() * 1e-3;
-              return Rt > Ae ? Ae : Rt;
+              return $t > Ae ? Ae : $t;
             }, T.prototype.seekToTourTimecode = function(k) {
               var I = this.getActiveTourPlayer();
               if (I !== null) {
                 var Y = I.get_tour();
                 if (Y !== null) {
                   for (var at = Y.get_tourStops(), nt = at.length - 1, Tt = 0; Tt < at.length; Tt++) {
-                    var Rt = Y.elapsedTimeTillTourstop(Tt);
-                    if (Rt >= k) {
+                    var $t = Y.elapsedTimeTillTourstop(Tt);
+                    if ($t >= k) {
                       nt = Tt - 1;
                       break;
                     }
@@ -31876,8 +31876,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                 start: function(at) {
                   function nt() {
                     var Tt = 0;
-                    I.captureVideo(function(Rt) {
-                      Tt++, at.enqueue(Rt), Tt >= k.totalFrames && at.close();
+                    I.captureVideo(function($t) {
+                      Tt++, at.enqueue($t), Tt >= k.totalFrames && at.close();
                     }, k.width, k.height, k.framesPerSecond, k.totalFrames, k.format);
                   }
                   return nt();
@@ -31902,8 +31902,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                   var Tt = nt.value;
                   Tt();
                 }
-              } catch (Rt) {
-                I = { error: Rt };
+              } catch ($t) {
+                I = { error: $t };
               } finally {
                 try {
                   nt && !nt.done && (Y = at.return) && Y.call(at);
@@ -31956,7 +31956,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
             throw new Error("cannot get activeLayersList without linking to WWTInstance");
           var k = [];
           function I(at) {
-            var nt, Tt, Rt, Ae;
+            var nt, Tt, $t, Ae;
             try {
               for (var Wt = ki(at.layers), Fe = Wt.next(); !Fe.done; Fe = Wt.next()) {
                 var Se = Fe.value;
@@ -31978,13 +31978,13 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                 I(ca);
               }
             } catch (Ur) {
-              Rt = { error: Ur };
+              $t = { error: Ur };
             } finally {
               try {
                 Lt && !Lt.done && (Ae = vr.return) && Ae.call(vr);
               } finally {
-                if (Rt)
-                  throw Rt.error;
+                if ($t)
+                  throw $t.error;
               }
             }
           }
@@ -32062,8 +32062,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                   var nt = at.value, Tt = this.imagesetLayers[nt];
                   Tt && I.push(Tt);
                 }
-              } catch (Rt) {
-                T = { error: Rt };
+              } catch ($t) {
+                T = { error: $t };
               } finally {
                 try {
                   at && !at.done && (k = Y.return) && k.call(Y);
@@ -32165,7 +32165,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
             internalUpdate: function() {
               if (this.$wwt.inst === null)
                 throw new Error("cannot internalUpdate without linking to WWTInstance");
-              var T = this.$wwt.inst, k = T.si.getRA() * Rr;
+              var T = this.$wwt.inst, k = T.si.getRA() * $r;
               this.raRad != k && (this.raRad = k);
               var I = T.si.getDec() * Ca;
               this.decRad != I && (this.decRad = I);
@@ -32177,8 +32177,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               this.backgroundImageset != nt && (this.backgroundImageset = nt);
               var Tt = T.stc.get_now();
               this.currentTime != Tt && (this.currentTime = Tt);
-              var Rt = T.ctl.renderContext.get_foregroundImageset() || null;
-              this.foregroundImageset != Rt && (this.foregroundImageset = Rt), this.foregroundOpacity != T.ctl.renderContext.viewCamera.opacity && (this.foregroundOpacity = T.ctl.renderContext.viewCamera.opacity), this.renderType != T.ctl.renderType && (this.renderType = T.ctl.renderType);
+              var $t = T.ctl.renderContext.get_foregroundImageset() || null;
+              this.foregroundImageset != $t && (this.foregroundImageset = $t), this.foregroundOpacity != T.ctl.renderContext.viewCamera.opacity && (this.foregroundOpacity = T.ctl.renderContext.viewCamera.opacity), this.renderType != T.ctl.renderType && (this.renderType = T.ctl.renderType);
               var Ae = T.getActiveTourPlayer();
               this.tourTimecode = T.getEffectiveTourTimecode(), Ae !== null ? (this.isTourPlayerActive = !0, this.isTourPlaying = T.getIsTourPlaying(Ae)) : (this.isTourPlayerActive = !1, this.isTourPlaying = !1);
               var Wt = !T.si.isUsingWebGl2() && Date.now() - this.timeAtStartup < 15e3;
@@ -32272,19 +32272,19 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               this.$wwt.inst.seekToTourTimecode(T);
             },
             viewAsTourXml: function(T) {
-              return $e(this, void 0, void 0, function() {
+              return Re(this, void 0, void 0, function() {
                 var k, I, Y, at, nt;
                 return Ai(this, function(Tt) {
-                  return pe.WWTControl.singleton.createTour(T || ""), k = pe.WWTControl.singleton.tourEdit, k.addSlide(!1), I = k.get_tour(), I === null ? [2, Promise.resolve(null)] : (Y = I.saveToBlob(), at = new FileReader(), at.readAsText(Y), nt = "", [2, new Promise(function(Rt, Ae) {
+                  return pe.WWTControl.singleton.createTour(T || ""), k = pe.WWTControl.singleton.tourEdit, k.addSlide(!1), I = k.get_tour(), I === null ? [2, Promise.resolve(null)] : (Y = I.saveToBlob(), at = new FileReader(), at.readAsText(Y), nt = "", [2, new Promise(function($t, Ae) {
                     at.onloadend = function() {
-                      nt += at.result, Rt(nt);
+                      nt += at.result, $t(nt);
                     };
                   })]);
                 });
               });
             },
             waitForReady: function() {
-              return $e(this, void 0, void 0, function() {
+              return Re(this, void 0, void 0, function() {
                 var T = this;
                 return Ai(this, function(k) {
                   return this.$wwt.inst !== null ? [2, this.$wwt.inst.waitForReady()] : [2, new Promise(function(I, Y) {
@@ -32298,7 +32298,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
             },
             gotoRADecZoom: function(T) {
               var k = T.raRad, I = T.decRad, Y = T.zoomDeg, at = T.instant, nt = T.rollRad;
-              return $e(this, void 0, void 0, function() {
+              return Re(this, void 0, void 0, function() {
                 return Ai(this, function(Tt) {
                   if (this.$wwt.inst === null)
                     throw new Error("cannot gotoRADecZoom without linking to WWTInstance");
@@ -32313,7 +32313,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
               return this.$wwt.inst.timeToRADecZoom(k, I, Y, at);
             },
             gotoTarget: function(T) {
-              return $e(this, void 0, void 0, function() {
+              return Re(this, void 0, void 0, function() {
                 return Ai(this, function(k) {
                   if (this.$wwt.inst === null)
                     throw new Error("cannot gotoTarget without linking to WWTInstance");
@@ -32328,8 +32328,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
             },
             loadTour: function(T) {
               var k = T.url, I = T.play;
-              return $e(this, void 0, void 0, function() {
-                var Y, at, nt, Tt, Rt, Ae;
+              return Re(this, void 0, void 0, function() {
+                var Y, at, nt, Tt, $t, Ae;
                 return Ai(this, function(Wt) {
                   switch (Wt.label) {
                     case 0:
@@ -32344,7 +32344,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                       Wt.sent(), Wt.label = 4;
                     case 4:
                       if (Y = null, at = [], nt = this.$wwt.inst.getActiveTourPlayer(), nt !== null && (Tt = nt.get_tour(), Tt !== null))
-                        for (Y = Tt.get_runTime() * 1e-3, Rt = Tt.get_tourStops().length, Ae = 0; Ae < Rt; Ae++)
+                        for (Y = Tt.get_runTime() * 1e-3, $t = Tt.get_tourStops().length, Ae = 0; Ae < $t; Ae++)
                           at.push(Tt.elapsedTimeTillTourstop(Ae));
                       return [2, { tourRunTime: Y, tourStopStartTimes: at }];
                   }
@@ -32353,7 +32353,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
             },
             loadImageCollection: function(T) {
               var k = T.url, I = T.loadChildFolders;
-              return $e(this, void 0, void 0, function() {
+              return Re(this, void 0, void 0, function() {
                 var Y;
                 return Ai(this, function(at) {
                   switch (at.label) {
@@ -32387,7 +32387,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
             },
             // Imageset layers, including FITS layers
             addImageSetLayer: function(T) {
-              return $e(this, void 0, void 0, function() {
+              return Re(this, void 0, void 0, function() {
                 var k, I;
                 return Ai(this, function(Y) {
                   switch (Y.label) {
@@ -32403,7 +32403,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
             },
             // deprecated, but maintained for compatibility:
             loadFitsLayer: function(T) {
-              return $e(this, void 0, void 0, function() {
+              return Re(this, void 0, void 0, function() {
                 var k;
                 return Ai(this, function(I) {
                   if (this.$wwt.inst === null)
@@ -32448,8 +32448,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                     var Tt = nt.value;
                     Jr(Y.settings, Tt);
                   }
-                } catch (Rt) {
-                  k = { error: Rt };
+                } catch ($t) {
+                  k = { error: $t };
                 } finally {
                   try {
                     nt && !nt.done && (I = at.return) && I.call(at);
@@ -32461,7 +32461,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
             },
             // Spreadsheet layers
             createTableLayer: function(T) {
-              return $e(this, void 0, void 0, function() {
+              return Re(this, void 0, void 0, function() {
                 var k, I, Y, at;
                 return Ai(this, function(nt) {
                   switch (nt.label) {
@@ -32487,8 +32487,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                     var Tt = nt.value;
                     zn(Y, Tt);
                   }
-                } catch (Rt) {
-                  k = { error: Rt };
+                } catch ($t) {
+                  k = { error: $t };
                 } finally {
                   try {
                     nt && !nt.done && (I = at.return) && I.call(at);
@@ -32508,7 +32508,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
             // These have some characteristics of imagesets, and some characteristics
             // of spreadsheet layers.
             addCatalogHipsByName: function(T) {
-              return $e(this, void 0, void 0, function() {
+              return Re(this, void 0, void 0, function() {
                 var k, I, Y, at, nt;
                 return Ai(this, function(Tt) {
                   switch (Tt.label) {
@@ -32517,8 +32517,8 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
                         throw new Error("cannot addCatalogHipsByName without linking to WWTInstance");
                       return [4, this.$wwt.inst.addCatalogHipsByName(T)];
                     case 1:
-                      return k = Tt.sent(), I = k.get_hipsProperties(), I !== null && (Y = I.get_catalogSpreadSheetLayer(), at = Y.id.toString(), this.spreadSheetLayers[at] = new Ga(Y), nt = tr().find(function(Rt) {
-                        return Rt.name === T.name;
+                      return k = Tt.sent(), I = k.get_hipsProperties(), I !== null && (Y = I.get_catalogSpreadSheetLayer(), at = Y.id.toString(), this.spreadSheetLayers[at] = new Ga(Y), nt = tr().find(function($t) {
+                        return $t.name === T.name;
                       }), nt !== void 0 && (nt.id = at)), this.activeLayers = Ln(this.$wwt), [2, k];
                   }
                 });
@@ -32574,7 +32574,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
             wwtNamespace: { type: String, default: "wwt", required: !0 },
             wwtFreestandingAssetBaseurl: String
           },
-          computed: si(si({}, Re(Hn, {
+          computed: si(si({}, $e(Hn, {
             /** The GUIDs of all rendered layers, in their draw order.
              *
              * This list gives the GUIDs of the layers that are currently candidates for
@@ -32702,7 +32702,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
              * *times six*.
              */
             wwtZoomDeg: "zoomDeg"
-          })), Re(Hn, [
+          })), $e(Hn, [
             /** Get the reactive state for the active imageset layers
              *
              * These layers are created using the [[addImageSetLayer]] action. The state
@@ -33054,7 +33054,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
           }, null, 8, Ss);
         }
         var Ka = 0;
-        const $i = (0, z.defineComponent)({
+        const Ri = (0, z.defineComponent)({
           props: {
             wwtNamespace: { type: String, default: "wwt", required: !0 },
             wwtFreestandingAssetBaseurl: String
@@ -33108,7 +33108,7 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
           }
         });
         var Cs = L(535);
-        const Ts = /* @__PURE__ */ (0, Cs.Z)($i, [["render", La]]);
+        const Ts = /* @__PURE__ */ (0, Cs.Z)(Ri, [["render", La]]);
         var Bi = vt();
         Bi.use(function(T) {
           var k = T.store;
@@ -33118,7 +33118,243 @@ const require$$1 = /* @__PURE__ */ getAugmentedNamespace(vue_runtime_esmBundler)
     })()
   ));
 })(index_umd);
-var index_umdExports = index_umd.exports, PI = 3.14159265358979, TWOPI = 2 * PI, R2D = 180 / PI, R2H = 12 / PI;
+var index_umdExports = index_umd.exports, getRandomValues, rnds8 = new Uint8Array(16);
+function rng() {
+  if (!getRandomValues && (getRandomValues = typeof crypto < "u" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || typeof msCrypto < "u" && typeof msCrypto.getRandomValues == "function" && msCrypto.getRandomValues.bind(msCrypto), !getRandomValues))
+    throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");
+  return getRandomValues(rnds8);
+}
+const REGEX = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
+function validate(r) {
+  return typeof r == "string" && REGEX.test(r);
+}
+var byteToHex = [];
+for (var i = 0; i < 256; ++i)
+  byteToHex.push((i + 256).toString(16).substr(1));
+function stringify(r) {
+  var u = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0, d = (byteToHex[r[u + 0]] + byteToHex[r[u + 1]] + byteToHex[r[u + 2]] + byteToHex[r[u + 3]] + "-" + byteToHex[r[u + 4]] + byteToHex[r[u + 5]] + "-" + byteToHex[r[u + 6]] + byteToHex[r[u + 7]] + "-" + byteToHex[r[u + 8]] + byteToHex[r[u + 9]] + "-" + byteToHex[r[u + 10]] + byteToHex[r[u + 11]] + byteToHex[r[u + 12]] + byteToHex[r[u + 13]] + byteToHex[r[u + 14]] + byteToHex[r[u + 15]]).toLowerCase();
+  if (!validate(d))
+    throw TypeError("Stringified UUID is invalid");
+  return d;
+}
+var _nodeId, _clockseq, _lastMSecs = 0, _lastNSecs = 0;
+function v1(r, u, d) {
+  var v = u && d || 0, w = u || new Array(16);
+  r = r || {};
+  var C = r.node || _nodeId, L = r.clockseq !== void 0 ? r.clockseq : _clockseq;
+  if (C == null || L == null) {
+    var E = r.random || (r.rng || rng)();
+    C == null && (C = _nodeId = [E[0] | 1, E[1], E[2], E[3], E[4], E[5]]), L == null && (L = _clockseq = (E[6] << 8 | E[7]) & 16383);
+  }
+  var V = r.msecs !== void 0 ? r.msecs : Date.now(), N = r.nsecs !== void 0 ? r.nsecs : _lastNSecs + 1, z = V - _lastMSecs + (N - _lastNSecs) / 1e4;
+  if (z < 0 && r.clockseq === void 0 && (L = L + 1 & 16383), (z < 0 || V > _lastMSecs) && r.nsecs === void 0 && (N = 0), N >= 1e4)
+    throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");
+  _lastMSecs = V, _lastNSecs = N, _clockseq = L, V += 122192928e5;
+  var st = ((V & 268435455) * 1e4 + N) % 4294967296;
+  w[v++] = st >>> 24 & 255, w[v++] = st >>> 16 & 255, w[v++] = st >>> 8 & 255, w[v++] = st & 255;
+  var et = V / 4294967296 * 1e4 & 268435455;
+  w[v++] = et >>> 8 & 255, w[v++] = et & 255, w[v++] = et >>> 24 & 15 | 16, w[v++] = et >>> 16 & 255, w[v++] = L >>> 8 | 128, w[v++] = L & 255;
+  for (var ct = 0; ct < 6; ++ct)
+    w[v + ct] = C[ct];
+  return u || stringify(w);
+}
+function parse(r) {
+  if (!validate(r))
+    throw TypeError("Invalid UUID");
+  var u, d = new Uint8Array(16);
+  return d[0] = (u = parseInt(r.slice(0, 8), 16)) >>> 24, d[1] = u >>> 16 & 255, d[2] = u >>> 8 & 255, d[3] = u & 255, d[4] = (u = parseInt(r.slice(9, 13), 16)) >>> 8, d[5] = u & 255, d[6] = (u = parseInt(r.slice(14, 18), 16)) >>> 8, d[7] = u & 255, d[8] = (u = parseInt(r.slice(19, 23), 16)) >>> 8, d[9] = u & 255, d[10] = (u = parseInt(r.slice(24, 36), 16)) / 1099511627776 & 255, d[11] = u / 4294967296 & 255, d[12] = u >>> 24 & 255, d[13] = u >>> 16 & 255, d[14] = u >>> 8 & 255, d[15] = u & 255, d;
+}
+function stringToBytes(r) {
+  r = unescape(encodeURIComponent(r));
+  for (var u = [], d = 0; d < r.length; ++d)
+    u.push(r.charCodeAt(d));
+  return u;
+}
+var DNS = "6ba7b810-9dad-11d1-80b4-00c04fd430c8", URL$1 = "6ba7b811-9dad-11d1-80b4-00c04fd430c8";
+function v35(r, u, d) {
+  function v(w, C, L, E) {
+    if (typeof w == "string" && (w = stringToBytes(w)), typeof C == "string" && (C = parse(C)), C.length !== 16)
+      throw TypeError("Namespace must be array-like (16 iterable integer values, 0-255)");
+    var V = new Uint8Array(16 + w.length);
+    if (V.set(C), V.set(w, C.length), V = d(V), V[6] = V[6] & 15 | u, V[8] = V[8] & 63 | 128, L) {
+      E = E || 0;
+      for (var N = 0; N < 16; ++N)
+        L[E + N] = V[N];
+      return L;
+    }
+    return stringify(V);
+  }
+  try {
+    v.name = r;
+  } catch {
+  }
+  return v.DNS = DNS, v.URL = URL$1, v;
+}
+function md5(r) {
+  if (typeof r == "string") {
+    var u = unescape(encodeURIComponent(r));
+    r = new Uint8Array(u.length);
+    for (var d = 0; d < u.length; ++d)
+      r[d] = u.charCodeAt(d);
+  }
+  return md5ToHexEncodedArray(wordsToMd5(bytesToWords(r), r.length * 8));
+}
+function md5ToHexEncodedArray(r) {
+  for (var u = [], d = r.length * 32, v = "0123456789abcdef", w = 0; w < d; w += 8) {
+    var C = r[w >> 5] >>> w % 32 & 255, L = parseInt(v.charAt(C >>> 4 & 15) + v.charAt(C & 15), 16);
+    u.push(L);
+  }
+  return u;
+}
+function getOutputLength(r) {
+  return (r + 64 >>> 9 << 4) + 14 + 1;
+}
+function wordsToMd5(r, u) {
+  r[u >> 5] |= 128 << u % 32, r[getOutputLength(u) - 1] = u;
+  for (var d = 1732584193, v = -271733879, w = -1732584194, C = 271733878, L = 0; L < r.length; L += 16) {
+    var E = d, V = v, N = w, z = C;
+    d = md5ff(d, v, w, C, r[L], 7, -680876936), C = md5ff(C, d, v, w, r[L + 1], 12, -389564586), w = md5ff(w, C, d, v, r[L + 2], 17, 606105819), v = md5ff(v, w, C, d, r[L + 3], 22, -1044525330), d = md5ff(d, v, w, C, r[L + 4], 7, -176418897), C = md5ff(C, d, v, w, r[L + 5], 12, 1200080426), w = md5ff(w, C, d, v, r[L + 6], 17, -1473231341), v = md5ff(v, w, C, d, r[L + 7], 22, -45705983), d = md5ff(d, v, w, C, r[L + 8], 7, 1770035416), C = md5ff(C, d, v, w, r[L + 9], 12, -1958414417), w = md5ff(w, C, d, v, r[L + 10], 17, -42063), v = md5ff(v, w, C, d, r[L + 11], 22, -1990404162), d = md5ff(d, v, w, C, r[L + 12], 7, 1804603682), C = md5ff(C, d, v, w, r[L + 13], 12, -40341101), w = md5ff(w, C, d, v, r[L + 14], 17, -1502002290), v = md5ff(v, w, C, d, r[L + 15], 22, 1236535329), d = md5gg(d, v, w, C, r[L + 1], 5, -165796510), C = md5gg(C, d, v, w, r[L + 6], 9, -1069501632), w = md5gg(w, C, d, v, r[L + 11], 14, 643717713), v = md5gg(v, w, C, d, r[L], 20, -373897302), d = md5gg(d, v, w, C, r[L + 5], 5, -701558691), C = md5gg(C, d, v, w, r[L + 10], 9, 38016083), w = md5gg(w, C, d, v, r[L + 15], 14, -660478335), v = md5gg(v, w, C, d, r[L + 4], 20, -405537848), d = md5gg(d, v, w, C, r[L + 9], 5, 568446438), C = md5gg(C, d, v, w, r[L + 14], 9, -1019803690), w = md5gg(w, C, d, v, r[L + 3], 14, -187363961), v = md5gg(v, w, C, d, r[L + 8], 20, 1163531501), d = md5gg(d, v, w, C, r[L + 13], 5, -1444681467), C = md5gg(C, d, v, w, r[L + 2], 9, -51403784), w = md5gg(w, C, d, v, r[L + 7], 14, 1735328473), v = md5gg(v, w, C, d, r[L + 12], 20, -1926607734), d = md5hh(d, v, w, C, r[L + 5], 4, -378558), C = md5hh(C, d, v, w, r[L + 8], 11, -2022574463), w = md5hh(w, C, d, v, r[L + 11], 16, 1839030562), v = md5hh(v, w, C, d, r[L + 14], 23, -35309556), d = md5hh(d, v, w, C, r[L + 1], 4, -1530992060), C = md5hh(C, d, v, w, r[L + 4], 11, 1272893353), w = md5hh(w, C, d, v, r[L + 7], 16, -155497632), v = md5hh(v, w, C, d, r[L + 10], 23, -1094730640), d = md5hh(d, v, w, C, r[L + 13], 4, 681279174), C = md5hh(C, d, v, w, r[L], 11, -358537222), w = md5hh(w, C, d, v, r[L + 3], 16, -722521979), v = md5hh(v, w, C, d, r[L + 6], 23, 76029189), d = md5hh(d, v, w, C, r[L + 9], 4, -640364487), C = md5hh(C, d, v, w, r[L + 12], 11, -421815835), w = md5hh(w, C, d, v, r[L + 15], 16, 530742520), v = md5hh(v, w, C, d, r[L + 2], 23, -995338651), d = md5ii(d, v, w, C, r[L], 6, -198630844), C = md5ii(C, d, v, w, r[L + 7], 10, 1126891415), w = md5ii(w, C, d, v, r[L + 14], 15, -1416354905), v = md5ii(v, w, C, d, r[L + 5], 21, -57434055), d = md5ii(d, v, w, C, r[L + 12], 6, 1700485571), C = md5ii(C, d, v, w, r[L + 3], 10, -1894986606), w = md5ii(w, C, d, v, r[L + 10], 15, -1051523), v = md5ii(v, w, C, d, r[L + 1], 21, -2054922799), d = md5ii(d, v, w, C, r[L + 8], 6, 1873313359), C = md5ii(C, d, v, w, r[L + 15], 10, -30611744), w = md5ii(w, C, d, v, r[L + 6], 15, -1560198380), v = md5ii(v, w, C, d, r[L + 13], 21, 1309151649), d = md5ii(d, v, w, C, r[L + 4], 6, -145523070), C = md5ii(C, d, v, w, r[L + 11], 10, -1120210379), w = md5ii(w, C, d, v, r[L + 2], 15, 718787259), v = md5ii(v, w, C, d, r[L + 9], 21, -343485551), d = safeAdd(d, E), v = safeAdd(v, V), w = safeAdd(w, N), C = safeAdd(C, z);
+  }
+  return [d, v, w, C];
+}
+function bytesToWords(r) {
+  if (r.length === 0)
+    return [];
+  for (var u = r.length * 8, d = new Uint32Array(getOutputLength(u)), v = 0; v < u; v += 8)
+    d[v >> 5] |= (r[v / 8] & 255) << v % 32;
+  return d;
+}
+function safeAdd(r, u) {
+  var d = (r & 65535) + (u & 65535), v = (r >> 16) + (u >> 16) + (d >> 16);
+  return v << 16 | d & 65535;
+}
+function bitRotateLeft(r, u) {
+  return r << u | r >>> 32 - u;
+}
+function md5cmn(r, u, d, v, w, C) {
+  return safeAdd(bitRotateLeft(safeAdd(safeAdd(u, r), safeAdd(v, C)), w), d);
+}
+function md5ff(r, u, d, v, w, C, L) {
+  return md5cmn(u & d | ~u & v, r, u, w, C, L);
+}
+function md5gg(r, u, d, v, w, C, L) {
+  return md5cmn(u & v | d & ~v, r, u, w, C, L);
+}
+function md5hh(r, u, d, v, w, C, L) {
+  return md5cmn(u ^ d ^ v, r, u, w, C, L);
+}
+function md5ii(r, u, d, v, w, C, L) {
+  return md5cmn(d ^ (u | ~v), r, u, w, C, L);
+}
+var v3 = v35("v3", 48, md5);
+const v3$1 = v3;
+function v4(r, u, d) {
+  r = r || {};
+  var v = r.random || (r.rng || rng)();
+  if (v[6] = v[6] & 15 | 64, v[8] = v[8] & 63 | 128, u) {
+    d = d || 0;
+    for (var w = 0; w < 16; ++w)
+      u[d + w] = v[w];
+    return u;
+  }
+  return stringify(v);
+}
+function f(r, u, d, v) {
+  switch (r) {
+    case 0:
+      return u & d ^ ~u & v;
+    case 1:
+      return u ^ d ^ v;
+    case 2:
+      return u & d ^ u & v ^ d & v;
+    case 3:
+      return u ^ d ^ v;
+  }
+}
+function ROTL(r, u) {
+  return r << u | r >>> 32 - u;
+}
+function sha1(r) {
+  var u = [1518500249, 1859775393, 2400959708, 3395469782], d = [1732584193, 4023233417, 2562383102, 271733878, 3285377520];
+  if (typeof r == "string") {
+    var v = unescape(encodeURIComponent(r));
+    r = [];
+    for (var w = 0; w < v.length; ++w)
+      r.push(v.charCodeAt(w));
+  } else
+    Array.isArray(r) || (r = Array.prototype.slice.call(r));
+  r.push(128);
+  for (var C = r.length / 4 + 2, L = Math.ceil(C / 16), E = new Array(L), V = 0; V < L; ++V) {
+    for (var N = new Uint32Array(16), z = 0; z < 16; ++z)
+      N[z] = r[V * 64 + z * 4] << 24 | r[V * 64 + z * 4 + 1] << 16 | r[V * 64 + z * 4 + 2] << 8 | r[V * 64 + z * 4 + 3];
+    E[V] = N;
+  }
+  E[L - 1][14] = (r.length - 1) * 8 / Math.pow(2, 32), E[L - 1][14] = Math.floor(E[L - 1][14]), E[L - 1][15] = (r.length - 1) * 8 & 4294967295;
+  for (var st = 0; st < L; ++st) {
+    for (var et = new Uint32Array(80), ct = 0; ct < 16; ++ct)
+      et[ct] = E[st][ct];
+    for (var Ct = 16; Ct < 80; ++Ct)
+      et[Ct] = ROTL(et[Ct - 3] ^ et[Ct - 8] ^ et[Ct - 14] ^ et[Ct - 16], 1);
+    for (var At = d[0], qt = d[1], vt = d[2], _t = d[3], Et = d[4], ft = 0; ft < 80; ++ft) {
+      var wt = Math.floor(ft / 20), Zt = ROTL(At, 5) + f(wt, qt, vt, _t) + Et + u[wt] + et[ft] >>> 0;
+      Et = _t, _t = vt, vt = ROTL(qt, 30) >>> 0, qt = At, At = Zt;
+    }
+    d[0] = d[0] + At >>> 0, d[1] = d[1] + qt >>> 0, d[2] = d[2] + vt >>> 0, d[3] = d[3] + _t >>> 0, d[4] = d[4] + Et >>> 0;
+  }
+  return [d[0] >> 24 & 255, d[0] >> 16 & 255, d[0] >> 8 & 255, d[0] & 255, d[1] >> 24 & 255, d[1] >> 16 & 255, d[1] >> 8 & 255, d[1] & 255, d[2] >> 24 & 255, d[2] >> 16 & 255, d[2] >> 8 & 255, d[2] & 255, d[3] >> 24 & 255, d[3] >> 16 & 255, d[3] >> 8 & 255, d[3] & 255, d[4] >> 24 & 255, d[4] >> 16 & 255, d[4] >> 8 & 255, d[4] & 255];
+}
+var v5 = v35("v5", 80, sha1);
+const v5$1 = v5, nil = "00000000-0000-0000-0000-000000000000";
+function version(r) {
+  if (!validate(r))
+    throw TypeError("Invalid UUID");
+  return parseInt(r.substr(14, 1), 16);
+}
+const index$2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  NIL: nil,
+  parse,
+  stringify,
+  v1,
+  v3: v3$1,
+  v4,
+  v5: v5$1,
+  validate,
+  version
+}, Symbol.toStringTag, { value: "Module" })), _export_sfc = (r, u) => {
+  const d = r.__vccOpts || r;
+  for (const [v, w] of u)
+    d[v] = w;
+  return d;
+}, _sfc_main$1 = {
+  extends: index_umdExports.WWTComponent
+  // data() {
+  //   return {
+  //     uniqueId: `${uuidv4()}`,
+  //     wwt: undefined,
+  //     renderLoopId: undefined
+  //   }
+  // },
+  // created() {
+  //   console.log("Created")
+  //   // Create a globally unique ID for the div that the WWT engine can latch onto.
+  //   const uid = `${uuidv4()}`;
+  //   // const uid = `wwtcmpt${idCounter}`;
+  //   Object.defineProperties(this, {
+  //     uniqueId: { get() { return uid; } },
+  //   });
+  //   // this.uniqueId = uid;
+  //   // idCounter += 1;
+  // }
+}, _hoisted_1$1 = ["id"];
+function _sfc_render$1(r, u, d, v, w, C) {
+  return openBlock(), createElementBlock("div", {
+    id: r.uniqueId,
+    class: "wwtelescope-component"
+  }, null, 8, _hoisted_1$1);
+}
+const UniqueWWTComponent = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render$1]]);
+var PI = 3.14159265358979, TWOPI = 2 * PI, R2D = 180 / PI, R2H = 12 / PI;
 function angnorm(r) {
   for (; r < 0; )
     r += TWOPI;
@@ -33142,12 +33378,7 @@ function fmtHours(r, u, d, v) {
 function fmtDegLat(r, u, d, v) {
   return u === void 0 && (u = ":"), d === void 0 && (d = ":"), v === void 0 && (v = 0), r < -PI || r > PI ? " ??".concat(u, "??").concat(d, "??") : _formatSexagesimal(r * R2D, !0, 2, u, d, v);
 }
-const App_vue_vue_type_style_index_0_lang = "", _export_sfc = (r, u) => {
-  const d = r.__vccOpts || r;
-  for (const [v, w] of u)
-    d[v] = w;
-  return d;
-}, _sfc_main = {
+const App_vue_vue_type_style_index_0_lang = "", _sfc_main = {
   extends: index_umdExports.WWTAwareComponent,
   data() {
     return {
@@ -33179,7 +33410,7 @@ const App = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render]]), a
   wwtNamespace: "mywwt"
 });
 app.use(index_umdExports.wwtPinia);
-app.component("WorldWideTelescope", index_umdExports.WWTComponent);
+app.component("WorldWideTelescope", UniqueWWTComponent);
 function render({ model: r, el: u }) {
   return app.mount(u), () => app.unmount();
 }
@@ -34196,7 +34427,7 @@ var inflate$4 = {}, inflate$3 = {}, BAD$1 = 30, TYPE$1 = 12, inffast = function 
   64,
   64
 ], inftrees = function r(u, d, v, w, C, L, E, V) {
-  var N = V.bits, z = 0, st = 0, et = 0, ct = 0, Ct = 0, At = 0, qt = 0, vt = 0, _t = 0, Et = 0, ft, wt, Zt, Ot, bt, Xt = null, ie = 0, Yt, ae = new utils$2.Buf16(MAXBITS + 1), Re = new utils$2.Buf16(MAXBITS + 1), me = null, Fi = 0, ei, si, $e;
+  var N = V.bits, z = 0, st = 0, et = 0, ct = 0, Ct = 0, At = 0, qt = 0, vt = 0, _t = 0, Et = 0, ft, wt, Zt, Ot, bt, Xt = null, ie = 0, Yt, ae = new utils$2.Buf16(MAXBITS + 1), $e = new utils$2.Buf16(MAXBITS + 1), me = null, Fi = 0, ei, si, Re;
   for (z = 0; z <= MAXBITS; z++)
     ae[z] = 0;
   for (st = 0; st < w; st++)
@@ -34212,16 +34443,16 @@ var inflate$4 = {}, inflate$3 = {}, BAD$1 = 30, TYPE$1 = 12, inffast = function 
       return -1;
   if (vt > 0 && (u === CODES$1 || ct !== 1))
     return -1;
-  for (Re[1] = 0, z = 1; z < MAXBITS; z++)
-    Re[z + 1] = Re[z] + ae[z];
+  for ($e[1] = 0, z = 1; z < MAXBITS; z++)
+    $e[z + 1] = $e[z] + ae[z];
   for (st = 0; st < w; st++)
-    d[v + st] !== 0 && (E[Re[d[v + st]]++] = st);
+    d[v + st] !== 0 && (E[$e[d[v + st]]++] = st);
   if (u === CODES$1 ? (Xt = me = E, Yt = 19) : u === LENS$1 ? (Xt = lbase, ie -= 257, me = lext, Fi -= 257, Yt = 256) : (Xt = dbase, me = dext, Yt = -1), Et = 0, st = 0, z = et, bt = L, At = Ct, qt = 0, Zt = -1, _t = 1 << Ct, Ot = _t - 1, u === LENS$1 && _t > ENOUGH_LENS$1 || u === DISTS$1 && _t > ENOUGH_DISTS$1)
     return 1;
   for (; ; ) {
-    ei = z - qt, E[st] < Yt ? (si = 0, $e = E[st]) : E[st] > Yt ? (si = me[Fi + E[st]], $e = Xt[ie + E[st]]) : (si = 32 + 64, $e = 0), ft = 1 << z - qt, wt = 1 << At, et = wt;
+    ei = z - qt, E[st] < Yt ? (si = 0, Re = E[st]) : E[st] > Yt ? (si = me[Fi + E[st]], Re = Xt[ie + E[st]]) : (si = 32 + 64, Re = 0), ft = 1 << z - qt, wt = 1 << At, et = wt;
     do
-      wt -= ft, C[bt + (Et >> qt) + wt] = ei << 24 | si << 16 | $e | 0;
+      wt -= ft, C[bt + (Et >> qt) + wt] = ei << 24 | si << 16 | Re | 0;
     while (wt !== 0);
     for (ft = 1 << z - 1; Et & ft; )
       ft >>= 1;
@@ -34838,214 +35069,10 @@ inflate$4.ungzip = inflate$1;
 var assign = common.assign, deflate = deflate$4, inflate = inflate$4, constants = constants$1, pako = {};
 assign(pako, deflate, inflate, constants);
 var pako_1 = pako;
-const index$1 = /* @__PURE__ */ getDefaultExportFromCjs(pako_1), index$2 = /* @__PURE__ */ _mergeNamespaces({
+const index = /* @__PURE__ */ getDefaultExportFromCjs(pako_1), index$1 = /* @__PURE__ */ _mergeNamespaces({
   __proto__: null,
-  default: index$1
+  default: index
 }, [pako_1]);
-var getRandomValues, rnds8 = new Uint8Array(16);
-function rng() {
-  if (!getRandomValues && (getRandomValues = typeof crypto < "u" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || typeof msCrypto < "u" && typeof msCrypto.getRandomValues == "function" && msCrypto.getRandomValues.bind(msCrypto), !getRandomValues))
-    throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");
-  return getRandomValues(rnds8);
-}
-const REGEX = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
-function validate(r) {
-  return typeof r == "string" && REGEX.test(r);
-}
-var byteToHex = [];
-for (var i = 0; i < 256; ++i)
-  byteToHex.push((i + 256).toString(16).substr(1));
-function stringify(r) {
-  var u = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0, d = (byteToHex[r[u + 0]] + byteToHex[r[u + 1]] + byteToHex[r[u + 2]] + byteToHex[r[u + 3]] + "-" + byteToHex[r[u + 4]] + byteToHex[r[u + 5]] + "-" + byteToHex[r[u + 6]] + byteToHex[r[u + 7]] + "-" + byteToHex[r[u + 8]] + byteToHex[r[u + 9]] + "-" + byteToHex[r[u + 10]] + byteToHex[r[u + 11]] + byteToHex[r[u + 12]] + byteToHex[r[u + 13]] + byteToHex[r[u + 14]] + byteToHex[r[u + 15]]).toLowerCase();
-  if (!validate(d))
-    throw TypeError("Stringified UUID is invalid");
-  return d;
-}
-var _nodeId, _clockseq, _lastMSecs = 0, _lastNSecs = 0;
-function v1(r, u, d) {
-  var v = u && d || 0, w = u || new Array(16);
-  r = r || {};
-  var C = r.node || _nodeId, L = r.clockseq !== void 0 ? r.clockseq : _clockseq;
-  if (C == null || L == null) {
-    var E = r.random || (r.rng || rng)();
-    C == null && (C = _nodeId = [E[0] | 1, E[1], E[2], E[3], E[4], E[5]]), L == null && (L = _clockseq = (E[6] << 8 | E[7]) & 16383);
-  }
-  var V = r.msecs !== void 0 ? r.msecs : Date.now(), N = r.nsecs !== void 0 ? r.nsecs : _lastNSecs + 1, z = V - _lastMSecs + (N - _lastNSecs) / 1e4;
-  if (z < 0 && r.clockseq === void 0 && (L = L + 1 & 16383), (z < 0 || V > _lastMSecs) && r.nsecs === void 0 && (N = 0), N >= 1e4)
-    throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");
-  _lastMSecs = V, _lastNSecs = N, _clockseq = L, V += 122192928e5;
-  var st = ((V & 268435455) * 1e4 + N) % 4294967296;
-  w[v++] = st >>> 24 & 255, w[v++] = st >>> 16 & 255, w[v++] = st >>> 8 & 255, w[v++] = st & 255;
-  var et = V / 4294967296 * 1e4 & 268435455;
-  w[v++] = et >>> 8 & 255, w[v++] = et & 255, w[v++] = et >>> 24 & 15 | 16, w[v++] = et >>> 16 & 255, w[v++] = L >>> 8 | 128, w[v++] = L & 255;
-  for (var ct = 0; ct < 6; ++ct)
-    w[v + ct] = C[ct];
-  return u || stringify(w);
-}
-function parse(r) {
-  if (!validate(r))
-    throw TypeError("Invalid UUID");
-  var u, d = new Uint8Array(16);
-  return d[0] = (u = parseInt(r.slice(0, 8), 16)) >>> 24, d[1] = u >>> 16 & 255, d[2] = u >>> 8 & 255, d[3] = u & 255, d[4] = (u = parseInt(r.slice(9, 13), 16)) >>> 8, d[5] = u & 255, d[6] = (u = parseInt(r.slice(14, 18), 16)) >>> 8, d[7] = u & 255, d[8] = (u = parseInt(r.slice(19, 23), 16)) >>> 8, d[9] = u & 255, d[10] = (u = parseInt(r.slice(24, 36), 16)) / 1099511627776 & 255, d[11] = u / 4294967296 & 255, d[12] = u >>> 24 & 255, d[13] = u >>> 16 & 255, d[14] = u >>> 8 & 255, d[15] = u & 255, d;
-}
-function stringToBytes(r) {
-  r = unescape(encodeURIComponent(r));
-  for (var u = [], d = 0; d < r.length; ++d)
-    u.push(r.charCodeAt(d));
-  return u;
-}
-var DNS = "6ba7b810-9dad-11d1-80b4-00c04fd430c8", URL$1 = "6ba7b811-9dad-11d1-80b4-00c04fd430c8";
-function v35(r, u, d) {
-  function v(w, C, L, E) {
-    if (typeof w == "string" && (w = stringToBytes(w)), typeof C == "string" && (C = parse(C)), C.length !== 16)
-      throw TypeError("Namespace must be array-like (16 iterable integer values, 0-255)");
-    var V = new Uint8Array(16 + w.length);
-    if (V.set(C), V.set(w, C.length), V = d(V), V[6] = V[6] & 15 | u, V[8] = V[8] & 63 | 128, L) {
-      E = E || 0;
-      for (var N = 0; N < 16; ++N)
-        L[E + N] = V[N];
-      return L;
-    }
-    return stringify(V);
-  }
-  try {
-    v.name = r;
-  } catch {
-  }
-  return v.DNS = DNS, v.URL = URL$1, v;
-}
-function md5(r) {
-  if (typeof r == "string") {
-    var u = unescape(encodeURIComponent(r));
-    r = new Uint8Array(u.length);
-    for (var d = 0; d < u.length; ++d)
-      r[d] = u.charCodeAt(d);
-  }
-  return md5ToHexEncodedArray(wordsToMd5(bytesToWords(r), r.length * 8));
-}
-function md5ToHexEncodedArray(r) {
-  for (var u = [], d = r.length * 32, v = "0123456789abcdef", w = 0; w < d; w += 8) {
-    var C = r[w >> 5] >>> w % 32 & 255, L = parseInt(v.charAt(C >>> 4 & 15) + v.charAt(C & 15), 16);
-    u.push(L);
-  }
-  return u;
-}
-function getOutputLength(r) {
-  return (r + 64 >>> 9 << 4) + 14 + 1;
-}
-function wordsToMd5(r, u) {
-  r[u >> 5] |= 128 << u % 32, r[getOutputLength(u) - 1] = u;
-  for (var d = 1732584193, v = -271733879, w = -1732584194, C = 271733878, L = 0; L < r.length; L += 16) {
-    var E = d, V = v, N = w, z = C;
-    d = md5ff(d, v, w, C, r[L], 7, -680876936), C = md5ff(C, d, v, w, r[L + 1], 12, -389564586), w = md5ff(w, C, d, v, r[L + 2], 17, 606105819), v = md5ff(v, w, C, d, r[L + 3], 22, -1044525330), d = md5ff(d, v, w, C, r[L + 4], 7, -176418897), C = md5ff(C, d, v, w, r[L + 5], 12, 1200080426), w = md5ff(w, C, d, v, r[L + 6], 17, -1473231341), v = md5ff(v, w, C, d, r[L + 7], 22, -45705983), d = md5ff(d, v, w, C, r[L + 8], 7, 1770035416), C = md5ff(C, d, v, w, r[L + 9], 12, -1958414417), w = md5ff(w, C, d, v, r[L + 10], 17, -42063), v = md5ff(v, w, C, d, r[L + 11], 22, -1990404162), d = md5ff(d, v, w, C, r[L + 12], 7, 1804603682), C = md5ff(C, d, v, w, r[L + 13], 12, -40341101), w = md5ff(w, C, d, v, r[L + 14], 17, -1502002290), v = md5ff(v, w, C, d, r[L + 15], 22, 1236535329), d = md5gg(d, v, w, C, r[L + 1], 5, -165796510), C = md5gg(C, d, v, w, r[L + 6], 9, -1069501632), w = md5gg(w, C, d, v, r[L + 11], 14, 643717713), v = md5gg(v, w, C, d, r[L], 20, -373897302), d = md5gg(d, v, w, C, r[L + 5], 5, -701558691), C = md5gg(C, d, v, w, r[L + 10], 9, 38016083), w = md5gg(w, C, d, v, r[L + 15], 14, -660478335), v = md5gg(v, w, C, d, r[L + 4], 20, -405537848), d = md5gg(d, v, w, C, r[L + 9], 5, 568446438), C = md5gg(C, d, v, w, r[L + 14], 9, -1019803690), w = md5gg(w, C, d, v, r[L + 3], 14, -187363961), v = md5gg(v, w, C, d, r[L + 8], 20, 1163531501), d = md5gg(d, v, w, C, r[L + 13], 5, -1444681467), C = md5gg(C, d, v, w, r[L + 2], 9, -51403784), w = md5gg(w, C, d, v, r[L + 7], 14, 1735328473), v = md5gg(v, w, C, d, r[L + 12], 20, -1926607734), d = md5hh(d, v, w, C, r[L + 5], 4, -378558), C = md5hh(C, d, v, w, r[L + 8], 11, -2022574463), w = md5hh(w, C, d, v, r[L + 11], 16, 1839030562), v = md5hh(v, w, C, d, r[L + 14], 23, -35309556), d = md5hh(d, v, w, C, r[L + 1], 4, -1530992060), C = md5hh(C, d, v, w, r[L + 4], 11, 1272893353), w = md5hh(w, C, d, v, r[L + 7], 16, -155497632), v = md5hh(v, w, C, d, r[L + 10], 23, -1094730640), d = md5hh(d, v, w, C, r[L + 13], 4, 681279174), C = md5hh(C, d, v, w, r[L], 11, -358537222), w = md5hh(w, C, d, v, r[L + 3], 16, -722521979), v = md5hh(v, w, C, d, r[L + 6], 23, 76029189), d = md5hh(d, v, w, C, r[L + 9], 4, -640364487), C = md5hh(C, d, v, w, r[L + 12], 11, -421815835), w = md5hh(w, C, d, v, r[L + 15], 16, 530742520), v = md5hh(v, w, C, d, r[L + 2], 23, -995338651), d = md5ii(d, v, w, C, r[L], 6, -198630844), C = md5ii(C, d, v, w, r[L + 7], 10, 1126891415), w = md5ii(w, C, d, v, r[L + 14], 15, -1416354905), v = md5ii(v, w, C, d, r[L + 5], 21, -57434055), d = md5ii(d, v, w, C, r[L + 12], 6, 1700485571), C = md5ii(C, d, v, w, r[L + 3], 10, -1894986606), w = md5ii(w, C, d, v, r[L + 10], 15, -1051523), v = md5ii(v, w, C, d, r[L + 1], 21, -2054922799), d = md5ii(d, v, w, C, r[L + 8], 6, 1873313359), C = md5ii(C, d, v, w, r[L + 15], 10, -30611744), w = md5ii(w, C, d, v, r[L + 6], 15, -1560198380), v = md5ii(v, w, C, d, r[L + 13], 21, 1309151649), d = md5ii(d, v, w, C, r[L + 4], 6, -145523070), C = md5ii(C, d, v, w, r[L + 11], 10, -1120210379), w = md5ii(w, C, d, v, r[L + 2], 15, 718787259), v = md5ii(v, w, C, d, r[L + 9], 21, -343485551), d = safeAdd(d, E), v = safeAdd(v, V), w = safeAdd(w, N), C = safeAdd(C, z);
-  }
-  return [d, v, w, C];
-}
-function bytesToWords(r) {
-  if (r.length === 0)
-    return [];
-  for (var u = r.length * 8, d = new Uint32Array(getOutputLength(u)), v = 0; v < u; v += 8)
-    d[v >> 5] |= (r[v / 8] & 255) << v % 32;
-  return d;
-}
-function safeAdd(r, u) {
-  var d = (r & 65535) + (u & 65535), v = (r >> 16) + (u >> 16) + (d >> 16);
-  return v << 16 | d & 65535;
-}
-function bitRotateLeft(r, u) {
-  return r << u | r >>> 32 - u;
-}
-function md5cmn(r, u, d, v, w, C) {
-  return safeAdd(bitRotateLeft(safeAdd(safeAdd(u, r), safeAdd(v, C)), w), d);
-}
-function md5ff(r, u, d, v, w, C, L) {
-  return md5cmn(u & d | ~u & v, r, u, w, C, L);
-}
-function md5gg(r, u, d, v, w, C, L) {
-  return md5cmn(u & v | d & ~v, r, u, w, C, L);
-}
-function md5hh(r, u, d, v, w, C, L) {
-  return md5cmn(u ^ d ^ v, r, u, w, C, L);
-}
-function md5ii(r, u, d, v, w, C, L) {
-  return md5cmn(d ^ (u | ~v), r, u, w, C, L);
-}
-var v3 = v35("v3", 48, md5);
-const v3$1 = v3;
-function v4(r, u, d) {
-  r = r || {};
-  var v = r.random || (r.rng || rng)();
-  if (v[6] = v[6] & 15 | 64, v[8] = v[8] & 63 | 128, u) {
-    d = d || 0;
-    for (var w = 0; w < 16; ++w)
-      u[d + w] = v[w];
-    return u;
-  }
-  return stringify(v);
-}
-function f(r, u, d, v) {
-  switch (r) {
-    case 0:
-      return u & d ^ ~u & v;
-    case 1:
-      return u ^ d ^ v;
-    case 2:
-      return u & d ^ u & v ^ d & v;
-    case 3:
-      return u ^ d ^ v;
-  }
-}
-function ROTL(r, u) {
-  return r << u | r >>> 32 - u;
-}
-function sha1(r) {
-  var u = [1518500249, 1859775393, 2400959708, 3395469782], d = [1732584193, 4023233417, 2562383102, 271733878, 3285377520];
-  if (typeof r == "string") {
-    var v = unescape(encodeURIComponent(r));
-    r = [];
-    for (var w = 0; w < v.length; ++w)
-      r.push(v.charCodeAt(w));
-  } else
-    Array.isArray(r) || (r = Array.prototype.slice.call(r));
-  r.push(128);
-  for (var C = r.length / 4 + 2, L = Math.ceil(C / 16), E = new Array(L), V = 0; V < L; ++V) {
-    for (var N = new Uint32Array(16), z = 0; z < 16; ++z)
-      N[z] = r[V * 64 + z * 4] << 24 | r[V * 64 + z * 4 + 1] << 16 | r[V * 64 + z * 4 + 2] << 8 | r[V * 64 + z * 4 + 3];
-    E[V] = N;
-  }
-  E[L - 1][14] = (r.length - 1) * 8 / Math.pow(2, 32), E[L - 1][14] = Math.floor(E[L - 1][14]), E[L - 1][15] = (r.length - 1) * 8 & 4294967295;
-  for (var st = 0; st < L; ++st) {
-    for (var et = new Uint32Array(80), ct = 0; ct < 16; ++ct)
-      et[ct] = E[st][ct];
-    for (var Ct = 16; Ct < 80; ++Ct)
-      et[Ct] = ROTL(et[Ct - 3] ^ et[Ct - 8] ^ et[Ct - 14] ^ et[Ct - 16], 1);
-    for (var At = d[0], qt = d[1], vt = d[2], _t = d[3], Et = d[4], ft = 0; ft < 80; ++ft) {
-      var wt = Math.floor(ft / 20), Zt = ROTL(At, 5) + f(wt, qt, vt, _t) + Et + u[wt] + et[ft] >>> 0;
-      Et = _t, _t = vt, vt = ROTL(qt, 30) >>> 0, qt = At, At = Zt;
-    }
-    d[0] = d[0] + At >>> 0, d[1] = d[1] + qt >>> 0, d[2] = d[2] + vt >>> 0, d[3] = d[3] + _t >>> 0, d[4] = d[4] + Et >>> 0;
-  }
-  return [d[0] >> 24 & 255, d[0] >> 16 & 255, d[0] >> 8 & 255, d[0] & 255, d[1] >> 24 & 255, d[1] >> 16 & 255, d[1] >> 8 & 255, d[1] & 255, d[2] >> 24 & 255, d[2] >> 16 & 255, d[2] >> 8 & 255, d[2] & 255, d[3] >> 24 & 255, d[3] >> 16 & 255, d[3] >> 8 & 255, d[3] & 255, d[4] >> 24 & 255, d[4] >> 16 & 255, d[4] >> 8 & 255, d[4] & 255];
-}
-var v5 = v35("v5", 80, sha1);
-const v5$1 = v5, nil = "00000000-0000-0000-0000-000000000000";
-function version(r) {
-  if (!validate(r))
-    throw TypeError("Invalid UUID");
-  return parseInt(r.substr(14, 1), 16);
-}
-const index = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  NIL: nil,
-  parse,
-  stringify,
-  v1,
-  v3: v3$1,
-  v4,
-  v5: v5$1,
-  validate,
-  version
-}, Symbol.toStringTag, { value: "Module" }));
 export {
   render
 };
