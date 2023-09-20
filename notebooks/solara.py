@@ -20,6 +20,7 @@ import ipywidgets as w
 #
 #     return col
 
-wwt = WWTWidget()
+wwt1 = WWTWidget()
+wwt2 = WWTWidget()
 button = w.Button(description="Clicked 0 times")
-page = w.VBox([wwt, button])
+page = w.VBox([wwt1, wwt2, button])

@@ -7,7 +7,8 @@
   },
   "dependencies": {
     "@wwtelescope/astro": "^0.2.3",
-    "@wwtelescope/engine-pinia": "^0.7.0",
-    "vue": "^3.3.4"
+    "@wwtelescope/engine-pinia": "^0.9.0",
+    "vue": "^3.3.4",
+    "uuid": "^9.0.1"
   }
 }
