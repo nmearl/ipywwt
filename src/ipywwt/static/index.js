@@ -48397,17 +48397,6 @@ const _export_sfc = (s, u) => {
       customId: `${v4()}`
     };
   }
-  // created() {
-  //   console.log("Created")
-  //   // Create a globally unique ID for the div that the WWT engine can latch onto.
-  //   const uid = `${uuidv4()}`;
-  //   // const uid = `wwtcmpt${idCounter}`;
-  //   Object.defineProperties(this, {
-  //     uniqueId: { get() { return uid; } },
-  //   });
-  //   // this.uniqueId = uid;
-  //   // idCounter += 1;
-  // }
 }, _hoisted_1$1 = ["id"];
 function _sfc_render$1(s, u, i, t, n, e) {
   return openBlock(), createElementBlock("div", {
@@ -48416,7 +48405,7 @@ function _sfc_render$1(s, u, i, t, n, e) {
   }, null, 8, _hoisted_1$1);
 }
 const UniqueWWTComponent = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render$1]]);
-var PI = 3.14159265358979, TWOPI = 2 * PI, R2D = 180 / PI, R2H = 12 / PI;
+var srcExports = requireSrc(), PI = 3.14159265358979, TWOPI = 2 * PI, R2D = 180 / PI, R2H = 12 / PI;
 function angnorm(s) {
   for (; s < 0; )
     s += TWOPI;
@@ -48457,15 +48446,14 @@ const App_vue_vue_type_style_index_0_lang = "", _sfc_main = {
       this.show = !0;
     }, 1e3);
   }
-}, _hoisted_1 = { class: "wwt-app" }, _hoisted_2 = { class: "coord-overlay" };
+}, _hoisted_1 = { class: "wwt-app" };
 function _sfc_render(s, u, i, t, n, e) {
   const _ = resolveComponent("WorldWideTelescope");
   return openBlock(), createElementBlock("div", _hoisted_1, [
     n.show ? (openBlock(), createBlock(_, {
       key: 0,
       "wwt-namespace": "mywwt"
-    })) : createCommentVNode("", !0),
-    createBaseVNode("p", _hoisted_2, toDisplayString(e.coordText), 1)
+    })) : createCommentVNode("", !0)
   ]);
 }
 const App = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render]]), app = createApp(App, {
@@ -48473,8 +48461,86 @@ const App = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render]]), a
 });
 app.use(index_umdExports.wwtPinia);
 app.component("WorldWideTelescope", UniqueWWTComponent);
+const ReferenceFramesRadius = {
+  Sky: 1495e8,
+  Sun: 696e6,
+  Mercury: 2439700,
+  Venus: 6051800,
+  Earth: 6371e3,
+  Mars: 339e4,
+  Jupiter: 69911e3,
+  Saturn: 58232e3,
+  Uranus: 25362e3,
+  Neptune: 24622e3,
+  Pluto: 1161e3,
+  Moon: 1737100,
+  Io: 1821500,
+  Europa: 1561e3,
+  Ganymede: 2631200,
+  Callisto: 2410300
+};
 function render({ model: s, el: u }) {
-  return app.mount(u), () => app.unmount();
+  const i = app.mount(u);
+  return window.vm = i, i.layers = {}, s.on("msg:custom", (t) => {
+    console.log(t);
+    let n = null;
+    switch (t.event) {
+      case "center_on_coordinates":
+        i.gotoRADecZoom({
+          raRad: t.ra,
+          decRad: t.dec,
+          zoomDeg: t.fov,
+          instant: t.instant
+        });
+        break;
+      case "table_layer_create":
+        let e = t.frame;
+        i.createTableLayer({
+          dataCsv: atob(t.table),
+          name: "New Table Layer",
+          referenceFrame: e
+        }).then((c) => {
+          c.set_referenceFrame(e), c.set_lngColumn(-1), c.set_latColumn(-1), c.set_altColumn(-1), c.set_sizeColumn(-1), c.set_colorMapColumn(-1), c.set_startDateColumn(-1), c.set_endDateColumn(-1), c.set_xAxisColumn(-1), c.set_yAxisColumn(-1), c.set_zAxisColumn(-1);
+          let l = ReferenceFramesRadius[e];
+          l != null && (c._meanRadius$1 = l), e == "Sky" && c.set_astronomical(!0), c.set_altUnit(1), i.layers[t.id] = c;
+        });
+        break;
+      case "table_layer_update":
+        n = i.layers[t.id], i.updateTableLayer({
+          dataCsv: atob(t.table),
+          id: n.id
+        });
+        break;
+      case "table_layer_set":
+        n = i.layers[t.id];
+        let r = t.setting, o = null;
+        r.indexOf("Column") >= 0 ? o = n.get__table().header.indexOf(t.value) : r == "color" ? o = srcExports.Color.fromHex(t.value) : r == "colorMapper" ? o = srcExports.ColorMapContainer.fromArgbList(t.value) : r == "altUnit" ? o = srcExports.AltUnits[t.value] : r == "raUnits" ? o = srcExports.RAUnits[t.value] : r == "altType" ? o = srcExports.AltTypes[t.value] : r == "plotType" ? o = srcExports.PlotTypes[t.value] : r == "markerScale" ? o = srcExports.MarkerScales[t.value] : r == "coordinatesType" ? o = srcExports.CoordinatesTypes[t.value] : r == "cartesianScale" ? o = srcExports.AltUnits[t.value] : o = t.value, n["set_" + r](o);
+        break;
+      case "table_layer_remove":
+        n = i.layers[t.id], i.deleteLayer(n.id);
+        break;
+      case "load_image_collection":
+        i.loadImageCollection(t.url);
+        break;
+      case "set_foreground_by_name":
+        i.setForegroundImageByName(t.name);
+        break;
+      case "set_background_by_name":
+        i.setBackgroundImageByName(t.name);
+        break;
+      case "set_foreground_opacity":
+        i.setForegroundOpacity(t.value);
+        break;
+      default:
+        console.log(`Received uncaught custom message of type ${t.event}.`);
+    }
+  }), window.addEventListener(
+    "message",
+    (t) => {
+      console.log("RECEIVED", t);
+    },
+    !1
+  ), () => app.unmount();
 }
 export {
   render

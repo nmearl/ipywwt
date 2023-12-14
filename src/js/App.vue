@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import {fmtDegLat, fmtHours} from "@wwtelescope/astro";
-import {WWTAwareComponent} from "@wwtelescope/engine-pinia";
+import { fmtDegLat, fmtHours } from "@wwtelescope/astro";
+import { WWTAwareComponent } from "@wwtelescope/engine-pinia";
 
 export default {
   extends: WWTAwareComponent,
