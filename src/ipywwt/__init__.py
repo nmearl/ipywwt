@@ -19,7 +19,7 @@ logger = logging.getLogger("pywwt")
 
 
 class WWTWidget(AnyWidget):
-    _esm = bundler_output_dir / "index.js"
+    _esm = bundler_output_dir / "main.js"
     _css = bundler_output_dir / "style.css"
 
     background = Unicode(
@@ -41,7 +41,7 @@ class WWTWidget(AnyWidget):
 
         self._callbacks = {}
 
-        self.on_msg(self._handle_custom_msg)
+        self.on_msg(self._on_app_message_received)
 
         self._available_layers = get_imagery_layers(DEFAULT_SURVEYS_URL)
         self.load_image_collection()
@@ -58,8 +58,8 @@ class WWTWidget(AnyWidget):
     def send(self, msg: RemoteAPIMessage, buffers=None):
         super().send(asdict(msg), buffers)
 
-    def _handle_custom_msg(self, data, buffers):
-        print(f"Received message:\n{data}\n{buffers}")
+    # def _handle_custom_msg(self, data, buffers):
+    #     print(f"Received message:\n{data}\n{buffers}")
 
     def load_image_collection(self, url=DEFAULT_SURVEYS_URL):
         self.send(LoadImageCollectionMessage(url))
@@ -112,13 +112,14 @@ class WWTWidget(AnyWidget):
 
         self.send(msg)
 
-    def _on_app_message_received(self, payload):
+    def _on_app_message_received(self, payload, *args, **kwargs):
         """
         Call this function when a message is received from the research app.
         This will generally happen in some kind of asynchronous event handler,
         so there is no guarantee that exceptions raised here will be exposed to
         the user.
         """
+        print(f"Received message:\n{payload}")
 
         ptype = payload.get("type")
         # some events don't have type but do have: pevent = payload.get('event')
