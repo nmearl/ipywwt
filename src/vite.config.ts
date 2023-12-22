@@ -1,7 +1,8 @@
-import vue from '@vitejs/plugin-vue';
-import {defineConfig} from "vite";
-import anywidget from "@anywidget/vite";
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import anywidget from "@anywidget/vite"
 
+// https://vitejs.dev/config/
 export default defineConfig(async ({command}) => {
     let define = {};
     if (command === "build") {
@@ -12,18 +13,18 @@ export default defineConfig(async ({command}) => {
         build: {
             outDir: "ipywwt/static",
             lib: {
-                entry: ["js/index.js"],
+                entry: ["src/main.ts"],
                 formats: ["es"],
             },
             rollupOptions: {
                 output: {
-                    manualChunks: false,
+                    // manualChunks: false,
                     inlineDynamicImports: true,
                     entryFileNames: '[name].js',   // currently does not work for the legacy bundle
                     assetFileNames: '[name].[ext]', // currently does not work for images
                 },
             },
         },
-        define,
+        define
     }
-});
+})
