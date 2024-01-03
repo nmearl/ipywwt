@@ -6,6 +6,8 @@ from astropy.time import Time
 from anywidget import AnyWidget
 from traitlets import Unicode, Float, observe
 import logging
+import numpy as np
+from astropy.coordinates import SkyCoord
 
 from .messages import *
 from .imagery import get_imagery_layers
@@ -14,6 +16,8 @@ from .layers import TableLayer, LayerManager
 bundler_output_dir = Path(__file__).parent / "static"
 
 DEFAULT_SURVEYS_URL = "https://worldwidetelescope.github.io/pywwt/surveys.xml"
+R2D = 180 / np.pi
+R2H = 12 / np.pi
 
 logger = logging.getLogger("pywwt")
 
@@ -39,14 +43,16 @@ class WWTWidget(AnyWidget):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self._callbacks = {}
-
         self.on_msg(self._on_app_message_received)
+
+        self._callbacks = {}
+        self._futures = []
 
         self._available_layers = get_imagery_layers(DEFAULT_SURVEYS_URL)
         self.load_image_collection()
 
         self.layers = LayerManager(parent=self)
+        self.current_mode = "sky"
 
     def _send_msg(self, **kwargs):
         """
@@ -57,9 +63,6 @@ class WWTWidget(AnyWidget):
 
     def send(self, msg: RemoteAPIMessage, buffers=None):
         super().send(asdict(msg), buffers)
-
-    # def _handle_custom_msg(self, data, buffers):
-    #     print(f"Received message:\n{data}\n{buffers}")
 
     def load_image_collection(self, url=DEFAULT_SURVEYS_URL):
         self.send(LoadImageCollectionMessage(url))
@@ -112,17 +115,32 @@ class WWTWidget(AnyWidget):
 
         self.send(msg)
 
-    def _on_app_message_received(self, payload, *args, **kwargs):
+    def get_center(self):
+        """
+        Return the view's current right ascension and declination in degrees.
+        """
+        return SkyCoord(
+            self._raRad * R2H,
+            self._decRad * R2D,
+            unit=(u.hourangle, u.deg),
+        )
+
+    def get_fov(self):
+        return self._fovDeg * u.deg
+
+    def get_roll(self):
+        return self._rollDeg * u.deg
+
+    def _on_app_message_received(self, payload, buffers):
         """
         Call this function when a message is received from the research app.
         This will generally happen in some kind of asynchronous event handler,
         so there is no guarantee that exceptions raised here will be exposed to
         the user.
         """
-        print(f"Received message:\n{payload}")
-
         ptype = payload.get("type")
-        # some events don't have type but do have: pevent = payload.get('event')
+        # some events don't have type but do have:
+        # pevent = payload.get('event')
 
         updated_fields = []
 
@@ -203,3 +221,31 @@ class WWTWidget(AnyWidget):
             instance, and a list of updated properties.
         """
         self._set_message_type_callback("wwt_selection_state", callback)
+
+    def reset_view(self):
+        """
+        Reset the current view mode's coordinates and field of view to
+        their original states.
+        """
+        if self.current_mode == "sky":
+            self.center_on_coordinates(
+                SkyCoord(0.0, 0.0, unit=u.deg), fov=60 * u.deg, instant=False
+            )
+        if self.current_mode == "planet":
+            self.center_on_coordinates(
+                SkyCoord(35.55, 11.43, unit=u.deg), fov=40 * u.deg, instant=False
+            )
+        if self.current_mode == "solar system":
+            self.center_on_coordinates(
+                SkyCoord(0.0, 0.0, unit=u.deg), fov=50 * u.deg, instant=False
+            )
+        if self.current_mode == "milky way":
+            self.center_on_coordinates(
+                SkyCoord(114.85, -29.52, unit=u.deg), fov=6e9 * u.deg, instant=False
+            )
+        if self.current_mode == "universe":
+            self.center_on_coordinates(
+                SkyCoord(16.67, 37.72, unit=u.deg), fov=1e14 * u.deg, instant=False
+            )
+        if self.current_mode == "panorama":
+            pass
