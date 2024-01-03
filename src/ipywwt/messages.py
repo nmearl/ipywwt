@@ -37,7 +37,7 @@ class TableLayerCreateMessage(RemoteAPIMessage):
 @dataclass
 class TableLayerSetMessage(RemoteAPIMessage):
     setting: str
-    value: float
+    value: float | str
     event: str = "table_layer_set"
     id: str = field(default_factory=lambda: str(uuid4()))
 
