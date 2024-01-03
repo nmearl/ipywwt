@@ -104,7 +104,9 @@ if (messages !== null) {
   allowedOrigin = window.location.origin;
   console.log("WWT embed: incoming messages allowed from current origin in order to restore state");
 } else if (allowedOrigin === null) {
-  console.log("WWT embed: no \"?origin=\" given, so no incoming messages will be allowed");
+  // console.log("WWT embed: no \"?origin=\" given, so no incoming messages will be allowed");
+  console.log("WWT embed: no 'origin' given; forcing local origin to allow incoming messages.")
+  allowedOrigin = window.location.origin;
 }
 
 const app = createApp(App, {
@@ -144,4 +146,4 @@ app.component('imageset-item', ImagesetItem)
 app.component('source-item', SourceItem)
 app.component('transition-expand', TransitionExpand)
 
-export let render = createRender(app);
+export const render = createRender(app);

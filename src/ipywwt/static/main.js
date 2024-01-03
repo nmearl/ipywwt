@@ -61589,16 +61589,15 @@ class TableLayerMessageHandler {
     this.owner = r;
   }
   handleCreateMessage(r) {
-    if (console.log("RECEIVING MESSAGE"), this.created)
+    if (this.created)
       return;
-    console.log("DID NOT RETURN");
     const n = atob(r.table);
     this.owner.createTableLayer({
       name: r.id,
       referenceFrame: r.frame,
       dataCsv: n
     }).then((s) => {
-      console.log("INITIALIZING LAYER"), this.layerInitialized(s), this.owner.addResearchAppTableLayer(
+      this.layerInitialized(s), this.owner.addResearchAppTableLayer(
         new index_umdExports.SpreadSheetLayerInfo(
           s.id.toString(),
           s.get_referenceFrame(),
@@ -61629,9 +61628,8 @@ class TableLayerMessageHandler {
     });
   }
   handleModifyMessage(r) {
-    console.log("RECEIVED MODIFY TABLE LAYER MESSAGE");
     const n = [r.setting, r.value];
-    if (console.log(this.layer, this.internalId), console.log(n), !!isPywwtSpreadSheetLayerSetting(n))
+    if (isPywwtSpreadSheetLayerSetting(n))
       if (this.layer === null || this.internalId === null)
         this.queuedSettings.push(n);
       else {
@@ -62286,7 +62284,6 @@ const App$1 = /* @__PURE__ */ defineComponent({
       ), this.messageHandlers.set("clear_tile_cache", this.handleClearTileCache), this.messageHandlers.set("wwt_view_state", this.ignoreMessage);
     },
     onMessage(e) {
-      console.log("MESSAGE RECEIVED BY RESEARCH APP");
       const r = String(e.type || e.event), n = this.messageHandlers.get(r);
       let s = !1;
       n !== void 0 && (s = n(e)), s || console.warn(
@@ -62318,7 +62315,7 @@ const App$1 = /* @__PURE__ */ defineComponent({
       }), !0) : !1;
     },
     handleCenterOnCoordinates(e) {
-      if (console.log("CENTER ON COORDINATES MESSAGED HANDLED"), !isCenterOnCoordinatesMessage(e))
+      if (!isCenterOnCoordinatesMessage(e))
         return !1;
       const r = e.roll == null ? void 0 : e.roll * D2R;
       return this.gotoRADecZoom({
@@ -62794,8 +62791,7 @@ const App$1 = /* @__PURE__ */ defineComponent({
     this.$options.statusMessageDestination = null, this.initializeHandlers();
   },
   mounted() {
-    screenfullExports.isEnabled && screenfullExports.on("change", this.onFullscreenEvent), console.log("MOUNTED"), this.waitForReady().then(() => {
-      console.log("ATTEMPTING WAIT FOR READY RESOLVE");
+    screenfullExports.isEnabled && screenfullExports.on("change", this.onFullscreenEvent), this.waitForReady().then(() => {
       const e = this.getQueryScript(window.location);
       e !== null && (this.$options.statusMessageDestination = window), this.loadImageCollection({
         url: this.hipsUrl,
@@ -62818,7 +62814,7 @@ const App$1 = /* @__PURE__ */ defineComponent({
           }
         },
         !1
-      ), console.log("FINISHED WFR PROMISE");
+      );
     }), setTimeout(() => {
       this.show = !0;
     }, 1e3), window.addEventListener(
@@ -64168,21 +64164,17 @@ function createRender(e) {
     let s = document.createElement("div");
     s.setAttribute("id", "app-wrapper"), s.style.setProperty("height", "400px", ""), s.style.setProperty("width", "100%", ""), s.style.setProperty("border", "none", ""), n.appendChild(s);
     let a = e.mount(s);
-    return window.vm = a, a.layers = {}, r.send(JSON.stringify({ test: "TESTING" })), r.on("msg:custom", (t) => {
-      console.log(t);
+    return window.vm = a, a.layers = {}, r.send("ping"), r.on("msg:custom", (t) => {
       let l = null, o = null, u = null;
       switch (t.event) {
         case "center_on_coordinates":
           console.log(isCenterOnCoordinatesMessage(t)), window.postMessage(t);
           break;
         case "table_layer_create":
-          console.log(isCreateTableLayerMessage(t)), window.postMessage(t);
+          window.postMessage(t);
           break;
         case "table_layer_update":
-          [l, o] = Object.entries(a.wwtSpreadSheetLayers).filter(([y, g]) => g.name === t.id).at(0), u = a.spreadSheetLayerById(l), a.updateTableLayer({
-            dataCsv: atob(t.table),
-            id: u.id.toString()
-          });
+          window.postMessage(t);
           break;
         case "table_layer_set":
           [l, o] = Object.entries(a.wwtSpreadSheetLayers).filter(([y, g]) => g.name === t.id).at(0), u = a.spreadSheetLayerById(l);
@@ -64190,19 +64182,19 @@ function createRender(e) {
           _.indexOf("Column") >= 0 ? c = u.get__table().header.indexOf(t.value) : _ == "color" ? c = srcExports.Color.fromHex(t.value) : _ == "colorMapper" ? c = srcExports.ColorMapContainer.fromArgbList(t.value) : _ == "altUnit" ? c = srcExports.AltUnits[t.value] : _ == "raUnits" ? c = srcExports.RAUnits[t.value] : _ == "altType" ? c = srcExports.AltTypes[t.value] : _ == "plotType" ? c = srcExports.PlotTypes[t.value] : _ == "markerScale" ? c = srcExports.MarkerScales[t.value] : _ == "coordinatesType" ? c = srcExports.CoordinatesTypes[t.value] : _ == "cartesianScale" ? c = srcExports.AltUnits[t.value] : c = t.value, t.value = c, window.postMessage(t);
           break;
         case "table_layer_remove":
-          u = a.layers[t.id], a.deleteLayer(u.id);
+          u = a.layers[t.id], window.postMessage(t);
           break;
         case "load_image_collection":
-          a.loadImageCollection(t.url);
+          window.postMessage(t);
           break;
         case "set_foreground_by_name":
-          a.setForegroundImageByName(t.name);
+          window.postMessage(t);
           break;
         case "set_background_by_name":
-          a.setBackgroundImageByName(t.name);
+          window.postMessage(t);
           break;
         case "set_foreground_opacity":
-          a.setForegroundOpacity(t.value);
+          window.postMessage(t);
           break;
         default:
           console.log(`Received uncaught custom message of type ${t.event}.`);
@@ -64210,7 +64202,7 @@ function createRender(e) {
     }), window.addEventListener(
       "message",
       (t) => {
-        console.log("SENDING EVENT TO PYTHON"), console.log(t.data), r.send(JSON.stringify(t.data));
+        r.send(t.data);
       },
       !1
     ), () => e.unmount();
@@ -64245,7 +64237,7 @@ library$1.add(faCopy);
 const update = (e, r) => e.style.visibility = r.value ? "hidden" : "", queryParams = new URLSearchParams(window.location.search);
 let allowedOrigin = queryParams.get("origin");
 const messages = queryParams.get("script");
-messages !== null ? (allowedOrigin = window.location.origin, console.log("WWT embed: incoming messages allowed from current origin in order to restore state")) : allowedOrigin === null && console.log('WWT embed: no "?origin=" given, so no incoming messages will be allowed');
+messages !== null ? (allowedOrigin = window.location.origin, console.log("WWT embed: incoming messages allowed from current origin in order to restore state")) : allowedOrigin === null && (console.log("WWT embed: no 'origin' given; forcing local origin to allow incoming messages."), allowedOrigin = window.location.origin);
 const app = createApp(App, {
   wwtNamespace: wwtEngineNamespace,
   allowedOrigin
@@ -64278,7 +64270,7 @@ app.component("spreadsheet-item", SpreadsheetItem);
 app.component("imageset-item", ImagesetItem);
 app.component("source-item", SourceItem);
 app.component("transition-expand", TransitionExpand);
-let render = createRender(app);
+const render = createRender(app);
 export {
   render
 };
