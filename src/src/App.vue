@@ -672,9 +672,7 @@ class TableLayerMessageHandler {
   }
 
   handleCreateMessage(msg: classicPywwt.CreateTableLayerMessage) {
-    console.log("RECEIVING MESSAGE")
     if (this.created) return;
-    console.log("DID NOT RETURN")
 
     const data = atob(msg.table);
 
@@ -685,7 +683,6 @@ class TableLayerMessageHandler {
         dataCsv: data,
       })
       .then((layer) => {
-        console.log("INITIALIZING LAYER")
         this.layerInitialized(layer);
         this.owner.addResearchAppTableLayer(
           new SpreadSheetLayerInfo(
@@ -765,12 +762,7 @@ class TableLayerMessageHandler {
     // settings - they are more transport-friendly versions, as expressed in the
     // PywwtSpreadSheetLayerSetting type.
 
-    console.log("RECEIVED MODIFY TABLE LAYER MESSAGE");
-
     const setting: [string, any] = [msg.setting, msg.value];
-
-    console.log(this.layer, this.internalId);
-    console.log(setting);
 
     if (!classicPywwt.isPywwtSpreadSheetLayerSetting(setting)) {
       return;
@@ -1918,7 +1910,6 @@ const App = defineComponent({
     },
 
     onMessage(msg: any) {
-      console.log("MESSAGE RECEIVED BY RESEARCH APP");
       const key = String(msg.type || msg.event);
       const handler = this.messageHandlers.get(key);
       let handled = false;
@@ -1967,7 +1958,6 @@ const App = defineComponent({
     },
 
     handleCenterOnCoordinates(msg: any): boolean {
-      console.log("CENTER ON COORDINATES MESSAGED HANDLED");
       if (!classicPywwt.isCenterOnCoordinatesMessage(msg)) return false;
 
       const rollRad = msg.roll == undefined ? undefined : msg.roll * D2R;
@@ -2873,11 +2863,7 @@ const App = defineComponent({
       screenfull.on("change", this.onFullscreenEvent);
     }
 
-    console.log("MOUNTED");
-    // console.log(researchAppStore.$wwt);
-
     this.waitForReady().then(() => {
-      console.log("ATTEMPTING WAIT FOR READY RESOLVE")
       const script = this.getQueryScript(window.location);
       if (script !== null) {
         this.$options.statusMessageDestination = window;
@@ -2950,7 +2936,6 @@ const App = defineComponent({
         },
         false
       );
-      console.log("FINISHED WFR PROMISE")
     });
 
     setTimeout(() => {

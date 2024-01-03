@@ -244,7 +244,7 @@ class LayerManager(object):
         verbose=True,
         name=None,
         tiling_method=TilingMethod.AUTO_DETECT,
-        **kwargs
+        **kwargs,
     ):
         """
         Add an image layer to the current view. This method can display any
@@ -330,7 +330,7 @@ class LayerManager(object):
                     cli_progress=verbose,
                     display_name=name,
                     tiling_method=tiling_method,
-                    **kwargs
+                    **kwargs,
                 )
             )
         else:
@@ -439,7 +439,7 @@ class LayerManager(object):
         cli_progress=True,
         display_name=None,
         tiling_method=TilingMethod.AUTO_DETECT,
-        **kwargs
+        **kwargs,
     ):
         with warnings.catch_warnings():
             # Avoid annoying AstroPy FITS-fixed warnings
@@ -449,7 +449,7 @@ class LayerManager(object):
                 hdu_index=hdu_index,
                 cli_progress=cli_progress,
                 tiling_method=tiling_method,
-                **kwargs
+                **kwargs,
             )
 
         kwargs = self._remove_toasty_keywords(**kwargs)
@@ -778,7 +778,7 @@ class TableLayer(HasTraits):
         frame=None,
         table_from_wwt_engine=False,
         id=None,
-        **kwargs
+        **kwargs,
     ):
         self.table = table
         self.notify_changes = True
