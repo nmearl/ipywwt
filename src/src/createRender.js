@@ -53,8 +53,6 @@ export function createRender(app) {
 
         vm.layers = {};
 
-        model.send("ping");
-
         // Setup custom message handling
         model.on("msg:custom", (msg) => {
             let layerId = null;
@@ -99,7 +97,8 @@ export function createRender(app) {
                     } else if (name == 'raUnits') {
                         value = wwtlib.RAUnits[msg['value']];
                     } else if (name == 'altType') {
-                        value = wwtlib.AltTypes[msg['value']];
+                        // Assigned a default for altType since it appears one never gets passed
+                        value = wwtlib.AltTypes[msg['value'] || 'altitude'];
                     } else if (name == 'plotType') {
                         value = wwtlib.PlotTypes[msg['value']];
                     } else if (name == 'markerScale') {

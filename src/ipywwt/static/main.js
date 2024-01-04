@@ -62285,11 +62285,7 @@ const App$1 = /* @__PURE__ */ defineComponent({
     },
     onMessage(e) {
       const r = String(e.type || e.event), n = this.messageHandlers.get(r);
-      let s = !1;
-      n !== void 0 && (s = n(e)), s || console.warn(
-        "WWT research app received unhandled message, as follows:",
-        e
-      );
+      n !== void 0 && n(e);
     },
     ignoreMessage(e) {
       return !0;
@@ -64164,7 +64160,7 @@ function createRender(e) {
     let s = document.createElement("div");
     s.setAttribute("id", "app-wrapper"), s.style.setProperty("height", "400px", ""), s.style.setProperty("width", "100%", ""), s.style.setProperty("border", "none", ""), n.appendChild(s);
     let a = e.mount(s);
-    return window.vm = a, a.layers = {}, r.send("ping"), r.on("msg:custom", (t) => {
+    return window.vm = a, a.layers = {}, r.on("msg:custom", (t) => {
       let l = null, o = null, u = null;
       switch (t.event) {
         case "center_on_coordinates":
@@ -64179,7 +64175,7 @@ function createRender(e) {
         case "table_layer_set":
           [l, o] = Object.entries(a.wwtSpreadSheetLayers).filter(([y, g]) => g.name === t.id).at(0), u = a.spreadSheetLayerById(l);
           let _ = t.setting, c = null;
-          _.indexOf("Column") >= 0 ? c = u.get__table().header.indexOf(t.value) : _ == "color" ? c = srcExports.Color.fromHex(t.value) : _ == "colorMapper" ? c = srcExports.ColorMapContainer.fromArgbList(t.value) : _ == "altUnit" ? c = srcExports.AltUnits[t.value] : _ == "raUnits" ? c = srcExports.RAUnits[t.value] : _ == "altType" ? c = srcExports.AltTypes[t.value] : _ == "plotType" ? c = srcExports.PlotTypes[t.value] : _ == "markerScale" ? c = srcExports.MarkerScales[t.value] : _ == "coordinatesType" ? c = srcExports.CoordinatesTypes[t.value] : _ == "cartesianScale" ? c = srcExports.AltUnits[t.value] : c = t.value, t.value = c, window.postMessage(t);
+          _.indexOf("Column") >= 0 ? c = u.get__table().header.indexOf(t.value) : _ == "color" ? c = srcExports.Color.fromHex(t.value) : _ == "colorMapper" ? c = srcExports.ColorMapContainer.fromArgbList(t.value) : _ == "altUnit" ? c = srcExports.AltUnits[t.value] : _ == "raUnits" ? c = srcExports.RAUnits[t.value] : _ == "altType" ? c = srcExports.AltTypes[t.value || "altitude"] : _ == "plotType" ? c = srcExports.PlotTypes[t.value] : _ == "markerScale" ? c = srcExports.MarkerScales[t.value] : _ == "coordinatesType" ? c = srcExports.CoordinatesTypes[t.value] : _ == "cartesianScale" ? c = srcExports.AltUnits[t.value] : c = t.value, t.value = c, window.postMessage(t);
           break;
         case "table_layer_remove":
           u = a.layers[t.id], window.postMessage(t);
