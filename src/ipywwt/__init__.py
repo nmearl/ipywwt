@@ -4,10 +4,11 @@ from pathlib import Path
 import astropy.units as u
 from astropy.time import Time
 from anywidget import AnyWidget
-from traitlets import Unicode, Float, observe
+from traitlets import Unicode, Float, observe, default
 import logging
 import numpy as np
 from astropy.coordinates import SkyCoord
+import ipywidgets as widgets
 
 from .messages import *
 from .imagery import get_imagery_layers
@@ -39,6 +40,15 @@ class WWTWidget(AnyWidget):
     foreground_opacity = Float(
         0.8, help="The opacity of the foreground layer " "(`float`)"
     )
+
+    # View state that the frontend sends to us:
+    _raRad = 0.0
+    _decRad = 0.0
+    _fovDeg = 60.0
+    _rollDeg = 0.0
+    _engineTime = Time("2017-03-09T12:30:00", format="isot")
+    _systemTime = Time("2017-03-09T12:30:00", format="isot")
+    _timeRate = 1.0
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -107,8 +117,8 @@ class WWTWidget(AnyWidget):
         coord_icrs = coord.icrs
 
         msg = CenterOnCoordinatesMessage(
-            ra=coord_icrs.ra.radian,
-            dec=coord_icrs.dec.radian,
+            ra=coord_icrs.ra.deg,
+            dec=coord_icrs.dec.deg,
             fov=fov.to(u.deg).value,
             instant=instant,
         )
@@ -131,13 +141,14 @@ class WWTWidget(AnyWidget):
     def get_roll(self):
         return self._rollDeg * u.deg
 
-    def _on_app_message_received(self, payload, buffers):
+    def _on_app_message_received(self, instance, payload, buffers=None):
         """
         Call this function when a message is received from the research app.
         This will generally happen in some kind of asynchronous event handler,
         so there is no guarantee that exceptions raised here will be exposed to
         the user.
         """
+
         ptype = payload.get("type")
         # some events don't have type but do have:
         # pevent = payload.get('event')
@@ -188,6 +199,7 @@ class WWTWidget(AnyWidget):
         # Any client-side callbacks to execute?
 
         callback = self._callbacks.get(ptype)
+
         if callback:
             try:
                 callback(self, updated_fields)
@@ -222,6 +234,28 @@ class WWTWidget(AnyWidget):
         """
         self._set_message_type_callback("wwt_selection_state", callback)
 
+    _most_recent_source = None
+
+    @property
+    def most_recent_source(self):
+        """
+        The most recent source selected in the viewer, represented as a dictionary.
+        The items of this dictionary match the entries of the Source object detailed
+        `here <https://docs.worldwidetelescope.org/webgl-reference/latest/apiref/research-app-messages/interfaces/selections.source.html>`_.
+        """
+        return self._most_recent_source
+
+    _selected_sources = []
+
+    @property
+    def selected_sources(self):
+        """
+        A list of the selected sources, with each source represented as a dictionary.
+        The items of these dictionaries match the entries of the Source object detailed
+        `here <https://docs.worldwidetelescope.org/webgl-reference/latest/apiref/research-app-messages/interfaces/selections.source.html>`_.
+        """
+        return self._selected_sources
+
     def reset_view(self):
         """
         Reset the current view mode's coordinates and field of view to
@@ -249,3 +283,7 @@ class WWTWidget(AnyWidget):
             )
         if self.current_mode == "panorama":
             pass
+
+    @default("layout")
+    def _default_layout(self):
+        return widgets.Layout(height="400px", align_self="stretch")
