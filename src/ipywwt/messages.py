@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from uuid import uuid4
 import inspect
 import sys
+from typing import Union
 
 
 @dataclass
@@ -37,7 +38,7 @@ class TableLayerCreateMessage(RemoteAPIMessage):
 @dataclass
 class TableLayerSetMessage(RemoteAPIMessage):
     setting: str
-    value: float | str
+    value: Union[float, str]
     event: str = "table_layer_set"
     id: str = field(default_factory=lambda: str(uuid4()))
 
