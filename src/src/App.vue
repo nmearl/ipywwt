@@ -1918,12 +1918,12 @@ const App = defineComponent({
         handled = handler(msg);
       }
 
-      if (!handled) {
-        console.warn(
-          "WWT research app received unhandled message, as follows:",
-          msg
-        );
-      }
+      // if (!handled) {
+      //   console.warn(
+      //     "WWT research app received unhandled message, as follows:",
+      //     msg
+      //   );
+      // }
     },
 
     ignoreMessage(_msg: any): boolean {
