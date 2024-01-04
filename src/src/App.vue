@@ -1,6 +1,9 @@
 <template>
-  <div id="app"
-      v-if="show">
+  <div
+      id="app"
+      v-if="show"
+      ref="root"
+      tabindex="0">
     <WorldWideTelescope
       :wwt-namespace="wwtComponentNamespace"
       :class="['wwt', { pointer: lastClosePt !== null }]"
@@ -2942,82 +2945,86 @@ const App = defineComponent({
       this.show = true;
     }, 1000);
 
+    const root = this.$refs.root as HTMLElement;
+    console.log("ROOT");
+    console.log(root);
+
     // Handling key presses
-    window.addEventListener(
+    root.addEventListener(
       "keydown",
       this.kcs.makeListener("zoomIn", () => this.doZoom(true))
     );
-    window.addEventListener(
+    root.addEventListener(
       "keydown",
       this.kcs.makeListener("zoomOut", () => this.doZoom(false))
     );
-    window.addEventListener(
+    root.addEventListener(
       "keydown",
       this.kcs.makeListener("moveUp", () =>
         this.doMove(0, this.kcs.moveAmount)
       )
     );
-    window.addEventListener(
+    root.addEventListener(
       "keydown",
       this.kcs.makeListener("moveDown", () =>
         this.doMove(0, -this.kcs.moveAmount)
       )
     );
-    window.addEventListener(
+    root.addEventListener(
       "keydown",
       this.kcs.makeListener("moveLeft", () =>
         this.doMove(this.kcs.moveAmount, 0)
       )
     );
-    window.addEventListener(
+    root.addEventListener(
       "keydown",
       this.kcs.makeListener("moveRight", () =>
         this.doMove(-this.kcs.moveAmount, 0)
       )
     );
-    window.addEventListener(
+    root.addEventListener(
       "keydown",
       this.kcs.makeListener("tiltLeft", () =>
         this.doTilt(this.kcs.tiltAmount, 0)
       )
     );
-    window.addEventListener(
+    root.addEventListener(
       "keydown",
       this.kcs.makeListener("tiltRight", () =>
         this.doTilt(-this.kcs.tiltAmount, 0)
       )
     );
-    window.addEventListener(
+    root.addEventListener(
       "keydown",
       this.kcs.makeListener("tiltUp", () =>
         this.doTilt(0, this.kcs.tiltAmount)
       )
     );
-    window.addEventListener(
+    root.addEventListener(
       "keydown",
       this.kcs.makeListener("tiltDown", () =>
         this.doTilt(0, -this.kcs.tiltAmount)
       )
     );
-    window.addEventListener(
+    root.addEventListener(
       "keydown",
       this.kcs.makeListener("bigMoveUp", () =>
         this.doMove(0, this.kcs.bigMoveFactor * this.kcs.moveAmount)
       )
     );
-    window.addEventListener(
+    root.addEventListener(
       "keydown",
       this.kcs.makeListener("bigMoveDown", () =>
         this.doMove(0, this.kcs.bigMoveFactor * -this.kcs.moveAmount)
       )
     );
-    window.addEventListener(
+    root.addEventListener(
       "keydown",
       this.kcs.makeListener("bigMoveLeft", () =>
         this.doMove(this.kcs.bigMoveFactor * this.kcs.moveAmount, 0)
       )
     );
-    window.addEventListener(
+    root.addEventListener(
       "keydown",
       this.kcs.makeListener("bigMoveRight", () =>
         this.doMove(this.kcs.bigMoveFactor * -this.kcs.moveAmount, 0)
