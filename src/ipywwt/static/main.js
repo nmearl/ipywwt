@@ -60007,7 +60007,7 @@ function __extends(e, r) {
   }
   e.prototype = r === null ? Object.create(r) : (n.prototype = r.prototype, new n());
 }
-function __values$1(e) {
+function __values(e) {
   var r = typeof Symbol == "function" && Symbol.iterator, n = r && e[r], s = 0;
   if (n)
     return n.call(e);
@@ -60213,7 +60213,7 @@ function isLayerSetting(e) {
 function extractLayerSettings(e) {
   var r, n, s = [];
   try {
-    for (var a = __values$1(layerSettingNames), t = a.next(); !t.done; t = a.next()) {
+    for (var a = __values(layerSettingNames), t = a.next(); !t.done; t = a.next()) {
       var l = t.value;
       s.push([l, e["get_" + l]()]);
     }
@@ -60232,7 +60232,7 @@ function extractLayerSettings(e) {
 function copyLayerSettings(e, r) {
   var n, s;
   try {
-    for (var a = __values$1(layerSettingNames), t = a.next(); !t.done; t = a.next()) {
+    for (var a = __values(layerSettingNames), t = a.next(); !t.done; t = a.next()) {
       var l = t.value;
       r["set_" + l](e["get_" + l]());
     }
@@ -60314,7 +60314,7 @@ function isImageSetLayerSetting(e) {
 function extractImageSetLayerSettings(e) {
   var r, n, s = extractLayerSettings(e);
   try {
-    for (var a = __values$1(justImageSetLayerSettingNames), t = a.next(); !t.done; t = a.next()) {
+    for (var a = __values(justImageSetLayerSettingNames), t = a.next(); !t.done; t = a.next()) {
       var l = t.value;
       s.push([l, e["get_" + l]()]);
     }
@@ -60334,7 +60334,7 @@ function copyImageSetLayerSettings(e, r) {
   var n, s;
   copyLayerSettings(e, r);
   try {
-    for (var a = __values$1(justImageSetLayerSettingNames), t = a.next(); !t.done; t = a.next()) {
+    for (var a = __values(justImageSetLayerSettingNames), t = a.next(); !t.done; t = a.next()) {
       var l = t.value;
       r["set_" + l](e["get_" + l]());
     }
@@ -60420,7 +60420,7 @@ layerSettingNames.concat(justSpreadSheetLayerSettingNames);
 function extractSpreadSheetLayerSettings(e) {
   var r, n, s = extractLayerSettings(e);
   try {
-    for (var a = __values$1(justSpreadSheetLayerSettingNames), t = a.next(); !t.done; t = a.next()) {
+    for (var a = __values(justSpreadSheetLayerSettingNames), t = a.next(); !t.done; t = a.next()) {
       var l = t.value;
       s.push([l, e["get_" + l]()]);
     }
@@ -60440,7 +60440,7 @@ function copySpreadSheetLayerSettings(e, r) {
   var n, s;
   copyLayerSettings(e, r);
   try {
-    for (var a = __values$1(justSpreadSheetLayerSettingNames), t = a.next(); !t.done; t = a.next()) {
+    for (var a = __values(justSpreadSheetLayerSettingNames), t = a.next(); !t.done; t = a.next()) {
       var l = t.value;
       r["set_" + l](e["get_" + l]());
     }
@@ -60667,7 +60667,7 @@ function isAnnotationSetting(e) {
 function extractAnnotationSettings(e) {
   var r, n, s = [];
   try {
-    for (var a = __values$1(annotationSettingNames), t = a.next(); !t.done; t = a.next()) {
+    for (var a = __values(annotationSettingNames), t = a.next(); !t.done; t = a.next()) {
       var l = t.value;
       s.push([l, e["get_" + l]()]);
     }
@@ -60686,7 +60686,7 @@ function extractAnnotationSettings(e) {
 function copyAnnotationSettings(e, r) {
   var n, s;
   try {
-    for (var a = __values$1(annotationSettingNames), t = a.next(); !t.done; t = a.next()) {
+    for (var a = __values(annotationSettingNames), t = a.next(); !t.done; t = a.next()) {
       var l = t.value;
       r["set_" + l](e["get_" + l]());
     }
@@ -60757,7 +60757,7 @@ function applyCircleAnnotationSetting(e, r) {
 function extractCircleAnnotationSettings(e) {
   var r, n, s = extractAnnotationSettings(e);
   try {
-    for (var a = __values$1(justCircleAnnotationSettingNames), t = a.next(); !t.done; t = a.next()) {
+    for (var a = __values(justCircleAnnotationSettingNames), t = a.next(); !t.done; t = a.next()) {
       var l = t.value;
       s.push([l, e["get_" + l]()]);
     }
@@ -60777,7 +60777,7 @@ function copyCircleAnnotationSettings(e, r) {
   var n, s;
   copyAnnotationSettings(e, r);
   try {
-    for (var a = __values$1(justCircleAnnotationSettingNames), t = a.next(); !t.done; t = a.next()) {
+    for (var a = __values(justCircleAnnotationSettingNames), t = a.next(); !t.done; t = a.next()) {
       var l = t.value;
       r["set_" + l](e["get_" + l]());
     }
@@ -60848,7 +60848,7 @@ function applyPolyAnnotationSetting(e, r) {
 function extractPolyAnnotationSettings(e) {
   var r, n, s = extractAnnotationSettings(e);
   try {
-    for (var a = __values$1(justPolyAnnotationSettingNames), t = a.next(); !t.done; t = a.next()) {
+    for (var a = __values(justPolyAnnotationSettingNames), t = a.next(); !t.done; t = a.next()) {
       var l = t.value;
       s.push([l, e["get_" + l]()]);
     }
@@ -60868,7 +60868,7 @@ function copyPolyAnnotationSettings(e, r) {
   var n, s;
   copyAnnotationSettings(e, r);
   try {
-    for (var a = __values$1(justPolyAnnotationSettingNames), t = a.next(); !t.done; t = a.next()) {
+    for (var a = __values(justPolyAnnotationSettingNames), t = a.next(); !t.done; t = a.next()) {
       var l = t.value;
       r["set_" + l](e["get_" + l]());
     }
@@ -60927,7 +60927,7 @@ function applyPolyLineAnnotationSetting(e, r) {
 function extractPolyLineAnnotationSettings(e) {
   var r, n, s = extractAnnotationSettings(e);
   try {
-    for (var a = __values$1(justPolyLineAnnotationSettingNames), t = a.next(); !t.done; t = a.next()) {
+    for (var a = __values(justPolyLineAnnotationSettingNames), t = a.next(); !t.done; t = a.next()) {
       var l = t.value;
       s.push([l, e["get_" + l]()]);
     }
@@ -60947,7 +60947,7 @@ function copyPolyLineAnnotationSettings(e, r) {
   var n, s;
   copyAnnotationSettings(e, r);
   try {
-    for (var a = __values$1(justPolyLineAnnotationSettingNames), t = a.next(); !t.done; t = a.next()) {
+    for (var a = __values(justPolyLineAnnotationSettingNames), t = a.next(); !t.done; t = a.next()) {
       var l = t.value;
       r["set_" + l](e["get_" + l]());
     }
@@ -61021,7 +61021,7 @@ function copyVoTableLayerSettings(e, r) {
   var n, s;
   copyLayerSettings(e, r);
   try {
-    for (var a = __values$1(justVoTableLayerSettingNames), t = a.next(); !t.done; t = a.next()) {
+    for (var a = __values(justVoTableLayerSettingNames), t = a.next(); !t.done; t = a.next()) {
       var l = t.value;
       r["set_" + l](e["get_" + l]());
     }
@@ -61393,32 +61393,6 @@ function isModifySelectabilityMessage(e) {
 function isModifyAllSelectabilityMessage(e) {
   return e.type === "modify_all_selectability" && typeof e.selectable == "boolean";
 }
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation.
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */
-function __values(e) {
-  var r = typeof Symbol == "function" && Symbol.iterator, n = r && e[r], s = 0;
-  if (n)
-    return n.call(e);
-  if (e && typeof e.length == "number")
-    return {
-      next: function() {
-        return e && s >= e.length && (e = void 0), { value: e && e[s++], done: !e };
-      }
-    };
-  throw new TypeError(r ? "Object is not iterable." : "Symbol.iterator is not defined.");
-}
 function isGenericSetting(e) {
   return Object.prototype.toString.call(e) === "[object Array]" && e.length == 2 && typeof e[0] == "string";
 }
@@ -61457,9 +61431,6 @@ function isGetViewAsTourMessage(e) {
 }
 function isPingPongMessage(e) {
   return typeof e.type == "string" && e.type == "wwt_ping_pong" && typeof e.threadId == "string" && (e.sessionId === void 0 || typeof e.sessionId == "string");
-}
-function isClearTileCacheMessage(e) {
-  return typeof e.event == "string" && e.event === "clear_tile_cache";
 }
 const researchAppEngineSettingTypeInfo = {
   "altAzGridColor/string": !0,
@@ -62352,9 +62323,6 @@ const App$1 = /* @__PURE__ */ defineComponent({
       }
       return !1;
     },
-    handleClearTileCache(e) {
-      return isClearTileCacheMessage(e) ? (this.clearTileCache(), !0) : !1;
-    },
     wwtOnPointerMove(e) {
       if (e.buttons == 1) {
         const r = {
@@ -62810,88 +62778,91 @@ const App$1 = /* @__PURE__ */ defineComponent({
           }
         },
         !1
-      );
+      ), this.$nextTick(() => {
+        const r = this.$refs.root;
+        console.log("ROOT"), console.log(r), r.addEventListener(
+          "keydown",
+          this.kcs.makeListener("zoomIn", () => this.doZoom(!0))
+        ), r.addEventListener(
+          "keydown",
+          this.kcs.makeListener("zoomOut", () => this.doZoom(!1))
+        ), r.addEventListener(
+          "keydown",
+          this.kcs.makeListener(
+            "moveUp",
+            () => this.doMove(0, this.kcs.moveAmount)
+          )
+        ), r.addEventListener(
+          "keydown",
+          this.kcs.makeListener(
+            "moveDown",
+            () => this.doMove(0, -this.kcs.moveAmount)
+          )
+        ), r.addEventListener(
+          "keydown",
+          this.kcs.makeListener(
+            "moveLeft",
+            () => this.doMove(this.kcs.moveAmount, 0)
+          )
+        ), r.addEventListener(
+          "keydown",
+          this.kcs.makeListener(
+            "moveRight",
+            () => this.doMove(-this.kcs.moveAmount, 0)
+          )
+        ), r.addEventListener(
+          "keydown",
+          this.kcs.makeListener(
+            "tiltLeft",
+            () => this.doTilt(this.kcs.tiltAmount, 0)
+          )
+        ), r.addEventListener(
+          "keydown",
+          this.kcs.makeListener(
+            "tiltRight",
+            () => this.doTilt(-this.kcs.tiltAmount, 0)
+          )
+        ), r.addEventListener(
+          "keydown",
+          this.kcs.makeListener(
+            "tiltUp",
+            () => this.doTilt(0, this.kcs.tiltAmount)
+          )
+        ), r.addEventListener(
+          "keydown",
+          this.kcs.makeListener(
+            "tiltDown",
+            () => this.doTilt(0, -this.kcs.tiltAmount)
+          )
+        ), r.addEventListener(
+          "keydown",
+          this.kcs.makeListener(
+            "bigMoveUp",
+            () => this.doMove(0, this.kcs.bigMoveFactor * this.kcs.moveAmount)
+          )
+        ), r.addEventListener(
+          "keydown",
+          this.kcs.makeListener(
+            "bigMoveDown",
+            () => this.doMove(0, this.kcs.bigMoveFactor * -this.kcs.moveAmount)
+          )
+        ), r.addEventListener(
+          "keydown",
+          this.kcs.makeListener(
+            "bigMoveLeft",
+            () => this.doMove(this.kcs.bigMoveFactor * this.kcs.moveAmount, 0)
+          )
+        ), r.addEventListener(
+          "keydown",
+          this.kcs.makeListener(
+            "bigMoveRight",
+            () => this.doMove(this.kcs.bigMoveFactor * -this.kcs.moveAmount, 0)
+          )
+        );
+      });
     }), setTimeout(() => {
       this.show = !0;
-    }, 1e3), window.addEventListener(
-      "keydown",
-      this.kcs.makeListener("zoomIn", () => this.doZoom(!0))
-    ), window.addEventListener(
-      "keydown",
-      this.kcs.makeListener("zoomOut", () => this.doZoom(!1))
-    ), window.addEventListener(
-      "keydown",
-      this.kcs.makeListener(
-        "moveUp",
-        () => this.doMove(0, this.kcs.moveAmount)
-      )
-    ), window.addEventListener(
-      "keydown",
-      this.kcs.makeListener(
-        "moveDown",
-        () => this.doMove(0, -this.kcs.moveAmount)
-      )
-    ), window.addEventListener(
-      "keydown",
-      this.kcs.makeListener(
-        "moveLeft",
-        () => this.doMove(this.kcs.moveAmount, 0)
-      )
-    ), window.addEventListener(
-      "keydown",
-      this.kcs.makeListener(
-        "moveRight",
-        () => this.doMove(-this.kcs.moveAmount, 0)
-      )
-    ), window.addEventListener(
-      "keydown",
-      this.kcs.makeListener(
-        "tiltLeft",
-        () => this.doTilt(this.kcs.tiltAmount, 0)
-      )
-    ), window.addEventListener(
-      "keydown",
-      this.kcs.makeListener(
-        "tiltRight",
-        () => this.doTilt(-this.kcs.tiltAmount, 0)
-      )
-    ), window.addEventListener(
-      "keydown",
-      this.kcs.makeListener(
-        "tiltUp",
-        () => this.doTilt(0, this.kcs.tiltAmount)
-      )
-    ), window.addEventListener(
-      "keydown",
-      this.kcs.makeListener(
-        "tiltDown",
-        () => this.doTilt(0, -this.kcs.tiltAmount)
-      )
-    ), window.addEventListener(
-      "keydown",
-      this.kcs.makeListener(
-        "bigMoveUp",
-        () => this.doMove(0, this.kcs.bigMoveFactor * this.kcs.moveAmount)
-      )
-    ), window.addEventListener(
-      "keydown",
-      this.kcs.makeListener(
-        "bigMoveDown",
-        () => this.doMove(0, this.kcs.bigMoveFactor * -this.kcs.moveAmount)
-      )
-    ), window.addEventListener(
-      "keydown",
-      this.kcs.makeListener(
-        "bigMoveLeft",
-        () => this.doMove(this.kcs.bigMoveFactor * this.kcs.moveAmount, 0)
-      )
-    ), window.addEventListener(
-      "keydown",
-      this.kcs.makeListener(
-        "bigMoveRight",
-        () => this.doMove(this.kcs.bigMoveFactor * -this.kcs.moveAmount, 0)
-      )
-    );
+    }, 1e3);
   },
   unmounted() {
     screenfullExports.isEnabled && screenfullExports.off("change", this.onFullscreenEvent), this.updateIntervalId !== null && (window.clearInterval(this.updateIntervalId), this.updateIntervalId = null);
@@ -62948,7 +62919,9 @@ const App$1 = /* @__PURE__ */ defineComponent({
   statusMessageDestination: null
 }), _hoisted_1$3 = {
   key: 0,
-  id: "app"
+  id: "app",
+  ref: "root",
+  tabindex: "0"
 }, _hoisted_2$3 = { id: "ui-elements" }, _hoisted_3$3 = {
   class: "element-box",
   id: "display-panel-box"
@@ -63355,7 +63328,7 @@ function _sfc_render$4(e, r, n, s, a, t) {
     ], 544)), [
       [vShow, e.wwtShowWebGl2Warning]
     ])
-  ])) : createCommentVNode("", !0);
+  ], 512)) : createCommentVNode("", !0);
 }
 const App = /* @__PURE__ */ _export_sfc(App$1, [["render", _sfc_render$4]]), uiColorMaps = [
   { wwt: "viridis", desc: "Viridis" },

@@ -418,7 +418,6 @@ import {
 import {
   classicPywwt,
   isPingPongMessage,
-  isClearTileCacheMessage,
   layers,
   selections,
   settings,
@@ -2032,13 +2031,6 @@ const App = defineComponent({
       return false;
     },
 
-    handleClearTileCache(msg: any): boolean {
-      if (!isClearTileCacheMessage(msg)) return false;
-
-      this.clearTileCache();
-      return true;
-    },
-
     wwtOnPointerMove(event: PointerEvent) {
       // We would like to catch drag operations over wwt. Unfortunately we cannot
       // detect whether the primary button is pressed when the pointer move event
@@ -2939,97 +2931,99 @@ const App = defineComponent({
         },
         false
       );
+
+      this.$nextTick(() => {
+        const root = this.$refs.root as HTMLElement;
+
+        // Handling key presses
+        root.addEventListener(
+          "keydown",
+          this.kcs.makeListener("zoomIn", () => this.doZoom(true))
+        );
+        root.addEventListener(
+          "keydown",
+          this.kcs.makeListener("zoomOut", () => this.doZoom(false))
+        );
+        root.addEventListener(
+          "keydown",
+          this.kcs.makeListener("moveUp", () =>
+            this.doMove(0, this.kcs.moveAmount)
+          )
+        );
+        root.addEventListener(
+          "keydown",
+          this.kcs.makeListener("moveDown", () =>
+            this.doMove(0, -this.kcs.moveAmount)
+          )
+        );
+        root.addEventListener(
+          "keydown",
+          this.kcs.makeListener("moveLeft", () =>
+            this.doMove(this.kcs.moveAmount, 0)
+          )
+        );
+        root.addEventListener(
+          "keydown",
+          this.kcs.makeListener("moveRight", () =>
+            this.doMove(-this.kcs.moveAmount, 0)
+          )
+        );
+        root.addEventListener(
+          "keydown",
+          this.kcs.makeListener("tiltLeft", () =>
+            this.doTilt(this.kcs.tiltAmount, 0)
+          )
+        );
+        root.addEventListener(
+          "keydown",
+          this.kcs.makeListener("tiltRight", () =>
+            this.doTilt(-this.kcs.tiltAmount, 0)
+          )
+        );
+        root.addEventListener(
+          "keydown",
+          this.kcs.makeListener("tiltUp", () =>
+            this.doTilt(0, this.kcs.tiltAmount)
+          )
+        );
+        root.addEventListener(
+          "keydown",
+          this.kcs.makeListener("tiltDown", () =>
+            this.doTilt(0, -this.kcs.tiltAmount)
+          )
+        );
+        root.addEventListener(
+          "keydown",
+          this.kcs.makeListener("bigMoveUp", () =>
+            this.doMove(0, this.kcs.bigMoveFactor * this.kcs.moveAmount)
+          )
+        );
+        root.addEventListener(
+          "keydown",
+          this.kcs.makeListener("bigMoveDown", () =>
+            this.doMove(0, this.kcs.bigMoveFactor * -this.kcs.moveAmount)
+          )
+        );
+        root.addEventListener(
+          "keydown",
+          this.kcs.makeListener("bigMoveLeft", () =>
+            this.doMove(this.kcs.bigMoveFactor * this.kcs.moveAmount, 0)
+          )
+        );
+        root.addEventListener(
+          "keydown",
+          this.kcs.makeListener("bigMoveRight", () =>
+            this.doMove(this.kcs.bigMoveFactor * -this.kcs.moveAmount, 0)
+          )
+        ); 
+      });
+
     });
 
     setTimeout(() => {
       this.show = true;
     }, 1000);
 
-    const root = this.$refs.root as HTMLElement;
-    console.log("ROOT");
-    console.log(root);
-
-    // Handling key presses
-    root.addEventListener(
-      "keydown",
-      this.kcs.makeListener("zoomIn", () => this.doZoom(true))
-    );
-    root.addEventListener(
-      "keydown",
-      this.kcs.makeListener("zoomOut", () => this.doZoom(false))
-    );
-    root.addEventListener(
-      "keydown",
-      this.kcs.makeListener("moveUp", () =>
-        this.doMove(0, this.kcs.moveAmount)
-      )
-    );
-    root.addEventListener(
-      "keydown",
-      this.kcs.makeListener("moveDown", () =>
-        this.doMove(0, -this.kcs.moveAmount)
-      )
-    );
-    root.addEventListener(
-      "keydown",
-      this.kcs.makeListener("moveLeft", () =>
-        this.doMove(this.kcs.moveAmount, 0)
-      )
-    );
-    root.addEventListener(
-      "keydown",
-      this.kcs.makeListener("moveRight", () =>
-        this.doMove(-this.kcs.moveAmount, 0)
-      )
-    );
-    root.addEventListener(
-      "keydown",
-      this.kcs.makeListener("tiltLeft", () =>
-        this.doTilt(this.kcs.tiltAmount, 0)
-      )
-    );
-    root.addEventListener(
-      "keydown",
-      this.kcs.makeListener("tiltRight", () =>
-        this.doTilt(-this.kcs.tiltAmount, 0)
-      )
-    );
-    root.addEventListener(
-      "keydown",
-      this.kcs.makeListener("tiltUp", () =>
-        this.doTilt(0, this.kcs.tiltAmount)
-      )
-    );
-    root.addEventListener(
-      "keydown",
-      this.kcs.makeListener("tiltDown", () =>
-        this.doTilt(0, -this.kcs.tiltAmount)
-      )
-    );
-    root.addEventListener(
-      "keydown",
-      this.kcs.makeListener("bigMoveUp", () =>
-        this.doMove(0, this.kcs.bigMoveFactor * this.kcs.moveAmount)
-      )
-    );
-    root.addEventListener(
-      "keydown",
-      this.kcs.makeListener("bigMoveDown", () =>
-        this.doMove(0, this.kcs.bigMoveFactor * -this.kcs.moveAmount)
-      )
-    );
-    root.addEventListener(
-      "keydown",
-      this.kcs.makeListener("bigMoveLeft", () =>
-        this.doMove(this.kcs.bigMoveFactor * this.kcs.moveAmount, 0)
-      )
-    );
-    root.addEventListener(
-      "keydown",
-      this.kcs.makeListener("bigMoveRight", () =>
-        this.doMove(this.kcs.bigMoveFactor * -this.kcs.moveAmount, 0)
-      )
-    );
   },
 
   unmounted() {
