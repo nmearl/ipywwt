@@ -18,7 +18,7 @@
     "@wwtelescope/engine-helpers": "^0.16.0",
     "@wwtelescope/engine-pinia": "^0.9.0",
     "@wwtelescope/engine-types": "^0.6.7",
-    "@wwtelescope/research-app-messages": "https://gitpkg.now.sh/WorldWideTelescope/wwt-webgl-engine/research-app-messages?aa27cedca095517ce022fdf462b519e25418a768&scripts.postinstall=npm%20install%20--ignore-scripts%20%26%26%20npm%20run%20build",
+    "@wwtelescope/research-app-messages": "^0.17.3",
     "moment": "^2.29.1",
     "screenfull": "^5",
     "uuid": "^9.0.1",
