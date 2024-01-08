@@ -69,11 +69,13 @@ class SetForegroundByOpacityMessage(RemoteAPIMessage):
     event: str = "set_foreground_opacity"
     id: str = field(default_factory=lambda: str(uuid4()))
 
+
 @dataclass
-class ModifySettings(RemoteAPIMessage):
-    settings: list
+class ModifySettingsMessage(RemoteAPIMessage):
+    settings: tuple
     target: str = "app"
     event: str = "modify_settings"
+    id: str = field(default_factory=lambda: str(uuid4()))
 
 
 msg_ref = dict(

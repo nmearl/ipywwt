@@ -76,13 +76,10 @@ class WWTWidget(AnyWidget):
 
     def load_image_collection(self, url=DEFAULT_SURVEYS_URL):
         self.send(LoadImageCollectionMessage(url))
-    
+
     def hide_all_chrome(self):
-        print('hide all chrome')
-        self._send_msg(
-            event="modify_settings",
-            target="app",
-            settings=[{"hideAllChrome": True}],
+        self.send(
+            ModifySettingsMessage(target="app", settings=(("hideAllChrome", True),))
         )
 
     @observe("foreground")

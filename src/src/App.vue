@@ -2017,7 +2017,6 @@ const App = defineComponent({
     },
 
     handleModifySettings(msg: any): boolean {
-      console.log('handleModifySettings', msg);
       const appModified = settings.maybeAsModifiedAppSettings(msg);
 
       if (appModified !== null) {
