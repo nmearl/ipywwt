@@ -69,6 +69,12 @@ class SetForegroundByOpacityMessage(RemoteAPIMessage):
     event: str = "set_foreground_opacity"
     id: str = field(default_factory=lambda: str(uuid4()))
 
+@dataclass
+class ModifySettings(RemoteAPIMessage):
+    settings: list
+    target: str = "app"
+    event: str = "modify_settings"
+
 
 msg_ref = dict(
     inspect.getmembers(

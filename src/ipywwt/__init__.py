@@ -4,7 +4,7 @@ from pathlib import Path
 import astropy.units as u
 from astropy.time import Time
 from anywidget import AnyWidget
-from traitlets import Unicode, Float, observe, default
+from traitlets import Unicode, Float, observe, default, Bool
 import logging
 import numpy as np
 from astropy.coordinates import SkyCoord
@@ -76,6 +76,14 @@ class WWTWidget(AnyWidget):
 
     def load_image_collection(self, url=DEFAULT_SURVEYS_URL):
         self.send(LoadImageCollectionMessage(url))
+    
+    def hide_all_chrome(self):
+        print('hide all chrome')
+        self._send_msg(
+            event="modify_settings",
+            target="app",
+            settings=[{"hideAllChrome": True}],
+        )
 
     @observe("foreground")
     def _on_foreground_change(self, changed):
