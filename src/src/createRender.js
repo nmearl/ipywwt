@@ -89,7 +89,7 @@ export function createRender(app) {
                     if (name.indexOf('Column') >= 0) {
                         value = layer.get__table().header.indexOf(msg['value']);
                     } else if (name == 'color') {
-                        value = wwtlib.Color.fromHex(msg['value']);
+                        value = wwtlib.Color.fromHex(msg['value']).toFormat();
                     } else if (name == 'colorMapper') {
                         value = wwtlib.ColorMapContainer.fromArgbList(msg['value']);
                     } else if (name == 'altUnit') {
