@@ -89,7 +89,8 @@ export function createRender(app) {
                     if (name.indexOf('Column') >= 0) {
                         value = layer.get__table().header.indexOf(msg['value']);
                     } else if (name == 'color') {
-                        value = wwtlib.Color.fromHex(msg['value']).toFormat();
+                        // value = wwtlib.Color.fromHex(msg['value']);
+                        value = msg['value']; // expects a hex string
                     } else if (name == 'colorMapper') {
                         value = wwtlib.ColorMapContainer.fromArgbList(msg['value']);
                     } else if (name == 'altUnit') {
@@ -102,7 +103,8 @@ export function createRender(app) {
                     } else if (name == 'plotType') {
                         value = wwtlib.PlotTypes[msg['value']];
                     } else if (name == 'markerScale') {
-                        value = wwtlib.MarkerScales[msg['value']];
+                        // value = wwtlib.MarkerScales[msg['value']];
+                        value = msg['value']; // expects a string world/screen
                     } else if (name == 'coordinatesType') {
                         value = wwtlib.CoordinatesTypes[msg['value']];
                     } else if (name == 'cartesianScale') {
