@@ -3223,7 +3223,7 @@ body {
 
   li {
     padding: 3px;
-    height: 22px;
+    height: fit-content;
     cursor: pointer;
 
     .nudgeright1 {
@@ -3379,6 +3379,11 @@ body {
   text-overflow: ellipsis;
 }
 
+.tooltip-icon {
+  min-width: 1em;
+  aspect-ratio: 1;
+}
+
 /* Specialized styling for popups */
 
 ul.tool-menu {
@@ -3393,7 +3398,7 @@ ul.tool-menu {
       text-decoration: none;
       color: inherit;
       display: block;
-      width: 100%;
+      // width: 100%;
     }
 
     svg.svg-inline--fa {
