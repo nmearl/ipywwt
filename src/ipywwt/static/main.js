@@ -64476,7 +64476,7 @@ function createRender(e) {
         case "table_layer_set":
           [l, o] = Object.entries(a.wwtSpreadSheetLayers).filter(([y, g]) => g.name === t.id).at(0), c = a.spreadSheetLayerById(l);
           let _ = t.setting, u = null;
-          _.indexOf("Column") >= 0 ? u = c.get__table().header.indexOf(t.value) : _ == "color" ? u = srcExports.Color.fromHex(t.value).toFormat() : _ == "colorMapper" ? u = srcExports.ColorMapContainer.fromArgbList(t.value) : _ == "altUnit" ? u = srcExports.AltUnits[t.value] : _ == "raUnits" ? u = srcExports.RAUnits[t.value] : _ == "altType" ? u = srcExports.AltTypes[t.value || "altitude"] : _ == "plotType" ? u = srcExports.PlotTypes[t.value] : _ == "markerScale" ? u = srcExports.MarkerScales[t.value] : _ == "coordinatesType" ? u = srcExports.CoordinatesTypes[t.value] : _ == "cartesianScale" ? u = srcExports.AltUnits[t.value] : u = t.value, t.value = u, window.postMessage(t);
+          _.indexOf("Column") >= 0 ? u = c.get__table().header.indexOf(t.value) : _ == "color" ? u = t.value : _ == "colorMapper" ? u = srcExports.ColorMapContainer.fromArgbList(t.value) : _ == "altUnit" ? u = srcExports.AltUnits[t.value] : _ == "raUnits" ? u = srcExports.RAUnits[t.value] : _ == "altType" ? u = srcExports.AltTypes[t.value || "altitude"] : _ == "plotType" ? u = srcExports.PlotTypes[t.value] : _ == "markerScale" ? u = t.value : _ == "coordinatesType" ? u = srcExports.CoordinatesTypes[t.value] : _ == "cartesianScale" ? u = srcExports.AltUnits[t.value] : u = t.value, t.value = u, window.postMessage(t);
           break;
         case "table_layer_remove":
           c = a.layers[t.id], window.postMessage(t);
