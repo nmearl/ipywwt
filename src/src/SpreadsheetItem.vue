@@ -58,6 +58,7 @@
             placement="right"
             >
             <font-awesome-icon
+              class="color-picker-icon"
               icon="circle"
               size="lg"
               :style="{
@@ -428,6 +429,14 @@ export default defineComponent({
   width: 100%;
 }
 
+
+.detail-row input, 
+.detail-row select {
+  color: black;
+  font-weight: normal;
+}
+
+
 .flex-row {
   display: inline-flex;
   flex-flow: row nowrap;
@@ -440,19 +449,24 @@ export default defineComponent({
   text-align: center;
 }
 
+.color-picker-icon {
+  width: 1em;
+}
+
 :deep(*) {
 
   &.app-color-picker {
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // gap: 2px;
+    width: fit-content!important;
 
-    & .color-set {
-      display: flex;
-      gap: 3px;
-    }
+    // & .color-set {
+    //   display: flex;
+    //   gap: 3px;
+    // }
 
   }
 }
