@@ -62166,7 +62166,7 @@ const App$1 = /* @__PURE__ */ defineComponent({
       lastClosePt: null,
       lastSelectedSource: null,
       selectionProximity: 4,
-      hideAllChrome: !1,
+      hideAllChrome: !0,
       hipsUrl: `${window.location.protocol}//www.worldwidetelescope.org/wwtweb/catalog.aspx?W=hips`,
       // Temporary
       isPointerMoving: !1,
@@ -62285,6 +62285,11 @@ const App$1 = /* @__PURE__ */ defineComponent({
       "removeResearchAppTableLayer",
       "setResearchAppTableLayerSelectability"
     ]),
+    onMounted() {
+      const e = setInterval(() => {
+        this.show && (console.log("Research app mounted"), window.postMessage({ event: "research_app_ready" }, "*"), clearInterval(e));
+      }, 100);
+    },
     parseFloatParam(e, r) {
       return typeof e == "string" && parseFloat(e) || r;
     },
@@ -63187,6 +63192,8 @@ const App$1 = /* @__PURE__ */ defineComponent({
           () => this.doMove(this.kcs.bigMoveFactor * -this.kcs.moveAmount, 0)
         )
       );
+    }).then(() => {
+      this.onMounted();
     }), setTimeout(() => {
       this.show = !0;
     }, 1e3);
@@ -64459,7 +64466,7 @@ const TransitionExpand = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc
 function createRender(e) {
   return ({ model: r, el: n }) => {
     let s = document.createElement("div");
-    s.setAttribute("id", "app-wrapper"), s.style.setProperty("height", "400px", ""), s.style.setProperty("width", "100%", ""), s.style.setProperty("border", "none", ""), n.appendChild(s);
+    s.setAttribute("id", "app-wrapper"), s.style.setProperty("height", "400px", ""), s.style.setProperty("width", "100%", ""), s.style.setProperty("border", "none", ""), r.get("mounted"), n.appendChild(s);
     let a = e.mount(s);
     return window.vm = a, a.layers = {}, r.on("msg:custom", (t) => {
       let l = null, o = null, c = null;
@@ -64468,7 +64475,7 @@ function createRender(e) {
           console.log(isCenterOnCoordinatesMessage(t)), window.postMessage(t);
           break;
         case "table_layer_create":
-          window.postMessage(t);
+          console.log("table_layer_create", t), window.postMessage(t);
           break;
         case "table_layer_update":
           window.postMessage(t);
@@ -64499,6 +64506,10 @@ function createRender(e) {
     }), window.addEventListener(
       "message",
       (t) => {
+        if (t.data.event === "research_app_ready") {
+          console.log("Research app ready"), r.set("mounted", !0), r.save_changes();
+          return;
+        }
         r.send(t.data);
       },
       !1
