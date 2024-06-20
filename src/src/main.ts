@@ -146,4 +146,6 @@ app.component('imageset-item', ImagesetItem)
 app.component('source-item', SourceItem)
 app.component('transition-expand', TransitionExpand)
 
-export const render = createRender(app);
+const render = createRender(app);
+
+export default { render }
