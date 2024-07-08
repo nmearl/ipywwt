@@ -44,6 +44,8 @@ export function createRender(app) {
         div.style.setProperty('border', 'none', '');
 
         // iframe.contentWindow.document.body.appendChild(div);
+        
+        let mounted = model.get("mounted");
 
         el.appendChild(div);
 
@@ -66,6 +68,7 @@ export function createRender(app) {
                     window.postMessage(msg);
                     break;
                 case "table_layer_create":
+                    console.log('table_layer_create',msg);
                     window.postMessage(msg);
                     break;
                 case "table_layer_update":
@@ -141,6 +144,12 @@ export function createRender(app) {
         window.addEventListener(
             "message",
             (event) => {
+                if (event.data.event === "research_app_ready") {
+                    console.log("Research app ready");
+                    model.set("mounted", true);
+                    model.save_changes();
+                    return ;
+                }
                 model.send(event.data);
             }, false);
 
