@@ -94,7 +94,7 @@ class WWTWidget(AnyWidget):
             for callback in callbacks:
                 callback()
     
-    def on_ready(self, callback = None):
+    def on_ready(self, callback):
         """
         Set a callback function that will be executed when the widget receives
         the "wwt_ready" message indicating the WWT application is ready to recieve
@@ -104,7 +104,7 @@ class WWTWidget(AnyWidget):
         """
         self._on_ready.append(callback)
     
-    def ensure_mounted(self, callback = None):
+    def ensure_mounted(self, callback):
         # add to wwt_ready callback as a list
         if self.mounted:
             print('already mounted: running callback')
