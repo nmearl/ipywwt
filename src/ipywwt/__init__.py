@@ -16,7 +16,7 @@ from .layers import TableLayer, LayerManager
 
 bundler_output_dir = Path(__file__).parent / "static"
 
-DEFAULT_SURVEYS_URL = "https://gist.githubusercontent.com/nmearl/ada714e37d4feef92bc1d46a8c22755d/raw/af9178f3706650ccb51ed595d9e0df0c26eadb09/surveys.xml"
+DEFAULT_SURVEYS_URL = "https://gist.githubusercontent.com/nmearl/ada714e37d4feef92bc1d46a8c22755d/raw/surveys.xml"
 R2D = 180 / np.pi
 R2H = 12 / np.pi
 
@@ -94,7 +94,7 @@ class WWTWidget(AnyWidget):
             for callback in callbacks:
                 callback()
     
-    def on_ready(self, callback = None):
+    def on_ready(self, callback):
         """
         Set a callback function that will be executed when the widget receives
         the "wwt_ready" message indicating the WWT application is ready to recieve
@@ -104,7 +104,7 @@ class WWTWidget(AnyWidget):
         """
         self._on_ready.append(callback)
     
-    def ensure_mounted(self, callback = None):
+    def ensure_mounted(self, callback):
         # add to wwt_ready callback as a list
         if self.mounted:
             print('already mounted: running callback')
