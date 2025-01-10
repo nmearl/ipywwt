@@ -16,7 +16,7 @@ from .layers import TableLayer, LayerManager
 
 bundler_output_dir = Path(__file__).parent / "static"
 
-DEFAULT_SURVEYS_URL = "https://gist.githubusercontent.com/nmearl/ada714e37d4feef92bc1d46a8c22755d/raw/surveys.xml"
+DEFAULT_SURVEYS_URL = "https://raw.githubusercontent.com/nmearl/ipywwt/refs/heads/main/src/ipywwt/static/surveys.xml"
 R2D = 180 / np.pi
 R2H = 12 / np.pi
 
