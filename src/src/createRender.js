@@ -135,6 +135,9 @@ export function createRender(app) {
                 case "set_foreground_opacity":
                     window.postMessage(msg);
                     break;
+                case "clear_tile_cache":
+                    window.postMessage(msg);
+                    break;
                 default:
                     console.log(`Received uncaught custom message of type ${msg.event}.`)
             }
