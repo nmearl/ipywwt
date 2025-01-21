@@ -320,6 +320,9 @@ class WWTWidget(AnyWidget):
         if self.current_mode == "panorama":
             pass
 
+    def clear_tile_cache(self):
+        self.send(ClearTileCacheMessage())
+
     @default("layout")
     def _default_layout(self):
         return widgets.Layout(height="400px", align_self="stretch")
