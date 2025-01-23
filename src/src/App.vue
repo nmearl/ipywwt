@@ -418,6 +418,7 @@ import {
 import {
   classicPywwt,
   isPingPongMessage,
+  isClearTileCacheMessage,
   layers,
   selections,
   settings,
@@ -2041,6 +2042,13 @@ const App = defineComponent({
       }
 
       return false;
+    },
+
+    handleClearTileCache(msg: any): boolean {
+      if (!isClearTileCacheMessage(msg)) return false;
+
+      this.clearTileCache();
+      return true;
     },
 
     wwtOnPointerMove(event: PointerEvent) {
