@@ -7,11 +7,10 @@ import time
 import socket
 
 from anywidget import AnyWidget
+from pywwt import BaseWWTWidget
 import traitlets
 from traitlets import observe, default
 import ipywidgets
-
-from .core import BaseWWTWidget
 
 try:
     __version__ = importlib.metadata.version("ipywwt")
@@ -37,8 +36,9 @@ class WWTWidget(AnyWidget, BaseWWTWidget):
     def __init__(
         self, hide_all_chrome=True, port=8899, use_remote=False, surveys_url=DEFAULT_SURVEYS_URL, *args, **kwargs
     ):
-        AnyWidget.__init__(*args, **kwargs)
-        BaseWWTWidget.__init__(hide_all_chrome=hide_all_chrome,
+        AnyWidget.__init__(self, *args, **kwargs)
+        BaseWWTWidget.__init__(self,
+                               hide_all_chrome=hide_all_chrome,
                                surveys_url=surveys_url,
                                *args, **kwargs)
 
