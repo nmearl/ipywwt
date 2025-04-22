@@ -6,14 +6,11 @@ import threading
 import time
 import socket
 
-import anywidget
+from anywidget import AnyWidget
+from pywwt import BaseWWTWidget
 import traitlets
 from traitlets import observe, default
 import ipywidgets
-
-from .layers import TableLayer
-from .core import BaseWWTWidget
-from .imagery import get_imagery_layers
 
 try:
     __version__ = importlib.metadata.version("ipywwt")
@@ -25,7 +22,7 @@ RESEARCH_APP = pathlib.Path(__file__).parent / "web_static"
 DEFAULT_SURVEYS_URL = "https://gist.githubusercontent.com/Carifio24/e8b02488d43a0e4381648fe06c100739/raw/surveys.xml"
 
 
-class WWTWidget(anywidget.AnyWidget, BaseWWTWidget):
+class WWTWidget(AnyWidget, BaseWWTWidget):
     _esm = STATIC / "widget.js"
     _css = STATIC / "widget.css"
 
@@ -37,15 +34,16 @@ class WWTWidget(anywidget.AnyWidget, BaseWWTWidget):
     server_url = traitlets.Unicode(default_value="").tag(sync=True)
 
     def __init__(
-        self, hide_all_chrome=True, port=8899, use_remote=False, *args, **kwargs
+        self, hide_all_chrome=True, port=8899, use_remote=False, surveys_url=DEFAULT_SURVEYS_URL, *args, **kwargs
     ):
-        super().__init__(hide_all_chrome=hide_all_chrome, *args, **kwargs)
+        AnyWidget.__init__(self, *args, **kwargs)
+        BaseWWTWidget.__init__(self,
+                               hide_all_chrome=hide_all_chrome,
+                               surveys_url=surveys_url,
+                               *args, **kwargs)
 
         # Process messages from the frontend
         self.on_msg(self._on_app_message_received)
-
-        # Override default survey URL
-        self._available_layers = get_imagery_layers(DEFAULT_SURVEYS_URL)
 
         # Define path to research app
         self._research_app_path = RESEARCH_APP
